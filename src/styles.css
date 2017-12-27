@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+.pop {
+	background-color: #FFFFFF;
+	border: 1px solid #999999;
+	cursor: default;
+	margin-top: 15px;
+	position: relative;
+	text-align: left;
+	width: 400px;
+	z-index: 50;
+	padding: 25px 25px 20px;
+	margin-bottom: 20px;
+}
