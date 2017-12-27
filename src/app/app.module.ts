@@ -20,7 +20,13 @@ import { UserComponent } from "./components/user-component/user.component"
 import {DashAuthService} from "./services/dashAuth.service"
 import {StorageService} from "./services/storage.service"
 import { DashUserService } from "./services/dashUser.service"
-import { UserService } from "./services/user.service"
+import { UserService } from "./services/user.service";
+import {StoreLocationService} from "./services/store-location.service"
+import {LetterpressService} from "./services/letterpress.service"
+
+import { LetterpressComponent } from './components/letterpress-component/letterpress-component.component';
+import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component';
+import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component'
 
 
 @NgModule({
@@ -30,7 +36,10 @@ import { UserService } from "./services/user.service"
     HomeComponent,
     HeaderComponent,
     UserComponent,
-    ErrorComponent
+    ErrorComponent,
+    LetterpressComponent,
+    StoreLocationComponent,
+    StoreLocationDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +61,9 @@ import { UserService } from "./services/user.service"
     }, 
     StorageService,
     DashUserService,
-    UserService ],
+    UserService,
+    StoreLocationService,
+    LetterpressService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,54 @@
+<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+  <header></header>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-18 col-sm-12">
+      <h1>{{brand}}</h1>
+      <h2>{{brand}}</h2>
+      <a href="">Create New Store</a>
+      <h4>Show
+        <select [(ngModel)]="selectedValue">
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                </select> Entries
+      </h4>
+
+      <h4 align="right">Search <input type="text" name="search" [(ngModel)]="filter"></h4>
+
+      <table class="table table-bordered table-condensed display" id="stores">
+        <thead>
+          <tr>
+            <th width="3%">&nbsp;</th>
+            <th width="15%">Kiosk Id</th>
+            <th width="15%">Name</th>
+            <th width="20%">Address</th>
+            <th width="15%">Phone</th>
+            <th width="">Pins</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let store_location of store_locations | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: p }; let i=index">
+            <td align="right">{{i+1}}.</td>
+            <td> <a href=""> {{ store_location['kiosk_id'] }}</a></td>
+            <td>{{ store_location['name'] }}</td>
+            <td>
+              <address>
+                <strong>{{ store_location['address']['name'] }}</strong><br> {{ store_location['address']['address1'] }}<br>                {{ store_location['address']['address2'] }}<br> {{ store_location['address']['city'] }}, {{ store_location['address']['state']
+                }} - {{ store_location['address']['zip'] }}<br> {{ store_location['address']['country'] }}
+              </address>
+            </td>
+            <td>{{ store_location['address']['phone'] }}</td>
+            <td>
+              {{store_location.pin_codes}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

@@ -9,11 +9,11 @@
             <h2>{{brand}}</h2>
             <h4>Show
                 <select [(ngModel)]="selectedValue">
-        <option [ngValue]="10">10</option>
-        <option [ngValue]="25">25</option>
-        <option [ngValue]="50">50</option>
-        <option [ngValue]="100">100</option>
-    </select> Entries
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                </select> Entries
             </h4>
 
             <h4 align="right">Search <input type="text" name="search" [(ngModel)]="filter"></h4>
@@ -171,13 +171,13 @@
                     <div class="col-sm-3">Discount</div>
                 </div>
                 <div *ngFor="let order of orders" class="row" style="border: 1px solid black">
-                <div class="col-sm-3"><a href="">{{order['order_number']}}</a></div>
-                <div class="col-sm-3">{{ order['ordered_at'] }}</div>
-                <div class="col-sm-3">{{ order.order_net }}</div>
-                <div *ngFor = "let discount of order['totals']['discount_code_amounts']" class="col-sm-3">
+                    <div class="col-sm-3"><a href="">{{order['order_number']}}</a></div>
+                    <div class="col-sm-3">{{ order['ordered_at'] }}</div>
+                    <div class="col-sm-3">{{ order.order_net }}</div>
+                    <div *ngFor="let discount of order['totals']['discount_code_amounts']" class="col-sm-3">
                         {{ discount['amount_redeemed'] }} ({{ discount['discount_code'] }}) <br>
+                    </div>
                 </div>
-            </div>
             </td>
         </tr>
 
@@ -228,39 +228,39 @@
         <h2>{{brand}}: {{user.first_name}}{{user.last_name}}
         </h2>
 
-        <form  #form="ngForm" (ngSubmit)="updateUser(form.value)">
-    <table class="table">
-        <tr>
-            <td>First Name</td>
-            <td><input type="text" class="form-control" name="first_name" [(ngModel)]="user.first_name"/></td>
-        </tr>
-        <tr>
-            <td>Last Name</td>
-            <td><input type="text" class="form-control" name="last_name"[(ngModel)]="user.last_name" /></td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td><input type="text" class="form-control" name="email" [(ngModel)]="user.email" /></td>
-        </tr>
-        <tr>
-            <td>Marketing Email Optin</td>
-            <td>
-                <fieldset ngModelGroup="marketing">
-                    <input type="checkbox" class="input-lg" name="email_opt_in" [(ngModel)]="user.marketing.email_opt_in" />
-                </fieldset>
-            </td>
-        </tr>
-        <tr>
-            <td>Date of Birth</td>
-            <td><input id="dob" type="date" class="form-control" name="dob" [(ngModel)]="user.dob" ></td>
-        </tr>
-    </table>
-    <input type="submit" class="btn btn-primary" value="Save">
-    <a (click)="cancel()" class="btn btn-default">Cancel</a>
+        <form #form="ngForm" (ngSubmit)="updateUser(form.value)">
+            <table class="table">
+                <tr>
+                    <td>First Name</td>
+                    <td><input type="text" class="form-control" name="first_name" [(ngModel)]="user.first_name" /></td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td><input type="text" class="form-control" name="last_name" [(ngModel)]="user.last_name" /></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" class="form-control" name="email" [(ngModel)]="user.email" /></td>
+                </tr>
+                <tr>
+                    <td>Marketing Email Optin</td>
+                    <td>
+                        <fieldset ngModelGroup="marketing">
+                            <input type="checkbox" class="input-lg" name="email_opt_in" [(ngModel)]="user.marketing.email_opt_in" />
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date of Birth</td>
+                    <td><input id="dob" type="date" class="form-control" name="dob" [(ngModel)]="user.dob"></td>
+                </tr>
+            </table>
+            <input type="submit" class="btn btn-primary" value="Save">
+            <a (click)="cancel()" class="btn btn-default">Cancel</a>
 
-    <a (click)="resetPassword(user.email)" class="btn btn-default">Reset Password</a>
-    <div id="status"></div>
-</form>
+            <a (click)="resetPassword(user.email)" class="btn btn-default">Reset Password</a>
+            <div id="status"></div>
+        </form>
 
 
     </div>

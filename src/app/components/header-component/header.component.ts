@@ -11,7 +11,7 @@ import { UserService } from "../../services/user.service"
 })
 export class HeaderComponent implements OnInit {
   current_user: any;
-  user: any;
+  dashUser: any;
   constructor(private router:Router, private _dashAuthService: DashAuthService, private _dashUserService: DashUserService, private _userService: UserService){
       this.current_user = JSON.parse(localStorage.getItem("current_user"));
 
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     this._dashUserService.getDashUserByEmail(this.current_user.email).subscribe((res) => {
         // res = JSON.stringify(res);
         // console.log("dddddddddddddd  res >>>>>>>>", res)
-        this.user = res;
+        this.dashUser = res;
         // console.log("this.user >>>>>>>>", this.user)
       })
   }
