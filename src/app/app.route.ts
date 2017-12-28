@@ -8,6 +8,7 @@ import { HomeComponent } from "./components/home-component/home.component"
 import { HeaderComponent } from "./components/header-component/header.component"
 import { UserComponent } from "./components/user-component/user.component"
 import {ErrorComponent} from "./components/error-component/error.component"
+import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component'
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component'
 import { LetterpressComponent } from './components/letterpress-component/letterpress-component.component'
 
@@ -33,8 +34,24 @@ const appRoutes: Routes =
         },
         {
             path: "store_locations/:brand",
-            component: StoreLocationComponent,
-            canActivate: [AuthGuard]
+            // component: StoreLocationComponent,
+            canActivate: [AuthGuard],
+            children:[
+                {
+                    path:"",
+                    component: StoreLocationComponent
+                },
+                {
+                    path:"new_store",
+                    component: StoreLocationDetailComponent
+                }
+                ,
+                {
+                    path:":kioskId",
+                    component: StoreLocationDetailComponent
+                }
+                
+            ]
 
         },
         {

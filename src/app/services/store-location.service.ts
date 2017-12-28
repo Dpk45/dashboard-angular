@@ -21,7 +21,7 @@ export class StoreLocationService {
 
   getStoreLocation(kiosk_id, brand) {
     brand = brand + "_dev";
-    return this._httpClient.get(this.baseUrl+"/store_locations/kiosk_id?key="+brand).map((res: any)=>{
+    return this._httpClient.get(this.baseUrl+"/store_locations/"+kiosk_id+"?key="+brand).map((res: any)=>{
       return res.data;
     })
   }
