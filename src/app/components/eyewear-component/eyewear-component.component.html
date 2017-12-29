@@ -1,0 +1,60 @@
+<header></header>
+
+
+<div class="container" *ngIf="!brand">
+  <div class="row">
+    <div class="col-xs-18 col-sm-12">
+      <h1>
+        Select a brand
+      </h1>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+
+            <ul class="nav nav-pills nav-stacked">
+              <ng-container *ngIf="dashUser">
+                <li *ngFor="let brand of dashUser.brands">
+                  <ng-container *ngIf="brand.brand">
+                    <a [routerLink]="['/orders/eyewear',brand.brand,'processing']"> {{brand.brand}} </a>
+                  </ng-container>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+
+          <div class="col-md-10">
+            <ul class="nav nav-tabs">
+              <li><a href="#">Processing</a></li>
+              <li><a href="#">At Lab</a></li>
+              <li><a href="#">Unshipped</a></li>
+            </ul>
+
+            <form method="POST">
+              <table class="table table-condensed table-bordered">
+                <tr>
+                  <th>Order</th>
+                  <th>Date</th>
+                  <th>Name</th>
+                  <th>Item</th>
+                  <th>Lens</th>
+                  <th>Action</th>
+                  <th>Total</th>
+                </tr>
+              </table>
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" *ngIf="brand">
+
+
+</div>

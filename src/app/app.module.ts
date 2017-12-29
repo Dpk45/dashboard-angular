@@ -31,7 +31,10 @@ import { StoreLocationComponent } from './components/store-locations-component/s
 import {DiscountComponent} from './components/discountCode/discount.component';
 import {LetterPressComponent} from './components/Letterpress/letterPress.component';
 import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component';
-import { OrdersComponent } from './components/orders-component/orders-component.component'
+import { OrdersComponent } from './components/orders-component/orders-component.component';
+import { EyewearComponent } from './components/eyewear-component/eyewear-component.component';
+import { HtkComponent } from './components/htk-component/htk-component.component';
+import { EyewearProcessComponent } from './components/eyewear-component/eyewear-process-component/eyewear-process-component.component'
 
 
 @NgModule({
@@ -48,6 +51,9 @@ import { OrdersComponent } from './components/orders-component/orders-component.
     DiscountComponent,
     LetterPressComponent,
     OrdersComponent,
+    EyewearComponent,
+    HtkComponent,
+    EyewearProcessComponent,
   ],
   imports: [
     BrowserModule,
