@@ -2,16 +2,15 @@
 
 <div class="container" *ngIf="store">
   <div class="row">
+    <!--<div class="alert alert-info">Pin Added</div>-->
     <div class="col-xs-18 col-sm-12">
-      <h1>{{brand}}</h1>
       <h2>{{brand}}</h2>
-
 
       <form class="form-horizontal" role="form" #form="ngForm" (ngSubmit)="updateStore(form.value)">
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="kiosk_id">Kiosk Id:</label>
-          <div class="col-sm-10" *ngIf="store['kiosk_id']">
+          <div class="col-sm-10" >
             <!--else elseTemplate-->
             <input type="text" class="form-control" id="kiosk_id" name="kiosk_id" placeholder="Kiosk Id" [(ngModel)]="store['kiosk_id']">
           </div>
@@ -28,7 +27,7 @@
         <div class="form-group">
           <label class="control-label col-sm-2">Name for Mailing</label>
           <div class="controls col-sm-10">
-            <input id="address_name" name="address_name" type="text" class="form-control input-xlarge" [(ngModel)]="store['address']['first_name']"
+            <input id="address_name" name="address_name" type="text" class="form-control input-xlarge" [(ngModel)]="store['address']['name']"
               required>
           </div>
         </div>
@@ -54,8 +53,8 @@
           </div>
         </div>
 
-        <!--<div class="form-group">-->
-          <!--<label class="control-label col-sm-2">State</label>-->
+        <div class="form-group">
+          <label class="control-label col-sm-2">State</label>
           <!--<div ng-repeat="state in state_list">{{state}}</div>-->
           <!--<div class="controls col-sm-4">
             <select id="country" name="state" class="input-xlarge form-control"  required>
@@ -64,12 +63,14 @@
                             ng-selected="state.key == store['address']['state']"> {{ state.value }} </option>
             </select>
         </div>-->
-          <!--<label class="control-label col-sm-2">Zip</label>
+          <label class="control-label col-sm-2">Zip</label>
         <div class="controls col-sm-4">
-            <input id="zip" name="zip" type="text" placeholder="Zip" class="form-control input-xlarge" value="{{
-                    store['address']['zip'] }}" required>
+            <input id="zip" name="zip" type="text" placeholder="Zip" class="form-control input-xlarge" [(ngModel)]="
+                    store['address']['zip'] " required>
         </div>
-     </div>-->
+     </div>
+
+     
           <div class="form-group">
             <label class="control-label col-sm-2">Country</label>
             <div class="controls col-sm-10">
@@ -84,22 +85,25 @@
                 required>
             </div>
           </div>
-          <!--<div class="form-group">
+
+          <div class="form-group">
         <label class="control-label col-sm-2" for="is_cc_authorized">Is Authorized?</label>
-        <div class="col-sm-10" *ngIf="store['is_cc_authorized']">
-            <input type="checkbox" id="is_cc_authorized" name="is_cc_authorized" value="True" checked="checked">
-            {% else %}
-            <input type="checkbox" id="is_cc_authorized" name="is_cc_authorized" value="True">
-            {% endif %}
+        <div class="col-sm-10">
+            <!--{% if store['is_cc_authorized'] %}-->
+            <input type="checkbox" id="is_cc_authorized" name="is_cc_authorized" [(ngModel)]="store.is_cc_authorized" >
+            <!--{% else %}-->
+            <!--<input type="checkbox" id="is_cc_authorized" name="is_cc_authorized" value="True">-->
+            <!--{% endif %}-->
             <label for="is_cc_authorized">Is Kiosk authorized to reuse customer credit cards?</label>
-        </div>-->
-        <!--</div>-->
+        </div>
+    </div>
+
 
         <div class="form-group" *ngIf="store['kiosk_id']">
           <label class="control-label col-sm-2" for="phone">Pin Codes:</label>
           <div class="col-sm-10">
             <label>{{ store['pin_codes'] }}</label>
-            <input type="hidden" name="pin_codes" value="{{ pins }}">
+            <input type="hidden" name="pin_codes" [(ngModel)]="store.pin_codes">
           </div>
         </div>
 
@@ -110,29 +114,27 @@
         </div>
       </form>
 
-      <!--<div class="container" *ngIf="store['kiosk_id']">
-        <form class="form-inline" role="form" method="POST" action="{{url_for('store_locations.new_pin', brand=brand, store_location=store['kiosk_id'])}}">
+      <div class="container" *ngIf="store['kiosk_id']">
+        <form class="form-inline" role="form" #f="ngForm" (ngSubmit)="addNewPin(f.value)">
             <div class="form-group">
                 <label for="pin" class="control-label">New Pin</label>
-                <input type="number" class="form-control" id="new_pin" name="new_pin" placeholder="New Pin" required>
+                <input type="number" class="form-control" id="new_pin" name="new_pin" placeholder="New Pin" [(ngModel)]="new_pin" required>
             </div>
             <button type="submit" class="btn btn-default">Add Pin</button>
         </form>
         <div class="row">
             <div class="col-sm-12">&nbsp;</div>
         </div>
-    </div>-->
-
+    </div>
 
     </div>
   </div>
 </div>
 
 
-
+<!--*******************************************************************************************************************************-->
 
 <div class="container" *ngIf="isNewStore">
-  <h1>{{brand}}</h1>
   <h1>{{brand}}</h1>
 
   <form class="form-horizontal" #form="ngForm" (ngSubmit)="createStore(form)">

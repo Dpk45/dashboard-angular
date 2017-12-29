@@ -33,9 +33,9 @@ export class StoreLocationService {
     })
   }
 
-  updateStoreLocation(data, brand) {
+  updateStoreLocation(data, kiosk_id, brand) {
     brand = brand + "_dev";
-    return this._httpClient.put(this.baseUrl+"/store_locations/kiosk_id?key="+brand, data).map((res: any)=>{
+    return this._httpClient.put(this.baseUrl+"/store_locations/"+kiosk_id+"?key="+brand, data).map((res: any)=>{
       return res.data;
     })
   }
