@@ -1,0 +1,82 @@
+<header></header>
+<div class="container" *ngIf="!template && !commontemplateVariable">
+  <div class="row">
+
+    <div class="col-xs-18 col-sm-12">
+      <h2>Templates</h2>
+
+      <div *ngFor="let template of templateList">
+        <li>
+          <a (click)="foundtemplateName(template.name)">{{template.name}}</a>
+        </li>
+      </div>
+
+      <h2>Common Templates</h2>
+      <div *ngFor="let ctemplate of commontemplate">
+        <li>
+          <a (click)="foundCommonTemplate(ctemplate.name)">{{ctemplate.name}}</a>
+        </li>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container" *ngIf="template"> -->
+<div class="container" *ngIf="template && !commontemplateVariable">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">Edit template: {{getOnetemplate.name}}</h3>
+      </div>
+      <div class="panel-body">
+
+          <form>
+              <div class="form-group">
+                  <label>Subject</label>
+                  <input class="form-control"  #subject type="text" value="{{getOnetemplate.subject}}">
+              </div>
+
+              <div class="form-group">
+                  <label>From name</label>
+                  <input name="from_name" class="form-control" #from_name type="text" value="{{getOnetemplate.from_name}}">
+              </div>
+
+              <div class="form-group">
+                  <label>From email</label>
+                  <input name="from_email" class="form-control" #from_email type="text" value="{{getOnetemplate.from_email}}">
+              </div>
+
+              <div class="form-group">
+                  <label>Text</label>
+                  <textarea rows="10" class="form-control" #text name="text">{{getOnetemplate.text}}</textarea>
+              </div>
+
+              <div class="form-group">
+                  <label>Html</label>
+                  <textarea rows="10" class="form-control" #html name="html">{{getOnetemplate.html}}</textarea>
+              </div>
+
+                      <button (click)="updateTemplate(subject, from_name, from_email, text, html)" type="submit" class="btn btn-default">Save</button>
+                      <a (click)="getOrder(getOnetemplate.name)">preview </a>   {{save}}
+          </form>
+      </div>
+  </div>
+
+</div>
+
+<div class="container" *ngIf="commontemplateVariable && !template">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Edit template: {{getCommontemplate.name}}</h3>
+    </div>
+      <div class="panel-body">
+        <form>
+          <div class="form-group">
+              <label>Content</label>
+              <textarea rows="30" class="form-control" #content name="text">{{getCommontemplate.content}}</textarea>
+          </div>
+          <button (click)="updateCommonTemplate(content)" type="submit" class="btn btn-default">Save</button> {{save}}
+        </form>
+      </div>
+  </div>
+</div>

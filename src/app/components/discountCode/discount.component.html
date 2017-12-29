@@ -1,0 +1,186 @@
+<header></header>
+<div class="container" *ngIf="!byDiscountCode">
+    <div class="row">
+
+        <div class="col-xs-18 col-sm-12">
+
+  <div class="alert alert-info" id="toggle" style="display:none;">Created successfully</div>
+            <h1>{{brand}}</h1>
+<!-- //<h2> {{this.TodayDate}}</h2> -->
+            <div class="container">
+              <div class="checkbox">
+              <label><input  [(ngModel)]="quantityAvailable" type="checkbox"/>Available Only</label>
+              </div>
+              <div class="checkbox">
+              <label><input [(ngModel)]="expirationDate" type="checkbox"/>Not Expired</label>
+              </div>
+              <h5>Show
+                <select [(ngModel)]="selectedValue">
+              <option [ngValue]="10">10</option>
+              <option [ngValue]="25">25</option>
+              <option [ngValue]="50">50</option>
+              <option [ngValue]="100">100</option>
+        </select> entries
+</h5>
+
+<h5 align="right">Search <input type="text" name="search" [(ngModel)]="filter"></h5>
+                <form>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed table-hover display" id="discount_codes" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Discount Amount</th>
+                                    <th>Quantity</th>
+                                    <th>Discount Reason</th>
+                                    <th>Expiration</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="text" #discount_code name="discount_code" class="form-control input-xlarge" required></td>
+                                    <td>
+                                        <select name="discount_type" #discount_type class="form-control input-xlarge"  required>
+                                            <option value="DISCOUNT_AMOUNT">DISCOUNT_AMOUNT</option>
+                                            <option value="DISCOUNT_PERCENTAGE">DISCOUNT_PERCENTAGE</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="number" step="any" #amount name="amount" class="form-control input-xlarge" required></td>
+                                    <td><input type="number" #quantity name="quantity" class="form-control input-xlarge" required></td>
+                                    <td>
+                                        <select id="discount_reason" name="discount_reason" #discount_reason class="form-control input-xlarge" required>
+                                            <option value="">Please Select</option>
+
+                                            <option value="Cancel Exchange">Cancel Exchange</option>
+
+                                           <option value="Exchange">Exchange</option>
+
+                                           <option value="Gratis">Gratis</option>
+
+                                           <option value="Normal">Normal</option>
+
+                                           <option value="Promotional">Promotional</option>
+
+                                           <option value="Replace">Replace</option>
+
+                                           <option value="Warranty">Warranty</option>
+
+                                        </select>
+                                    </td>
+                                    <td><input type="date" #date name="expiration_date" class="form-control input-xlarge"></td>
+                                    <td><input id="buttonValue" onclick="showDiv('toggle')" (click)="createDiscount(discount_code, discount_type , amount, quantity, discount_reason, date)" type="submit" value="Create New"></td>
+                                    <!-- <td><button id="buttonValue" onclick="showDiv('toggle')" (click)="createDiscount(discount_code, discount_type , amount, quantity, discount_reason, date)" type="submit"> Create New</button></td> -->
+                                </tr>
+                                </thead>
+                                <tbody *ngFor="let discount of discount_list | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: CurrentPageValue}">
+                                <!-- <tr *ngIf="quantityAvailable &&  (discount.quantity > 0)">
+                                <td><a (click)="foundDiscountCode(discount.discount_code)">{{discount.discount_code}}</a></td>
+                                <td>{{discount.discount_type}}</td>
+                                <td>{{discount.amount}}</td>
+                                <td>{{discount.quantity}}</td>
+                                <td>{{discount.discount_reason}}</td>
+                                <td>{{discount.expiration_date}}</td>
+                                <td></td>
+                              </tr>
+                                <tr *ngIf="!quantityAvailable && (discount.quantity == 0)">
+                                <td><a (click)="foundDiscountCode(discount.discount_code)">{{discount.discount_code}}</a></td>
+                                <td>{{discount.discount_type}}</td>
+                                <td>{{discount.amount}}</td>
+                                <td>{{discount.quantity}}</td>
+                                <td>{{discount.discount_reason}}</td>
+                                <td>{{discount.expiration_date}}</td>
+                                <td></td>
+                              </tr> -->
+                              <tr>
+                                <td><a (click)="foundDiscountCode(discount.discount_code)">{{discount.discount_code}}</a></td>
+                                <td>{{discount.discount_type}}</td>
+                                <td>{{discount.amount}}</td>
+                                <td>{{discount.quantity}}</td>
+                                <td>{{discount.discount_reason}}</td>
+                                <td>{{discount.expiration_date}}</td>
+                                <td></td>
+                              </tr>
+                            </tbody>
+                            <!-- </thead> -->
+
+                        </table>
+                        <pagination-controls (pageChange)="CurrentPageValue = $event" maxSize="10"></pagination-controls>
+                    </div>
+                </form>
+                </div>
+              </div>
+          </div>
+  </div>
+
+
+  <div class="container" *ngIf="byDiscountCode">
+    <h1>{{brand}}</h1>
+    <form>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Name:</label>
+          {{oneDiscountCode.discount_code}}
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Type:</label>
+            <div class="col-sm-10">
+              <!-- name="discount_type" #discount_type class="form-control input-xlarge"  required -->
+                <select name="discount_type" value={{oneDiscountCode.discount_type}} #discount_type class="form-control input-xlarge" required>>
+                    <option value="DISCOUNT_PERCENTAGE" selected>DISCOUNT_PERCENTAGE</option>
+                    <option value="DISCOUNT_AMOUNT">DISCOUNT_AMOUNT</option>
+                </select>
+            </div>
+        </div><br><br><br>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Discount Amount:</label>
+            <div class="col-sm-10">
+                <input type="number" step="any" value={{oneDiscountCode.amount}} #amount name="amount" required class="form-control input-xlarge">
+            </div>
+        </div><br><br>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Quantity:</label>
+            <div class="col-sm-10">
+               <input type="number" value={{oneDiscountCode.quantity}} #quantity name="quantity" required class="form-control input-xlarge">
+            </div>
+        </div><br><br>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Discount Reason:</label>
+            <div class="col-sm-10">
+                <select id="discount_reason" value={{oneDiscountCode.discount_reason}} name="discount_reason" #discount_reason required class="form-control input-xlarge">
+                    <option value="">Please Select</option>
+
+                        <option value="Cancel Exchange" >Cancel Exchange</option>
+
+                        <option value="Exchange" >Exchange</option>
+
+                        <option value="Gratis" >Gratis</option>
+
+                        <option value="Normal"  selected>Normal</option>
+
+                        <option value="Promotional" >Promotional</option>
+
+                        <option value="Replace" >Replace</option>
+
+                        <option value="Warranty" >Warranty</option>
+
+                </select>
+            </div>
+        </div><br><br>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Expiration:</label>
+            <div class="col-sm-10">
+                <input type="date" value={{oneDiscountCode.expiration_date}} #expiration_date name="expiration_date" class="form-control input-xlarge">
+            </div>
+        </div><br><br>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Last Updated By:</label>
+            <div class="col-sm-10 bottom-left">
+                {{oneDiscountCode.updated_by}}
+            </div>
+        </div><br><br>
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" value="Save" (click)="updateDiscount(discount_type, amount, quantity, discount_reason, expiration_date)" class="btn btn-default">
+        </div>
+
+    </form>
+  </div>
