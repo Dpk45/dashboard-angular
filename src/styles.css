@@ -11,3 +11,13 @@
 	padding: 25px 25px 20px;
 	margin-bottom: 20px;
 }
+
+
+a.applyStyle:link, a.applyStyle:visited{
+	text-decoration: none;
+	color: black;
+}
+
+a.applyStyle:hover {
+background-color: #f1f1f1
+}
