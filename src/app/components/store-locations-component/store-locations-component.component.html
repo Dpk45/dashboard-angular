@@ -1,11 +1,8 @@
-<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-  <header></header>
-</div>
+<header></header>
 
 <div class="container">
   <div class="row">
     <div class="col-xs-18 col-sm-12">
-      <h1>{{brand}}</h1>
       <h2>{{brand}}</h2>
       <a [routerLink]="['/store_locations',brand,'new_store']">Create New Store</a>
       <h4>Show
@@ -33,9 +30,9 @@
         <tbody>
           <tr *ngFor="let store_location of store_locations | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: p }; let i=index">
             <td align="right">{{i+1}}.</td>
-            <td> 
+            <td>
               <a [routerLink]="['/store_locations', brand,store_location.kiosk_id]"> {{ store_location['kiosk_id'] }}</a>
-              </td>
+            </td>
             <td>{{ store_location['name'] }}</td>
             <td>
               <address>

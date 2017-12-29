@@ -1,11 +1,7 @@
-<!-- <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-
-</div> -->
 <header></header>
 <div class="container" *ngIf="!isSingleUser && !this.isEditUser">
     <div class="row">
         <div class="col-xs-18 col-sm-12">
-            <h1>{{brand}}</h1>
             <h2>{{brand}}</h2>
             <h4>Show
                 <select [(ngModel)]="selectedValue">
@@ -35,7 +31,6 @@
 </div>
 
 <div class="container" *ngIf="isSingleUser">
-    <h1>{{brand}}</h1>
     <h2>{{brand}}: {{user.first_name}}{{user.last_name}}
         <a class="btn btn-default" (click)="editUser(user.email)">Edit</a>
     </h2>
@@ -223,7 +218,6 @@
 
 
 <div class="conrtainer" *ngIf="isEditUser && !isSingleUser">
-    <h1>{{brand}}</h1>
     <div class="container">
         <h2>{{brand}}: {{user.first_name}}{{user.last_name}}
         </h2>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Router, ActivatedRoute} from "@angular/router";
+import { Location } from '@angular/common';
 import {StoreLocationService} from "../../services/store-location.service"
 import {StoreLocationComponent} from '../store-locations-component/store-locations-component.component'
 
@@ -80,7 +81,7 @@ export class StoreLocationDetailComponent implements OnInit {
 ]
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private _storeLocationService: StoreLocationService) { 
+  constructor(private route: ActivatedRoute, private router: Router, private _storeLocationService: StoreLocationService, private location: Location) { 
 
   }
 
@@ -147,7 +148,30 @@ export class StoreLocationDetailComponent implements OnInit {
   }
 
   updateStore(formData){
-    console.log("from data", formData);
+    this.store.name = formData.name;
+    this.store.kiosk_id = formData.kiosk_id;
+    this.store.address.name = formData.address_name;
+    this.store.address.phone = formData.phone;
+    this.store.address.address1 = formData.address1;
+    this.store.address.city = formData.city;
+    this.store.address.zip = formData.zip;
+    this.store.address.country = formData.country
+    this.store.is_cc_authorized = formData.is_cc_authorized
+    console.log(" this.store >>>>..",  this.store)
+    this._storeLocationService.updateStoreLocation( this.store, this.kioskId, this.brand).subscribe(res=>{
+      console.log("updated store location successfully.............")
+      location.reload()
+    })
+  }
+
+  addNewPin(formData){
+    console.log("formData >>>> in addNewPin pin", formData.new_pin)
+       this.store.pin_codes[0] = this.store.pin_codes[0].concat(formData.new_pin+",") // need to check it once not the correc t way of pin handling in db
+     console.log(" this.store addNewPin >>>>..",  this.store)
+    this._storeLocationService.updateStoreLocation( this.store, this.kioskId, this.brand).subscribe(res=>{
+      console.log("updated pin of store location successfully.............")
+      location.reload()
+    })
   }
 
 }

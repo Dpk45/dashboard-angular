@@ -28,9 +28,11 @@ import {LetterPressService} from './services/letterPress.service';
 
 //import { LetterpressComponent } from './components/letterpress-component/letterpress-component.component';
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component';
-import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component'
 import {DiscountComponent} from './components/discountCode/discount.component';
 import {LetterPressComponent} from './components/Letterpress/letterPress.component';
+import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component';
+import { OrdersComponent } from './components/orders-component/orders-component.component'
+
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import {LetterPressComponent} from './components/Letterpress/letterPress.compone
     StoreLocationComponent,
     StoreLocationDetailComponent,
     DiscountComponent,
-    LetterPressComponent
+    LetterPressComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
