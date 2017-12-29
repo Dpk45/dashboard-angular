@@ -1,0 +1,52 @@
+<header></header>
+<div class="container">
+<h1>{{brand}}</h1>
+<h5>Show
+  <select [(ngModel)]="selectedValue">
+<option [ngValue]="10">10</option>
+<option [ngValue]="25">25</option>
+<option [ngValue]="50">50</option>
+<option [ngValue]="100">100</option>
+</select> entries
+</h5>
+<h5 align="right">Search <input type="text" name="search" [(ngModel)]="filter"></h5>
+<table class="table table-condensed table-bordered display" id="all_orders">
+    <thead>
+    <tr>
+        <th>Order</th>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Eyewear</th>
+        <th>HTK</th>
+        <th>Gift Card</th>
+        <th>Transaction #</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let order of order_list | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: CurrentPageValue}">
+      <td><a (click)="foundDiscountCode(discount.discount_code)">{{order.order_id}}</a></td>
+      <td>{{order.ordered_at}}</td>
+      <td>{{order.customer.name}}</td>
+      <ng-container *ngIf="order.items.eyewear.items[0]">
+      <td>Yes</td>
+      </ng-container>
+      <ng-container *ngIf="!(order.items.eyewear.items[0])">
+      <td>No</td>
+    </ng-container>
+    <ng-container *ngIf="order.items.home_trial_kit.items[0]">
+      <td>Yes</td>
+    </ng-container>
+    <ng-container *ngIf="!(order.items.home_trial_kit.items[0])">
+      <td>No</td>
+    </ng-container>
+      <td></td>
+      <td>{{order.transaction_no}}</td>
+      <td>{{order.totals.total}}</td>
+    </tr>
+
+  </tbody>
+</table>
+  <pagination-controls (pageChange)="CurrentPageValue = $event" maxSize="10"></pagination-controls>
+</div>

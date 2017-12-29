@@ -1,0 +1,22 @@
+<header></header>
+<div class="container" *ngIf="dashUser">
+  <ul>
+  <li *ngFor="let brand of dashUser.brands">
+    <div *ngIf="brand.brand">
+     {{brand.brand}}
+     <ul>
+       <li><a [routerLink]="['/reports', brand.brand,'list_all']" >All Orders</a></li>
+           <li><a [routerLink]="['/reports', brand.brand, 'email']" >Email Reports</a></li>
+           <li><a [routerLink]="['/reports', brand.brand, 'product']" >Email Product Id Mapping</a></li>
+           <li><a [routerLink]="['/reports', brand.brand, 'style']" >Email Style Master</a></li>
+           <li>
+                <form>
+                    <input name="order_id" type="text" placeholder="Order id">
+                    <button type="submit" class="btn">Find</button>
+                </form>
+            </li>
+     </ul>
+    </div>
+    </li>
+  </ul>
+  </div>

@@ -22,16 +22,20 @@ import {StorageService} from "./services/storage.service"
 import { DashUserService } from "./services/dashUser.service"
 import { UserService } from "./services/user.service";
 import {StoreLocationService} from "./services/store-location.service"
-//import {LetterpressService} from "./services/letterpress.service";
 import {DiscountService} from './services/discount.service';
 import {LetterPressService} from './services/letterPress.service';
+import { ReportService } from './services/reports.service'
 
-//import { LetterpressComponent } from './components/letterpress-component/letterpress-component.component';
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component';
 import {DiscountComponent} from './components/discountCode/discount.component';
 import {LetterPressComponent} from './components/Letterpress/letterPress.component';
 import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component';
-import { OrdersComponent } from './components/orders-component/orders-component.component'
+import { OrdersComponent } from './components/orders-component/orders-component.component';
+import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
+import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
+import { ReportComponent } from './components/report/report.component'
+// import { ReportComponent } from './components/report/report.component'
+// import { ReportComponent } from './components/report/report.component'
 
 
 @NgModule({
@@ -47,7 +51,7 @@ import { OrdersComponent } from './components/orders-component/orders-component.
     StoreLocationDetailComponent,
     DiscountComponent,
     LetterPressComponent,
-    OrdersComponent,
+    OrdersComponent, ReportComponent, ReportOrderComponent, ReportEmailComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,8 @@ import { OrdersComponent } from './components/orders-component/orders-component.
     UserService,
     StoreLocationService,
     LetterPressService,
-  DiscountService ],
+  DiscountService,
+ReportService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

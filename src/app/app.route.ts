@@ -13,6 +13,9 @@ import { StoreLocationComponent } from './components/store-locations-component/s
 // import { LetterpressComponent } from './components/letterpress-component/letterpress-component.component'
 import {DiscountComponent} from './components/discountCode/discount.component';
 import {LetterPressComponent} from './components/Letterpress/letterPress.component';
+import { ReportComponent } from './components/report/report.component';
+import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
+import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
 
 const appRoutes: Routes =
 [
@@ -76,6 +79,27 @@ const appRoutes: Routes =
   {
     path: "error",
     component: ErrorComponent
+  },
+
+  {
+    path: '',
+    // component: ReportComponent,
+    canActivate: [AuthGuard],
+    children:[
+      {
+        path: "reports",
+        component: ReportComponent
+      },
+      {
+        path: "reports/:brand/list_all",
+        component: ReportOrderComponent
+      },
+      {
+        path: "reports/:brand/email",
+        component: ReportEmailComponent
+      }
+
+    ]
   },
 
 ];

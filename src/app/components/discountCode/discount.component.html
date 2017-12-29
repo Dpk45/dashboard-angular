@@ -73,7 +73,7 @@
                                     <!-- <td><button id="buttonValue" onclick="showDiv('toggle')" (click)="createDiscount(discount_code, discount_type , amount, quantity, discount_reason, date)" type="submit"> Create New</button></td> -->
                                 </tr>
                                 </thead>
-                                <tbody *ngFor="let discount of discount_list | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: CurrentPageValue}">
+                                <tbody>
                                 <!-- <tr *ngIf="quantityAvailable &&  (discount.quantity > 0)">
                                 <td><a (click)="foundDiscountCode(discount.discount_code)">{{discount.discount_code}}</a></td>
                                 <td>{{discount.discount_type}}</td>
@@ -92,19 +92,30 @@
                                 <td>{{discount.expiration_date}}</td>
                                 <td></td>
                               </tr> -->
-                              <tr>
+
+                              <tr *ngFor="let discount of discount_list | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: CurrentPageValue}">
                                 <td><a (click)="foundDiscountCode(discount.discount_code)">{{discount.discount_code}}</a></td>
                                 <td>{{discount.discount_type}}</td>
                                 <td>{{discount.amount}}</td>
+
+                                <!-- <ng-container *ngIf="(discount.quantity) > 0 && quantityAvailable"> -->
+
                                 <td>{{discount.quantity}}</td>
+                              <!-- </ng-container> -->
+
+
+
+                              <!-- {{quantityAvailable}} -->
+                              <!-- <ng-container *ngIf="(discount.quantity) == 0 && !quantityAvailable">
+                              <td>{{discount.quantity}} </td>
+                            </ng-container> -->
+
                                 <td>{{discount.discount_reason}}</td>
                                 <td>{{discount.expiration_date}}</td>
                                 <td></td>
-                              </tr>
+                            </tr>
                             </tbody>
-                            <!-- </thead> -->
-
-                        </table>
+                          </table>
                         <pagination-controls (pageChange)="CurrentPageValue = $event" maxSize="10"></pagination-controls>
                     </div>
                 </form>
