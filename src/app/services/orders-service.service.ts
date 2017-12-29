@@ -5,11 +5,16 @@ import 'rxjs/add/operator/map';
 
 
 @Injectable()
-export class OrdersServiceService {
+export class OrdersService {
 
   private baseUrl = "http://localhost:3000/3.0";
     constructor(private _httpClient:HttpClient, private _http:Http){
       
     }
 
+  getOrders(){
+    return this._http.get(this.baseUrl+"/orders/?key=DASHBOARD").map((res:any) => {
+            return res.json()
+          })
+      }
 }

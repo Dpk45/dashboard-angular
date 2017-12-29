@@ -21,6 +21,7 @@ import {DashAuthService} from "./services/dashAuth.service"
 import {StorageService} from "./services/storage.service"
 import { DashUserService } from "./services/dashUser.service"
 import { UserService } from "./services/user.service";
+import { OrdersService } from "./services/orders-service.service";
 import {StoreLocationService} from "./services/store-location.service"
 //import {LetterpressService} from "./services/letterpress.service";
 import {DiscountService} from './services/discount.service';
@@ -78,6 +79,7 @@ import { EyewearProcessComponent } from './components/eyewear-component/eyewear-
     UserService,
     StoreLocationService,
     LetterPressService,
+    OrdersService,
   DiscountService ],
   bootstrap: [AppComponent]
 })
