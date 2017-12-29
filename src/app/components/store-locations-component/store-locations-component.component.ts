@@ -11,7 +11,7 @@ export class StoreLocationComponent implements OnInit {
 
 
   brand: any;
-  store_locations: any;
+  store_locations: any = [];
   p: number = 1;
   selectedValue = 10;
 
@@ -29,7 +29,10 @@ export class StoreLocationComponent implements OnInit {
   getStoreLocations() {
     this._storeLocationService.getStoreLocations(this.brand).subscribe(res => {
       console.log("res _storeLocationService>>>>>>>>", res)
-      this.store_locations = res.data;
+      if(Object.keys(res.data).length){
+        this.store_locations = res.data;
+      }
+      
     })
   }
 

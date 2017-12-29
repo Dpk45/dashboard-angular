@@ -26,7 +26,8 @@ import {LetterpressService} from "./services/letterpress.service"
 
 import { LetterpressComponent } from './components/letterpress-component/letterpress-component.component';
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component';
-import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component'
+import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component';
+import { OrdersComponent } from './components/orders-component/orders-component.component'
 
 
 @NgModule({
@@ -39,7 +40,9 @@ import { StoreLocationDetailComponent } from './components/store-location-detail
     ErrorComponent,
     LetterpressComponent,
     StoreLocationComponent,
-    StoreLocationDetailComponent
+    StoreLocationDetailComponent,
+    OrdersComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,243 @@
-<p>
-  store-location-detail-component works!
-</p>
+<header></header>
+
+<div class="container" *ngIf="store">
+  <div class="row">
+    <!--<div class="alert alert-info">Pin Added</div>-->
+    <div class="col-xs-18 col-sm-12">
+      <h2>{{brand}}</h2>
+
+      <form class="form-horizontal" role="form" #form="ngForm" (ngSubmit)="updateStore(form.value)">
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="kiosk_id">Kiosk Id:</label>
+          <div class="col-sm-10" >
+            <!--else elseTemplate-->
+            <input type="text" class="form-control" id="kiosk_id" name="kiosk_id" placeholder="Kiosk Id" [(ngModel)]="store['kiosk_id']">
+          </div>
+          <!--<ng-template #elseTemplate>
+          <input type="text" class="form-control" id="kiosk_id" name="kiosk_id" placeholder="Kiosk Id"/>
+        </ng-template>-->
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="name">Kiosk Name:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="name" id="name" placeholder="Kiosk Name" [(ngModel)]="store['name']" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2">Name for Mailing</label>
+          <div class="controls col-sm-10">
+            <input id="address_name" name="address_name" type="text" class="form-control input-xlarge" [(ngModel)]="store['address']['name']"
+              required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2">Address Line 1</label>
+          <div class="controls col-sm-10">
+            <input id="address1" name="address1" type="text" placeholder="address line 1" class="form-control input-xlarge" [(ngModel)]="
+                    store['address']['address1']" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2">Address Line 2</label>
+          <div class="controls col-sm-10">
+            <input id="address2" name="address2" type="text" placeholder="address line 2" class="form-control input-xlarge" [(ngModel)]="
+                    store['address']['address2'] ">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2">City</label>
+          <div class="controls col-sm-10">
+            <input id="city" name="city" type="text" placeholder="City" class="form-control input-xlarge" [(ngModel)]="store['address']['city']"
+              required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">State</label>
+          <!--<div ng-repeat="state in state_list">{{state}}</div>-->
+          <!--<div class="controls col-sm-4">
+            <select id="country" name="state" class="input-xlarge form-control"  required>
+                <option     ng-repeat="state in state_list"
+                            [(ngModel)]="state.key"
+                            ng-selected="state.key == store['address']['state']"> {{ state.value }} </option>
+            </select>
+        </div>-->
+          <label class="control-label col-sm-2">Zip</label>
+        <div class="controls col-sm-4">
+            <input id="zip" name="zip" type="text" placeholder="Zip" class="form-control input-xlarge" [(ngModel)]="
+                    store['address']['zip'] " required>
+        </div>
+     </div>
+
+     
+          <div class="form-group">
+            <label class="control-label col-sm-2">Country</label>
+            <div class="controls col-sm-10">
+              <input id="country" name="country" type="text" placeholder="Country" class="form-control input-xlarge" [(ngModel)]="
+                    store['address']['country'] " required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="phone">Phone:</label>
+            <div class="col-sm-10">
+              <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone" [(ngModel)]=" store['address']['phone'] "
+                required>
+            </div>
+          </div>
+
+          <div class="form-group">
+        <label class="control-label col-sm-2" for="is_cc_authorized">Is Authorized?</label>
+        <div class="col-sm-10">
+            <!--{% if store['is_cc_authorized'] %}-->
+            <input type="checkbox" id="is_cc_authorized" name="is_cc_authorized" [(ngModel)]="store.is_cc_authorized" >
+            <!--{% else %}-->
+            <!--<input type="checkbox" id="is_cc_authorized" name="is_cc_authorized" value="True">-->
+            <!--{% endif %}-->
+            <label for="is_cc_authorized">Is Kiosk authorized to reuse customer credit cards?</label>
+        </div>
+    </div>
+
+
+        <div class="form-group" *ngIf="store['kiosk_id']">
+          <label class="control-label col-sm-2" for="phone">Pin Codes:</label>
+          <div class="col-sm-10">
+            <label>{{ store['pin_codes'] }}</label>
+            <input type="hidden" name="pin_codes" [(ngModel)]="store.pin_codes">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="container" *ngIf="store['kiosk_id']">
+        <form class="form-inline" role="form" #f="ngForm" (ngSubmit)="addNewPin(f.value)">
+            <div class="form-group">
+                <label for="pin" class="control-label">New Pin</label>
+                <input type="number" class="form-control" id="new_pin" name="new_pin" placeholder="New Pin" [(ngModel)]="new_pin" required>
+            </div>
+            <button type="submit" class="btn btn-default">Add Pin</button>
+        </form>
+        <div class="row">
+            <div class="col-sm-12">&nbsp;</div>
+        </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!--*******************************************************************************************************************************-->
+
+<div class="container" *ngIf="isNewStore">
+  <h1>{{brand}}</h1>
+
+  <form class="form-horizontal" #form="ngForm" (ngSubmit)="createStore(form)">
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="kiosk_id">Kiosk Id:</label>
+      <div class="col-sm-10">
+            <!--else elseTemplate-->
+            <input type="text" class="form-control" id="kiosk_id" name="kiosk_id" placeholder="Kiosk Id" [(ngModel)]="newStore.kiosk_id">
+          </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Kiosk Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="name" id="name" placeholder="Kiosk Name" [(ngModel)]="newStore.name">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Name for Mailing</label>
+      <div class="controls col-sm-10">
+            <input id="address_name" name="address_name" type="text" class="form-control input-xlarge" [(ngModel)]="newStore.address.name" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Address Line 1</label>
+      <div class="controls col-sm-10">
+            <input id="address1" name="address1" type="text" placeholder="address line 1" class="form-control input-xlarge" [(ngModel)]="
+                    newStore['address']['address1']" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Address Line 2</label>
+      <div class="controls col-sm-10">
+            <input id="address2" name="address2" type="text" placeholder="address line 2" class="form-control input-xlarge" [(ngModel)]="
+                    newStore['address']['address2']">
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" >City</label>
+      <div class="controls col-sm-10">
+            <input id="city" name="city" type="text" placeholder="City" class="form-control input-xlarge" [(ngModel)]="
+                    newStore['address']['city'] " required>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" >State</label>
+
+          <div ng-repeat="state in state_list">{{state}}</div>
+          <!--<div class="controls col-sm-4">
+            <select id="country" name="state" class="input-xlarge form-control"  required>
+                <option     ng-repeat="state in state_list"
+                            [(ngModel)]="state.key"
+                            ng-selected="state.key == store['address']['state']"> {{ state.value }} </option>
+            </select>
+        </div>-->
+
+        <label class="control-label col-sm-2">Zip</label>
+        <div class="controls col-sm-4">
+            <input id="zip" name="zip" type="text" placeholder="Zip" class="form-control input-xlarge" [(ngModel)]="
+                    newStore['address']['zip'] " required>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Country</label>
+      <div class="controls col-sm-10">
+            <input id="country" name="country" type="text" placeholder="Country" class="form-control input-xlarge" [(ngModel)]="
+                    newStore['address']['country'] " required>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Phone:</label>
+      <div class="col-sm-10">
+            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone" [(ngModel)]="newStore['address']['phone']" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="is_cc_authorized">Is Authorized?</label>
+        <div class="col-sm-10">
+            <!--{% if store['is_cc_authorized'] %}-->
+            <input type="checkbox" id="is_cc_authorized" name="is_cc_authorized" [(ngModel)]="is_cc_authorized" >
+            <!--{% else %}-->
+            <!--<input type="checkbox" id="is_cc_authorized" name="is_cc_authorized" value="True">-->
+            <!--{% endif %}-->
+            <label for="is_cc_authorized">Is Kiosk authorized to reuse customer credit cards?</label>
+        </div>
+    </div>
+
+  <div class="form-group">
+      <!--<label class="control-label col-sm-2" for="kiosk_name">Phone:</label>-->
+      <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+    </div>
+    
+
+  </form>
+</div>

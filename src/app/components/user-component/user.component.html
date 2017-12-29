@@ -1,11 +1,8 @@
-<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-    <header></header>
-</div>
+<header></header>
 
 <div class="container" *ngIf="!isSingleUser && !this.isEditUser">
     <div class="row">
         <div class="col-xs-18 col-sm-12">
-            <h1>{{brand}}</h1>
             <h2>{{brand}}</h2>
             <h4>Show
                 <select [(ngModel)]="selectedValue">
