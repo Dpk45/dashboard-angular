@@ -10,62 +10,75 @@ import { UserComponent } from "./components/user-component/user.component"
 import {ErrorComponent} from "./components/error-component/error.component"
 import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component'
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component'
-import { LetterpressComponent } from './components/letterpress-component/letterpress-component.component'
-
+// import { LetterpressComponent } from './components/letterpress-component/letterpress-component.component'
+import {DiscountComponent} from './components/discountCode/discount.component';
+import {LetterPressComponent} from './components/Letterpress/letterPress.component';
 
 const appRoutes: Routes =
-    [
-        {
-            path: "",
-            component: LoginComponent
-        },
+[
+    {
+    path: "",
+    component: LoginComponent
+    },
 
-        {
-            path: "home",
-            component: HomeComponent,
-            canActivate: [AuthGuard]
+  {
+    path: "home",
+    component: HomeComponent,
+    canActivate: [AuthGuard]
 
-        },
-         {
-            path: "users/:brand",
-            component: UserComponent,
-            canActivate: [AuthGuard]
+  },
+  {
+    path: "users/:brand",
+    component: UserComponent,
+    canActivate: [AuthGuard]
 
-        },
-        {
-            path: "store_locations/:brand",
-            // component: StoreLocationComponent,
-            canActivate: [AuthGuard],
-            children:[
-                {
-                    path:"",
-                    component: StoreLocationComponent
-                },
-                {
-                    path:"new_store",
-                    component: StoreLocationDetailComponent
-                }
-                ,
-                {
-                    path:":kioskId",
-                    component: StoreLocationDetailComponent
-                }
-                
-            ]
+  },
+  {
+    path: "store_locations/:brand",
+    // component: StoreLocationComponent,
+    canActivate: [AuthGuard],
+    children:[
+      {
+        path:"",
+        component: StoreLocationComponent
+      },
+      {
+        path:"new_store",
+        component: StoreLocationDetailComponent
+      }
+      ,
+      {
+        path:":kioskId",
+        component: StoreLocationDetailComponent
+      }
 
-        },
-        {
-            path: "letterpress/:brand",
-            component: LetterpressComponent,
-            canActivate: [AuthGuard]
+    ]
 
-        },
-        {
-            path: "error",
-            component: ErrorComponent
-        },
+  },
+  // {
+  //   path: "letterpress/:brand",
+  //   component: LetterpressComponent,
+  //   canActivate: [AuthGuard]
+  //
+  // },
 
-    ];
+  {
+    path: 'discount/:brand',
+    component: DiscountComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'letterpress/:brand',
+    component: LetterPressComponent,
+    canActivate: [AuthGuard]
+  },
+
+  {
+    path: "error",
+    component: ErrorComponent
+  },
+
+];
 
 export const appRoutingProviders: any[] = [];
 
