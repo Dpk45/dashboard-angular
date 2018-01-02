@@ -16,6 +16,7 @@ import {LetterPressComponent} from './components/Letterpress/letterPress.compone
 import { ReportComponent } from './components/report/report.component';
 import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
 import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
+import { ErpComponent } from './components/sendErpRequest/sendERP.component';
 const appRoutes: Routes =
 [
     {
@@ -57,12 +58,12 @@ const appRoutes: Routes =
     ]
 
   },
-  // {
-  //   path: "letterpress/:brand",
-  //   component: LetterpressComponent,
-  //   canActivate: [AuthGuard]
-  //
-  // },
+  {
+    path: "send_erp_request/:brand",
+    component: ErpComponent,
+    canActivate: [AuthGuard]
+
+  },
 
   {
     path: 'discount/:brand',

@@ -25,6 +25,8 @@ import {StoreLocationService} from "./services/store-location.service"
 import {DiscountService} from './services/discount.service';
 import {LetterPressService} from './services/letterPress.service';
 import { ReportService } from './services/reports.service'
+// ErpService
+import { ErpService } from './services/sendErp.service'
 
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component';
 import {DiscountComponent} from './components/discountCode/discount.component';
@@ -34,7 +36,7 @@ import { OrdersComponent } from './components/orders-component/orders-component.
 import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
 import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
 import { ReportComponent } from './components/report/report.component'
-// import { ReportComponent } from './components/report/report.component'
+import { ErpComponent } from './components/sendErpRequest/sendERP.component';
 
 
 @NgModule({
@@ -45,7 +47,7 @@ import { ReportComponent } from './components/report/report.component'
     HeaderComponent,
     UserComponent,
     ErrorComponent,
-  //  LetterpressComponent,
+    ErpComponent,
     StoreLocationComponent,
     StoreLocationDetailComponent,
     DiscountComponent,
@@ -75,8 +77,8 @@ import { ReportComponent } from './components/report/report.component'
     UserService,
     StoreLocationService,
     LetterPressService,
-  DiscountService,
-ReportService ],
+  DiscountService, ErpService,
+  ReportService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
