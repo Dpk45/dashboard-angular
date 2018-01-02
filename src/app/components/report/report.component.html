@@ -1,0 +1,30 @@
+<header></header>
+<div class="container" *ngIf="dashUser && !foundOrder">
+  <div *ngIf="isSuccess" class="alert alert-info" id="toggle">report sent. check ur email plz.</div>
+  <ul>
+  <li *ngFor="let brand of dashUser.brands">
+    <div *ngIf="brand.brand">
+     {{brand.brand}}
+     <ul>
+       <li><a [routerLink]="['/reports', brand.brand,'list_all']" >All Orders</a></li>
+           <li><a [routerLink]="['/reports', brand.brand, 'email']" >Email Reports</a></li>
+           <li><a onclick="showDiv('toggle')" (click)="getProductIdmapping(brand.brand)" >Email Product Id Mapping</a></li>
+           <li><a onclick="showDiv('toggle')" (click)="getStyleMaster(brand.brand)" >Email Style Master</a></li>
+           <li>
+                <form>
+                    <input name="order_id" #order_id type="text" placeholder="Order id">
+                    <button type="submit" (click)="getOrderByOrderId(order_id, brand.brand)" class="btn">Find</button>
+                </form>
+            </li>
+     </ul>
+    </div>
+    </li>
+  </ul>
+  </div>
+
+  <!-- <ng-container *ngIf="isSuccess">
+<div class="alert alert-info" id="toggle">report sent. check ur email plz.</div>
+</ng-container> -->
+<div class="container" *ngIf="foundOrder">
+  <h1>{{this.brand}} order # {{this.order_id}}</h1>
+</div>

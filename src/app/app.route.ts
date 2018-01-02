@@ -11,6 +11,9 @@ import { ErrorComponent } from "./components/error-component/error.component"
 import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component'
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component'
 // import { LetterpressComponent } from './components/letterpress-component/letterpress-component.component'
+import { ReportComponent } from './components/report/report.component';
+import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
+import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
 import { DiscountComponent } from './components/discountCode/discount.component';
 import { LetterPressComponent } from './components/Letterpress/letterPress.component';
 import { EyewearComponent } from './components/eyewear-component/eyewear-component.component';
@@ -51,10 +54,10 @@ const appRoutes: Routes =
               component: EyewearProcessComponent
             },
             {
-              path:":brand/:order_id/view",
+              path: ":brand/:order_id/view",
               component: OrderDetailComponent
             }
-            ]
+          ]
         },
 
         {
@@ -104,6 +107,27 @@ const appRoutes: Routes =
     {
       path: "error",
       component: ErrorComponent
+    },
+
+    {
+      path: '',
+      // component: ReportComponent,
+      canActivate: [AuthGuard],
+      children: [
+        {
+          path: "reports",
+          component: ReportComponent
+        },
+        {
+          path: "reports/:brand/list_all",
+          component: ReportOrderComponent
+        },
+        {
+          path: "reports/:brand/email",
+          component: ReportEmailComponent
+        }
+
+      ]
     },
 
   ];
