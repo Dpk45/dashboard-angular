@@ -16,6 +16,7 @@ import { LetterPressComponent } from './components/Letterpress/letterPress.compo
 import { EyewearComponent } from './components/eyewear-component/eyewear-component.component';
 import { EyewearProcessComponent } from './components/eyewear-component/eyewear-process-component/eyewear-process-component.component';
 import { HtkComponent } from './components/htk-component/htk-component.component';
+import { OrderDetailComponent } from './components/order-detail-component/order-detail-component.component';
 
 const appRoutes: Routes =
   [
@@ -48,7 +49,12 @@ const appRoutes: Routes =
             {
               path: "eyewear/:brand/processing",
               component: EyewearProcessComponent
-            }]
+            },
+            {
+              path:":brand/:order_id/view",
+              component: OrderDetailComponent
+            }
+            ]
         },
 
         {

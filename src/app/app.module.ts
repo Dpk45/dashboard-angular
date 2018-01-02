@@ -35,7 +35,8 @@ import { StoreLocationDetailComponent } from './components/store-location-detail
 import { OrdersComponent } from './components/orders-component/orders-component.component';
 import { EyewearComponent } from './components/eyewear-component/eyewear-component.component';
 import { HtkComponent } from './components/htk-component/htk-component.component';
-import { EyewearProcessComponent } from './components/eyewear-component/eyewear-process-component/eyewear-process-component.component'
+import { EyewearProcessComponent } from './components/eyewear-component/eyewear-process-component/eyewear-process-component.component';
+import { OrderDetailComponent } from './components/order-detail-component/order-detail-component.component'
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { EyewearProcessComponent } from './components/eyewear-component/eyewear-
     EyewearComponent,
     HtkComponent,
     EyewearProcessComponent,
+    OrderDetailComponent,
   ],
   imports: [
     BrowserModule,

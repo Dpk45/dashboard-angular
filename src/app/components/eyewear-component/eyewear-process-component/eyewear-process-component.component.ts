@@ -37,7 +37,7 @@ export class EyewearProcessComponent implements OnInit {
 
   getOrders(){
     console.log(">>>>>>>>>>> inside get orders >>>>>>>>>")
-    this._ordersService.getOrders().subscribe((res:any)=>{
+    this._ordersService.getOrders(this.brand).subscribe((res:any)=>{
       if(res.code==200){
         this.orders = res.data
         console.log("this.orders getOrders", this.orders)

@@ -12,9 +12,17 @@ export class OrdersService {
       
     }
 
-  getOrders(){
-    return this._http.get(this.baseUrl+"/orders/?key=DASHBOARD").map((res:any) => {
+  getOrders(brand){
+    brand = brand+"_dev"
+    return this._http.get(this.baseUrl+"/orders/?key="+brand).map((res:any) => {
             return res.json()
           })
+      }
+
+      getOrderByOrderId(brand, order_id){
+        brand = brand + "_dev"
+        return this._httpClient.get(this.baseUrl+"/orders/"+order_id+"/?key="+brand).map((res: any)=>{
+          return res;
+        })
       }
 }
