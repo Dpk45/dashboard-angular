@@ -1,0 +1,112 @@
+<header></header>
+
+
+<div class="container" *ngIf="brand">
+  <div class="row">
+    <div class="col-xs-18 col-sm-12">
+      <h1>
+        {{brand}}
+      </h1>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked">
+              <ng-container *ngIf="dashUser">
+                <li *ngFor="let brand of dashUser.brands">
+                  <ng-container *ngIf="brand.brand">
+                    <a [routerLink]="['/orders/eyewear',brand.brand,'processing']"> {{brand.brand}} </a>
+                  </ng-container>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+
+          <div class="col-md-10">
+            <ul class="nav nav-tabs">
+              <li><a >Processing</a></li>
+              <li><a >At Lab</a></li>
+              <li><a >Unshipped</a></li>
+            </ul>
+
+            <form method="POST">
+              <table class="table table-condensed table-bordered">
+                <tr>
+                  <th>Order</th>
+                  <th>Date</th>
+                  <th>Name</th>
+                  <th>Item</th>
+                  <th>Lens</th>
+                  <th>Action</th>
+                  <th>Total</th>
+                </tr>
+                <tbody *ngFor="let order of orders">
+                  <ng-container>
+                    <ng-container *ngIf="order.items.eyewear.items.length">
+                      <tr class="info">
+
+                        <td><a [routerLink]="['/orders/', brand, order.order_id, 'view']">{{order.order_id}}</a></td>
+                        <td>{{order.ordered_at}}</td>
+                        <td><a>{{order.customer.name}}</a></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>{{order['totals']['total']}}</td>
+                      </tr>
+
+                      <ng-container *ngFor="let item of order.items.eyewear.items">
+                        <tr>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp; </td>
+                          <td>{{item.product_id}}: {{item.product.name}} </td>
+                          <td>{{item['lens_type']}}</td>
+                          <td>
+                            <ng-container *ngIf="item.status.shipped_at != null">
+                              shipped
+                            </ng-container>
+                            <ng-container *ngIf="item.status.sent_to_lab_at == null">
+                              <ng-container *ngIf="item['lens_type'] == 'STANDARD_INDEX_LENS' ||  item['lens_type'] == 'HIGH_INDEX_LENS' || item['lens_type'] == 'READING_LENS' || item['lens_type'] == 'RX_SUN_LENS'">
+                                <ng-container *ngIf="item['rx']['rx_type'] == 'RX_CALL_DOCTOR'">
+                                  call doctor
+                                </ng-container>
+                                <ng-container *ngIf="item['rx']['rx_type'] == 'RX_SEND_LATER'">
+                                  waiting for rx to be sent later
+                                </ng-container>
+                                <ng-container *ngIf="item['rx']['rx_type'] == 'RX_UPLOAD'">
+                                  customer uploaded rx as attachment
+                                </ng-container>
+                                <!--customer entered their rx online-->
+                              </ng-container>
+                              <ng-container *ngIf="item['lens_type'] == 'PLANO_LENS' || item['lens_type'] == 'NON_RX_SUN_LENS'; else no_lens">
+                                no rx necessary, ready to send to lab
+                              </ng-container>
+                              <ng-template #no_lens>
+                                no lens
+                              </ng-template>
+                            </ng-container>
+                            <ng-container *ngIf="item['status'] == 'sent_to_lab_at'">
+                              Sent to lab {{item['status']['sent_to_lab_at']}}
+                            </ng-container>
+                            <ng-container *ngIf="item['status'] == 'received_from_lab_at'">
+                              Received from lab {{item['status']['received_from_lab_at']}}
+                            </ng-container>
+                          </td>
+                          <td>&nbsp;</td>
+                        </tr>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </tbody>
+
+              </table>
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
