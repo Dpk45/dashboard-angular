@@ -1,35 +1,46 @@
 <header></header>
 <div class="container">
+
+  <div *ngIf="isSuccess" class="alert alert-info" id="toggle">report sent. check ur email plz.</div>
   <h1>{{brand}}</h1>
   <p>All dates are in YYYY-MM-DD format</p>
 
 <h3>Eyewear Sales</h3>
-<form class="form-inline">
-    <input type="date" name="start_date" class="form-control" #start_date placeholder="Start Date">
-    <input type="date" name="end_date" class="form-control" #end_date placeholder="End Date">
-    <input type="submit" class="btn btn-primary" value="Email Report">
+<form class="form-inline" role="form" #form="ngForm" (ngSubmit)="eyewearSalesReport(form.value)">
+    <input type="date" name="startDate" id="startDate" class="form-control" [(ngModel)]="eyewearStartDate" placeholder="Start Date">
+    <input type="date" name="endDate" id="endDate" class="form-control" [(ngModel)]="eyewearEndDate"  placeholder="End Date">
+    <input type="submit" onclick="showDiv('toggle')" class="btn btn-primary" value="Email Report">
 </form>
 
 <h3>Eyewear Sales - Finance</h3>
-<form class="form-inline">
-    <input type="date" name="start_date" class="form-control" #start_date placeholder="Start Date">
-    <input type="date" name="end_date" class="form-control" #end_date placeholder="End Date">
-    <input type="submit" class="btn btn-primary" value="Email Report">
+<form class="form-inline" role="form" #formSales="ngForm" (ngSubmit)="eyewearSalesFinanaceReport(formSales.value)">
+  <input type="date" name="startDate" id="startDate" class="form-control" [(ngModel)]="eyewearFinanaceStartDate" placeholder="Start Date">
+  <input type="date" name="endDate" id="endDate" class="form-control" [(ngModel)]="eyewearFinanaceEndDate"  placeholder="End Date">
+    <input type="submit" onclick="showDiv('toggle')" class="btn btn-primary" value="Email Report">
 </form>
 
 <h3>HTK Sales</h3>
-<form class="form-inline">
-    <input type="date" name="start_date" class="form-control" #start_date placeholder="Start Date">
-    <input type="date" name="end_date" class="form-control" #end_date placeholder="End Date">
-    <input type="submit" class="btn btn-primary" value="Email Report">
+<form class="form-inline" role="form" #formHtk="ngForm" (ngSubmit)="htkSalesReport(formHtk.value)">
+  <input type="date" name="startDate" id="startDate" class="form-control" [(ngModel)]="HtkStartDate" placeholder="Start Date">
+  <input type="date" name="endDate" id="endDate" class="form-control" [(ngModel)]="HtkEndDate"  placeholder="End Date">
+    <input type="submit" onclick="showDiv('toggle')" class="btn btn-primary" value="Email Report">
 </form>
 
-<!-- <h3>Inventory Available</h3>
-<form class="form-inline">
-    <input type="submit" class="btn btn-primary" value="Email Report">
+<h3>Inventory Available</h3>
+<form class="form-inline" role="form" (ngSubmit)="inventoryReport()">
+    <input type="submit" onclick="showDiv('toggle')" class="btn btn-primary" value="Email Report">
 </form>
 
-<h3>Bulk Order Remaining Quantity</h3>
+<div *ngIf="brand == 'classicspecs'">
+  <h3>HTK Past Due Orders</h3>
+    <form class="form-inline" role="form" #formHtkPast="ngForm" (ngSubmit)="htkPastDueReport(formHtkPast.value)">
+      <input type="date" name="startDate" id="startDate" class="form-control" [(ngModel)]="HtkpastdueStartDate" placeholder="Start Date">
+      <input type="date" name="endDate" id="endDate" class="form-control" [(ngModel)]="HtkpastdueEndDate"  placeholder="End Date">
+        <input type="submit" onclick="showDiv('toggle')" class="btn btn-primary" value="Email Report">
+    </form>
+</div>
+
+<!-- <h3>Bulk Order Remaining Quantity</h3>
 <form class="form-inline">
     <input type="submit" class="btn btn-primary" value="Email Report">
 </form> -->

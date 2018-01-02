@@ -16,7 +16,6 @@ import {LetterPressComponent} from './components/Letterpress/letterPress.compone
 import { ReportComponent } from './components/report/report.component';
 import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
 import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
-
 const appRoutes: Routes =
 [
     {

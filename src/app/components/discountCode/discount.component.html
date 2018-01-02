@@ -4,7 +4,7 @@
 
         <div class="col-xs-18 col-sm-12">
 
-  <div class="alert alert-info" id="toggle" style="display:none;">Created successfully</div>
+  <div *ngIf="isSuccess" class="alert alert-info" id="toggle">Created successfully</div>
             <h1>{{brand}}</h1>
 <!-- //<h2> {{this.TodayDate}}</h2> -->
             <div class="container">
@@ -98,17 +98,17 @@
                                 <td>{{discount.discount_type}}</td>
                                 <td>{{discount.amount}}</td>
 
-                                <!-- <ng-container *ngIf="(discount.quantity) > 0 && quantityAvailable"> -->
+                                <ng-container *ngIf="quantityAvailable">
 
-                                <td>{{discount.quantity}}</td>
-                              <!-- </ng-container> -->
+                                <td>  <ng-container *ngIf="(discount.quantity > 0)">{{discount.quantity}}</ng-container></td>
+                              </ng-container>
 
 
 
                               <!-- {{quantityAvailable}} -->
-                              <!-- <ng-container *ngIf="(discount.quantity) == 0 && !quantityAvailable">
+                              <ng-container *ngIf="!quantityAvailable">
                               <td>{{discount.quantity}} </td>
-                            </ng-container> -->
+                            </ng-container>
 
                                 <td>{{discount.discount_reason}}</td>
                                 <td>{{discount.expiration_date}}</td>

@@ -35,7 +35,6 @@ import { ReportOrderComponent } from './components/report/reportOrder/reportOrde
 import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
 import { ReportComponent } from './components/report/report.component'
 // import { ReportComponent } from './components/report/report.component'
-// import { ReportComponent } from './components/report/report.component'
 
 
 @NgModule({

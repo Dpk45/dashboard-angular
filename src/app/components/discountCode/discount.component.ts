@@ -27,6 +27,7 @@ export class DiscountComponent {
   quantityAvailable: boolean = true;
   expirationDate: boolean = true;
   TodayDate:any;
+  isSuccess: boolean;
   constructor(private route: ActivatedRoute, private _discountService: DiscountService, private router: Router) {
     //this.TodayDate = new Date();
 }
@@ -63,6 +64,7 @@ getDiscounts(){
     this._discountService.createDiscount(this.discount_code, this.discount_type, this.amount, this.quantity, this.discount_reason, this.date, this.brand)
     .subscribe((res:any) => {
       if (res.code == 200) {
+        this.isSuccess= true;
         this.router.navigate(['/discount', this.brand]);
       }
     },
