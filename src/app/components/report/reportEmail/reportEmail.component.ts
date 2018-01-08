@@ -51,10 +51,8 @@ eyewearSalesReport(form) {
 
 // get eyewearSales Report
 eyewearSalesFinanaceReport(formSales) {
-  console.log("form >>>>>>>>>>eyewearSalesFinanaceReport>>>>>>>>>>>>>>>>>>>>>>>>>",formSales)
    this.startDate = formSales.startDate;
    this.endDate = formSales.endDate;
-  //  console.log("get eyewaer sales>>>>>>>>>>>>>>>++++++++++++++++++++++")
     this._reportService.getEyewearSalesFinanaceReport(this.startDate, this.endDate, this.brand).subscribe(res => {
       if(res.code == 200){
         this.isSuccess = true

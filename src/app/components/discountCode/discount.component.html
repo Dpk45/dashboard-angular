@@ -9,10 +9,10 @@
 <!-- //<h2> {{this.TodayDate}}</h2> -->
             <div class="container">
               <div class="checkbox">
-              <label><input  [(ngModel)]="quantityAvailable" type="checkbox"/>Available Only</label>
+              <label><input  (click)="qtyAvailable(quantityAvailable)" id=quantityAvailable [(ngModel)]="quantityAvailable" type="checkbox"/>Available Only</label>
               </div>
               <div class="checkbox">
-              <label><input [(ngModel)]="expirationDate" type="checkbox"/>Not Expired</label>
+              <label><input (click)="expiredDate(expirationDate)" id=expirationDate [(ngModel)]="expirationDate" type="checkbox"/>Not Expired</label>
               </div>
               <h5>Show
                 <select [(ngModel)]="selectedValue">
@@ -94,21 +94,21 @@
                               </tr> -->
 
                               <tr *ngFor="let discount of discount_list | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: CurrentPageValue}">
-                                <td><a (click)="foundDiscountCode(discount.discount_code)">{{discount.discount_code}}</a></td>
+                                <td><a [routerLink]="['/discount', brand, discount.discount_code]">{{discount.discount_code}}</a></td>
                                 <td>{{discount.discount_type}}</td>
                                 <td>{{discount.amount}}</td>
 
-                                <ng-container *ngIf="quantityAvailable">
+                                <!-- <ng-container *ngIf="quantityAvailable">
 
                                 <td>  <ng-container *ngIf="(discount.quantity > 0)">{{discount.quantity}}</ng-container></td>
-                              </ng-container>
+                              </ng-container> -->
 
 
 
                               <!-- {{quantityAvailable}} -->
-                              <ng-container *ngIf="!quantityAvailable">
+                              <!-- <ng-container *ngIf="!quantityAvailable"> -->
                               <td>{{discount.quantity}} </td>
-                            </ng-container>
+                            <!-- </ng-container> -->
 
                                 <td>{{discount.discount_reason}}</td>
                                 <td>{{discount.expiration_date}}</td>
@@ -116,6 +116,9 @@
                             </tr>
                             </tbody>
                           </table>
+                          <br>
+                        Showing {{((CurrentPageValue  * selectedValue) + 1) - selectedValue}} to {{CurrentPageValue * selectedValue + selectedValue -selectedValue}} of {{discount_list.length}} entries
+
                         <pagination-controls (pageChange)="CurrentPageValue = $event" maxSize="10"></pagination-controls>
                     </div>
                 </form>
@@ -190,7 +193,7 @@
             </div>
         </div><br><br>
         <div class="col-sm-offset-2 col-sm-10">
-            <input type="submit" value="Save" (click)="updateDiscount(discount_type, amount, quantity, discount_reason, expiration_date)" class="btn btn-default">
+            <input type="submit" value="Save" (click)="updateDiscount(discount_type, amount, quantity, discount_reason, expiration_date)" [routerLink]="['/discount', brand]"class="btn btn-default">
         </div>
 
     </form>

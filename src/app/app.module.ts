@@ -26,6 +26,9 @@ import { StoreLocationService } from "./services/store-location.service"
 import { DiscountService } from './services/discount.service';
 import { LetterPressService } from './services/letterPress.service';
 import { ReportService } from './services/reports.service'
+import { ErpService } from './services/sendErp.service'
+import { InventoryService } from './services/inventory.service'
+import { HomeService } from './services/home.service'
 
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component';
 import { DiscountComponent } from './components/discountCode/discount.component';
@@ -35,11 +38,12 @@ import { OrdersComponent } from './components/orders-component/orders-component.
 import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
 import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
 import { ReportComponent } from './components/report/report.component'
-// import { ReportComponent } from './components/report/report.component'
+import { ErpComponent } from './components/sendErpRequest/sendERP.component';
 import { EyewearComponent } from './components/eyewear-component/eyewear-component.component';
 import { HtkComponent } from './components/htk-component/htk-component.component';
 import { EyewearProcessComponent } from './components/eyewear-component/eyewear-process-component/eyewear-process-component.component';
 import { OrderDetailComponent } from './components/order-detail-component/order-detail-component.component'
+import { InventoryComponent } from './components/inventoryComponent/inventory.component';
 
 
 @NgModule({
@@ -50,7 +54,8 @@ import { OrderDetailComponent } from './components/order-detail-component/order-
     HeaderComponent,
     UserComponent,
     ErrorComponent,
-    //  LetterpressComponent,
+    ErpComponent,
+    InventoryComponent,
     StoreLocationComponent,
     StoreLocationDetailComponent,
     DiscountComponent,
@@ -87,9 +92,13 @@ import { OrderDetailComponent } from './components/order-detail-component/order-
     UserService,
     StoreLocationService,
     LetterPressService,
+    ErpService,
+    ReportService ,
     ReportService,
     OrdersService,
-    DiscountService],
+    DiscountService,
+  InventoryService,
+  HomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

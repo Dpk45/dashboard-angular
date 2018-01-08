@@ -10,16 +10,17 @@ import { UserComponent } from "./components/user-component/user.component"
 import { ErrorComponent } from "./components/error-component/error.component"
 import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component'
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component'
-// import { LetterpressComponent } from './components/letterpress-component/letterpress-component.component'
 import { ReportComponent } from './components/report/report.component';
 import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
 import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
+import { ErpComponent } from './components/sendErpRequest/sendERP.component';
 import { DiscountComponent } from './components/discountCode/discount.component';
 import { LetterPressComponent } from './components/Letterpress/letterPress.component';
 import { EyewearComponent } from './components/eyewear-component/eyewear-component.component';
 import { EyewearProcessComponent } from './components/eyewear-component/eyewear-process-component/eyewear-process-component.component';
 import { HtkComponent } from './components/htk-component/htk-component.component';
 import { OrderDetailComponent } from './components/order-detail-component/order-detail-component.component';
+import { InventoryComponent } from './components/inventoryComponent/inventory.component';
 
 const appRoutes: Routes =
   [
@@ -59,7 +60,6 @@ const appRoutes: Routes =
             }
           ]
         },
-
         {
           path: "htk/processing",
           component: HtkComponent
@@ -68,7 +68,6 @@ const appRoutes: Routes =
     },
     {
       path: "store_locations/:brand",
-      // component: StoreLocationComponent,
       canActivate: [AuthGuard],
       children: [
         {
@@ -86,24 +85,39 @@ const appRoutes: Routes =
         }
       ]
     },
-    // {
-    //   path: "letterpress/:brand",
-    //   component: LetterpressComponent,
-    //   canActivate: [AuthGuard]
-    //
-    // },
+    {
+      path: "send_erp_request/:brand",
+      component: ErpComponent,
+      canActivate: [AuthGuard]
+    },
 
     {
       path: 'discount/:brand',
-      component: DiscountComponent,
-      canActivate: [AuthGuard]
+      canActivate: [AuthGuard],
+      children: [
+        {
+          path: "",
+          component: DiscountComponent
+        },
+        {
+          path: ":discount_code",
+          component: DiscountComponent
+        }]
     },
     {
       path: 'letterpress/:brand',
-      component: LetterPressComponent,
-      canActivate: [AuthGuard]
+      canActivate: [AuthGuard],
+      children: [
+        {
+          path: "",
+          component: LetterPressComponent
+        },
+        {
+          path: ":name",
+          component: LetterPressComponent
+        }
+      ]
     },
-
     {
       path: "error",
       component: ErrorComponent
@@ -129,6 +143,29 @@ const appRoutes: Routes =
 
       ]
     },
+    // {
+    //   path: "inventory/:brand",
+    //   component: InventoryComponent,
+    //   canActivate: [AuthGuard]
+    //
+    // }
+
+    {
+      path: "inventory/:brand",
+      //component: InventoryComponent,
+      canActivate: [AuthGuard],
+      children: [
+        {
+          path: "",
+          component: InventoryComponent
+        },
+        {
+          path: ":productId",
+          component: InventoryComponent
+        }
+      ]
+
+    }
 
   ];
 

@@ -25,6 +25,7 @@ export class LetterPressComponent {
   text: any;
   html:any;
   save: any;
+  name: any;
   constructor(private route: ActivatedRoute, private _letterService: LetterPressService, private router: Router) {
   }
 
@@ -33,6 +34,11 @@ export class LetterPressComponent {
       this.brand = params.brand;
       this.getEmailTemplates();
       this.getCommonEmailTemplates();
+      if(params.name) {
+        this.name = params.name;
+        this.foundtemplateName(this.name);
+        this.foundCommonTemplate(this.name);
+      }
     });
   }
 
@@ -65,11 +71,7 @@ export class LetterPressComponent {
     .subscribe(res => {
 console.log("save>>>>>>>>>>>>>>>>>>>...",res.data)
       this.save = "Saved !"
-
-      //this.getOnetemplate = res.data;
-
-      //console.log("  this.getOnetemplate >>>>>>>>>>>>>>>>>>",  this.getOnetemplate )
-      //  this.template = true;
+      // this.router.navigate(['/letterpress', this.brand]);
     })
   }
 
@@ -100,6 +102,7 @@ console.log("save>>>>>>>>>>>>>>>>>>>...",res.data)
     .subscribe(res => {
       console.log("response >>>>>>>>>>>>>>>>>>",res.data)
       this.save = "Saved !";
+      // this.router.navigate(['/letterpress', this.brand]);
     })
   }
 }
