@@ -11,15 +11,34 @@ import { ErpService } from '../../services/sendErp.service';
 
 export class ErpComponent {
   brand: any;
+  selectedValue: any = 'authorize_return';
+  performedAt: any = '';
+  payload: any = '';
+  isSuccess: boolean;
   constructor(private route: ActivatedRoute, private _erpService: ErpService, private router: Router) {
+  }
 
-}
-
-ngOnInit(){
-  this.route.params.subscribe((params:any) => {
-    this.brand = params.brand;
-  //  this.getDiscounts();
-  });
-}
+  ngOnInit() {
+    this.route.params.subscribe((params:any) => {
+      this.brand = params.brand;
+      //  this.getDiscounts();
+    });
+  }
+  erpReport(form) {
+    this.selectedValue = form.action;
+    this.performedAt = form.performed_at;
+    this.payload = form.payload;
+    this._erpService.sendErpRequest(this.selectedValue, this.performedAt, this.payload, this.brand).subscribe(res => {
+      console.log("response>>>>>>>>>>>>>.",res)
+      if(res.code == 200){
+        this.isSuccess = true;
+        this.performedAt = '' ;
+        this.payload = '';
+      }
+    },
+    (err) => {
+      console.log('error>>>>>>>>>>>>', err);
+    })
+  }
 
 }

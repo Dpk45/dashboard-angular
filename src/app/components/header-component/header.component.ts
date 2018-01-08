@@ -14,8 +14,7 @@ export class HeaderComponent implements OnInit {
   dashUser: any;
   constructor(private router:Router, private _dashAuthService: DashAuthService, private _dashUserService: DashUserService, private _userService: UserService){
       this.current_user = JSON.parse(localStorage.getItem("current_user"));
-
-  }
+    }
 
   ngOnInit(){
     this._dashUserService.getDashUserByEmail(this.current_user.email).subscribe((res) => {

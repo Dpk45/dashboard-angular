@@ -21,3 +21,15 @@ a.applyStyle:link, a.applyStyle:visited{
 a.applyStyle:hover {
 background-color: #f1f1f1
 }
+
+.myTab{
+	padding: 10px;
+}
+
+.adjustment{
+	font-weight:bold;
+}
+
+.list{
+	display: inline;
+}

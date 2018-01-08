@@ -9,4 +9,14 @@ export class ErpService {
   constructor(private _http: Http, private _httpClient: HttpClient) {
 
   }
+ // create erp_integration
+  sendErpRequest(selectedValue, performedAt, payload, brand) {
+    brand = brand + "_dev";
+    const _path: string = (this.baseUrl + '/erp_integration?key=' + brand),
+    body: any = {'action': selectedValue, 'performed_at': performedAt, 'payload': payload}
+    return this._http.post(_path, body)
+    .map(res => {
+      return res.json();
+    });
+  }
 }

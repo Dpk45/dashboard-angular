@@ -1,5 +1,7 @@
 <header></header>
 <div class="container">
+    <div *ngIf="isSuccess" class="alert alert-info">OK</div>
+    <div *ngIf="SuccessfullyCreatedUpc" class="alert alert-info">Successfully added codes</div>
     <div class="row">
 
         <div class="col-xs-18 col-sm-12">
@@ -11,7 +13,7 @@
                 <li>
                     Product management
                     <ul>
-                        <li>
+                        <!-- <li>
                             Product dashboard [
 
                             <a href="#" onclick="window.open('//' + window.location.hostname + ':8888/#/ano/products')">ano</a>]
@@ -34,8 +36,17 @@
 
                             <a href="#" onclick="window.open('//' + window.location.hostname + ':8888/#/stevenalanoptical/products')">stevenalanoptical</a>]
 
+                        </li> -->
+
+                        <li *ngIf="dashUser">
+                          Product dashboard
+                          <ng-container *ngFor="let brand of dashUser.brands">
+                            <li class="list"  *ngIf="brand.brand">
+                              [<a [routerLink]="['/product', brand.brand]"> {{brand.brand}} </a>]
+                            </li>
+                          </ng-container>
                         </li>
-                        <li>
+                        <!-- <li>
                             Bust cache [
 
                             <a href="#" data-brand="ano" data-branch="develop" class="cache-bust-link">ano</a>] [
@@ -56,26 +67,34 @@
                             <a href="#" data-brand="stevenalanoptical" data-branch="develop" class="cache-bust-link">stevenalanoptical</a>]
 
                             <div id="bust-cache-msg"></div>
+                        </li> -->
+                        <li *ngIf="dashUser">
+                          Bust cache
+                          <ng-container *ngFor="let brand of dashUser.brands">
+                            <li class="list"  *ngIf="brand.brand">
+                              [<a [routerLink]="['/bustCache', brand.brand]"> {{brand.brand}} </a>]
+                            </li>
+                          </ng-container>
                         </li>
                         <li>
                             <a id="pop1">Add available UPC codes</a><br>
                             <!-- <div class="panel panel-default" style="padding: 20px;width: 400px"> -->
                             <div id="form1" class="pop">
-                                <form class="form-inline" id="upload_upc_codes" method="POST" action="/upc_codes" enctype="multipart/form-data">
+                                <form  role="form" #form="ngForm" (ngSubmit)="createUpcCode(form.value)">
                                     <div class="form-group">
-                                        <label for="batchname" class="form-label">Batch Name
-                    </label>
-                                        <div>
-                                            <input type="text" name="batchname" class="form-control" required>
+                                        <label for="batchname">Batch Name
+                                        </label><br>
+                                        <div class="col-sm-7">
+                                            <input type="text" name="batchname"  [(ngModel)]="batchname" class="form-control" required>
                                         </div>
                                     </div>
                                     <br><br>
                                     <div class="form-group">
                                         <label for="available_upc_codes" class="form-label">Select file
-                    </label>
-                                        <input type="file" class="file" name="available_upc_codes" required>
+                                        </label>
+                                        <input type="file" class="file" name="available_upc_codes" id="available_upc_codes" onclick="document.getElementById('available_upc_codes')" required>
+                                        <button type="submit" value="Save" class="btn btn-primary btn-sm" style="float: right;margin-right: 10px">Upload</button>
                                     </div>
-                                    <button type="submit" value="Save" class="btn btn-primary btn-sm" style="float: right;margin-right: 10px">Upload</button>
                                 </form>
                             </div>
                         </li>
@@ -83,19 +102,19 @@
                             <a id="pop2">Email UPC Code Report</a><br>
                             <!-- <div class="panel panel-default" style="padding: 20px;width: 400px"> -->
                             <div id="form2" class="pop">
-                                <form class="form-inline" method="POST" id="email_upc_codes" action="/reports/email_upc_codes">
+                                <form role="form" #form="ngForm" (ngSubmit)="upcCodeReport(form.value)">
                                     <div class="form-group">
                                         <label for="reportbatchname" class="form-label">Batch Name
-                </label>
+                                        </label>
                                         <div>
-                                            <select name="reportbatchname" class="custom-select">
+                                            <select name="reportbatchname" [(ngModel)]="reportbatchname">
 
-                    <option value="Batch 2">Batch 2</option>
-
-                </select>
+                                                <option value="Batch 2">Batch 2</option>
+                                                  <option value="UEsDBBQA_1">UEsDBBQA_1</option>
+                                                </select>
                                         </div>
+                                        <button type="submit" value="Save" class="btn btn-primary btn-sm" style="float: right;margin-right: 10px">Get Report</button>
                                     </div>
-                                    <button type="submit" value="Save" class="btn btn-primary btn-sm" style="float: right;margin-right: 10px">Get Report</button>
                                 </form>
                             </div>
                         </li>

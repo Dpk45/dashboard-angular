@@ -10,6 +10,7 @@ export class ReportService {
 
   }
 
+// get order
 getOrderListService(brand) {
   brand = brand + "_dev";
   const _path: string = (this.baseUrl + '/orders?key=' + brand)
@@ -19,6 +20,7 @@ getOrderListService(brand) {
   });
 }
 
+// get eyewear sales report
 getEyewearSalesReport(startDate, endDate, brand) {
   brand = brand + "_dev";
   const _path: string = (this.baseUrl + '/reports/eyewear?key=' + brand + '&start_date=' + startDate + '&end_date=' + endDate)
@@ -28,6 +30,7 @@ getEyewearSalesReport(startDate, endDate, brand) {
   });
 }
 
+// get eyewearSales Finance report
 getEyewearSalesFinanaceReport(startDate, endDate, brand) {
   brand = brand + "_dev";
   const _path: string = (this.baseUrl + '/reports/eyewear/finance?key=' + brand + '&start_date=' + startDate + '&end_date=' + endDate)
@@ -37,6 +40,7 @@ getEyewearSalesFinanaceReport(startDate, endDate, brand) {
   });
 }
 
+// get HtkSales Report
 getHtkSalesReport(startDate, endDate, brand) {
   brand = brand + "_dev";
   const _path: string = (this.baseUrl + '/reports/htk?key=' + brand + '&start_date=' + startDate + '&end_date=' + endDate)
@@ -46,6 +50,7 @@ getHtkSalesReport(startDate, endDate, brand) {
   });
 }
 
+// get Inventory report
 getinventoryReport(brand) {
   brand = brand + "_dev";
   const _path: string = (this.baseUrl + '/reports/eyewear_inventory?key=' + brand)
@@ -55,6 +60,7 @@ getinventoryReport(brand) {
   });
 }
 
+// get htk PastDue report
 gethtkPastDueReport(startDate, endDate, brand) {
   brand = brand + "_dev";
   const _path: string = (this.baseUrl + '/reports/htk_pastdue?key=' + brand + '&start_date=' + startDate + '&end_date=' + endDate)
@@ -64,6 +70,7 @@ gethtkPastDueReport(startDate, endDate, brand) {
   });
 }
 
+// get productId Mapping report
 getProductIdmapping(brand) {
   brand = brand + "_dev";
   const _path: string = (this.baseUrl + '/reports/product_id_mapping?key=' + brand)
@@ -74,6 +81,7 @@ getProductIdmapping(brand) {
   });
 }
 
+// get Style Master report
 getStyleMaster(brand){
   brand = brand + "_dev";
   const _path: string = (this.baseUrl + '/reports/style_master?key=' + brand)
@@ -84,6 +92,7 @@ getStyleMaster(brand){
   });
 }
 
+// get Order by order_id
 getOrderByOrderId(orderId, brand){
   brand = brand + "_dev";
   const _path: string = (this.baseUrl + '/orders/' + orderId + '?key=' + brand)

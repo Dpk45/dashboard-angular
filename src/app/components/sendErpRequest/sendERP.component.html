@@ -1,5 +1,45 @@
 <header></header>
 <div class="container">
+  <div *ngIf="isSuccess" class="alert alert-info" id="toggle">Request Sent</div>
   <h1>{{ brand }}</h1>
+  <form role="form" #form="ngForm" (ngSubmit)="erpReport(form.value)">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="action">Action:</label>
+      <div class="col-sm-10">
+        <select name="action" class="form-control" [(ngModel)]="selectedValue" required>
+          <option value="new_order">new_order</option>
+          <option value="new_product">new_product</option>
+          <option value="send_to_lab">send_to_lab</option>
+          <option value="ship_items">ship_items</option>
+          <option value="ship_htk">ship_htk</option>
+          <option value="cancel_items">cancel_items</option>
+          <option value="authorize_return">authorize_return</option>
+          <option value="receive_frame">receive_frame</option>
+          <option value="refund_order">refund_order</option>
+          <option value="refund_items">refund_items</option>
+          <option value="receive_htk">receive_htk</option>
+          <option value="create_store_credit">create_store_credit</option>
+          <option value="update_store_credit">update_store_credit</option>
+        </select>
+      </div>
+    </div><br><br>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="performed_at">Performed At:</label>
+      <div class="col-sm-10">
+             <input type="text" class="form-control" name="performed_at" placeholder="Performed At" [(ngModel)]="performedAt" required>
+         </div>
+    </div><br><br>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="payload">Payload</label>
+        <div class="col-sm-10">
+             <textarea rows="7" class="form-control" name="payload" [(ngModel)]="payload" required></textarea>
+          </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10"><br>
+      <input type="submit" onclick="showDiv('toggle')" class="btn btn-default" value="Submit">
+    </div>
+    </div>
 
+  </form>
 </div>
