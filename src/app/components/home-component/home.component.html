@@ -92,7 +92,8 @@
                                     <div class="form-group">
                                         <label for="available_upc_codes" class="form-label">Select file
                                         </label>
-                                        <input type="file" class="file" name="available_upc_codes" id="available_upc_codes" onclick="document.getElementById('available_upc_codes')" required>
+                                        <!--<input type="file" class="file" name="available_upc_codes" id="available_upc_codes" onclick="document.getElementById('available_upc_codes')" required>-->
+                                        <input type="file" class="file" name="available_upc_codes" id="available_upc_codes" (change)="fileUpload($event)" required>
                                         <button type="submit" value="Save" class="btn btn-primary btn-sm" style="float: right;margin-right: 10px">Upload</button>
                                     </div>
                                 </form>
@@ -102,7 +103,7 @@
                             <a id="pop2">Email UPC Code Report</a><br>
                             <!-- <div class="panel panel-default" style="padding: 20px;width: 400px"> -->
                             <div id="form2" class="pop">
-                                <form role="form" #form="ngForm" (ngSubmit)="upcCodeReport(form.value)">
+                                <form role="form" #f="ngForm" (ngSubmit)="upcCodeReport(f.value)">
                                     <div class="form-group">
                                         <label for="reportbatchname" class="form-label">Batch Name
                                         </label>
