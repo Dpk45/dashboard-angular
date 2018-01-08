@@ -148,19 +148,6 @@
                                     <dd>{{ item['status'][key] }}</dd>
                                   </ng-container>
 
-                                    <!--{% for key, value in item['status'].iteritems() %}
-                                        {% if value is mapping %}
-                                            <dt> {{ key }} </dt>
-                                            <dd>
-                                                {% for key1, value1 in value.iteritems() %}
-                                                    <i>{{ key1 }}: {{ value1 }}</i>
-                                                {% endfor %}
-                                            </dd>
-                                        {% else %}
-                                            <dt>{{ key }}</dt>
-                                            <dd>{{ value }}</dd>
-                                        {% endif %}
-                                    {% endfor %}-->
                                 </dl>
                             </div>
                         </div>
@@ -286,24 +273,476 @@
                     </ng-template>
                   </ng-container>
                 </td>
+
+
+                <td>
+                    <!--{% set optin = item['high_index_optin'] %}
+                    {% set needs_high_index = rx['is_high_index'] if rx and item['lens_type'] in ['STANDARD_INDEX_LENS', 'HIGH_INDEX_LENS',
+            'PRG_STANDARD_LENS', 'PRG_HIGH_INDEX_LENS'] else False %}
+                    {% set paid_for_high_index = item['lens_type'] == 'HIGH_INDEX_LENS' %}
+                    {% set needs_progressive = rx['is_progressive'] if rx %}
+                    {% set paid_for_progressive = item['lens_type'][:3] == 'PRG' %}-->
+
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Need</th>
+                            <th>Opt In</th>
+                            <th>Paid</th>
+                            <th>Upcharge</th>
+                        </tr>
+                        <!--<ng-container >-->
+                        <!--{% if not 'SUN' in item['lens_type'] %}-->
+                            <tr>
+                                <td>high index</td>
+                                <!--<td>{{ 'YES' if needs_high_index else 'NO' }}</td>
+                                <td>{{ 'YES' if optin else 'NO' }}</td>
+                                <td>{{ 'YES' if paid_for_high_index else 'NO' }}</td>
+                                <td>-->
+                                    <!--{% if optin == False and paid_for_high_index == False and needs_high_index == True %}
+                                        <input type="checkbox" name="force_hi_upcharge_{{ item.id }}" value="false"> force upcharge</input>
+                                    {% elif optin == True and paid_for_high_index == False and needs_high_index == True %}
+                                        Customer will be upcharged for high-index lenses
+                                    {% else %}
+                                        none
+                                    {% endif %}-->
+                                <!--</td>-->
+                            </tr>
+                        <!--</ng-container>-->
+                        <tr>
+                            <td>progressive</td>
+                            <!--<td>{{ 'YES' if needs_progressive else 'NO' }}</td>
+                            <td>YES</td>
+                            <td>{{ 'YES' if paid_for_progressive else 'NO' }}</td>
+                            <td>
+                                {% if paid_for_progressive == False and needs_progressive == True %}
+                                    Customer will be upcharged for progressive lenses<br/>
+                                    <input type="checkbox" name="skip_upcharge_{{ item.id }}" value="false"> No upcharge</input>
+
+                                {% else %}
+                                    none
+                            <!--</td>-->
+                        </tr>
+                        </thead>
+                    </table>
+
+                    <!--{% if current_user.id in blacklists['LAB_ACCESS_BLACKLIST'] %}
+                        You are not allowed to process items at the lab.
+                    {% else %}-->
+
+                        <ng-container *ngIf="item['status']['cancelled_at'] != null">
+                          This item was cancelled.
+                        </ng-container>
+                        <ng-container *ngIf="item['status']['cancelled_at'] == null && item['status']['return_authorized_at'] != null ;else elseBlock">
+                          This item was returned.
+                        </ng-container>
+                        <ng-template #elseBlock>
+                          <ng-container *ngIf="item['status']['sent_to_lab_at'] == null && item['lens_type'] != 'ONHAND_NON_RX_SUN_LENS' && item['lens_type'] != 'ONHAND_NO_LENS'" >
+                              <!--{% for store_credit in store_credits %}-->
+                              <!--<ng-container *ngIf="store_credits.length > 0">
+                                 <ng-container *ngFor="let store_credit of store_credits">
+                                  <input type="checkbox" name="store_credit" #store_credit value="true"/>
+                                 Use $ {{ store_credit.credit_amount - store_credit.amount_used }} of credit, ID: {{ store_credit.credit_id }}<br/>
+                              </ng-container>
+                              </ng-container>-->
+                             
+
+                            <!--<ng-container *ngIf="labs.length > 0">
+                                <select name="lab" id="lab" class="form-control" size="1" #lab>
+                                <option value="">--select lab to send to --</option>-->
+                                <!--{% for lab in labs %}
+                                    <option value="{{ lab }}">{{ lab }} {{ products.get(item['product_id'], {}).get('inventory', {}).get(lab) | int
+                                            }}</option>
+                                {% endfor %}-->
+                            <!--</select>
+                            <ng-container *ngIf="item['status']['send_to_lab_at'] == null">
+                              `{{item['status']}}
+                            </ng-container>
+                            
+                            </ng-container>-->
+                          
+                            <input type="button" value="Send to lab" class="btn btn-lg btn-success send_to_lab"/>
+                          </ng-container>
+                        </ng-template>
+                        
+
+
+
+                        <ng-container *ngIf="item['status']['lab_finished_processing_at'] != null && item['status']['lab_finished_processing_at'] == null && item['status']['shipped_at'] == null">
+                          <input type="button" 
+                                   class="receive_from_lab" value="Receive frame from lab.">
+                            <br>
+                        </ng-container>
+
+                          <ng-container *ngIf="item['status']['received_by_lab_at'] != null && item['status']['lab_finished_processing_at'] == null && item['status']['received_from_lab_at'] == null && item['status']['shipped_at'] == null">
+                          <input type="button" 
+                                   class="lab_finished_processing" value="Lab is done processing order">
+                            <br>
+                        </ng-container>
+
+                         <ng-container *ngIf="item['status']['sent_to_lab_at'] != null && item['status']['received_by_lab_at'] == null">
+                          <input type="button" 
+                                   class="received_by_lab" value="Lab has received this frame">
+                            <br>
+                        </ng-container>
+
+                        <hr>
+
+                         <ng-container *ngIf="item['status']['return_authorized_at'] != null">
+                           <a>return label</a>
+                           <br/>
+                        <br/>
+                         </ng-container>
+                       
+                    
+
+                    <div class="container-fluid">
+                      <!--<ng-container *ngIf="item['status'] == {}">-->
+                            <!--{% if not order.get('final_sale', False) %}-->
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" href="#collapseCancel{{ item.id }}">Cancellation</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseCancel{{ item.id }}" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-sm-3"><label for="return_reason">Reason</label></div>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control" size="1" [(ngModel)]="selectedReasonCode">
+                                                        <option value="">--select reason code-- </option>
+                                                          <option *ngFor="let reason_code of CANCELLATION_REASON_CODES">{{ reason_code }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-3"><label for="return_description">Description</label></div>
+                                                <div class="col-sm-9"><input type="text" class="form-control" name="return_description"
+                                                                             id="return_description"
+                                                                             size="30"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-3"></div>
+                                                <div class="col-sm-9">
+                                                    <!--<input type="button" data-orderid="{{ order['order_number'] }}" data-itemid="{{ item.id }}"
+                                                           data-brand="{{ brand }}"
+                                                           class="btn btn-danger btn-xs cancel_item" value="Cancel item">-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          <!--</ng-container>-->
+                        <!--</div>    -->
+
+                        <ng-container *ngIf="item['status']['return_authorized_at'] != null && item['status']['returned_at'] == null">
+
+                        
+                        <!--{% elif 'return_authorized_at' in item['status'] and 'returned_at' not in item['status'] %}-->
+                            <select name="restock" id="restock" class="form-control restock" size="1">
+                                <option value="N">Not Restockable</option>
+                                <option value="Y">Restockable</option>
+                            </select>
+                            <input type="text" class="form-control non_restock_reason" name="non_restock_reason" id="non_restock_reason"
+                                   placeholder="Reason to not restock" size="30">
+                            <!--<input type="button" data-orderid="{{ order['order_number'] }}" data-itemid="{{ item.id }}" data-brand="{{ brand }}"
+                                   class="receive_returned_frame" value="Receive frame">-->
+                            <br/><br/>
+                            </ng-container>
+                            <ng-container *ngIf="item['status']['shipped_at'] != null && item['status']['received_from_lab_at'] != null && item['status']['returned_at'] == null">
+                        <!--{% elif ('shipped_at' in item['status'] or 'received_from_lab_at' in item['status'])-->
+                        <!--and 'returned_at' not in item['status'] %}-->
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" href="#collapseReturn{{ item.id }}">Return</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseReturn{{ item.id }}" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-sm-4"><label for="return_reason">Reason</label></div>
+                                                <div class="col-sm-8">
+                                                    <select name="return_reason" size="1" class="form-control">
+                                                        <option value="">--select reason code--</option>
+                                                        <!--{% for reason_code in return_reason_codes %}
+                                                            <option value="{{ reason_code }}">{{ reason_code }}</option>
+                                                        {% endfor %}-->
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><label for="return_description">Description</label></div>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" name="return_description" id="return_description"
+                                                           size="30">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-3">&nbsp;</div>
+                                                <div class="col-sm-9">
+                                                    <!--<input type="button" data-orderid="{{ order['order_number'] }}" data-itemid="{{ item.id }}"
+                                                           data-brand="{{ brand }}" class="btn btn-danger btn-xs return_item"
+                                                           value="Authorize return of item">-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </ng-container>
+                        <!--{% endif %}-->
+                    </div>
+
+
+                    <!--{% if not order.get('final_sale', False) %}-->
+                    <div class="container-fluid">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#collapseRefund{{ item.id }}">Refund</a>
+                                    </h4>
+                                </div>
+                                <div id="collapseRefund{{ item.id }}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                      <ng-container *ngIf= "order['payment'] != null">
+                                            <form method="POST">
+                                                <div class="form-group">
+                                                    <label for="return_reason">Reason</label>
+                                                    <select name="return_reason" id="return_reason" size="1" class="form-control">
+                                                        <option value="">--select reason code--</option>
+                                                        <!--{% for reason_code in refund_reasons %}
+                                                            <option value="{{ reason_code }}">{{ reason_code }}</option>
+                                                        {% endfor %}-->
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="return_description">Description</label>
+                                                    <input type="text" class="form-control" name="return_description" id="return_description"
+                                                           placeholder="Description">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="amount">Refund amount</label>
+                                                    <input type="number" class="form-control" step=".01" name="amount" id="amount" min="0"
+                                                           placeholder="{{ item['totals']['item_net'] }}">
+                                                </div>
+                                                <input type="submit" class="btn btn-danger btn-xs" value="Refund">
+                                            </form>
+                                      </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+
+
+                        <ng-container *ngIf = "order.totals.total > 0">
+                        <div class="container-fluid">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" href="#collapseCredit{{ item.id }}">Store Credit</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseCredit{{ item.id }}" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <form method="POST">
+                                                <div class="form-group">
+                                                    <label for="reason">Reason</label>
+                                                    <select name="reason" id="reason" size="1" class="form-control">
+                                                        <option value="">--select reason code--</option>
+                                                        <!--{% for reason_code in sc_reasons %}
+                                                            <option value="{{ reason_code }}">{{ reason_code }}</option>
+                                                        {% endfor %}-->
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="description">Description</label>
+                                                    <input type="text" class="form-control" name="description" id="description"
+                                                           placeholder="Description">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="amount">Credit amount: </label>
+                                                    <input type="number" class="form-control" step=".01" name="amount" id="amount"
+                                                           placeholder="{{ item['totals']['item_net'] }}" min="0"
+                                                           required>
+                                                    <input type="hidden" name="email" value="{{ order['customer']['email'] }}">
+                                                </div>
+                                                <input type="submit" class="btn btn-danger btn-xs" value="Issue Credit">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </ng-container>
+                </td>
               </tr>
             </ng-container>
-
-
-
-
     </table>
-
-    <ng-container *ngIf="order['items']['eyewear']['tracking_numbers']">
-      <h3>Eyewear Shipments</h3>
-        <ng-container *ngFor="let label of order['items']['eyewear']['tracking_numbers']">
-          <!--{{ shipment_view.shipment(label, 'order.shipping_label', order, products, brand) }}-->
-        </ng-container>
-      </ng-container>        
-
+            <ng-container *ngIf="order['items']['eyewear']['tracking_numbers']">
+              <h3>Eyewear Shipments</h3>
+              <ng-container *ngFor="let label of order['items']['eyewear']['tracking_numbers']">
+                <!--{{ shipment_view.shipment(label, 'order.shipping_label', order, products, brand) }}-->
+              </ng-container>
+            </ng-container>        
   </ng-container>
 
 
+            <hr>
+
+            <div class="container-fluid">
+            <div class="row">
+              <h3>Transactions</h3>
+            </div>
+            <ng-container *ngIf="order['payment'] != null">
+              <!--{% if order['payment'] != None %}-->
+              <div class="row">
+                <div class="col-xs-2"><label class="control-label">Amount</label></div>
+                <div class="col-xs-4">
+                  <p class="form-control-static">{{ order.totals.total }}; </p>
+                </div>
+                <div class="col-xs-2"><label class="control-label">Refunded</label></div>
+                <div class="col-xs-4">
+                  <p class="form-control-static">${{ order.totals.refunds }}</p>
+                </div>
+              </div>
+
+              <ng-container *ngIf="order.items.eyewear && order['items']['eyewear']['items'].length > 1">
+                <!--{% if 'eyewear' in order['items'] and order['items']['eyewear']['items']|length > 1 %}-->
+                <div class="row">
+                  <form method="POST" class="form-inline">
+                    <div class="form-group">
+                      <label for="return_reason" class="control-label">Reason</label>
+                      <select name="return_reason" id="return_reason" size="1">
+                                        <option value="">--select reason code--</option>
+                                        <!--{% for reason_code in refund_reasons %}
+                                            <option value="{{ reason_code }}">{{ reason_code }}</option>
+                                        {% endfor %}-->
+                                    </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="return_description" class="control-label">Description</label>
+                      <input type="text" class="form-control" name="return_description" id="return_description" placeholder="Description" size="30">
+                    </div>
+                    <div class="form-group">
+                      <label for="amount" class="control-label">Refund amount</label>
+                      <input type="number" class="form-control" step=".01" name="amount" id="amount" size="6">
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" class="btn btn-danger btn-xs" value="Refund">
+                    </div>
+                  </form>
+                </div>
+              </ng-container>
+              <hr>
+            </ng-container>
+
+            <ng-container *ngFor="let upcharge of order.upcharges">
+              <!--{% for upcharge in order['upcharges'] %}-->
+              <div class="row">
+                <div class="col-xs-2"><label class="control-label">Amount</label></div>
+                <div class="col-xs-4">
+                  <p class="form-control-static">{{ upcharge.amount }}; </p>
+                </div>
+                <div class="col-xs-2"><label class="control-label">Refunded</label></div>
+                <div class="col-xs-4">
+                  <p class="form-control-static">{{ upcharge.refunds }}</p>
+                </div>
+              </div>
+              <ng-container *ngIf="order.items.eyewear && order['items']['eyewear']['items'].length > 1">
+                <!--{% if 'eyewear' in order['items'] and order['items']['eyewear']['items']|length > 1 %}-->
+                <div class="row">
+                  <form method="POST" class="form-inline">
+                    <div class="form-group">
+                      <label for="return_reason" class="control-label">Reason</label>
+                      <select name="return_reason" id="return_reason" size="1">
+                                        <option value="">--select reason code--</option>
+                                        <!--{% for reason_code in return_reason_codes %}
+                                            <option value="{{ reason_code }}">{{ reason_code }}</option>
+                                        {% endfor %}-->
+                                    </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="return_description" class="control-label">Description</label>
+                      <input type="text" class="form-control" name="return_description" id="return_description" size="30" placeholder="Description">
+                    </div>
+                    <div class="form-group">
+                      <label for="amount" class="control-label">Refund amount</label>
+                      <input type="number" class="form-control" name="amount" step=".01" id="amount" size="6">
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" class="btn btn-danger btn-xs" value="Refund">
+                    </div>
+                    <input type="hidden" name="upcharge_index" value="{{ item.id }}">
+                    <hr>
+                  </form>
+                </div>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="order['store_credit_used'] != null">
+              <div class="row">
+                <div class="col-xs-2"><label class="control-label">Credit Id</label></div>
+                <div class="col-xs-4"><label class="control-label">Credit Available</label></div>
+                <div class="col-xs-6"><label class="control-label">Actions</label></div>
+              </div>
+              <ng-container *ngFor="let store_credit of order['store_credit_used']">
+                <div class="row">
+                  <div class="col-xs-2">{{ store_credit.store_credit_id }}</div>
+                  <hr>
+                </div>
+              </ng-container>
+            </ng-container>
+            </div>
+
+
+            <div class="container-fluid">
+              <div class="row">
+                <h3>Internal notes</h3>
+              </div>
+              <div id="note_list">
+                <!--{% for note in order.internal_notes %}-->
+                <ng-container *ngFor="let note of order.internal_notes">
+                  <div class="row">
+                    <div class="col-md-1">Added:</div>
+                    <div class="col-md-2">{{note.created_at}}</div>
+                    <div class="col-md-1">By</div>
+                    <div class="col-md-2">{{note.created_by}}</div>
+                    <div class="col-md-6">
+                      <pre style="white-space: pre-wrap; ">{{note.message}}</pre>
+                    </div>
+                  </div>
+                  <hr>
+                </ng-container>
+                <!--{% endfor %}-->
+              </div>
+              <div class="row">
+                <form id="note_form" class="form-horizontal">
+                  <div class="form-group">
+                    <label class="control-label">Add a note</label>
+                    <textarea class="form-control" name="message" style="width:500px; height:100px"></textarea>
+                  </div>
+                  <button type="submit">Add note</button>
+                  <div id="note_status"></div>
+                </form>
+              </div>
+            </div>
+
+            <h3>History</h3>
+            <pre>
+            []
+            </pre>
+
+            <hr>
+            <a>plz ignore</a>
 
 
 
