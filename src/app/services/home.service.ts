@@ -15,36 +15,16 @@ export class HomeService {
 
 // create upc_code
   createUpcCode(batchname, file) {
-    console.log('data from file is coming>>>>>>>>>>>>>. now convert it into base64>................', file)
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onload = function () {
-  //    console.log("resulted data>.......................",reader.result);
-  //    file = reader.result;
-  //   // const _path: string = (this.baseUrl + '/upc_codes?key=DASHBOARD'),
-  //     const _path: string = ('http://localhost:3000/3.0/upc_codes?key=DASHBOARD'),
-  //    body: any = JSON.stringify({'batch_name': batchname, 'file': file})
-  //    console.log("body>>>>>>>>>>>>>>>++++++++++++++++++++", body)
-  //  //  console.log("_path>>>>>>>>>>>>>>>>>>>>>>>>>>>>",_path)
-  //    return this._httpClient.post(_path, body)
-  //    .map(res => {
-  //      return res;
-  //    });
-   //
-  //  };
- //  console.log(" console.log(this.fs);>>>>>>>>>>>>>>>>>>>>>>>",fs)
- // const data = fs.readFileSync(file.name, 'base64');
-  // console.log('seeeeeeeeeeeeeeeeeeeeeeeeee...............', data)
-      const _path: string = (this.baseUrl + '/upc_codes?key=DASHBOARD'),
-      body: any = JSON.stringify({'batch_name': batchname, 'file': file})
-      console.log("body>>>>>>>>>>>>>>>++++++++++++++++++++", body)
-    //  console.log("_path>>>>>>>>>>>>>>>>>>>>>>>>>>>>",_path)
-      return this._httpClient.post(_path, body)
+    console.log('data from file is ...............', file)
+    const _path: string = (this.baseUrl + '/upc_codes?key=DASHBOARD')
+    let body:any = JSON.stringify({'batch_name': batchname, 'file': file.data})
+    console.log("body outside >>>>>>>>>>>>>>>++++++++++++++++++++", body)
+    return this._httpClient.post(_path, body)
       .map(res => {
         return res;
       });
-
   }
+
 
   // send upc_code_report
   upcCodeReport(reportbatchname) {
