@@ -21,6 +21,7 @@ import { EyewearProcessComponent } from './components/eyewear-component/eyewear-
 import { HtkComponent } from './components/htk-component/htk-component.component';
 import { OrderDetailComponent } from './components/order-detail-component/order-detail-component.component';
 import { InventoryComponent } from './components/inventoryComponent/inventory.component';
+import { ProductComponent } from './components/productComponent/product.component';
 
 const appRoutes: Routes =
   [
@@ -143,12 +144,20 @@ const appRoutes: Routes =
 
       ]
     },
-    // {
-    //   path: "inventory/:brand",
-    //   component: InventoryComponent,
-    //   canActivate: [AuthGuard]
-    //
-    // }
+    {
+      path: "product/:brand",
+    //  component: ProductComponent,
+      canActivate: [AuthGuard],
+      children: [
+        {
+          path: "",
+          component: ProductComponent
+        },
+        {
+          path: ':product_id',
+          component: ProductComponent
+        }]
+      },
 
     {
       path: "inventory/:brand",

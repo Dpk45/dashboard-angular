@@ -29,9 +29,6 @@ export class HomeComponent  {
 
 // create upc_code
   createUpcCode(form) {
-    // if (document.getElementById('available_upc_codes') && ( < HTMLInputElement > document.getElementById('available_upc_codes')).files.length) {
-    //     this.file = (<HTMLInputElement> document.getElementById('available_upc_codes')).files[0];
-    //   }
     console.log(">>>>>>>>. form  >>>>>>>>", form)
     this.batchname = form.batchname;
     this._homeService.createUpcCode(this.batchname, this.upcObject).subscribe((res:any) => {
@@ -47,11 +44,11 @@ export class HomeComponent  {
 // send upc_code report
   upcCodeReport(form) {
     this.reportbatchname = form.reportbatchname;
-    this._homeService.upcCodeReport(this.reportbatchname).subscribe((res) => {
+    this._homeService.upcCodeReport(this.reportbatchname).subscribe((res: any) => {
       console.log("res>>>>>>>>>>>>>>>>>>>>>>>>.  upc code report>...............", res)
-      // if(res.code == 200) {
-      //   this.isSuccess = true;
-      //   }
+      if(res.code == 200) {
+        this.isSuccess = true;
+        }
       }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
     })
@@ -72,6 +69,4 @@ export class HomeComponent  {
     };
     reader.readAsBinaryString(event.target.files[0]);
   }
-
-
 }

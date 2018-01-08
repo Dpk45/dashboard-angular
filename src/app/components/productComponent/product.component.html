@@ -1,0 +1,260 @@
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+        aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" [routerLink]="['/home']"> eponym </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+                <div *ngIf="brand">
+                  <a class="applyStyle" [routerLink]="['/product', brand]">List Products</a>
+                    <a class="applyStyle" [routerLink]="['/new_product', brand]">Add New Product</a>
+                      <a class="applyStyle" [routerLink]="['/Product_collection', brand]">List Product Collections</a>
+                        <a class="applyStyle" [routerLink]="['/new_product_collection', brand]">Add New Product Collection</a>
+                </div>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div class="container" *ngIf="!byProduct">
+  <h5 align="right">Search <input type="text" name="search" [(ngModel)]="filter"></h5>
+  <table class="table table-bordered table-condensed table-hover display" id="discount_codes" style="width:100%">
+    <thead>
+          <tr>
+              <th>Name</th>
+              <th>Product ID</th>
+              <th>Color</th>
+              <th>Product Gender</th>
+              <th>Sun/Optical</th>
+              <th>Incomplete</th>
+              <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let product of product_list | filter:filter">
+          <!-- <td>{{product.name}}</td>
+          <td *ngIf="product_name == product.name"></td> -->
+          <!-- <ng-container>
+              <td>{{product.name}}</td>
+              </ng-container> -->
+          <!-- <ng-container *ngFor="let product_name of productName">
+            <td>{{product.name}}</td>
+              <td *ngIf="product_name == product.name"></td>
+              </ng-container> -->
+          <td>{{product.name}}</td>
+            <!-- <td *ngIf="product.name == storeProductName"></td> -->
+          <td><a [routerLink]="['/product', brand, product.product_id]">{{product.product_id}}</a></td>
+          <td>{{product.color}}</td>
+          <ng-container *ngIf="product.product_gender == 1">
+          <td>Men's</td>
+          </ng-container>
+          <ng-container *ngIf="product.product_gender == 2">
+          <td>Women's</td>
+          </ng-container>
+          <ng-container *ngIf="product.product_gender == 3 || product.product_gender == 4">
+          <td>Unisex</td>
+          </ng-container>
+          <ng-container *ngIf="product.sunwear == 0">
+          <td>Eyewear</td>
+          </ng-container>
+          <ng-container *ngIf="product.sunwear == 1">
+          <td>Sunwear</td>
+          </ng-container>
+          <ng-container *ngIf="product.incomplete == 0">
+          <td>False</td>
+          </ng-container>
+          <ng-container *ngIf="product.incomplete == 1">
+          <td>True</td>
+          </ng-container>
+          <td><a>Assests</a></td>
+      </tr>
+      </tbody>
+    </table>
+</div>
+
+
+<!-- ################################### find & update form ##################### -->
+
+<div class="container" *ngIf="byProduct">
+<h1>{{product.name}}</h1>
+  <form role="form" #form="ngForm" (ngSubmit)="updateProduct(form.value)">
+      <div class="form-group">
+          <label class="control-label col-sm-2">Product ID</label>
+          <div class="col-sm-10">
+             <input type="text" class="form-control" name="product_id" [(ngModel)]="product.product_id" required disabled="disabled" class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Legacy Product ID</label>
+          <div class="col-sm-10">
+             <input type="text" class="form-control"  name="legacy_product_id" [(ngModel)]="product.legacy_product_id" required class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Name</label>
+          <div class="col-sm-2">
+             <input type="text" class="form-control"  name="name" [(ngModel)]="product.name" required disabled="disabled" class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Frame Color</label>
+          <div class="col-sm-2">
+             <input type="text" class="form-control" name="frame_color" [(ngModel)]="product.color" required disabled="disabled" class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Lens Color</label>
+          <div class="col-sm-2">
+             <input type="text" class="form-control" name="lens_color" [(ngModel)]="product.lens_color" required disabled="disabled" class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Sunwear?</label>
+            <div class="col-sm-1">
+          <input type="text" class="form-control" name="sunwear" [(ngModel)]="product.sunwear" required disabled="disabled" class="form-control input-xlarge">
+        </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Gender</label>
+          <div class="col-sm-2">
+             <input type="text" class="form-control" name="gender" [(ngModel)]="product.product_gender" required disabled="disabled" class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Tags</label>
+          <div class="col-sm-10">
+             <input type="text" class="form-control" name="tags" [(ngModel)]="product.tags" required  class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Description</label>
+          <div class="col-sm-10">
+             <textarea  rows="5" class="form-control" name="description" [(ngModel)]="product.description" required  class="form-control input-xlarge"></textarea>
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Asset Groups</label>
+          <div class="col-sm-10">
+             <textarea  name="assets" [(ngModel)]="product.assets" required  class="form-control input-xlarge"></textarea>
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Product Details(Comma separated)</label>
+          <div class="col-sm-10">
+             <textarea name="details" [(ngModel)]="product.details" required  class="form-control input-xlarge"></textarea>
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Social Id</label>
+          <div class="col-sm-10">
+             <input type="text" class="form-control" name="social_id" Placeholder="ID for instagram link" [(ngModel)]="product.social_id" required  class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">UPC Code</label>
+          <div class="col-sm-10">
+             <input type="text" class="form-control"  name="upc_codes" [(ngModel)]="product.upc_codes" required  class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Prices</label>
+        </div><br><br>
+          <div class="form-group">
+            <label class="control-label col-sm-2">No Lens</label>
+          <div class="col-sm-2">
+             <input type="number" class="form-control" name="upc_codes" [(ngModel)]="product.prices.NO_LENS_PRICE" required  class="form-control input-xlarge">
+          </div>
+        </div><br><br>
+        <div class="form-group">
+          <label class="control-label col-sm-2">Standard Index Lens</label>
+        <div class="col-sm-2">
+           <input type="number" class="form-control" name="upc_codes" [(ngModel)]="product.prices.STANDARD_INDEX_LENS_PRICE" required  class="form-control input-xlarge">
+        </div>
+      </div><br><br>
+      <div class="form-group">
+        <label class="control-label col-sm-2">High Index Lens</label>
+      <div class="col-sm-2">
+         <input type="number" class="form-control"  name="upc_codes" [(ngModel)]="product.prices.HIGH_INDEX_LENS_PRICE" required  class="form-control input-xlarge">
+      </div>
+    </div><br><br>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Prg Standard Lens</label>
+    <div class="col-sm-2">
+       <input type="number" class="form-control"  name="upc_codes" [(ngModel)]="product.prices.PRG_STANDARD_LENS_PRICE" required  class="form-control input-xlarge">
+    </div>
+  </div><br><br>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Prg High Index Lens</label>
+  <div class="col-sm-2">
+     <input type="number" class="form-control"  name="upc_codes" [(ngModel)]="product.prices.PRG_HIGH_INDEX_LENS_PRICE" required  class="form-control input-xlarge">
+  </div>
+</div><br><br>
+<div class="form-group">
+  <label class="control-label col-sm-2">Plano Lens</label>
+<div class="col-sm-2">
+   <input type="number" class="form-control"  name="upc_codes" [(ngModel)]="product.prices.PLANO_LENS_PRICE" required  class="form-control input-xlarge">
+</div>
+</div><br><br>
+<div class="form-group">
+  <label class="control-label col-sm-2">Reading Lens</label>
+<div class="col-sm-2">
+   <input type="number" class="form-control"  name="upc_codes" [(ngModel)]="product.prices.READING_LENS_PRICE" required  class="form-control input-xlarge">
+</div>
+</div><br><br>
+<div class="form-group">
+  <label class="control-label col-sm-2">Rx Sun Lens</label>
+<div class="col-sm-2">
+   <input type="number" class="form-control"  name="upc_codes" [(ngModel)]="product.prices.ORIGINAL_RX_PRICE" required  class="form-control input-xlarge">
+</div>
+</div><br><br>
+    <!-- <div class="form-group">
+      <label class="control-label col-sm-2">High Index Lens</label>
+    <div class="col-sm-2">
+       <input type="number" class="form-control" value={{product.prices.STANDARD_INDEX_LENS_PRICE}} name="upc_codes" [(ngModel)]="upc_codes" required  class="form-control input-xlarge">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Rx Sun Lens</label>
+  <div class="col-sm-2">
+     <input type="number" class="form-control" value={{product.prices.STANDARD_INDEX_LENS_PRICE}} name="upc_codes" [(ngModel)]="upc_codes" required  class="form-control input-xlarge">
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label col-sm-2">Standard Index Lens</label>
+<div class="col-sm-2">
+   <input type="number" class="form-control" value={{product.prices.STANDARD_INDEX_LENS_PRICE}} name="upc_codes" [(ngModel)]="upc_codes" required  class="form-control input-xlarge">
+</div>
+</div>
+<div class="form-group">
+  <label class="control-label col-sm-2">Standard Index Lens</label>
+<div class="col-sm-2">
+   <input type="number" class="form-control" value={{product.prices.STANDARD_INDEX_LENS_PRICE}} name="upc_codes" [(ngModel)]="upc_codes" required  class="form-control input-xlarge">
+</div>
+</div> -->
+      <br><br>
+
+      <div class="form-group">
+      <input type="submit" class="btn btn-primary" value="Save">
+    </div>
+
+
+
+
+
+  </form>
+</div>
