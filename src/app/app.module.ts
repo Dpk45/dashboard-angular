@@ -46,7 +46,7 @@ import { EyewearProcessComponent } from './components/eyewear-component/eyewear-
 import { OrderDetailComponent } from './components/order-detail-component/order-detail-component.component'
 import { InventoryComponent } from './components/inventoryComponent/inventory.component';
 import { ProductComponent } from './components/productComponent/product.component';
-
+import { NewProductComponent } from './components/productComponent/newProductComponent/newProduct.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +70,7 @@ import { ProductComponent } from './components/productComponent/product.componen
     HtkComponent,
     EyewearProcessComponent,
     OrderDetailComponent,
-    ProductComponent
+    ProductComponent, NewProductComponent
   ],
   imports: [
     BrowserModule,

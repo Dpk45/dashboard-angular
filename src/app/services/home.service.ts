@@ -34,4 +34,13 @@ export class HomeService {
           return res;
         });
   }
+
+  // get list of batch_name
+  getBatchName() {
+    const _path: string = (this.baseUrl + '/upc_codes/batch_names?key=DASHBOARD')
+    return this._httpClient.get(_path)
+    .map(res => {
+      return res;
+    });
+  }
 }
