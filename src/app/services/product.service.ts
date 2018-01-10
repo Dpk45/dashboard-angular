@@ -96,4 +96,46 @@ export class ProductService {
       return res;
     });
   }
+
+  // get list of product collection
+  getProductCollectionList(brand) {
+    brand = brand + "_dev";
+    const _path: string = (this.baseUrl + '/products/collections?key=' + brand)
+    return this._http.get(_path)
+    .map((res: any) => {
+      return res.json();
+    });
+}
+
+// create product collection
+createProductCollection(brand, productCollectionData) {
+  brand = brand + "_dev";
+  let body: any = JSON.stringify(productCollectionData)
+  const _path: string = (this.baseUrl + '/products/collections?key=' + brand)
+  return this._httpClient.post(_path, body)
+  .map((res: any) => {
+    return res;
+  });
+}
+
+// get product_collection by slug
+getProductCollectionBySlug(brand, slug) {
+  brand = brand + "_dev";
+  const _path: string = (this.baseUrl + '/products/collections/' + slug + '?key=' + brand)
+  return this._httpClient.get(_path)
+  .map((res: any) => {
+    return res;
+  });
+}
+
+//update product collection
+updateProductCollection(brand, productCollectionData, slug) {
+  brand = brand + "_dev";
+  let body: any = JSON.stringify(productCollectionData)
+  const _path: string = (this.baseUrl + '/products/collections/' + slug + '?key=' + brand)
+  return this._httpClient.post(_path, body)
+  .map((res: any) => {
+    return res;
+  });
+}
 }

@@ -60,7 +60,7 @@ export class ProductComponent  {
     });
   }
 
-  // get list of ProductService
+  // get list of Product
   getProducts() {
     this._productService.getProducts(this.brand).subscribe((res: any) => {
       //  console.log("response>>>>>>>>>>>>>>>>", JSON.stringify((res.data[0])))

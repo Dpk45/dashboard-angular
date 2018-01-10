@@ -56,7 +56,7 @@
                                               <option value="{{style.name}}">{{style.name}}</option>
                                             </div>
                                           </select> -->
-                                          <select id="name" name="name" placeholder="Pick a Style" [(ngModel)]="selectedStyle">
+                                          <select id="name" name="name" placeholder="Pick a Style" class="form-control input-xlarge" [(ngModel)]="selectedStyle">
                                             <option *ngFor="let styleName of styleNames" [ngValue]="styleName">{{styleName}}</option>
                       </select>
 
@@ -66,7 +66,7 @@
           <label class="control-label col-sm-2">Frame Color</label>
           <div class="col-sm-2">
              <!-- <input type="text" class="form-control" name="frame_color" [(ngModel)]="frame_color" required  placeholder="Frame Color" class="form-control input-xlarge"> -->
-             <select id="frame_color" name="frame_color" placeholder="Frame Color" [(ngModel)]="selectedFrame">
+             <select id="frame_color" name="frame_color" class="form-control input-xlarge" placeholder="Frame Color" [(ngModel)]="selectedFrame">
                <option *ngFor="let frame of frameColor" [ngValue]="frame">{{frame}}</option>
              </select>
           </div>
@@ -75,7 +75,7 @@
           <label class="control-label col-sm-2">Lens Color</label>
           <div class="col-sm-2">
              <!-- <input type="text" class="form-control" name="lens_color" [(ngModel)]="lens_color" required placeholder="Lens Color" class="form-control input-xlarge"> -->
-             <select id="lens_color" name="lens_color" placeholder="Lens Color" [(ngModel)]="selectedLensColor">
+             <select name="lens_color" class="form-control input-xlarge" placeholder="Lens Color" [(ngModel)]="selectedLensColor">
                <option *ngFor="let l of len" [ngValue]="l.id">{{l.name}}</option>
              </select>
           </div>
@@ -84,7 +84,7 @@
           <label class="control-label col-sm-2">Product Type</label>
           <div class="col-sm-2">
              <!-- <input type="text" class="form-control" name="lens_color" [(ngModel)]="lens_color" required placeholder="Lens Color" class="form-control input-xlarge"> -->
-             <select id="lens_color" name="product_type" placeholder="Optical or Sun" [(ngModel)]="selectedProductType">
+             <select name="product_type" class="form-control input-xlarge" placeholder="Optical or Sun" [(ngModel)]="selectedProductType">
                <option *ngFor="let product of productType" [ngValue]="product.id">{{product.name}}</option>
              </select>
           </div>
@@ -99,7 +99,7 @@
           <label class="control-label col-sm-2">Gender</label>
           <div class="col-sm-2">
              <!-- <input type="text" class="form-control" name="gender" [(ngModel)]="product_gender" required placeholder="Mens's/Women's" class="form-control input-xlarge"> -->
-             <select id="gender" name="gender" [(ngModel)]="selectedGender">
+             <select  name="gender" class="form-control input-xlarge" [(ngModel)]="selectedGender">
                <option  [ngValue]="1">Mens's</option>
                   <option  [ngValue]="2">Women's</option>
                      <option  [ngValue]="3">Unisex</option>
@@ -245,7 +245,6 @@
   </div>
   </div><br><br>
       <br><br>
-
       <div class="form-group">
       <input type="submit" class="btn btn-default" value="Save">
     </div>

@@ -15,6 +15,7 @@ export class LetterPressComponent {
   templateList: any;
   commontemplate: any;
   getOnetemplate: any;
+  templateName: any;
   getCommontemplate: any;
   template: boolean;
   commontemplateVariable: boolean;
@@ -26,6 +27,8 @@ export class LetterPressComponent {
   html:any;
   save: any;
   name: any;
+  isPreview: boolean;
+  isTemplateAvailable: boolean;
   constructor(private route: ActivatedRoute, private _letterService: LetterPressService, private router: Router) {
   }
 
@@ -104,5 +107,22 @@ console.log("save>>>>>>>>>>>>>>>>>>>...",res.data)
       this.save = "Saved !";
       // this.router.navigate(['/letterpress', this.brand]);
     })
+  }
+
+  getOrderTemplate(form) {
+    this.name = form.templateName;
+    this._letterService.findOneTemplate(this.name, this.brand)
+    .subscribe(res => {
+      this.getOnetemplate = res.data;
+      console.log("  this.getOnetemplate >>>>>>>>>>>>>>>>>>",  this.getOnetemplate )
+    //this.isPreview = true;
+    this.isTemplateAvailable = true;
+    })
+  }
+
+  getOneTemplate(name) {
+    this.templateName = name
+    console.log("name>>>>>>>>>>>>>>>>>>>.....",this.templateName)
+    this.isPreview = true;
   }
 }

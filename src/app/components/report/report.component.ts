@@ -63,7 +63,8 @@ if(res.code == 200) {
 }
 }, (err) => {
     //this.NotFoundOrder = true
-    console.log('error>>>>>>>>>>>>', err);
+    this.router.navigate(['/error', this.brand, this.order_id]);
+    console.log('error>>>>>>>>>>>>++++++++++++=', err);
   })
 }
 }

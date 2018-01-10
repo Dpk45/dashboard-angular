@@ -1,5 +1,5 @@
 <header></header>
-<div class="container" *ngIf="!template && !commontemplateVariable">
+<div class="container" *ngIf="!template && !commontemplateVariable && !isPreview && !isTemplateAvailable">
   <div class="row">
 
     <div class="col-xs-18 col-sm-12">
@@ -23,7 +23,7 @@
 </div>
 
 <!-- <div class="container" *ngIf="template"> -->
-<div class="container" *ngIf="template && !commontemplateVariable">
+<div class="container" *ngIf="template && !commontemplateVariable && !isPreview && !isTemplateAvailable">
   <div class="panel panel-default">
       <div class="panel-heading">
           <h3 class="panel-title">Edit template: {{getOnetemplate.name}}</h3>
@@ -57,14 +57,14 @@
               </div>
 
                       <button (click)="updateTemplate(subject, from_name, from_email, text, html)" type="submit" class="btn btn-default">Save</button>
-                      <a (click)="getOrder(getOnetemplate.name)">preview </a>   {{save}}
+                      <a target="_blank" (click)="getOneTemplate(getOnetemplate.name)">preview </a>   {{save}}
           </form>
       </div>
   </div>
 
 </div>
 
-<div class="container" *ngIf="commontemplateVariable && !template">
+<div class="container" *ngIf="commontemplateVariable && !template && !isPreview && !isTemplateAvailable">
   <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Edit template: {{getCommontemplate.name}}</h3>
@@ -78,5 +78,50 @@
           <button (click)="updateCommonTemplate(content)" type="submit" class="btn btn-default">Save</button> {{save}}
         </form>
       </div>
+  </div>
+</div>
+
+
+
+<div class="container" class="panel panel-default" *ngIf="isPreview && template && !commontemplateVariable && !isTemplateAvailable">
+    <div class="panel-heading">
+        <h3 class="panel-title">Preview template: {{templateName}} </h3>
+    </div>
+    <div class="panel-body">
+        <form role="form" #form="ngForm" (ngSubmit)="getOrderTemplate(form.value)">
+            <div class="form-group">
+              <div class="col-sm-2">
+                <input name="templateName" type="text" class="form-control" [(ngModel)]="templateName" required   placeholder="template_name">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-default">Preview</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="container"  *ngIf="isTemplateAvailable && template && !commontemplateVariable">
+  <div class="panel panel-default">
+  <div class="panel-heading">
+      <h3 class="panel-title">Preview template: {{templateName}} </h3>
+  </div>
+  <div class="panel-body">
+      <form role="form" #form="ngForm" (ngSubmit)="getOrderTemplate(form.value)">
+          <div class="form-group">
+            <div class="col-sm-2">
+              <input name="templateName" type="text" class="form-control" [(ngModel)]="templateName" required   placeholder="template_name">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-default">Preview</button>
+      </form>
+  </div>
+  </div>
+  <div class="form-group">
+      <label>Html</label>
+      <textarea rows="10" class="form-control" readonly="readonly" name="html">{{getOnetemplate.html}}</textarea>
+  </div>
+  <div class="form-group">
+      <label>Text</label>
+      <textarea rows="10" class="form-control" readonly="readonly" name="text">{{getOnetemplate.text}}</textarea>
   </div>
 </div>

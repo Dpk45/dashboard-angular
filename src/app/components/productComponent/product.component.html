@@ -18,7 +18,7 @@
                 <!-- <div *ngIf="brand"> -->
                   <a class="applyStyle" [routerLink]="['/product', brand]">List Products</a><br>
                     <a class="applyStyle" [routerLink]="['/product', brand, 'new_product']">Add New Product</a><br>
-                      <a class="applyStyle" [routerLink]="['/Product_collection', brand]">List Product Collections</a><br>
+                      <a class="applyStyle" [routerLink]="['/product_collection', brand]">List Product Collections</a><br>
                         <a class="applyStyle" [routerLink]="['/new_product_collection', brand]">Add New Product Collection</a><br>
                 <!-- </div> -->
           </ul>
@@ -31,7 +31,7 @@
 
 <div class="container" *ngIf="!byProduct">
   <h5 align="right">Search <input type="text" name="search" [(ngModel)]="filter"></h5>
-  <table class="table table-bordered table-condensed table-hover display" id="discount_codes" style="width:100%">
+  <table class="table table-bordered table-condensed table-hover display" id="product" style="width:100%">
     <thead>
           <tr>
               <th>Name</th>

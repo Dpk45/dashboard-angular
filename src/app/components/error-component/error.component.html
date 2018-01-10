@@ -1,1 +1,9 @@
->>>>>>>>>>>>>>>>>>>>>> ERROR >>>>>>>>>>>>>
+<header></header>
+
+<div class="container" *ngIf="!isNotFoundOrder">
+  <h2>>>>>>>>>>>>>>>>>>>>>>> ERROR >>>>>>>>>>>>></h2>
+</div>
+
+<div class="container" *ngIf="isNotFoundOrder">
+  <h1>{{this.brand}} order # {{order_id}} not found.</h1>
+</div>
