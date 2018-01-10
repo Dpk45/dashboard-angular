@@ -18,6 +18,7 @@ export class HomeComponent  {
   reportbatchname: any = 'Batch 2';
   isSuccess: boolean;
   SuccessfullyCreatedUpc: boolean;
+  batchName: any;
   constructor(private router: Router, private _dashUserService: DashUserService, private _homeService: HomeService) {
   this.current_user = JSON.parse(localStorage.getItem("current_user"));
   }
@@ -25,13 +26,11 @@ export class HomeComponent  {
     this._dashUserService.getDashUserByEmail(this.current_user.email).subscribe((res) => {
         this.dashUser = res;
       })
+      this.getBatchName();
   }
 
 // create upc_code
   createUpcCode(form) {
-    // if (document.getElementById('available_upc_codes') && ( < HTMLInputElement > document.getElementById('available_upc_codes')).files.length) {
-    //     this.file = (<HTMLInputElement> document.getElementById('available_upc_codes')).files[0];
-    //   }
     console.log(">>>>>>>>. form  >>>>>>>>", form)
     this.batchname = form.batchname;
     this._homeService.createUpcCode(this.batchname, this.upcObject).subscribe((res:any) => {
@@ -47,11 +46,11 @@ export class HomeComponent  {
 // send upc_code report
   upcCodeReport(form) {
     this.reportbatchname = form.reportbatchname;
-    this._homeService.upcCodeReport(this.reportbatchname).subscribe((res) => {
+    this._homeService.upcCodeReport(this.reportbatchname).subscribe((res: any) => {
       console.log("res>>>>>>>>>>>>>>>>>>>>>>>>.  upc code report>...............", res)
-      // if(res.code == 200) {
-      //   this.isSuccess = true;
-      //   }
+      if(res.code == 200) {
+        this.isSuccess = true;
+        }
       }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
     })
@@ -73,5 +72,15 @@ export class HomeComponent  {
     reader.readAsBinaryString(event.target.files[0]);
   }
 
-
+  // get list of batchname
+  getBatchName() {
+    this._homeService.getBatchName().subscribe((res: any) => {
+      console.log("res>>>>>>>>>>>>>>>>>>>>>>>>.  upc code report>...............", res)
+      if(res.code == 200) {
+        this.batchName = res.data;
+        }
+      }, (err) => {
+      console.log('error>>>>>>>>>>>>', err);
+    })
+  }
 }

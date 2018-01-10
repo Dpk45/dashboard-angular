@@ -42,7 +42,7 @@
                           Product dashboard
                           <ng-container *ngFor="let brand of dashUser.brands">
                             <li class="list"  *ngIf="brand.brand">
-                              [<a [routerLink]="['/product', brand.brand]"> {{brand.brand}} </a>]
+                              [<a target="_blank" [routerLink]="['/product', brand.brand]"> {{brand.brand}} </a>]
                             </li>
                           </ng-container>
                         </li>
@@ -114,6 +114,14 @@
                                                   <option value="UEsDBBQA_1">UEsDBBQA_1</option>
                                                 </select>
                                         </div>
+                                        <!-- <div>
+                                        <div *ngFor ="let batch of batchName">
+                                        <select name="reportbatchname" [(ngModel)]="reportbatchname">
+
+                                            <option value="batch">{{batch}}</option>
+                                        </select>
+                                      </div>
+                                      </div> -->
                                         <button type="submit" value="Save" class="btn btn-primary btn-sm" style="float: right;margin-right: 10px">Get Report</button>
                                     </div>
                                 </form>

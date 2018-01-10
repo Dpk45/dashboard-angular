@@ -16,7 +16,7 @@ export class ReportComponent {
   brand: any;
   isSuccess: boolean;
   order_id: any;
-  foundOrder: boolean;
+  NotFoundOrder: boolean;
 constructor(private router:Router, private _reportService: ReportService, private _dashAuthService: DashAuthService, private _dashUserService: DashUserService) {
   this.current_user = JSON.parse(localStorage.getItem("current_user"));
 }
@@ -58,14 +58,12 @@ getOrderByOrderId(order_id ,brand){
   this.brand = brand;
   this._reportService.getOrderByOrderId(this.order_id, this.brand).subscribe(res => {
 console.log("response getOrderByOrderIdstyleeeeeeeeeeeeeeee<", JSON.stringify(res))
-if(res.code == 200){
-  this.foundOrder = true;
+if(res.code == 200) {
+    this.router.navigate(['/orders', this.brand, this.order_id, 'view']);
 }
-},
-  (err) => {
+}, (err) => {
+    //this.NotFoundOrder = true
     console.log('error>>>>>>>>>>>>', err);
   })
-
-
 }
 }

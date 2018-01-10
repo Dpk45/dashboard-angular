@@ -29,6 +29,7 @@ import { ReportService } from './services/reports.service'
 import { ErpService } from './services/sendErp.service'
 import { InventoryService } from './services/inventory.service'
 import { HomeService } from './services/home.service'
+import { ProductService } from './services/product.service'
 
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component';
 import { DiscountComponent } from './components/discountCode/discount.component';
@@ -44,7 +45,8 @@ import { HtkComponent } from './components/htk-component/htk-component.component
 import { EyewearProcessComponent } from './components/eyewear-component/eyewear-process-component/eyewear-process-component.component';
 import { OrderDetailComponent } from './components/order-detail-component/order-detail-component.component'
 import { InventoryComponent } from './components/inventoryComponent/inventory.component';
-
+import { ProductComponent } from './components/productComponent/product.component';
+import { NewProductComponent } from './components/productComponent/newProductComponent/newProduct.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,7 @@ import { InventoryComponent } from './components/inventoryComponent/inventory.co
     HtkComponent,
     EyewearProcessComponent,
     OrderDetailComponent,
+    ProductComponent, NewProductComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +101,8 @@ import { InventoryComponent } from './components/inventoryComponent/inventory.co
     OrdersService,
     DiscountService,
   InventoryService,
-  HomeService],
+  HomeService,
+ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
