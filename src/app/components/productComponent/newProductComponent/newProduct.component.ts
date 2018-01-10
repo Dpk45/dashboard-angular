@@ -112,7 +112,7 @@ getTemplateMap() {
     // "assets": {
     //   "form.assets" = []   //"front-eyewear-thumb": []
     // },
-
+    "product_type": JSON.stringify(form.product_type),
     "assets": {},
     "details": form.details,
     "social_id": form.social_id,
@@ -138,11 +138,9 @@ getTemplateMap() {
       "lens_height": form.lens_height
     }
   }
-  console.log("productData ***************888888888888888888888888",JSON.stringify(this. productData))
   this._productService.createProduct(this.brand, this.productData).subscribe((res: any) => {
-    console.log("re4pose updated>>>>>.......................",res)
     if(res.code == 200) {
-      //  this.router.navigate(['/product', this.brand]);
+       this.router.navigate(['/product', this.brand]);
     }
   },
   (err) => {

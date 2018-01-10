@@ -86,10 +86,10 @@ export class ProductService {
 
   // create product
   createProduct(brand, productData) {
-  // console.log("form in servie=ce>>>>>>>>>>>>>>>>..", typeof(productData.product_gender))
+ console.log("form in servie=ce>>>>>>>>>>>>>>>>..", typeof productData.lens_color)
     brand = brand + "_dev";
     let body: any = JSON.stringify(productData)
-  //  console.log("body>>>>>>>>>>>>>>>>>>",body)
+    console.log("body>>>>>>>>>>>>>>>>>>",body)
     const _path: string = (this.baseUrl + '/products/?key=' + brand)
     return this._httpClient.post(_path, body)
     .map((res: any) => {
