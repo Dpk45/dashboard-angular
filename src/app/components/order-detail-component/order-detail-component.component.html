@@ -415,7 +415,7 @@
                     
 
                     <div class="container-fluid">
-                        <ng-container *ngIf="item['status'] == {} || (item['status']['lens_info'] != null && item['status']['return_label'] != null && item['status']['cancelled_at'] == null)">
+                        <ng-container *ngIf="item['status'] == {} || item['status']['cancelled_at'] == null && item['status']['lab_finished_processing_at'] == null">
                             <!--{% if not order.get('final_sale', False) %}-->
                             <div class="panel-group">
                                 <div class="panel panel-default">
