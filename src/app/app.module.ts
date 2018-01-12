@@ -55,7 +55,6 @@ import { InventoryComponent } from './components/inventoryComponent/inventory.co
 import { ProductComponent } from './components/productComponent/product.component';
 import { NewProductComponent } from './components/productComponent/newProductComponent/newProduct.component';
 import { ProductCollectionComponent } from './components/productComponent/ProductCollection/productCollection.component';
-import { NewCollectionComponent } from './components/productComponent/ProductCollection/newProductCollection.component';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
@@ -83,7 +82,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     HtkComponent,
     EyewearProcessComponent,
     OrderDetailComponent,
-    ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent, NewCollectionComponent
+    ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent
   ],
   imports: [
     BrowserModule,
