@@ -42,6 +42,9 @@ export class LetterPressComponent {
         this.foundtemplateName(this.name);
         this.foundCommonTemplate(this.name);
       }
+      console.log("params value>>>>>>>>>..................", params)
+      // if(params.name == "htk_followup" )
+      //(click)="getOneTemplate(getOnetemplate.name)"
     });
   }
 
@@ -109,20 +112,20 @@ console.log("save>>>>>>>>>>>>>>>>>>>...",res.data)
     })
   }
 
-  getOrderTemplate(form) {
-    this.name = form.templateName;
-    this._letterService.findOneTemplate(this.name, this.brand)
-    .subscribe(res => {
-      this.getOnetemplate = res.data;
-      console.log("  this.getOnetemplate >>>>>>>>>>>>>>>>>>",  this.getOnetemplate )
-    //this.isPreview = true;
-    this.isTemplateAvailable = true;
-    })
-  }
+  // getOrderTemplate(form) {
+  //   this.name = form.templateName;
+  //   this._letterService.findOneTemplate(this.name, this.brand)
+  //   .subscribe(res => {
+  //     this.getOnetemplate = res.data;
+  //     console.log("  this.getOnetemplate >>>>>>>>>>>>>>>>>>",  this.getOnetemplate )
+  //   //this.isPreview = true;
+  //   this.isTemplateAvailable = true;
+  //   })
+  // }
 
-  getOneTemplate(name) {
-    this.templateName = name
-    console.log("name>>>>>>>>>>>>>>>>>>>.....",this.templateName)
-    this.isPreview = true;
-  }
+  // getOneTemplate(name) {
+  //   this.templateName = name
+  //   console.log("name>>>>>>>>>>>>>>>>>>>.....",this.templateName)
+  //   this.isPreview = true;
+  // }
 }

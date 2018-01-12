@@ -18,8 +18,10 @@ export class ProductCollectionComponent  {
   selectedProductId: any;
   slug: any;
   productCollectionData: any;
+  dashUserEmail: any;
+  slugValue: any;
   constructor(private route: ActivatedRoute, private _productService: ProductService, private router: Router) {
-
+  this.dashUserEmail = JSON.parse(localStorage.getItem("current_user"));
   }
 
 
@@ -28,7 +30,8 @@ export class ProductCollectionComponent  {
       this.brand = params.brand;
       this.getProductCollectionList();
       this.getProducts();
-      if(params.name == 'new_product_collection') {
+      console.log("params>>>>>>>>>>>>>>>>>..", params)
+      if(params.slug == 'new_product_collection') {
         this.isSuccess = true;
       }
       if(params.slug) {

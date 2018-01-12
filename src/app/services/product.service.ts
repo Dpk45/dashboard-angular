@@ -138,4 +138,24 @@ updateProductCollection(brand, productCollectionData, slug) {
     return res;
   });
 }
+
+// get list of tags
+getTagList(brand) {
+  brand = brand + "_dev";
+  const _path: string = (this.baseUrl + '/products/tags?key=' + brand)
+  return this._http.get(_path)
+  .map((res: any) => {
+    return res.json();
+  });
+}
+
+//get assets group
+getAssetGroup(brand) {
+  brand = brand + "_dev";
+  const _path: string = (this.baseUrl + '/products/asset_groups?key=' + brand)
+  return this._http.get(_path)
+  .map((res: any) => {
+    return res.json();
+  });
+}
 }
