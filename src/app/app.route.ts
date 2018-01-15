@@ -60,14 +60,14 @@ const appRoutes: Routes =
               component: EyewearProcessComponent
             },
             {
+              path: "htk/processing",
+              component: HtkComponent
+            },
+            {
               path: ":brand/:order_id/view",
               component: OrderDetailComponent
             }
           ]
-        },
-        {
-          path: "htk/processing",
-          component: HtkComponent
         }
       ]
     },
@@ -167,7 +167,7 @@ const appRoutes: Routes =
     },
     {
       path: "",
-    //  component: ProductComponent,
+      //  component: ProductComponent,
       canActivate: [AuthGuard],
       children: [
         {
@@ -182,18 +182,18 @@ const appRoutes: Routes =
           path: 'product/:brand/:product_id',
           component: ProductComponent
         },
-      {
-        path: 'product_collection/:brand',
-        component: ProductCollectionComponent
-      },
-    {
-      path: 'product_collection/:brand/:slug',
-      component: ProductCollectionComponent
-    },
-    {
-      path: 'product_collection/:brand/new_product_collection',
-      component: ProductCollectionComponent
-    }]
+        {
+          path: 'product_collection/:brand',
+          component: ProductCollectionComponent
+        },
+        {
+          path: 'product_collection/:brand/:slug',
+          component: ProductCollectionComponent
+        },
+        {
+          path: 'product_collection/:brand/new_product_collection',
+          component: ProductCollectionComponent
+        }]
     },
 
     {
