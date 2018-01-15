@@ -53,4 +53,11 @@ export class UserService{
             return res.data;
         })
     }
+
+    updateRx(email, brand, rx_id, rxData){
+        brand = brand + "_dev"
+        return this._httpClient.put(this.baseUrl + "/users/"+email+"/rx/"+rx_id+"?key="+brand, rxData).map((res:any)=>{
+            return res.data;
+        })
+    }
 }

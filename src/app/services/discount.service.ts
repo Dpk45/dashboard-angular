@@ -29,7 +29,7 @@ export class DiscountService {
     const _path: string = (this.baseUrl + '/discount_codes?key=' + brand)
     return this._httpClient.get(_path)
     .map((res:any) => {
-      console.log("response >>>>>>>>>>>>>>",res)
+      //console.log("response >>>>>>>>>>>>>>",res)
       return res;
     });
   }

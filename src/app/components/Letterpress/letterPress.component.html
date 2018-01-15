@@ -7,14 +7,14 @@
 
       <div *ngFor="let template of templateList">
         <li>
-          <a (click)="foundtemplateName(template.name)">{{template.name}}</a>
+          <a [routerLink]="['/letterpress', brand, template.name]">{{template.name}}</a>
         </li>
       </div>
 
       <h2>Common Templates</h2>
       <div *ngFor="let ctemplate of commontemplate">
         <li>
-          <a (click)="foundCommonTemplate(ctemplate.name)">{{ctemplate.name}}</a>
+          <a [routerLink]="['/letterpress', brand, ctemplate.name]">{{ctemplate.name}}</a>
         </li>
       </div>
 

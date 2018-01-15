@@ -1,0 +1,106 @@
+<header></header>
+<div class="container">
+  <div *ngIf="isSuccess" class="alert alert-info">Successfully updated inventory</div>
+  <h2>Adjust inventory</h2>
+  <form class="form-inline" role="form" #form="ngForm">
+    <!-- <form class="form-inline" role="form" #form="ngForm" (ngSubmit)="getInventoryByProduct(form.value)"> -->
+    <div class="form-group">
+      <label class="control-label col-sm-5">Product ID:</label>
+      <div class="col-sm-1">
+        <input type="text" class="form-control" name="product_id" id="product_id" placeholder="Product Id"  [(ngModel)]="productId" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-2">
+        <input type="submit" class="btn btn-default" [routerLink]="['/inventory', brand, productId]" value="Load...">
+      </div>
+    </div>
+  </form>
+  <!-- // found product_id +++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+  <form *ngIf="foundedProductId" role="form" #form="ngForm" (ngSubmit)="updateAdjustInventory(form.value)">
+    <div class="form-group">
+      <label class="control-label col-sm-2">Name:</label>{{byProductId[0].name}}
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Color:</label>{{byProductId[0].color}}
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Eyewear inventory:</label>{{byProductId[0].availability.eyewear}}
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">HTK inventory:</label>{{byProductId[0].availability.home_trial_kit}}
+    </div>
+    {{valueToPass}}
+    <div class="form-group">
+      <label class="control-label col-sm-2">Adjust inventory by:</label>
+    </div><br>
+    <table>
+      <tr>
+        <td class="adjustment">Warehouse: </td>
+        <td class="myTab"><input type="number" class="form-control" name="warehouse" placeholder="Adjust eyewear inventory by" [(ngModel)]="warehouse" required></td>
+        <td class="adjustment">HTK: </td>
+        <td class="myTab"><input type="number" class="form-control" name="htk_quantity" placeholder="Adjust HTK inventory"  [(ngModel)]="htk_quantity" required></td>
+        <td class="adjustment">TRO: </td>
+        <td class="myTab"><input type="number" class="form-control" name="tro" placeholder="Adjust TRO inventory by"  [(ngModel)]="tro" required></td>
+        <td class="adjustment">K-Mars: </td>
+        <td class="myTab"><input type="number" class="form-control" name="kmarsoptical" placeholder="Adjust K-Mars inventory by" [(ngModel)]="kmarsoptical" required></td>
+        <td><input type="submit" class="btn btn-primary" value="Submit"></td>
+      </tr>
+    </table>
+    <!-- <br> -->
+    <!-- <div class="form-group"> -->
+      <!-- <label for="adjustment" class="control-label col-sm-1">Warehouse:</label>
+      <div class="col-sm-2">
+        <input type="number" class="form-control" name="warehouse" id="adjustment" placeholder="Adjust eyewear inventory by" [(ngModel)]="warehouse" required>
+      </div> -->
+    <!-- </div> -->
+    <!-- <div class="form-group"> -->
+      <!-- <label for="adjustment" class="control-label col-sm-1">HTK:</label>
+      <div class="col-sm-2">
+        <input type="number" class="form-control" name="htk_quantity" id="adjustment" placeholder="Adjust HTK inventory"  [(ngModel)]="htk_quantity" required>
+      </div> -->
+    <!-- </div> -->
+    <!-- <div class="form-group"> -->
+      <!-- <label for="adjustment" class="control-label col-sm-1">TRO:</label>
+      <div class="col-sm-2">
+        <input type="number" class="form-control" name="tro" id="adjustment" placeholder="Adjust TRO inventory by"  [(ngModel)]="tro" required>
+      </div> -->
+    <!-- </div> -->
+    <!-- <div class="form-group"> -->
+      <!-- <label for="adjustment" class="control-label col-sm-1">K-Mars:</label>
+      <div class="col-sm-2">
+        <input type="number" class="form-control" name="kmarsoptical" id="adjustment" placeholder="Adjust K-Mars inventory by" [(ngModel)]="kmarsoptical" required>
+      </div> -->
+    <!-- </div> -->
+    <!-- <div class="form-group"> -->
+      <!-- <input type="submit" class="btn btn-primary" value="Submit"> -->
+    <!-- </div> -->
+    {{updateAdjustInventoryData}}
+  </form>
+  <!-- upload Inventory>>>>>>>>>>>>>>>>>>>> -->
+  <h2>Upload inventory</h2>
+  <form role="form" #form="ngForm" (ngSubmit)="uploadInventory()">
+    <div class="form-group">
+      <label class="control-label col-sm-5">Adjust or Overwrite</label>
+      <div class="col-sm-10">
+        <!-- <select  class="form-control" [(ngModel)]="selectedValue" required> -->
+        <select  class="form-control" required>
+          <option value="adjust_values">Adjust Values</option>
+          <option value="full_cycle_count">Full Cycle Count (Overwrite)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-5">Select file</label>
+      <div class="col-sm-10">
+          <!-- <input type="file" class="file" name="inventory_file" id="inventory_file" onclick="document.getElementById('inventory_file').click();" required> -->
+        <input type="file" class="file" name="inventory_file" id="inventory_file" onclick="document.getElementById('inventory_file')" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-10">
+        <button type="submit" value="Save" class="btn btn-primary btn-sm" style="float:right; margin-right:10px">Upload</button>
+      </div>
+    </div>
+  </form>
+</div>
