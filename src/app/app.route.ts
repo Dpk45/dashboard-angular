@@ -25,7 +25,7 @@ import { ProductComponent } from './components/productComponent/product.componen
 import { NewProductComponent } from './components/productComponent/newProductComponent/newProduct.component';
 import { ProductCollectionComponent } from './components/productComponent/ProductCollection/productCollection.component';
 import { LetterPressPreviewComponent } from './components/Letterpress/letterPressPreview.component';
-import { NewCollectionComponent } from './components/productComponent/ProductCollection/newProductCollection.component';
+//import { NewCollectionComponent } from './components/productComponent/ProductCollection/newProductCollection.component';
 
 const appRoutes: Routes =
   [
