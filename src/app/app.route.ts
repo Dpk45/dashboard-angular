@@ -25,7 +25,8 @@ import { ProductComponent } from './components/productComponent/product.componen
 import { NewProductComponent } from './components/productComponent/newProductComponent/newProduct.component';
 import { ProductCollectionComponent } from './components/productComponent/ProductCollection/productCollection.component';
 import { LetterPressPreviewComponent } from './components/Letterpress/letterPressPreview.component';
-//import { NewCollectionComponent } from './components/productComponent/ProductCollection/newProductCollection.component';
+import {StyleComponent} from './components/lookupComponent/lookupStyle/lookupStyle.component';
+import { FrameComponent } from './components/lookupComponent/lookupFrame/lookupFrame.component';
 
 const appRoutes: Routes =
   [
@@ -125,6 +126,26 @@ const appRoutes: Routes =
           path: "letterpress/:brand/:name/preview",
           component: LetterPressPreviewComponent
         }
+      ]
+    },
+
+    {
+      path: '',
+      canActivate: [AuthGuard],
+      children: [
+        {
+          path: "lookup/frame_colors/:brand",
+          component: FrameComponent
+        },
+        {
+          path: "lookup/styles/:brand",
+          component: StyleComponent
+        }
+        // ,
+        // {
+        //   path: "letterpress/:brand/:name/preview",
+        //   component: LetterPressPreviewComponent
+        // }
       ]
     },
     {
