@@ -86,14 +86,76 @@ export class ProductService {
 
   // create product
   createProduct(brand, productData) {
-  // console.log("form in servie=ce>>>>>>>>>>>>>>>>..", typeof(productData.product_gender))
+ console.log("form in servie=ce>>>>>>>>>>>>>>>>..", typeof productData.lens_color)
     brand = brand + "_dev";
     let body: any = JSON.stringify(productData)
-  //  console.log("body>>>>>>>>>>>>>>>>>>",body)
+    console.log("body>>>>>>>>>>>>>>>>>>",body)
     const _path: string = (this.baseUrl + '/products/?key=' + brand)
     return this._httpClient.post(_path, body)
     .map((res: any) => {
       return res;
     });
   }
+
+  // get list of product collection
+  getProductCollectionList(brand) {
+    brand = brand + "_dev";
+    const _path: string = (this.baseUrl + '/products/collections?key=' + brand)
+    return this._http.get(_path)
+    .map((res: any) => {
+      return res.json();
+    });
+}
+
+// create product collection
+createProductCollection(brand, productCollectionData) {
+  brand = brand + "_dev";
+  let body: any = JSON.stringify(productCollectionData)
+  const _path: string = (this.baseUrl + '/products/collections?key=' + brand)
+  return this._httpClient.post(_path, body)
+  .map((res: any) => {
+    return res;
+  });
+}
+
+// get product_collection by slug
+getProductCollectionBySlug(brand, slug) {
+  brand = brand + "_dev";
+  const _path: string = (this.baseUrl + '/products/collections/' + slug + '?key=' + brand)
+  return this._httpClient.get(_path)
+  .map((res: any) => {
+    return res;
+  });
+}
+
+//update product collection
+updateProductCollection(brand, productCollectionData, slug) {
+  brand = brand + "_dev";
+  let body: any = JSON.stringify(productCollectionData)
+  const _path: string = (this.baseUrl + '/products/collections/' + slug + '?key=' + brand)
+  return this._httpClient.post(_path, body)
+  .map((res: any) => {
+    return res;
+  });
+}
+
+// get list of tags
+getTagList(brand) {
+  brand = brand + "_dev";
+  const _path: string = (this.baseUrl + '/products/tags?key=' + brand)
+  return this._http.get(_path)
+  .map((res: any) => {
+    return res.json();
+  });
+}
+
+//get assets group
+getAssetGroup(brand) {
+  brand = brand + "_dev";
+  const _path: string = (this.baseUrl + '/products/asset_groups?key=' + brand)
+  return this._http.get(_path)
+  .map((res: any) => {
+    return res.json();
+  });
+}
 }

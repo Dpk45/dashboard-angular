@@ -1,0 +1,214 @@
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+        aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" [routerLink]="['/home']"> eponym </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+                <!-- <div *ngIf="brand"> -->
+                  <a class="applyStyle" [routerLink]="['/product', brand]">List Products</a><br>
+                    <a class="applyStyle" [routerLink]="['/product', brand, 'new_product']">Add New Product</a><br>
+                      <a class="applyStyle" [routerLink]="['/product_collection', brand]">List Product Collections</a><br>
+                        <a class="applyStyle" [routerLink]="['/product_collection', brand, 'new_product_collection']">Add New Product Collection</a><br>
+                <!-- </div> -->
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle"  data-toggle="dropdown">Signed in as {{dashUserEmail.email}} <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+                  <a class="applyStyle" [routerLink]="['']">Sign Out</a><br>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div class="container" *ngIf="!isFoundSlug && !isSuccess">
+  <h1>Name</h1>
+    <table class="table table-bordered table-condensed table-hover display" id="productCollection" style="width:100%">
+    <tr *ngFor="let productCollection of product_collection_list">
+    <td><a [routerLink]="['/product_collection', brand, productCollection.slug]">{{productCollection.name}}</a></td>
+  </tr>
+    </table>
+</div>
+
+<div class="container" *ngIf="isSuccess !isFoundSlug">
+  <h1>New Collection</h1>
+  <form role="form" #form="ngForm" (ngSubmit)="createProductCollection(form.value)">
+      <div class="form-group">
+          <label class="control-label col-sm-2">Name</label>
+          <div class="col-sm-10">
+             <input type="text" class="form-control" name="name" [(ngModel)]="name" required class="form-control input-xlarge">
+          </div>
+      </div><br><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Slug</label>
+          <div class="col-sm-10">
+             <input type="text" class="form-control"  name="slug" [(ngModel)]="slugValue" required class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Asset Groups</label>
+          <div class="col-sm-10">
+             <input type="text" class="form-control" id="name" name="assets" [(ngModel)]="assets" required  class="form-control input-xlarge">
+           </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Template</label>
+            <div class="col-sm-10">
+             <input type="text" class="form-control" name="template" [(ngModel)]="template" required  placeholder="(blank for none)" class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">H1</label>
+            <div class="col-sm-10">
+             <input type="text" class="form-control" name="h1" [(ngModel)]="h1" required  placeholder="New Collection H1" class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Title Tag</label>
+            <div class="col-sm-10">
+             <input type="text" class="form-control" name="tag" [(ngModel)]="tag" required  placeholder="New Collection Title Tag" class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Meta-Description</label>
+            <div class="col-sm-10">
+             <input type="text" class="form-control" name="description" [(ngModel)]="description" required  placeholder="Meta Description" class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Meta-Keywords</label>
+            <div class="col-sm-10">
+             <input type="text" class="form-control" name="Keywords" [(ngModel)]="Keywords" required  placeholder="Meta Keywords" class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">H2</label>
+          <div class="col-sm-10">
+             <input type="text" class="form-control" name="h2" [(ngModel)]="h2" required  placeholder="Collection H2" class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Rich Text Paragraph</label>
+          <div class="col-sm-10">
+             <input type="text" class="form-control" name="paragraph" [(ngModel)]="paragraph" Placeholder="Rich Text Paragraph"  required  class="form-control input-xlarge">
+          </div>
+      </div><br><br>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Tiles</label>
+           <!-- <div class="col-sm-10">
+              <input type="text" class="form-control" name="Tiles" [(ngModel)]="Tiles" Placeholder="Rich Text Paragraph"  required  class="form-control input-xlarge">
+          </div> -->
+          <div class="col-sm-2">
+
+                                          <select id="product_id" name="product_id" placeholder="Select product Id" class="form-control input-xlarge" [(ngModel)]="selectedProductId">
+                                            <option *ngFor="let productId of productIds" [ngValue]="productId.product_id">{{productId.product_id}}</option>
+                      </select>
+
+          </div>
+      </div><br><br>
+
+      <div class="form-group">
+      <input type="submit" class="btn btn-default" value="Save">
+    </div>
+  </form>
+</div>
+
+
+<div class="container" *ngIf="isFoundSlug && !isSuccess">
+<h1>{{productCollectionData.name}}</h1>
+<form role="form" #form="ngForm" (ngSubmit)="updateProductCollection(form.value)">
+    <div class="form-group">
+        <label class="control-label col-sm-2">Name</label>
+        <div class="col-sm-10">
+           <input type="text" class="form-control" name="name" [(ngModel)]="productCollectionData.name" required class="form-control input-xlarge">
+        </div>
+    </div><br><br><br>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Slug</label>
+        <div class="col-sm-10">
+           <input type="text" class="form-control"  name="slug" readonly="readonly" [(ngModel)]="productCollectionData.slug" required class="form-control input-xlarge">
+        </div>
+    </div><br><br>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Asset Groups</label>
+        <div class="col-sm-10">
+           <input type="text" class="form-control" id="name" name="assets" [(ngModel)]="productCollectionData.assets" required  class="form-control input-xlarge">
+         </div>
+    </div><br><br>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Template</label>
+          <div class="col-sm-10">
+           <input type="text" class="form-control" name="template" [(ngModel)]="template" required  placeholder="(blank for none)" class="form-control input-xlarge">
+        </div>
+    </div><br><br>
+    <div class="form-group">
+        <label class="control-label col-sm-2">H1</label>
+          <div class="col-sm-10">
+           <input type="text" class="form-control" name="h1" [(ngModel)]="productCollectionData.h1" required  placeholder="New Collection H1" class="form-control input-xlarge">
+        </div>
+    </div><br><br>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Title Tag</label>
+          <div class="col-sm-10">
+           <input type="text" class="form-control" name="tag" [(ngModel)]="productCollectionData.title" required  placeholder="New Collection Title Tag" class="form-control input-xlarge">
+        </div>
+    </div><br><br>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Meta-Description</label>
+          <div class="col-sm-10">
+           <input type="text" class="form-control" name="description" [(ngModel)]="productCollectionData.metaDescription" required  placeholder="Meta Description" class="form-control input-xlarge">
+        </div>
+    </div><br><br>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Meta-Keywords</label>
+          <div class="col-sm-10">
+           <input type="text" class="form-control" name="Keywords" [(ngModel)]="productCollectionData.metaKeywords" required  placeholder="Meta Keywords" class="form-control input-xlarge">
+        </div>
+    </div><br><br>
+    <div class="form-group">
+        <label class="control-label col-sm-2">H2</label>
+        <div class="col-sm-10">
+           <input type="text" class="form-control" name="h2" [(ngModel)]="productCollectionData.h2" required  placeholder="Collection H2" class="form-control input-xlarge">
+        </div>
+    </div><br><br>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Rich Text Paragraph</label>
+        <div class="col-sm-10">
+           <input type="text" class="form-control" name="paragraph" [(ngModel)]="productCollectionData.richTextParagraph" Placeholder="Rich Text Paragraph"  required  class="form-control input-xlarge">
+        </div>
+    </div><br><br>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Tiles</label>
+         <!-- <div class="col-sm-10">
+            <input type="text" class="form-control" name="Tiles" [(ngModel)]="Tiles" Placeholder="Rich Text Paragraph"  required  class="form-control input-xlarge">
+        </div> -->
+        <div class="col-sm-2">
+
+                                        <select id="product_id" name="product_id" placeholder="Select product Id" class="form-control input-xlarge" [(ngModel)]="selectedProductId">
+                                          <option *ngFor="let productId of productIds" [ngValue]="productId.product_id">{{productId.product_id}}</option>
+                    </select>
+
+        </div>
+    </div><br><br>
+
+    <div class="form-group">
+    <input type="submit" class="btn btn-default" value="Save">
+  </div>
+</form>
+</div>

@@ -18,9 +18,17 @@
                 <!-- <div *ngIf="brand"> -->
                   <a class="applyStyle" [routerLink]="['/product', brand]">List Products</a><br>
                     <a class="applyStyle" [routerLink]="['/product', brand, 'new_product']">Add New Product</a><br>
-                      <a class="applyStyle" [routerLink]="['/Product_collection', brand]">List Product Collections</a><br>
-                        <a class="applyStyle" [routerLink]="['/new_product_collection', brand]">Add New Product Collection</a><br>
+                      <a class="applyStyle" [routerLink]="['/product_collection', brand]">List Product Collections</a><br>
+                        <a class="applyStyle" [routerLink]="['/product_collection', brand, 'new_product_collection']">Add New Product Collection</a><br>
                 <!-- </div> -->
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle"  data-toggle="dropdown">Signed in as {{dashUserEmail}} <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+                  <a class="applyStyle" [routerLink]="['']">Sign Out</a><br>
           </ul>
         </li>
       </ul>
@@ -31,7 +39,7 @@
 
 <div class="container" *ngIf="!byProduct">
   <h5 align="right">Search <input type="text" name="search" [(ngModel)]="filter"></h5>
-  <table class="table table-bordered table-condensed table-hover display" id="discount_codes" style="width:100%">
+  <table class="table table-bordered table-condensed table-hover display" id="product" style="width:100%">
     <thead>
           <tr>
               <th>Name</th>
@@ -133,30 +141,53 @@
              <input type="text" class="form-control" name="gender" [(ngModel)]="product.product_gender" required readonly="readonly" class="form-control input-xlarge">
           </div>
       </div><br><br>
-      <div class="form-group">
+      <!-- <div class="form-group">
           <label class="control-label col-sm-2">Tags</label>
           <div class="col-sm-10">
              <input type="text" class="form-control" name="tags" [(ngModel)]="product.tags" required  class="form-control input-xlarge">
           </div>
-      </div><br><br>
+      </div> -->
+      <div class="form-group">
+          <label class="control-label col-sm-2">Tags</label>
+  <div class="col-sm-10">
+  <angular2-multiselect  name="tags" [data]="tagToPass"
+                      [(ngModel)]="tags"
+                      [settings]="settings" (onSelect)="onItemSelect($event)"
+                      (onDeSelect)="OnItemDeSelect($event)"
+                      (onSelectAll)="onSelectAll($event)"
+                      (onDeSelectAll)="onDeSelectAll($event)">
+</angular2-multiselect>
+</div>
+</div>
+      <br><br>
       <div class="form-group">
           <label class="control-label col-sm-2">Description</label>
           <div class="col-sm-10">
              <textarea  rows="5" class="form-control" name="description" [(ngModel)]="product.description" required  class="form-control input-xlarge"></textarea>
           </div>
-      </div><br><br>
+      </div><br><br><br><br><br>
       <div class="form-group">
           <label class="control-label col-sm-2">Asset Groups</label>
-          <div class="col-sm-10">
+          <!-- <div class="col-sm-10">
              <textarea  name="assets" [(ngModel)]="product.assets" required  class="form-control input-xlarge"></textarea>
-          </div>
-      </div><br><br>
+          </div> -->
+            <div class="col-sm-10">
+          <angular2-multiselect  name="assets" [data]="assestToPass"
+                              [(ngModel)]="assest"
+                              [settings]="settings" (onSelect)="onItemSelect($event)"
+                              (onDeSelect)="OnItemDeSelect($event)"
+                              (onSelectAll)="onSelectAll($event)"
+                              (onDeSelectAll)="onDeSelectAll($event)">
+        </angular2-multiselect>
+        </div>
+      </div>
+      <br><br><br>
       <div class="form-group">
           <label class="control-label col-sm-2">Product Details(Comma separated)</label>
           <div class="col-sm-10">
              <textarea name="details" [(ngModel)]="product.details" required  class="form-control input-xlarge"></textarea>
           </div>
-      </div><br><br><br><br>
+      </div><br><br><br>
       <div class="form-group">
           <label class="control-label col-sm-2">Social Id</label>
           <div class="col-sm-10">
