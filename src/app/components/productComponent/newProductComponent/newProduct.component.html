@@ -1,5 +1,3 @@
-<!-- <div class="container" *ngIf="createProduct"> -->
-
 <nav class="navbar navbar-inverse" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -20,9 +18,17 @@
                 <!-- <div *ngIf="brand"> -->
                   <a class="applyStyle" [routerLink]="['/product', brand]">List Products</a><br>
                     <a class="applyStyle" [routerLink]="['/product', brand, 'new_product']">Add New Product</a><br>
-                      <a class="applyStyle" [routerLink]="['/Product_collection', brand]">List Product Collections</a><br>
-                        <a class="applyStyle" [routerLink]="['/new_product_collection', brand]">Add New Product Collection</a><br>
+                      <a class="applyStyle" [routerLink]="['/product_collection', brand]">List Product Collections</a><br>
+                        <a class="applyStyle" [routerLink]="['/product_collection', brand, 'new_product_collection']">Add New Product Collection</a><br>
                 <!-- </div> -->
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle"  data-toggle="dropdown">Signed in as {{dashUserEmail.email}} <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+                  <a class="applyStyle" [routerLink]="['']">Sign Out</a><br>
           </ul>
         </li>
       </ul>
@@ -56,7 +62,7 @@
                                               <option value="{{style.name}}">{{style.name}}</option>
                                             </div>
                                           </select> -->
-                                          <select id="name" name="name" placeholder="Pick a Style" [(ngModel)]="selectedStyle">
+                                          <select id="name" name="name" placeholder="Pick a Style" class="form-control input-xlarge" [(ngModel)]="selectedStyle">
                                             <option *ngFor="let styleName of styleNames" [ngValue]="styleName">{{styleName}}</option>
                       </select>
 
@@ -66,7 +72,7 @@
           <label class="control-label col-sm-2">Frame Color</label>
           <div class="col-sm-2">
              <!-- <input type="text" class="form-control" name="frame_color" [(ngModel)]="frame_color" required  placeholder="Frame Color" class="form-control input-xlarge"> -->
-             <select id="frame_color" name="frame_color" placeholder="Frame Color" [(ngModel)]="selectedFrame">
+             <select id="frame_color" name="frame_color" class="form-control input-xlarge" placeholder="Frame Color" [(ngModel)]="selectedFrame">
                <option *ngFor="let frame of frameColor" [ngValue]="frame">{{frame}}</option>
              </select>
           </div>
@@ -75,7 +81,7 @@
           <label class="control-label col-sm-2">Lens Color</label>
           <div class="col-sm-2">
              <!-- <input type="text" class="form-control" name="lens_color" [(ngModel)]="lens_color" required placeholder="Lens Color" class="form-control input-xlarge"> -->
-             <select id="lens_color" name="lens_color" placeholder="Lens Color" [(ngModel)]="selectedLensColor">
+             <select name="lens_color" class="form-control input-xlarge" placeholder="Lens Color" [(ngModel)]="selectedLensColor">
                <option *ngFor="let l of len" [ngValue]="l.id">{{l.name}}</option>
              </select>
           </div>
@@ -84,7 +90,7 @@
           <label class="control-label col-sm-2">Product Type</label>
           <div class="col-sm-2">
              <!-- <input type="text" class="form-control" name="lens_color" [(ngModel)]="lens_color" required placeholder="Lens Color" class="form-control input-xlarge"> -->
-             <select id="lens_color" name="product_type" placeholder="Optical or Sun" [(ngModel)]="selectedProductType">
+             <select name="product_type" class="form-control input-xlarge" placeholder="Optical or Sun" [(ngModel)]="selectedProductType">
                <option *ngFor="let product of productType" [ngValue]="product.id">{{product.name}}</option>
              </select>
           </div>
@@ -99,7 +105,7 @@
           <label class="control-label col-sm-2">Gender</label>
           <div class="col-sm-2">
              <!-- <input type="text" class="form-control" name="gender" [(ngModel)]="product_gender" required placeholder="Mens's/Women's" class="form-control input-xlarge"> -->
-             <select id="gender" name="gender" [(ngModel)]="selectedGender">
+             <select  name="gender" class="form-control input-xlarge" [(ngModel)]="selectedGender">
                <option  [ngValue]="1">Mens's</option>
                   <option  [ngValue]="2">Women's</option>
                      <option  [ngValue]="3">Unisex</option>
@@ -108,22 +114,38 @@
       </div><br><br>
       <div class="form-group">
           <label class="control-label col-sm-2">Tags</label>
-          <div class="col-sm-10">
-             <input type="text" class="form-control" name="tags" [(ngModel)]="tags" required  class="form-control input-xlarge">
-          </div>
-      </div><br><br>
+  <div class="col-sm-10">
+  <angular2-multiselect  name="tags" [data]="tagToPass"
+                      [(ngModel)]="tags"
+                      [settings]="settings" (onSelect)="onItemSelect($event)"
+                      (onDeSelect)="OnItemDeSelect($event)"
+                      (onSelectAll)="onSelectAll($event)"
+                      (onDeSelectAll)="onDeSelectAll($event)">
+</angular2-multiselect>
+</div>
+</div>
+      <br><br>
       <div class="form-group">
           <label class="control-label col-sm-2">Description</label>
           <div class="col-sm-10">
-             <textarea  rows="5" class="form-control" name="description" [(ngModel)]="description" required  class="form-control input-xlarge"></textarea>
+             <textarea  rows="5" class="form-control" name="description" [(ngModel)]="description" Placeholder="This frame..."  required  class="form-control input-xlarge"></textarea>
           </div>
-      </div><br><br>
+      </div><br><br><br><br><br><br>
       <div class="form-group">
           <label class="control-label col-sm-2">Asset Groups</label>
-          <div class="col-sm-10">
+          <!-- <div class="col-sm-10">
              <textarea  name="assets" [(ngModel)]="assets" required  class="form-control input-xlarge"></textarea>
-          </div>
-      </div><br><br>
+          </div> -->
+          <div class="col-sm-10">
+          <angular2-multiselect  name="assets" [data]="assestToPass"
+                              [(ngModel)]="assest"
+                              [settings]="settings" (onSelect)="onItemSelect($event)"
+                              (onDeSelect)="OnItemDeSelect($event)"
+                              (onSelectAll)="onSelectAll($event)"
+                              (onDeSelectAll)="onDeSelectAll($event)">
+        </angular2-multiselect>
+        </div>
+      </div><br><br><br><br>
       <div class="form-group">
           <label class="control-label col-sm-2">Product Details(Comma separated)</label>
           <div class="col-sm-10">
@@ -135,7 +157,7 @@
           <div class="col-sm-10">
              <input type="text" class="form-control" name="social_id" Placeholder="ID for instagram link" [(ngModel)]="social_id" required  class="form-control input-xlarge">
           </div>
-      </div><br><br>
+      </div><br><br><br><br>
       <!-- <div class="form-group">
           <label class="control-label col-sm-2">UPC Code</label>{{product.upc_codes}}
           <div class="col-sm-10">
@@ -148,7 +170,7 @@
           <div class="form-group">
             <label class="control-label col-sm-2">No Lens</label>
           <div class="col-sm-2">
-             <input type="number" class="form-control" name="NO_LENS_PRICE" [(ngModel)]="NO_LENS_PRICE" required  class="form-control input-xlarge">
+            <input type="number" class="form-control" name="NO_LENS_PRICE" [(ngModel)]="NO_LENS_PRICE" required  class="form-control input-xlarge">
           </div>
         </div><br><br>
         <div class="form-group">
@@ -245,7 +267,6 @@
   </div>
   </div><br><br>
       <br><br>
-
       <div class="form-group">
       <input type="submit" class="btn btn-default" value="Save">
     </div>

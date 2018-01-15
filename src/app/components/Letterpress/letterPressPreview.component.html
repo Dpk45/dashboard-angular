@@ -1,0 +1,27 @@
+<header></header>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Preview template: {{templateName}} </h3>
+    </div>
+    <div class="panel-body">
+        <form role="form" #form="ngForm" (ngSubmit)="getTemplate(form.value)">
+            <div class="form-group">
+              <div class="col-sm-2">
+                <input name="templateName" type="text" class="form-control" [(ngModel)]="templateName" required   placeholder="template_name">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-default">Preview</button>
+        </form>
+    </div>
+</div>
+
+<div class="container" *ngIf="isSuccess">
+  <div class="form-group">
+      <label>Html</label>
+      <textarea rows="20" class="form-control" readonly="readonly" name="html">{{templateData.html}}</textarea>
+  </div>
+  <div class="form-group">
+      <label>Text</label>
+      <textarea rows="20" class="form-control" readonly="readonly" name="text">{{templateData.text}}</textarea>
+  </div>
+</div>
