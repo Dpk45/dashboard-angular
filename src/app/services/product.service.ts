@@ -20,6 +20,16 @@ export class ProductService {
     });
   }
 
+// get list of productid's
+getProductsList(brand) {
+  brand = brand + "_dev";
+  const _path: string = (this.baseUrl + '/products?key=' + brand + '&includes=product_id,name&orderby=name')
+  return this._httpClient.get(_path)
+  .map((res: any) => {
+    return res;
+  });
+}
+
 // get product_by_id
   getProductById(brand, productId) {
     brand = brand + "_dev";

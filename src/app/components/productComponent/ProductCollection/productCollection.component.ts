@@ -21,10 +21,14 @@ export class ProductCollectionComponent  {
   dashUserEmail: any;
   slugValue: any;
   assest: any = [];
+  productId: any = [];
   assestValue: any = [];
   assestVal: any = {};
   assestData: any = [];
   assestToPass: any = [];
+  productValue: any = [];
+  productData: any = [];
+  productToPass: any = [];
   settings: any = {
             text: "Select Data",
            selectAllText: 'Select All',
@@ -40,7 +44,7 @@ export class ProductCollectionComponent  {
     this.route.params.subscribe((params: any) => {
       this.brand = params.brand;
       this.getProductCollectionList();
-      this.getProducts();
+      this.getProductsList();
       console.log("params>>>>>>>>>>>>>>>>>..", params)
       if(params.slug == 'new_product_collection') {
         this.isSuccess = true;
@@ -67,14 +71,19 @@ export class ProductCollectionComponent  {
 
   // create product collection
   createProductCollection(form) {
-    const assestValue = JSON.stringify(form['assets']);
+    // const assestValue = JSON.stringify(form['assets']);
+      const productValue: any = [];
     for(let i = 0; i < form.assets.length; i++) {
       this.assestVal[form.assets[i].itemName] = [];
+    }
+
+    for(let i = 0; i < form.product_id.length; i++) {
+      productValue.push(form.product_id[i].itemName)
     }
     this.data = {
       "assets": this.assestVal,
       "tiles": [{
-        "products": [form.product_id]
+        "products": productValue
       }],
       "name": form.name,
       "slug": form.slug,
@@ -97,11 +106,15 @@ export class ProductCollectionComponent  {
   }
 
   // get list of Product
-  getProducts() {
-    this._productService.getProducts(this.brand).subscribe((res: any) => {
+  getProductsList() {
+    this._productService.getProductsList(this.brand).subscribe((res: any) => {
       //  console.log("response>>>>>>>>>>>>>>>>", JSON.stringify((res.data[0])))
       if(res.code == 200) {
         this.productIds = res.data;
+        for (let i = 0; i < this.productIds.length; i++) {
+        this.productValue.push({"id": i, "itemName": this.productIds[i].product_id});
+      }
+    this.productToPass = this.productValue;
       }
     },
     (err) => {
@@ -112,11 +125,20 @@ export class ProductCollectionComponent  {
   //get one product collection
   getProductCollectionBySlug(slug) {
     this._productService.getProductCollectionBySlug(this.brand, slug).subscribe((res: any) => {
-       console.log("response>>>>>>>>>>>>>>>>", JSON.stringify(res.data))
+    //   console.log("response>>>>>>>>>>>>>>>>", JSON.stringify(res.data))
       if(res.code == 200) {
-        console.log("inside of iffffffffffffffffffffffffffff")
+    //    console.log("inside of iffffffffffffffffffffffffffff")
       this.isFoundSlug = true;
       this.productCollectionData = res.data;
+    //  console.log("productCollectionData>>>>>>>>>>>>........................", JSON.stringify(this.productCollectionData))
+      for(const i in this.productCollectionData.assets) {
+            this.assest.push({"id": 1, "itemName": i})
+        }
+
+        for (let i = 0; i < this.productCollectionData.tiles.length; i++) {
+        this.productId.push({"id": i, "itemName": this.productCollectionData.tiles[i].products[i].product_id});
+      }
+      console.log("**************************.............",this.productId)
     }
     },
     (err) => {
@@ -127,13 +149,18 @@ export class ProductCollectionComponent  {
   //update product collection
   updateProductCollection(form) {
     console.log("form data value>>>>>>>....................", form)
-    const updatedAssestValue = JSON.stringify(form['assets']);
+  //  const updatedAssestValue = JSON.stringify(form['assets']);
+  const productValue: any = [];
+  for(let i = 0; i < form.product_id.length; i++) {
+    productValue.push(form.product_id[i].itemName)
+  }
+  for(let i = 0; i < form.assets.length; i++) {
+    this.assestVal[form.assets[i].itemName] = [];
+  }
     this.data = {
-      "assets": {
-        updatedAssestValue: []            // we have to pass assestValue
-      },
+      "assets": this.assestVal,
       "tiles": [{
-        "products": [form.product_id]
+        "products": productValue
       }],
       "name": form.name,
       "slug": form.slug,
