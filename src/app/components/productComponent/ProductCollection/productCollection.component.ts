@@ -20,6 +20,17 @@ export class ProductCollectionComponent  {
   productCollectionData: any;
   dashUserEmail: any;
   slugValue: any;
+  assest: any = [];
+  assestValue: any = [];
+  assestVal: any = {};
+  assestData: any = [];
+  assestToPass: any = [];
+  settings: any = {
+            text: "Select Data",
+           selectAllText: 'Select All',
+           unSelectAllText: 'UnSelect All',
+           classes: "myclass custom-class"
+  };
   constructor(private route: ActivatedRoute, private _productService: ProductService, private router: Router) {
   this.dashUserEmail = JSON.parse(localStorage.getItem("current_user"));
   }
@@ -39,6 +50,7 @@ export class ProductCollectionComponent  {
         this.getProductCollectionBySlug(this.slug);
       }
     });
+      this.getAssestGroup();
   }
 
   // get product collection
@@ -56,10 +68,11 @@ export class ProductCollectionComponent  {
   // create product collection
   createProductCollection(form) {
     const assestValue = JSON.stringify(form['assets']);
+    for(let i = 0; i < form.assets.length; i++) {
+      this.assestVal[form.assets[i].itemName] = [];
+    }
     this.data = {
-      "assets": {
-        assestValue: []            // we have to pass assestValue
-      },
+      "assets": this.assestVal,
       "tiles": [{
         "products": [form.product_id]
       }],
@@ -72,6 +85,7 @@ export class ProductCollectionComponent  {
       "h2": form.h2,
       "richTextParagraph": form.paragraph
     }
+    console.log("product data>>>>>>>>>..................", JSON.stringify(this.data))
     this._productService.createProductCollection(this.brand, this.data).subscribe((res: any) => {
       if(res.code == 200) {
       this.router.navigate(['/product_collection', this.brand]);
@@ -139,4 +153,33 @@ export class ProductCollectionComponent  {
       console.log('error>>>>>>>>>>>>', err);
     })
   }
+
+  getAssestGroup() {
+    this._productService.getAssetGroup(this.brand).subscribe((res: any) => {
+      if(res.code == 200) {
+        this.assestData = res.data;
+           for (let i = 0; i < this.assestData.length; i++) {
+           this.assestValue.push({"id": i, "itemName": this.assestData[i]});
+         }
+       this.assestToPass = this.assestValue;
+      }
+    }, (err) => {
+      console.log('error>>>>>>>>>>>>', err);
+    })
+  }
+
+
+  onItemSelect(item: any) {
+        console.log(item);
+    }
+    OnItemDeSelect(item: any) {
+        console.log(item);
+    }
+    onSelectAll(items: any) {
+        console.log(items);
+    }
+    onDeSelectAll(items: any) {
+        console.log(items);
+    }
+
 }
