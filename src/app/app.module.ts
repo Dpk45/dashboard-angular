@@ -43,7 +43,6 @@ import { DiscountComponent } from './components/discountCode/discount.component'
 import { LetterPressComponent } from './components/Letterpress/letterPress.component';
 import { LetterPressPreviewComponent } from './components/Letterpress/letterPressPreview.component';
 import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component';
-import { OrdersComponent } from './components/orders-component/orders-component.component';
 import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
 import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
 import { ReportComponent } from './components/report/report.component'
@@ -80,7 +79,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ReportComponent,
     ReportOrderComponent,
     ReportEmailComponent,
-    OrdersComponent,
     EyewearComponent,
     HtkComponent,
     EyewearProcessComponent,
