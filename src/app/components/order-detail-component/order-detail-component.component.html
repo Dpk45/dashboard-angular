@@ -93,7 +93,7 @@
 
 
           
-<ng-container *ngIf="order.items.eyewear">
+<ng-container *ngIf="order.items.eyewear.items.length">
   <h3>Eyewear Items</h3>
   <table class="table table-bordered table-condensed">
     <tr>
@@ -607,7 +607,87 @@
 </ng-container>
 
 
-            <hr>
+
+
+<ng-container *ngIf="order['items'].home_trial_kit">
+    <h3>Trial Kit</h3>
+
+    <blockquote>
+        <h4>Items</h4>
+        <div class="row">
+            <div class="col-md-4">Product</div>
+            <div class="col-md-2">Product Id</div>
+            <div class="col-md-6">Status</div>
+        </div>
+        <ng-container *ngFor="let item of order['items']['home_trial_kit']['items']">
+            <div class="row">
+                <div class="col-md-4">{{ item['name'] }} in {{ item['color'] }}</div>
+                <div class="col-md-2">{{ item['product_id'] }}</div>
+                <div class="col-md-6">
+                    <ng-container *ngFor="let key of objectKeys(item['status']) ">
+                        <ng-container *ngIf="item['status'][key] != null">
+
+                            <dt>{{ key }}</dt>
+                            <dd *ngIf="objectKeys(item['status'][key]) ;else dd2">
+                                <ng-container *ngFor="let key1 of objectKeys(item['status'][key])">
+                                    <ng-container *ngIf="item['status'][key][key1] != null">
+                                        <i> {{key1}}: {{item['status'][key][key1] }}</i>
+                                    </ng-container>
+                                </ng-container>
+                            </dd>
+                            <ng-template #dd2>
+                                <dd>{{ item['status'][key] }}</dd>
+                            </ng-template>
+
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+
+        </ng-container>
+        <h4>Tracking</h4>
+        <ol> 
+            <ng-container *ngIf=" objectKeys(order['items']['home_trial_kit']['tracking_numbers'])">
+                    <li *ngFor="let key of objectKeys(order['items']['home_trial_kit']['tracking_numbers'])">
+                        {{ key }}: {{ order['items']['home_trial_kit']['tracking_numbers'][key]['service'] }} {{ order['items']['home_trial_kit']['tracking_numbers'][key]['tracking_number'] }}
+                    </li>
+            </ng-container>
+        </ol>
+
+        <h4>Status</h4>
+        <ol>
+            <li *ngFor="let key of objectKeys(order['items']['home_trial_kit']['status'])">
+                {{key}}: {{order['items']['home_trial_kit']['status'][key]}}
+            </li>
+        </ol>
+    </blockquote>
+
+    <div>
+        <a>Packing slips</a>
+    </div>
+
+    <!-- {% if order['items']['home_trial_kit']['tracking_numbers'] != {} %} -->
+    <ng-container *ngIf="objectKeys(order['items']['home_trial_kit']['tracking_numbers']).length">
+        <h3>HTK Shipments</h3>
+        <!-- {% with label = order['items']['home_trial_kit']['tracking_numbers']['outbound'] %}
+            {{ shipment_view.shipment(label, 'order.htk_shipping_label', order, products, brand, 'outbound') }}
+        {% endwith %}
+        {% with label = order['items']['home_trial_kit']['tracking_numbers']['inbound'] %}
+            {{ shipment_view.shipment(label, 'order.htk_shipping_label', order, products, brand, 'inbound') }}
+        {% endwith %} -->
+        <br/>
+        <input type="button" value="Generate new labels" />
+             <!-- <input type="button" data-orderid="{{ order['order_number'] }}" data-brand="{{ brand }}"
+               data-trackingnumber="{{ order['items']['home_trial_kit']['tracking_numbers']['outbound']['tracking_number'] }}"
+               class="reprint_htk_label btn btn-danger btn-xs" value="Generate new labels">
+        {% endif %} -->
+    </ng-container>
+</ng-container>
+            
+
+
+
+<hr>
 
             <div class="container-fluid">
             <div class="row">
