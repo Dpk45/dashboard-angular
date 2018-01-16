@@ -15,7 +15,11 @@
 
 a.applyStyle:link, a.applyStyle:visited{
 	text-decoration: none;
-	color: black;
+	color:#333;
+	display:block;
+	padding:8px;
+	/* font-weight: 400; */
+	/* padding: 3px, 20px; */
 }
 
 a.applyStyle:hover {
