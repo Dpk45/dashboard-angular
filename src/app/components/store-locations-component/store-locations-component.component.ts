@@ -35,20 +35,26 @@ export class StoreLocationComponent implements OnInit {
       console.log("res _storeLocationService>>>>>>>>", res)
       if(Object.keys(res.data).length){
         this.store_locations = res.data;
+        this.sortedData = res.data;
       }
       
     })
   }
 
   sortData(sort: Sort) {
+    console.log(">>>>> sort >>>>>>>", sort)
     const data = this.store_locations.slice();
+    console.log(" this.store_locations >>>>>", this.store_locations);
+    console.log(" data to sort >>>>>", data);
     if (!sort.active || sort.direction == '') {
-      this.sortedData = data;
+      // this.sortedData = data;
       console.log("this.sorted data ...", this.sortedData)
-      return;
+      return data;
     }
 
-    this.sortedData = data.sort((a, b) => {
+    return this.sortedData = data.sort((a, b) => {
+      // console.log("a >>>>>>>>.", a)
+      // console.log("b >>>>>>>>..", b)
       let isAsc = sort.direction == 'asc';
       switch (sort.active) {
         case 'name': return compare(a.name, b.name, isAsc);
@@ -61,7 +67,9 @@ export class StoreLocationComponent implements OnInit {
     });
 
     function compare(a, b, isAsc) {
-      return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+      let x = (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+      console.log("x >>>>>>>>>>", x)
+      return x;
     }
   }
   
