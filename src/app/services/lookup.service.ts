@@ -45,7 +45,7 @@ export class LookupService {
   //get data from table style
   getStyle(brand) {
     brand = brand + "_dev";
-    const _path: string = (this.baseUrl + '/lookup/style?key=' + brand)
+    const _path: string = (this.baseUrl + '/lookup/styles?key=' + brand)
     return this._httpClient.get(_path)
     .map((res: any) => {
       return res;
@@ -68,7 +68,7 @@ updateStyle(brand, editedStyleData, styleId) {
   brand = brand + "_dev";
   let body: any = JSON.stringify(editedStyleData)
   console.log("body in updated>>>>>>>>............",body)
-  const _path: string = (this.baseUrl + '/lookup/frame_colors/' + styleId + '?key=' + brand)
+  const _path: string = (this.baseUrl + '/lookup/styles/' + styleId + '?key=' + brand)
   return this._httpClient.put(_path, body)
   .map((res: any) => {
     return res;

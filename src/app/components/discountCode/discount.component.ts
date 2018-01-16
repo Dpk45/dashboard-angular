@@ -68,7 +68,7 @@ export class DiscountComponent {
     }
   }
 
-// check expiation date 
+// check expiation date
   expiredDate(expirationDate) {
     this.TodayDate =  moment(this.TodayDate).format('YYYY-MM-DD');
     if (!expirationDate) {
@@ -117,19 +117,21 @@ export class DiscountComponent {
     .subscribe((res:any) => {
       if (res.code == 200) {
         this.isSuccess = true;
-        this.router.navigate(['/discount', this.brand]);
+        location.reload();
       }
     },
     (err) => {
       console.log('error>>>>>>>>>>>>', err);
     }
   );
-  discount_code.value = '';
-  amount.value = '';
-  quantity.value = '';
-  discount_type.value = '';
-  discount_reason.value = '';
-  date.value = '';
+  // discount_code.value = '';
+  // amount.value = '';
+  // quantity.value = '';
+  // discount_type.value = '';
+  // discount_reason.value = '';
+  // date.value = '';
+  // location.reload();
+  // this.isSuccess = true;
 }
 
 // findOne discount_code

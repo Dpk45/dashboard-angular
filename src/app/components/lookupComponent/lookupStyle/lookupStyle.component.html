@@ -65,9 +65,9 @@
                   </tr>
 
                   <tr>
-                    <td><input type="text"  placeholder="New" name="style_id" class="form-control" [(ngModel)]="frame_id" disabled= disabled required></td>
-                    <td><input type="text"  name="style_name" class="form-control" [(ngModel)]="frame_name" required></td>
-                    <td><select name="style_active" class="form-control" [(ngModel)]="frame_active">
+                    <td class="col-md-3"><input type="text"  placeholder="New" name="style_id" class="form-control" [(ngModel)]="frame_id" disabled= disabled required></td>
+                    <td class="col-md-5"><input type="text"  name="style_name" class="form-control" [(ngModel)]="frame_name" required></td>
+                    <td class="col-md-3"><select name="style_active" class="form-control" [(ngModel)]="frame_active">
                       <option  [ngValue]="1">Active</option>
                       <option [ngValue]="0">InActive</option>
                     </select>
@@ -102,9 +102,9 @@
 
             <tr *ngFor="let f of styleData | filter:filter">
               <form role="form" #fm="ngForm" (ngSubmit)="updatStyle(fm.value)">
-                        <td class="col-md-5"><input type="text"  name="update_style_id" class="form-control" [(ngModel)]="f['id']" readonly="readonly" required></td>
-                        <td class="col-md-5"><input type="text"  name="update_style_name" class="form-control" [(ngModel)]="f['name']" required></td>
-                        <td class="col-md-3"><select name="update_style_active" class="form-control" [(ngModel)]="f['active_flag']" required>
+                        <td class="col-md-3"><input type="text"  name="update_style_id" class="form-control" [(ngModel)]="f['id']" readonly="readonly" required></td>
+                        <td class="col-md-6"><input type="text"  name="update_style_name" class="form-control" [(ngModel)]="f['name']" required></td>
+                        <td class="col-md-4"><select name="update_style_active" class="form-control" [(ngModel)]="f['active_flag']" required>
                           <option  [ngValue]="1">Active</option>
                           <option [ngValue]="0">InActive</option>
                         </select>

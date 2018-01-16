@@ -14,6 +14,7 @@ export class InventoryService {
   getInventoryByProduct(productId, brand) {
     brand = brand + "_dev";
     const _path: string = (this.baseUrl + '/products/' + productId + '/get_inventory?key=' + brand)
+    console.log("-path>>>>>>>>>>>>>", _path)
     return this._httpClient.get(_path)
     .map((res:any) => {
       return res;

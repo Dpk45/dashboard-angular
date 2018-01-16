@@ -50,8 +50,9 @@ this._lookupService.createFrameColor(this.brand, this.frameDataValues).subscribe
   console.log("resposne >>>>>>>>>>>>>>",res)
   if(res.code == 200) {
   //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
-    location.reload();
-//  this.frameDataValues = '';
+   location.reload();
+ //this.frameDataValues['name'] = '';
+ //this.frameDataValues['active_flag'] = '';
   }
 },
 (err) => {
@@ -71,7 +72,7 @@ updateFrameColor(form) {
     console.log("resposne >>>>>>>>>>>>>>",res)
     if(res.code == 200) {
       //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
-      location.reload();
+  //    location.reload();
     }
   },
   (err) => {

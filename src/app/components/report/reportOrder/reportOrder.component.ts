@@ -28,6 +28,7 @@ ngOnInit() {
 getOrderList() {
   this._reportService.getOrderListService(this.brand).subscribe(res => {
   this.order_list = res.data;
+//  console.log("this.order_list one >>>>>>>>>>>>>>>>>>>>>>>>>.", JSON.stringify(this.order_list[0]))
   },
   (err) => {
     console.log('error>>>>>>>>>>>>**********888', err);

@@ -65,9 +65,9 @@
                   </tr>
 
                   <tr>
-                    <td><input type="text"  placeholder="New" name="frame_id" class="form-control" [(ngModel)]="frame_id" disabled= disabled required></td>
-                    <td><input type="text"  name="frame_name" class="form-control" [(ngModel)]="frame_name" required></td>
-                    <td><select name="frame_active" class="form-control" [(ngModel)]="frame_active">
+                    <td class="col-md-3"><input type="text"  placeholder="New" name="frame_id" class="form-control" [(ngModel)]="frame_id" disabled= disabled required></td>
+                    <td class="col-md-5"><input type="text"  name="frame_name" class="form-control" [(ngModel)]="frame_name" required></td>
+                    <td class="col-md-3"><select name="frame_active" class="form-control" [(ngModel)]="frame_active">
                       <option  [ngValue]="1">Active</option>
                       <option [ngValue]="0">InActive</option>
                     </select>
@@ -103,11 +103,11 @@
             <tr *ngFor="let f of frameData | filter:filter">
               <form role="form" #fm="ngForm" (ngSubmit)="updateFrameColor(fm.value)">
                       <!-- <td disabled= disabled >{{frame.id}}</td> -->
-                        <td class="col-md-5"><input type="text"  name="update_frame_id" class="form-control" [(ngModel)]="f['id']" readonly="readonly" required></td>
+                        <td class="col-md-3"><input type="text"  name="update_frame_id" class="form-control" [(ngModel)]="f['id']" readonly="readonly" required></td>
                         <!-- <td>{{frame.name}}</td> -->
-                        <td class="col-md-5"><input type="text"  name="update_frame_name" class="form-control" [(ngModel)]="f['name']" required></td>
+                        <td class="col-md-6"><input type="text"  name="update_frame_name" class="form-control" [(ngModel)]="f['name']" required></td>
                         <!-- <td>{{frame.active_flag}}</td> -->
-                        <td class="col-md-3"><select name="update_frame_active" class="form-control" [(ngModel)]="f['active_flag']" required>
+                        <td class="col-md-4"><select name="update_frame_active" class="form-control" [(ngModel)]="f['active_flag']" required>
                           <option  [ngValue]="1">Active</option>
                           <option [ngValue]="0">InActive</option>
                         </select>

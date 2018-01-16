@@ -52,7 +52,7 @@ this._lookupService.createStyle(this.brand, this.styleDataValues).subscribe((res
   if(res.code == 200) {
   //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
     location.reload();
-//  this.frameDataValues = '';
+  //this.styleDataValues = '';
   }
 },
 (err) => {
@@ -69,10 +69,10 @@ updatStyle(form) {
   }
 //  console.log("  this.editFrameData>>>>>>>>>>>>>>>>", form.update_frame_id)
   this._lookupService.updateStyle(this.brand, this.editStyleData, form.update_style_id).subscribe((res: any) => {
-    console.log("resposne >>>>>>>>>>>>>>",res)
+    console.log("resposne >>>>>>>>>>>>>>++++++++++++++++",res)
     if(res.code == 200) {
       //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
-      location.reload();
+    //  location.reload();
     }
   },
   (err) => {
