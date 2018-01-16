@@ -25,6 +25,7 @@ import { ProductComponent } from './components/productComponent/product.componen
 import { NewProductComponent } from './components/productComponent/newProductComponent/newProduct.component';
 import { ProductCollectionComponent } from './components/productComponent/ProductCollection/productCollection.component';
 import { LetterPressPreviewComponent } from './components/Letterpress/letterPressPreview.component';
+import { UserDetailComponent } from './components/user-component/user-detail/user-detail.component';
 //import { NewCollectionComponent } from './components/productComponent/ProductCollection/newProductCollection.component';
 
 const appRoutes: Routes =
@@ -40,9 +41,19 @@ const appRoutes: Routes =
       canActivate: [AuthGuard]
     },
     {
-      path: "users/:brand",
-      component: UserComponent,
-      canActivate: [AuthGuard]
+      path: "",
+      // component: UserComponent,
+      canActivate: [AuthGuard],
+      children: [
+        {
+          path: "users/:brand",
+          component: UserComponent
+        },
+        {
+          path: "users/:brand/:email/view",
+          component: UserDetailComponent
+        }
+      ]
     },
     {
       path: "orders",

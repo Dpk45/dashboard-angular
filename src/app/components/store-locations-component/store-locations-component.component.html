@@ -16,15 +16,15 @@
 
       <h4 align="right">Search <input type="text" name="search" [(ngModel)]="filter"></h4>
 
-      <table class="table table-bordered table-condensed display" id="stores">
+      <table  matSort (matSortChange)="sortData($event)" class="table table-bordered table-condensed display" id="stores">
         <thead>
           <tr>
             <th width="3%">&nbsp;</th>
-            <th width="15%">Kiosk Id</th>
-            <th width="15%">Name</th>
-            <th width="20%">Address</th>
-            <th width="15%">Phone</th>
-            <th width="">Pins</th>
+            <th mat-sort-header="kiosk_id" width="15%">Kiosk Id</th>
+            <th mat-sort-header="name" width="15%">Name</th>
+            <th mat-sort-header="address" width="20%">Address</th>
+            <th mat-sort-header="phone"width="15%">Phone</th>
+            <th mat-sort-header="pins"width="">Pins</th>
           </tr>
         </thead>
         <tbody>
@@ -36,8 +36,12 @@
             <td>{{ store_location['name'] }}</td>
             <td>
               <address>
-                <strong>{{ store_location['address']['name'] }}</strong><br> {{ store_location['address']['address1'] }}<br>                {{ store_location['address']['address2'] }}<br> {{ store_location['address']['city'] }}, {{ store_location['address']['state']
-                }} - {{ store_location['address']['zip'] }}<br> {{ store_location['address']['country'] }}
+                <strong>{{ store_location['address']['name'] }}</strong>
+                <br> {{ store_location['address']['address1'] }}
+                <br> {{ store_location['address']['address2'] }}
+                <br> {{ store_location['address']['city'] }}, {{ store_location['address']['state'] }} - {{ store_location['address']['zip']
+                }}
+                <br> {{ store_location['address']['country'] }}
               </address>
             </td>
             <td>{{ store_location['address']['phone'] }}</td>

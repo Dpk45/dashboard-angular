@@ -57,7 +57,9 @@ import { ProductCollectionComponent } from './components/productComponent/Produc
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
+import { MatTableModule,  MatSortModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { UserDetailComponent } from './components/user-component/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     HtkComponent,
     EyewearProcessComponent,
     OrderDetailComponent,
-    ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent
+    ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent, UserDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +96,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatTableModule,  MatSortModule,
     BrowserAnimationsModule, AngularMultiSelectModule
   ],
   providers: [

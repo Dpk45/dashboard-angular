@@ -7,3 +7,6 @@ h4 {
     margin-right: 0;
     font-weight: bold;
 }
+.mat-sort-header-container {
+    align-items: center;
+  }
