@@ -36,6 +36,7 @@ import { ErpService } from './services/sendErp.service'
 import { InventoryService } from './services/inventory.service'
 import { HomeService } from './services/home.service'
 import { ProductService } from './services/product.service'
+import { LookupService } from './services/lookup.service'
 
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component';
 import { DiscountComponent } from './components/discountCode/discount.component';
@@ -54,10 +55,15 @@ import { InventoryComponent } from './components/inventoryComponent/inventory.co
 import { ProductComponent } from './components/productComponent/product.component';
 import { NewProductComponent } from './components/productComponent/newProductComponent/newProduct.component';
 import { ProductCollectionComponent } from './components/productComponent/ProductCollection/productCollection.component';
+import { FrameComponent } from './components/lookupComponent/lookupFrame/lookupFrame.component';
+import {StyleComponent} from './components/lookupComponent/lookupStyle/lookupStyle.component';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
+import { MatTableModule,  MatSortModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { UserDetailComponent } from './components/user-component/user-detail/user-detail.component';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -79,11 +85,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     EyewearComponent,
     HtkComponent,
     EyewearProcessComponent,
-    OrderDetailComponent,
-    ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent
+    UserDetailComponent,
+    OrderDetailComponent, StyleComponent,
+    ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent, FrameComponent
   ],
   imports: [
     BrowserModule,
+    OrderModule,
     FormsModule,
     HttpModule,
     HttpClientModule,
@@ -94,6 +102,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatTableModule,  MatSortModule,
     BrowserAnimationsModule, AngularMultiSelectModule
   ],
   providers: [
@@ -117,7 +126,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     DiscountService,
   InventoryService,
   HomeService,
-ProductService],
+ProductService,
+LookupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

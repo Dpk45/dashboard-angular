@@ -143,9 +143,9 @@ export class ProductComponent  {
            for (let i = 0; i < this.product.tags.length; i++) {
            this.tags.push({"id": i, "itemName": this.product.tags[i]});
          }
-        for(const i in this.product.assets) {
-              this.assest.push({"id": 1, "itemName": i})
-          }
+        // for(const i in this.product.assets) {
+        //       this.assest.push({"id": 1, "itemName": i})
+        //   }
         }
     },
     (err) => {

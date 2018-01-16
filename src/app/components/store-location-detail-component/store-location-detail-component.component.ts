@@ -113,13 +113,12 @@ export class StoreLocationDetailComponent implements OnInit {
         "pin_codes": [],
         "is_cc_authorized": false
       }
-      console.log(" tparams  vvvvvvvvvv", params)
     })
   }
 
   getStoreLocation(){
     this._storeLocationService.getStoreLocation(this.kioskId, this.brand).subscribe(res=>{
-      console.log("res >>>>>>", res)
+      console.log("res  getStoreLocation >>>>>>", res)
       this.store = res;
     })
   }
@@ -154,6 +153,7 @@ export class StoreLocationDetailComponent implements OnInit {
     this.store.address.phone = formData.phone;
     this.store.address.address1 = formData.address1;
     this.store.address.city = formData.city;
+    this.store.address.state = formData.state;
     this.store.address.zip = formData.zip;
     this.store.address.country = formData.country
     this.store.is_cc_authorized = formData.is_cc_authorized
@@ -166,7 +166,15 @@ export class StoreLocationDetailComponent implements OnInit {
 
   addNewPin(formData){
     console.log("formData >>>> in addNewPin pin", formData.new_pin)
-       this.store.pin_codes[0] = this.store.pin_codes[0].concat(formData.new_pin+",") // need to check it once not the correc t way of pin handling in db
+    if(this.store.pin_codes[0] == ''){
+      console.log("this.store.pin_codes.length == 0", this.store)
+      this.store.pin_codes[0] = this.store.pin_codes[0].concat(formData.new_pin)
+    }else{
+      this.store.pin_codes[0] = this.store.pin_codes[0].concat("," + formData.new_pin) // need to check it once not the correc t way of pin handling in db
+    }
+
+    
+       
      console.log(" this.store addNewPin >>>>..",  this.store)
     this._storeLocationService.updateStoreLocation( this.store, this.kioskId, this.brand).subscribe(res=>{
       console.log("updated pin of store location successfully.............")
