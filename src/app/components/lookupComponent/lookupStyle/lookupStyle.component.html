@@ -49,3 +49,71 @@
     <!--/.nav-collapse -->
   </div>
 </nav>
+
+<div class="container">
+  <h5><input type="text" name="search" placeholder="filter" class="form-control" [(ngModel)]="filter"></h5>
+  <br>
+  <form role="form" #form="ngForm" (ngSubmit)="createStyle(form.value)">
+      <div class="table-responsive">
+          <table class="table table-bordered table-condensed table-hover display" style="width:100%">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Active</th>
+                      <th>Action</th>
+                  </tr>
+
+                  <tr>
+                    <td><input type="text"  placeholder="New" name="style_id" class="form-control" [(ngModel)]="frame_id" disabled= disabled required></td>
+                    <td><input type="text"  name="style_name" class="form-control" [(ngModel)]="frame_name" required></td>
+                    <td><select name="style_active" class="form-control" [(ngModel)]="frame_active">
+                      <option  [ngValue]="1">Active</option>
+                      <option [ngValue]="0">InActive</option>
+                    </select>
+                  </td>
+                  <td><input type="submit" class="form-control" value="Add"></td>
+                  </tr>
+                  </thead>
+
+                  <!-- <tr *ngFor="let frame of frameData | filter:filter"> -->
+                      <!-- <td disabled= disabled >{{frame.id}}</td> -->
+                        <!-- <td><input type="text"  name="update_frame_id" #update_frame_id class="form-control" [(ngModel)]="frame.id" disabled= disabled required></td> -->
+                        <!-- <td>{{frame.name}}</td> -->
+                        <!-- <td><input type="text"  name="update_frame_name" #update_frame_name class="form-control" [(ngModel)]="frame.name" required></td> -->
+                        <!-- <td>{{frame.active_flag}}</td> -->
+                        <!-- <td><select name="update_frame_active" class="form-control" #update_frame_active [(ngModel)]="frame.active_flag" required> -->
+                          <!-- <option  value="1">Active</option>
+                          <option value="0">InActive</option>
+                        </select>
+                      </td>
+                        <td><input type="submit" class="form-control" (click)="updateFrameColor(update_frame_id, update_frame_name, update_frame_active)" value="Update"></td>
+                  </tr> -->
+
+            </table>
+      </div>
+  </form>
+<!-- </div> -->
+<!-- <div class="container"> -->
+
+      <div class="table-responsive">
+          <table class="table table-bordered table-condensed table-hover display" style="width:100%">
+
+
+            <tr *ngFor="let f of styleData | filter:filter">
+              <form role="form" #fm="ngForm" (ngSubmit)="updatStyle(fm.value)">
+                        <td class="col-md-5"><input type="text"  name="update_style_id" class="form-control" [(ngModel)]="f['id']" readonly="readonly" required></td>
+                        <td class="col-md-5"><input type="text"  name="update_style_name" class="form-control" [(ngModel)]="f['name']" required></td>
+                        <td class="col-md-3"><select name="update_style_active" class="form-control" [(ngModel)]="f['active_flag']" required>
+                          <option  [ngValue]="1">Active</option>
+                          <option [ngValue]="0">InActive</option>
+                        </select>
+                      </td>
+                        <td class="myTab1"><input type="submit" class="form-control" value="Update"></td>
+                  </form>
+                  </tr>
+
+            </table>
+      </div>
+
+</div>

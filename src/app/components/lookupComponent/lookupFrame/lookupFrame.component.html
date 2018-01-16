@@ -103,16 +103,16 @@
             <tr *ngFor="let f of frameData | filter:filter">
               <form role="form" #fm="ngForm" (ngSubmit)="updateFrameColor(fm.value)">
                       <!-- <td disabled= disabled >{{frame.id}}</td> -->
-                        <td><input type="text"  name="update_frame_id" class="form-control" [(ngModel)]="f['id']" readonly="readonly" required></td>
+                        <td class="col-md-5"><input type="text"  name="update_frame_id" class="form-control" [(ngModel)]="f['id']" readonly="readonly" required></td>
                         <!-- <td>{{frame.name}}</td> -->
-                        <td><input type="text"  name="update_frame_name" class="form-control" [(ngModel)]="f['name']" required></td>
+                        <td class="col-md-5"><input type="text"  name="update_frame_name" class="form-control" [(ngModel)]="f['name']" required></td>
                         <!-- <td>{{frame.active_flag}}</td> -->
-                        <td><select name="update_frame_active" class="form-control" [(ngModel)]="f['active_flag']" required>
+                        <td class="col-md-3"><select name="update_frame_active" class="form-control" [(ngModel)]="f['active_flag']" required>
                           <option  [ngValue]="1">Active</option>
                           <option [ngValue]="0">InActive</option>
                         </select>
                       </td>
-                        <td><input type="submit" class="form-control" value="Update"></td>
+                        <td class="myTab1"><input type="submit" class="form-control" value="Update"></td>
                   </form>
                   </tr>
 

@@ -52,4 +52,26 @@ export class LookupService {
     });
   }
 
+// create style
+createStyle(brand, styleData) {
+  brand = brand + "_dev";
+  let body: any = JSON.stringify(styleData)
+  const _path: string = (this.baseUrl + '/lookup/styles?key=' + brand)
+  return this._httpClient.post(_path, body)
+  .map((res: any) => {
+    return res;
+  });
+}
+
+// update style
+updateStyle(brand, editedStyleData, styleId) {
+  brand = brand + "_dev";
+  let body: any = JSON.stringify(editedStyleData)
+  console.log("body in updated>>>>>>>>............",body)
+  const _path: string = (this.baseUrl + '/lookup/frame_colors/' + styleId + '?key=' + brand)
+  return this._httpClient.put(_path, body)
+  .map((res: any) => {
+    return res;
+  });
+}
 }
