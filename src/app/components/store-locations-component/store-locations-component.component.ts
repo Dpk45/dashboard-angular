@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { StoreLocationService } from "../../services/store-location.service"
+import {Sort} from '@angular/material';
 
 @Component({
   selector: 'store-location',
@@ -14,8 +15,11 @@ export class StoreLocationComponent implements OnInit {
   store_locations: any = [];
   p: number = 1;
   selectedValue = 10;
+  sortedData: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _storeLocationService: StoreLocationService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private _storeLocationService: StoreLocationService) {
+    // this.sortedData = this.store_locations.slice();
+   }
 
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
@@ -35,6 +39,34 @@ export class StoreLocationComponent implements OnInit {
       
     })
   }
+
+  sortData(sort: Sort) {
+    const data = this.store_locations.slice();
+    if (!sort.active || sort.direction == '') {
+      this.sortedData = data;
+      console.log("this.sorted data ...", this.sortedData)
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      let isAsc = sort.direction == 'asc';
+      switch (sort.active) {
+        case 'name': return compare(a.name, b.name, isAsc);
+        case 'address': return compare(+a.address, +b.address, isAsc);
+        case 'kiosk_id': return compare(+a.kiosk_id, +b.kiosk_id, isAsc);
+        case 'phone': return compare(+a.phone, +b.phone, isAsc);
+        case 'pins': return compare(+a.pins, +b.pins, isAsc);
+        default: return 0;
+      }
+    });
+
+    function compare(a, b, isAsc) {
+      return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+    }
+  }
+  
+ 
+
 
 
 }
