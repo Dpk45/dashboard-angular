@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit{
     }
 
     ngOnInit(){
-        
+
     }
 
     private dashLogin(email, password) {
@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit{
                     console.log("in if >>>>>>>>")
                     this._storageService.setItem("current_user", JSON.stringify(res.data))
                     this.router.navigate(['/home']);
+                    location.reload();
                 }
             },
             (err) => {

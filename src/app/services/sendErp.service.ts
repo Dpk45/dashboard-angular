@@ -11,9 +11,11 @@ export class ErpService {
   }
  // create erp_integration
   sendErpRequest(selectedValue, performedAt, payload, brand) {
+    console.log("")
     brand = brand + "_dev";
     const _path: string = (this.baseUrl + '/erp_integration?key=' + brand),
     body: any = {'action': selectedValue, 'performed_at': performedAt, 'payload': payload}
+    console.log("body>>>>>>>>>>>>>>>......", JSON.stringify(body))
     return this._http.post(_path, body)
     .map(res => {
       return res.json();
