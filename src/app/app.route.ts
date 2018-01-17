@@ -14,21 +14,21 @@ import { ReportComponent } from './components/report/report.component';
 import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
 import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
 import { ErpComponent } from './components/sendErpRequest/sendERP.component';
-import { DiscountComponent } from './components/discountCode/discount.component';
-import { LetterPressComponent } from './components/Letterpress/letterPress.component';
+import { DiscountComponent } from './components/discountCode-component/discount.component';
+import { LetterPressComponent } from './components/letterpress-component/letterPress.component';
 import { EyewearComponent } from './components/eyewear-component/eyewear-component.component';
 import { EyewearProcessComponent } from './components/eyewear-component/eyewear-process-component/eyewear-process-component.component';
 import { HtkComponent } from './components/htk-component/htk-component.component';
 import { OrderDetailComponent } from './components/order-detail-component/order-detail-component.component';
-import { InventoryComponent } from './components/inventoryComponent/inventory.component';
+import { InventoryComponent } from './components/inventory-component/inventory.component';
 import { ProductComponent } from './components/productComponent/product.component';
 import { NewProductComponent } from './components/productComponent/newProductComponent/newProduct.component';
 import { ProductCollectionComponent } from './components/productComponent/ProductCollection/productCollection.component';
-import { LetterPressPreviewComponent } from './components/Letterpress/letterPressPreview.component';
+import { LetterPressPreviewComponent } from './components/letterpress-component/letterPressPreview.component';
 import { UserDetailComponent } from './components/user-component/user-detail/user-detail.component';
 //import { NewCollectionComponent } from './components/productComponent/ProductCollection/newProductCollection.component';
-import {StyleComponent} from './components/lookupComponent/lookupStyle/lookupStyle.component';
-import { FrameComponent } from './components/lookupComponent/lookupFrame/lookupFrame.component';
+import { StyleComponent } from './components/lookup-component/lookupStyle/lookupStyle.component';
+import { FrameComponent } from './components/lookup-component/lookupFrame/lookupFrame.component';
 
 const appRoutes: Routes =
   [
@@ -43,16 +43,15 @@ const appRoutes: Routes =
       canActivate: [AuthGuard]
     },
     {
-      path: "",
-      // component: UserComponent,
+      path: "users/:brand",
       canActivate: [AuthGuard],
       children: [
         {
-          path: "users/:brand",
+          path: "",
           component: UserComponent
         },
         {
-          path: "users/:brand/:email/view",
+          path: ":email/view",
           component: UserDetailComponent
         }
       ]
