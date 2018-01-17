@@ -27,7 +27,7 @@ export class ErpComponent {
   erpReport(form) {
     this.selectedValue = form.action;
     this.performedAt = form.performed_at;
-    this.payload = form.payload;
+    this.payload = JSON.parse(form.payload);
     this._erpService.sendErpRequest(this.selectedValue, this.performedAt, this.payload, this.brand).subscribe(res => {
       console.log("response>>>>>>>>>>>>>.",res)
       if(res.code == 200){
@@ -39,6 +39,6 @@ export class ErpComponent {
     (err) => {
       console.log('error>>>>>>>>>>>>', err);
     })
-  }
+}
 
 }

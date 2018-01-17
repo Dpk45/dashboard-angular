@@ -55,14 +55,13 @@
 
         <div class="form-group">
           <label class="control-label col-sm-2">State</label>
-          <!--<div ng-repeat="state in state_list">{{state}}</div>-->
-          <!--<div class="controls col-sm-4">
-            <select id="country" name="state" class="input-xlarge form-control"  required>
-                <option     ng-repeat="state in state_list"
-                            [(ngModel)]="state.key"
+          <div class="controls col-sm-4">
+            <select id="country" name="state" class="input-xlarge form-control"  [(ngModel)] ="store['address']['state']" required>
+                <option   *ngFor="let state of state_list"
+                            [ngValue]="state.key"
                             ng-selected="state.key == store['address']['state']"> {{ state.value }} </option>
             </select>
-        </div>-->
+        </div>
           <label class="control-label col-sm-2">Zip</label>
         <div class="controls col-sm-4">
             <input id="zip" name="zip" type="text" placeholder="Zip" class="form-control input-xlarge" [(ngModel)]="
@@ -70,7 +69,7 @@
         </div>
      </div>
 
-     
+
           <div class="form-group">
             <label class="control-label col-sm-2">Country</label>
             <div class="controls col-sm-10">
@@ -237,7 +236,7 @@
             <button type="submit" class="btn btn-default">Submit</button>
           </div>
     </div>
-    
+
 
   </form>
 </div>

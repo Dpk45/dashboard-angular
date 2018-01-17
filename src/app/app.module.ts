@@ -1,9 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+//import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { routing, appRoutingProviders } from "./app.route"
+import { routing, appRoutingProviders } from "./app.route";
+//import { MaterialModule } from '@angular/material';
+//import { MatSelectModule } from '@angular/material';
+//import { MultiselectDropdown } from './multiselect-dropdown';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 import { AuthGuard } from './_guards/auth.guard';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
@@ -30,12 +36,13 @@ import { ErpService } from './services/sendErp.service'
 import { InventoryService } from './services/inventory.service'
 import { HomeService } from './services/home.service'
 import { ProductService } from './services/product.service'
+import { LookupService } from './services/lookup.service'
 
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component';
 import { DiscountComponent } from './components/discountCode/discount.component';
 import { LetterPressComponent } from './components/Letterpress/letterPress.component';
+import { LetterPressPreviewComponent } from './components/Letterpress/letterPressPreview.component';
 import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component';
-import { OrdersComponent } from './components/orders-component/orders-component.component';
 import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
 import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
 import { ReportComponent } from './components/report/report.component'
@@ -47,10 +54,20 @@ import { OrderDetailComponent } from './components/order-detail-component/order-
 import { InventoryComponent } from './components/inventoryComponent/inventory.component';
 import { ProductComponent } from './components/productComponent/product.component';
 import { NewProductComponent } from './components/productComponent/newProductComponent/newProduct.component';
+import { ProductCollectionComponent } from './components/productComponent/ProductCollection/productCollection.component';
+import { FrameComponent } from './components/lookupComponent/lookupFrame/lookupFrame.component';
+import {StyleComponent} from './components/lookupComponent/lookupStyle/lookupStyle.component';
+import { MatFormFieldModule } from '@angular/material';
+import { MatInputModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { UserDetailComponent } from './components/user-component/user-detail/user-detail.component';
+import { OrderByPipe } from './directives/orderBy.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    OrderByPipe,
     LoginComponent,
     HomeComponent,
     HeaderComponent,
@@ -65,12 +82,12 @@ import { NewProductComponent } from './components/productComponent/newProductCom
     ReportComponent,
     ReportOrderComponent,
     ReportEmailComponent,
-    OrdersComponent,
     EyewearComponent,
     HtkComponent,
     EyewearProcessComponent,
-    OrderDetailComponent,
-    ProductComponent, NewProductComponent
+    UserDetailComponent,
+    OrderDetailComponent, StyleComponent,
+    ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent, FrameComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +96,12 @@ import { NewProductComponent } from './components/productComponent/newProductCom
     HttpClientModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    routing
+    routing,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    BrowserAnimationsModule, AngularMultiSelectModule
   ],
   providers: [
     appRoutingProviders,
@@ -102,7 +124,8 @@ import { NewProductComponent } from './components/productComponent/newProductCom
     DiscountService,
   InventoryService,
   HomeService,
-ProductService],
+ProductService,
+LookupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

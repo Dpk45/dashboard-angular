@@ -23,6 +23,12 @@ import { OrderDetailComponent } from './components/order-detail-component/order-
 import { InventoryComponent } from './components/inventoryComponent/inventory.component';
 import { ProductComponent } from './components/productComponent/product.component';
 import { NewProductComponent } from './components/productComponent/newProductComponent/newProduct.component';
+import { ProductCollectionComponent } from './components/productComponent/ProductCollection/productCollection.component';
+import { LetterPressPreviewComponent } from './components/Letterpress/letterPressPreview.component';
+import { UserDetailComponent } from './components/user-component/user-detail/user-detail.component';
+//import { NewCollectionComponent } from './components/productComponent/ProductCollection/newProductCollection.component';
+import {StyleComponent} from './components/lookupComponent/lookupStyle/lookupStyle.component';
+import { FrameComponent } from './components/lookupComponent/lookupFrame/lookupFrame.component';
 
 const appRoutes: Routes =
   [
@@ -37,9 +43,19 @@ const appRoutes: Routes =
       canActivate: [AuthGuard]
     },
     {
-      path: "users/:brand",
-      component: UserComponent,
-      canActivate: [AuthGuard]
+      path: "",
+      // component: UserComponent,
+      canActivate: [AuthGuard],
+      children: [
+        {
+          path: "users/:brand",
+          component: UserComponent
+        },
+        {
+          path: "users/:brand/:email/view",
+          component: UserDetailComponent
+        }
+      ]
     },
     {
       path: "orders",
@@ -57,14 +73,14 @@ const appRoutes: Routes =
               component: EyewearProcessComponent
             },
             {
+              path: "htk/processing",
+              component: HtkComponent
+            },
+            {
               path: ":brand/:order_id/view",
               component: OrderDetailComponent
             }
           ]
-        },
-        {
-          path: "htk/processing",
-          component: HtkComponent
         }
       ]
     },
@@ -107,22 +123,59 @@ const appRoutes: Routes =
         }]
     },
     {
-      path: 'letterpress/:brand',
+      path: '',
       canActivate: [AuthGuard],
       children: [
         {
-          path: "",
+          path: "letterpress/:brand",
           component: LetterPressComponent
         },
         {
-          path: ":name",
+          path: "letterpress/:brand/:name",
           component: LetterPressComponent
+        },
+        {
+          path: "letterpress/:brand/:name/preview",
+          component: LetterPressPreviewComponent
         }
       ]
     },
+
     {
-      path: "error",
-      component: ErrorComponent
+      path: '',
+      canActivate: [AuthGuard],
+      children: [
+        {
+          path: "lookup/frame_colors/:brand",
+          component: FrameComponent
+        },
+        {
+          path: "lookup/styles/:brand",
+          component: StyleComponent
+        }
+        // ,
+        // {
+        //   path: "letterpress/:brand/:name/preview",
+        //   component: LetterPressPreviewComponent
+        // }
+      ]
+    },
+    {
+      // path: "error",
+      // component: ErrorComponent
+
+      path: '',
+      // component: ReportComponent,
+      canActivate: [AuthGuard],
+      children: [
+        {
+          path: "error",
+          component: ErrorComponent
+        },
+        {
+          path: "error/:brand/:order_id",
+          component: ErrorComponent
+        }]
     },
 
     {
@@ -147,7 +200,7 @@ const appRoutes: Routes =
     },
     {
       path: "",
-    //  component: ProductComponent,
+      //  component: ProductComponent,
       canActivate: [AuthGuard],
       children: [
         {
@@ -161,8 +214,20 @@ const appRoutes: Routes =
         {
           path: 'product/:brand/:product_id',
           component: ProductComponent
+        },
+        {
+          path: 'product_collection/:brand',
+          component: ProductCollectionComponent
+        },
+        {
+          path: 'product_collection/:brand/:slug',
+          component: ProductCollectionComponent
+        },
+        {
+          path: 'product_collection/:brand/new_product_collection',
+          component: ProductCollectionComponent
         }]
-      },
+    },
 
     {
       path: "inventory/:brand",

@@ -7,28 +7,45 @@
       <a [routerLink]="['/store_locations',brand,'new_store']">Create New Store</a>
       <h4>Show
         <select [(ngModel)]="selectedValue">
-                    <option [ngValue]="10">10</option>
-                    <option [ngValue]="25">25</option>
-                    <option [ngValue]="50">50</option>
-                    <option [ngValue]="100">100</option>
-                </select> Entries
+          <option [ngValue]="10">10</option>
+          <option [ngValue]="25">25</option>
+          <option [ngValue]="50">50</option>
+          <option [ngValue]="100">100</option>
+        </select> Entries
       </h4>
 
-      <h4 align="right">Search <input type="text" name="search" [(ngModel)]="filter"></h4>
+      <h4 align="right">Search
+        <input type="text" name="search" [(ngModel)]="filter">
+      </h4>
 
-      <table class="table table-bordered table-condensed display" id="stores">
+      <table width="100%" class="table table-bordered table-condensed display" id="stores">
         <thead>
           <tr>
             <th width="3%">&nbsp;</th>
-            <th width="15%">Kiosk Id</th>
-            <th width="15%">Name</th>
-            <th width="20%">Address</th>
-            <th width="15%">Phone</th>
-            <th width="">Pins</th>
+            <th class="pointer" (click)="sort('kiosk_id')" width="15%">
+              <i class="fa" [ngClass]="{'fa-sort': column != 'kiosk_id', 
+                'fa-sort-asc': (column == 'kiosk_id' && !isDesc), 
+                'fa-sort-desc': (column == 'kiosk_id' && isDesc) }" aria-hidden="true"></i>Kiosk Id</th>
+            <th class="pointer" (click)="sort('name')" width="15%">
+              <i class="fa" [ngClass]="{'fa-sort': column != 'name', 
+                'fa-sort-asc': (column == 'name' && !isDesc), 
+                'fa-sort-desc': (column == 'name' && isDesc) }" aria-hidden="true"></i>Name</th>
+            <th class="pointer" (click)="sort('address')" width="20%">
+              <i class="fa" [ngClass]="{'fa-sort': column != 'address', 
+                'fa-sort-asc': (column == 'address' && !isDesc), 
+                'fa-sort-desc': (column == 'address' && isDesc) }" aria-hidden="true"></i>Address</th>
+            <th class="pointer" (click)="sort('phone')" width="15%">
+              <i class="fa" [ngClass]="{'fa-sort': column != 'phone', 
+                'fa-sort-asc': (column == 'phone' && !isDesc), 
+                'fa-sort-desc': (column == 'phone' && isDesc) }" aria-hidden="true"></i>Phone</th>
+            <th class="pointer" (click)="sort('pin_codes')" width="">
+              <i class="fa" [ngClass]="{'fa-sort': column != 'pin_codes', 
+                'fa-sort-asc': (column == 'pin_codes' && !isDesc), 
+                'fa-sort-desc': (column == 'pin_codes' && isDesc) }" aria-hidden="true"></i>Pins</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let store_location of store_locations | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: p }; let i=index">
+          <tr *ngFor="let store_location of store_locations |filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: p } | orderBy: {property: column, direction: direction}; let i=index">
             <td align="right">{{i+1}}.</td>
             <td>
               <a [routerLink]="['/store_locations', brand,store_location.kiosk_id]"> {{ store_location['kiosk_id'] }}</a>
@@ -36,8 +53,12 @@
             <td>{{ store_location['name'] }}</td>
             <td>
               <address>
-                <strong>{{ store_location['address']['name'] }}</strong><br> {{ store_location['address']['address1'] }}<br>                {{ store_location['address']['address2'] }}<br> {{ store_location['address']['city'] }}, {{ store_location['address']['state']
-                }} - {{ store_location['address']['zip'] }}<br> {{ store_location['address']['country'] }}
+                <strong>{{ store_location['address']['name'] }}</strong>
+                <br> {{ store_location['address']['address1'] }}
+                <br> {{ store_location['address']['address2'] }}
+                <br> {{ store_location['address']['city'] }}, {{ store_location['address']['state'] }} - {{ store_location['address']['zip']
+                }}
+                <br> {{ store_location['address']['country'] }}
               </address>
             </td>
             <td>{{ store_location['address']['phone'] }}</td>

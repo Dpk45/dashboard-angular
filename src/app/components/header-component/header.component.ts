@@ -8,6 +8,7 @@ import { UserService } from "../../services/user.service"
     moduleId:module.id,
   selector: 'header',
   templateUrl: "header.component.html",
+  styleUrls:["header.component.css"]
 })
 export class HeaderComponent implements OnInit {
   current_user: any;

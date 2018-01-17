@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {DiscountService} from '../../services/discount.service';
-import { Router, ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { DiscountService } from '../../services/discount.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 @Component({
   moduleId: module.id,
-  selector : 'app-discount',
+  selector: 'app-discount',
   templateUrl: 'discount.component.html'
 })
 
@@ -16,8 +16,8 @@ export class DiscountComponent {
   private discount_reason: any;
   private date: any;
   private dataValue: any;
-  private oneDiscountCode : any;
-  private updateDiscountCode : any;
+  private oneDiscountCode: any;
+  private updateDiscountCode: any;
   private token: any;
   private discount_list: any;
   private selectedValue: any = 10;
@@ -28,15 +28,20 @@ export class DiscountComponent {
   expirationDate: boolean = false;
   TodayDate: any = new Date();
   isSuccess: boolean;
+
+  isDesc: boolean = false;
+  column: string;
+  direction: number;
+
   constructor(private route: ActivatedRoute, private _discountService: DiscountService, private router: Router) {
 
   }
 
-  ngOnInit(){
-    this.route.params.subscribe((params:any) => {
+  ngOnInit() {
+    this.route.params.subscribe((params: any) => {
       this.brand = params.brand;
       this.getDiscounts();
-      if(params.discount_code) {
+      if (params.discount_code) {
         this.discount_code = params.discount_code;
         this.foundDiscountCode(this.discount_code);
       }
@@ -44,41 +49,46 @@ export class DiscountComponent {
   }
 
   // get discount_code
-  getDiscounts(){
+  getDiscounts() {
     this._discountService.getDiscount(this.brand).subscribe(res => {
       this.discount_list = res.data;
+      console.log("res.data >>>", res.data)
     },
-    (err) => {
-      console.log('error>>>>>>>>>>>>', err);
-    })
+      (err) => {
+        console.log('error>>>>>>>>>>>>', err);
+      })
   }
 
-// check for quantity available
+  // check for quantity available
   qtyAvailable(quantityAvailable) {
     if (!quantityAvailable) {
       const qtyAvailable: any = [];
-      for (let i = 0; i < this.discount_list.length; i++) {
-        if (this.discount_list[i].quantity > 0) {
-          qtyAvailable.push(this.discount_list[i]);
+      if (this.discount_list) {
+        for (let i = 0; i < this.discount_list.length; i++) {
+          if (this.discount_list[i].quantity > 0) {
+            qtyAvailable.push(this.discount_list[i]);
+          }
         }
+        this.discount_list = qtyAvailable;
       }
-      this.discount_list = qtyAvailable;
     } else {
       this.getDiscounts();
     }
   }
 
-// check expiation date 
+  // check expiation date
   expiredDate(expirationDate) {
-    this.TodayDate =  moment(this.TodayDate).format('YYYY-MM-DD');
+    this.TodayDate = moment(this.TodayDate).format('YYYY-MM-DD');
     if (!expirationDate) {
       const NotExpired: any = [];
-      for (let i = 0; i < this.discount_list.length; i++) {
-        if (this.discount_list[i].expiration_date >= this.TodayDate) {
-          NotExpired.push(this.discount_list[i]);
+      if(this.discount_list.length){
+        for (let i = 0; i < this.discount_list.length; i++) {
+          if (this.discount_list[i].expiration_date >= this.TodayDate) {
+            NotExpired.push(this.discount_list[i]);
+          }
         }
+        this.discount_list = NotExpired;
       }
-      this.discount_list = NotExpired;
     } else {
       this.getDiscounts();
     }
@@ -106,7 +116,7 @@ export class DiscountComponent {
   }
 
   // create discount code
-  createDiscount(discount_code: any , discount_type: any, amount: any, quantity: any, discount_reason: any, date: any){
+  createDiscount(discount_code: any, discount_type: any, amount: any, quantity: any, discount_reason: any, date: any) {
     this.discount_code = discount_code.value;
     this.discount_type = discount_type.value;
     this.amount = amount.value;
@@ -114,54 +124,64 @@ export class DiscountComponent {
     this.discount_reason = discount_reason.value;
     this.date = date.value;
     this._discountService.createDiscount(this.discount_code, this.discount_type, this.amount, this.quantity, this.discount_reason, this.date, this.brand)
-    .subscribe((res:any) => {
-      if (res.code == 200) {
-        this.isSuccess = true;
-        this.router.navigate(['/discount', this.brand]);
+      .subscribe((res: any) => {
+        if (res.code == 200) {
+          this.isSuccess = true;
+          location.reload();
+        }
+      },
+      (err) => {
+        console.log('error>>>>>>>>>>>>', err);
       }
-    },
-    (err) => {
-      console.log('error>>>>>>>>>>>>', err);
-    }
-  );
-  discount_code.value = '';
-  amount.value = '';
-  quantity.value = '';
-  discount_type.value = '';
-  discount_reason.value = '';
-  date.value = '';
-}
-
-// findOne discount_code
-foundDiscountCode(discount_code: any){
-  this._discountService.findOneDiscount(discount_code, this.brand)
-  .subscribe(res =>{
-    this.oneDiscountCode = res.data;
-    this.byDiscountCode = true;
-  },
-  (err) => {
-    console.log('error>>>>>>>>>>>>', err);
+      );
+    // discount_code.value = '';
+    // amount.value = '';
+    // quantity.value = '';
+    // discount_type.value = '';
+    // discount_reason.value = '';
+    // date.value = '';
+    // location.reload();
+    // this.isSuccess = true;
   }
-);
-}
 
-// update discount_code
-updateDiscount(discount_type: any, amount:any, quantity:any, discount_reason:any, expiration_date:any){
-  this.updateDiscountCode = this.oneDiscountCode.discount_code;
-  this.discount_type = discount_type.value;
-  this.amount = amount.value;
-  this.quantity = quantity.value;
-  this.discount_reason = discount_reason.value;
-  this.date = expiration_date.value;
-  this._discountService.updateOneDiscount(this.updateDiscountCode, this.discount_type, this.amount, this.quantity, this.discount_reason, this.date, this.brand)
-  .subscribe(res => {
-    if (res.code == 200) {
-      // this.router.navigate(['/discount', this.brand]);
-    }
-  }, (err) => {
-    console.log('error>>>>>>>>>>>>', err);
+  // findOne discount_code
+  foundDiscountCode(discount_code: any) {
+    this._discountService.findOneDiscount(discount_code, this.brand)
+      .subscribe(res => {
+        console.log("res.data discount code >>>>", res.data)
+        this.oneDiscountCode = res.data;
+        this.byDiscountCode = true;
+      },
+      (err) => {
+        console.log('error>>>>>>>>>>>>', err);
+      }
+      );
   }
-);
-location.reload();
-}
+
+  // update discount_code
+  updateDiscount(discount_type: any, amount: any, quantity: any, discount_reason: any, expiration_date: any) {
+    this.updateDiscountCode = this.oneDiscountCode.discount_code;
+    this.discount_type = discount_type.value;
+    this.amount = amount.value;
+    this.quantity = quantity.value;
+    this.discount_reason = discount_reason.value;
+    this.date = expiration_date.value;
+    this._discountService.updateOneDiscount(this.updateDiscountCode, this.discount_type, this.amount, this.quantity, this.discount_reason, this.date, this.brand)
+      .subscribe(res => {
+        if (res.code == 200) {
+          // this.router.navigate(['/discount', this.brand]);
+        }
+      }, (err) => {
+        console.log('error>>>>>>>>>>>>', err);
+      }
+      );
+    location.reload();
+  }
+
+
+  sort(property) {
+    this.isDesc = !this.isDesc;   // change the direction
+    this.column = property;
+    this.direction = this.isDesc ? 1 : -1;
+  }
 }

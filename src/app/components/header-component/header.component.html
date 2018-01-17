@@ -52,28 +52,23 @@
           <a class="dropdown-toggle" data-toggle="dropdown">LetterPress <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <div *ngIf="dashUser">
-              <div *ngFor="let brand of dashUser.brands">
-                <div *ngIf="brand.brand">
-
+              <li *ngFor="let brand of dashUser.brands">
+                <ng-container *ngIf="brand.brand">
                   <a class="applyStyle" [routerLink]="['/letterpress', brand.brand]"> {{brand.brand}} </a>
-
-                </div>
-              </div>
+                </ng-container>
+              </li>
             </div>
           </ul>
         </li>
 
-        <!-- <li><a href="#Inventory">Inventory</a></li> -->
 
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Inventory <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <div *ngIf="dashUser">
               <li *ngFor="let brand of dashUser.brands">
-                <div *ngIf="brand.brand">
-                  <!--<a routerLink="/users" [queryParams]="{ brand: brand.brand }" > {{brand.brand}} </a>-->
+                <ng-container *ngIf="brand.brand">
                   <a class="applyStyle" [routerLink]="['/inventory', brand.brand]"> {{brand.brand}} </a>
-                  <!--<a (click)="getUsers(brand.brand)"> {{brand.brand}} </a>-->
-                </div>
+                </ng-container>
               </li>
             </div>
           </ul>
@@ -84,11 +79,9 @@
           <ul class="dropdown-menu">
             <div *ngIf="dashUser">
               <li *ngFor="let brand of dashUser.brands">
-                <div *ngIf="brand.brand">
-                  <!--<a routerLink="/users" [queryParams]="{ brand: brand.brand }" > {{brand.brand}} </a>-->
+                <ng-container *ngIf="brand.brand">
                   <a class="applyStyle" [routerLink]="['/users', brand.brand]"> {{brand.brand}} </a>
-                  <!--<a (click)="getUsers(brand.brand)"> {{brand.brand}} </a>-->
-                </div>
+                </ng-container>
               </li>
             </div>
           </ul>
@@ -100,26 +93,23 @@
           <ul class="dropdown-menu">
 
             <div *ngIf="dashUser">
-              <div *ngFor="let brand of dashUser.brands">
-                <div *ngIf="brand.brand">
-
-                  <a class="applyStyle" [routerLink]="['/discount', brand.brand]"> {{brand.brand}} </a>
-
-                </div>
-              </div>
+                  <li *ngFor="let brand of dashUser.brands">
+                    <ng-container *ngIf="brand.brand">
+                        <a class="applyStyle" [routerLink]="['/discount', brand.brand]"> {{brand.brand}} </a>
+                    </ng-container>
+                </li>
             </div>
           </ul>
         </li>
 
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Store Locations <b class="caret"></b></a>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">Store Locations <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <div *ngIf="dashUser">
               <li *ngFor="let brand of dashUser.brands">
-                <div *ngIf="brand.brand">
-                  <!--<a routerLink="/users" [queryParams]="{ brand: brand.brand }" > {{brand.brand}} </a>-->
+                <ng-container *ngIf="brand.brand">
                   <a class="applyStyle" [routerLink]="['/store_locations', brand.brand]"> {{brand.brand}} </a>
-                  <!--<a (click)="getUsers(brand.brand)"> {{brand.brand}} </a>-->
-                </div>
+                </ng-container>
               </li>
             </div>
           </ul>
@@ -130,24 +120,23 @@
             <ul class="dropdown-menu">
 
                 <div *ngIf="dashUser">
-                  <div *ngFor="let brand of dashUser.brands">
-                    <div *ngIf="brand.brand">
-
-                    <a class= "applyStyle" [routerLink]="['/send_erp_request', brand.brand]" > {{brand.brand}} </a>
-
-                    </div>
-                  </div>
+                    <li *ngFor="let brand of dashUser.brands">
+                        <ng-container *ngIf="brand.brand">
+                            <a class= "applyStyle" [routerLink]="['/send_erp_request', brand.brand]" > {{brand.brand}} </a>
+                        </ng-container>
+                      </li>
                 </div>
             </ul>
         </li>
 
         <li><a [routerLink]="['/reports']">Reports</a></li>
+
         <li>
           <a></a>
         </li>
+
         <li><a (click)=logout()>Logout</a></li>
       </ul>
     </div>
-    <!--/.nav-collapse -->
   </div>
 </nav>

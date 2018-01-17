@@ -22,7 +22,7 @@ export class ProductComponent  {
   assets: any;
   sunwear: any;
   gender: any;
-  tags: any;
+  //tags: any;
   description: any;
   details: any;
   social_id: any;
@@ -41,8 +41,25 @@ export class ProductComponent  {
   lens_height: any;
   name: any;
   updateProductdata: any;
-  constructor(private route: ActivatedRoute, private _productService: ProductService, private router: Router) {
-
+  dashUserEmail: any;
+  current_user: any;
+  tags: any = [];
+  tagsValue: any = [];
+  tagData: any = [];
+  tagToPass: any = [];
+  assest: any = [];
+  assestValue: any = [];
+  assestData: any = [];
+  assestToPass: any = [];
+  assestVal: any = {};
+  settings: any = {
+            text: "Select Data",
+           selectAllText: 'Select All',
+           unSelectAllText: 'UnSelect All',
+           classes: "myclass custom-class"
+  };
+  constructor(private route: ActivatedRoute, private _productService: ProductService, private _dashUserService: DashUserService, private router: Router) {
+  this.current_user = JSON.parse(localStorage.getItem("current_user"));
   }
   ngOnInit(){
     this.route.params.subscribe((params: any) => {
@@ -58,9 +75,46 @@ export class ProductComponent  {
       //   this.createProductData();
       // }
     });
+
+    this._dashUserService.getDashUserByEmail(this.current_user.email).subscribe((res) => {
+    //  console.log("resposne>>>>>>..pPPPPPPPPPPPPP",res)
+        this.dashUserEmail = res.email;
+        // console.log("dashUserEmail>>>>>>>>>>>>>>>",this.dashUserEmail)
+      })
+      this.getTagList();
+      this.getAssestGroup();
   }
 
-  // get list of ProductService
+  // get list of tags
+  getTagList() {
+    this._productService.getTagList(this.brand).subscribe((res: any) => {
+      if(res.code == 200) {
+        this.tagData = res.data;
+           for (let i = 0; i < this.tagData.length; i++) {
+           this.tagsValue.push({"id": i, "itemName": this.tagData[i]});
+         }
+       this.tagToPass = this.tagsValue;
+      }
+    }, (err) => {
+      console.log('error>>>>>>>>>>>>', err);
+    })
+  }
+
+  getAssestGroup() {
+    this._productService.getAssetGroup(this.brand).subscribe((res: any) => {
+      if(res.code == 200) {
+        this.assestData = res.data;
+           for (let i = 0; i < this.assestData.length; i++) {
+           this.assestValue.push({"id": i, "itemName": this.assestData[i]});
+         }
+       this.assestToPass = this.assestValue;
+      }
+    }, (err) => {
+      console.log('error>>>>>>>>>>>>', err);
+    })
+  }
+
+  // get list of Product
   getProducts() {
     this._productService.getProducts(this.brand).subscribe((res: any) => {
       //  console.log("response>>>>>>>>>>>>>>>>", JSON.stringify((res.data[0])))
@@ -86,8 +140,13 @@ export class ProductComponent  {
       if(res.code == 200) {
         this.byProduct = true;
         this.product = res.data[0];
-        console.log("one product >>>>>>>>>>>>>>>>>", JSON.stringify(this.product))
-      }
+           for (let i = 0; i < this.product.tags.length; i++) {
+           this.tags.push({"id": i, "itemName": this.product.tags[i]});
+         }
+        // for(const i in this.product.assets) {
+        //       this.assest.push({"id": 1, "itemName": i})
+        //   }
+        }
     },
     (err) => {
       console.log('error>>>>>>>>>>>>', err);
@@ -96,7 +155,16 @@ export class ProductComponent  {
 
 // update product
   updateProduct(form) {
+    console.log("form>>>>>>>>>>>>>>>>>>>>>>>>>>..........", form)
     this.product_id = form.product_id;
+    const tagValue: any = [];
+    for(let i = 0; i < form.tags.length; i++) {
+      tagValue.push(form.tags[i].itemName)
+    }
+
+    for(let i = 0; i < form.assets.length; i++) {
+      this.assestVal[form.assets[i].itemName] = [];
+    }
     this.updateProductdata = {
       "product_id": form.product_id,
       "legacy_product_id": form.legacy_product_id,
@@ -104,9 +172,9 @@ export class ProductComponent  {
       "frame_color": form.frame_color,
       "lens_color": form.lens_color,
       "product_gender": form.gender,
-      "tags": form.tags,
+      "tags": tagValue,
       "description": form.description,
-      "assets": form.assets,
+      "assets": this.assestVal,
       "details": form.details,
       "social_id": form.social_id,
       "upc_code": form.upc_code,
@@ -131,6 +199,7 @@ export class ProductComponent  {
         "lens_height": form.lens_height
       }
     }
+    console.log("updateProductdata>>>>>>>>>>>>>>>>>>",this.updateProductdata)
     this._productService.updateProductById(this.brand, this.product_id,  this.updateProductdata).subscribe((res: any) => {
     //  console.log("re4pose updated>>>>>.......................",res)
       if(res.code == 200) {
@@ -141,7 +210,18 @@ export class ProductComponent  {
       console.log('error>>>>>>>>>>>>', err);
     })
   }
-
+  onItemSelect(item: any) {
+        console.log(item);
+    }
+    OnItemDeSelect(item: any) {
+        console.log(item);
+    }
+    onSelectAll(items: any) {
+        console.log(items);
+    }
+    onDeSelectAll(items: any) {
+        console.log(items);
+    }
 // // update product
 //   createProductData() {
 //     console.log("create product>>>>>>>>>>>>>>>>..")
