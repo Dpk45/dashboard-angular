@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { UserService } from "../../services/user.service"
+import { UserService } from "../../services/user.service";
 
 
 
@@ -14,8 +14,13 @@ import { UserService } from "../../services/user.service"
 export class UserComponent {
     userList: any;
     brand: any;
-    p: number = 1;
+    CurrentPageValue: number = 1;
     selectedValue = 10;
+
+    isDesc: boolean = false;
+    column: string;
+    direction: number;
+
     constructor(private _userService: UserService, private route: ActivatedRoute, private router: Router) {
 
     }
@@ -24,18 +29,20 @@ export class UserComponent {
         this.route.params.subscribe((params: any) => {
             this.brand = params.brand
             this.getUsers();
-            console.log(" this.brand vvvvvvvvvv", this.brand)
         });
-
-
     }
 
     getUsers() {
         this._userService.getUsers(this.brand).subscribe(res => {
             this.userList = res.data;
-
             console.log(" this.userList vvvvvvvvvv", this.userList)
         })
+    }
+
+    sort(property) {
+        this.isDesc = !this.isDesc;   // change the direction
+        this.column = property;
+        this.direction = this.isDesc ? 1 : -1;
     }
 }
 

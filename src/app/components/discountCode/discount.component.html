@@ -4,76 +4,106 @@
 
         <div class="col-xs-18 col-sm-12">
 
-  <div *ngIf="isSuccess" class="alert alert-info" id="toggle">Created successfully</div>
+            <div *ngIf="isSuccess" class="alert alert-info" id="toggle">Created successfully</div>
             <h1>{{brand}}</h1>
-<!-- //<h2> {{this.TodayDate}}</h2> -->
+            <!-- //<h2> {{this.TodayDate}}</h2> -->
             <div class="container">
-              <div class="checkbox">
-              <label><input  (click)="qtyAvailable(quantityAvailable)" id=quantityAvailable [(ngModel)]="quantityAvailable" type="checkbox"/>Available Only</label>
-              </div>
-              <div class="checkbox">
-              <label><input (click)="expiredDate(expirationDate)" id=expirationDate [(ngModel)]="expirationDate" type="checkbox"/>Not Expired</label>
-              </div>
-              <h5>Show
-                <select [(ngModel)]="selectedValue">
-              <option [ngValue]="10">10</option>
-              <option [ngValue]="25">25</option>
-              <option [ngValue]="50">50</option>
-              <option [ngValue]="100">100</option>
-        </select> entries
-</h5>
+                <div class="checkbox">
+                    <label>
+                        <input (click)="qtyAvailable(quantityAvailable)" id=quantityAvailable [(ngModel)]="quantityAvailable" type="checkbox" />Available Only</label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input (click)="expiredDate(expirationDate)" id=expirationDate [(ngModel)]="expirationDate" type="checkbox" />Not Expired</label>
+                </div>
+                <h5>Show
+                    <select [(ngModel)]="selectedValue">
+                        <option [ngValue]="10">10</option>
+                        <option [ngValue]="25">25</option>
+                        <option [ngValue]="50">50</option>
+                        <option [ngValue]="100">100</option>
+                    </select> entries
+                </h5>
 
-<h5 align="right">Search <input type="text" name="search" [(ngModel)]="filter"></h5>
+                <h5 align="right">Search
+                    <input type="text" name="search" [(ngModel)]="filter">
+                </h5>
                 <form>
                     <div class="table-responsive">
                         <table class="table table-bordered table-condensed table-hover display" id="discount_codes" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Type</th>
-                                    <th>Discount Amount</th>
-                                    <th>Quantity</th>
-                                    <th>Discount Reason</th>
-                                    <th>Expiration</th>
+                                    <th class="pointer" (click)="sort('discount_code')">
+                                        <i class="fa" [ngClass]="{'fa-sort': column != 'discount_code', 
+                                        'fa-sort-asc': (column == 'discount_code' && !isDesc), 
+                                        'fa-sort-desc': (column == 'discount_code' && isDesc) }" aria-hidden="true"> </i>Name</th>
+                                    <th class="pointer" (click)="sort('discount_type')">
+                                        <i class="fa" [ngClass]="{'fa-sort': column != 'discount_type', 
+                                        'fa-sort-asc': (column == 'discount_type' && !isDesc), 
+                                        'fa-sort-desc': (column == 'discount_type' && isDesc) }" aria-hidden="true"> </i>Type</th>
+                                    <th class="pointer" (click)="sort('amount')">
+                                        <i class="fa" [ngClass]="{'fa-sort': column != 'amount', 
+                                        'fa-sort-asc': (column == 'amount' && !isDesc), 
+                                        'fa-sort-desc': (column == 'amount' && isDesc) }" aria-hidden="true"> </i>Discount Amount</th>
+                                    <th class="pointer" (click)="sort('quantity')"> <i class="fa" [ngClass]="{'fa-sort': column != 'quantity', 
+                                        'fa-sort-asc': (column == 'quantity' && !isDesc), 
+                                        'fa-sort-desc': (column == 'quantity' && isDesc) }" aria-hidden="true"> </i>Quantity</th>
+                                    <th class="pointer" (click)="sort('discount_reason')"> <i class="fa" [ngClass]="{'fa-sort': column != 'discount_reason', 
+                                        'fa-sort-asc': (column == 'discount_reason' && !isDesc), 
+                                        'fa-sort-desc': (column == 'discount_reason' && isDesc) }" aria-hidden="true"> </i>Discount Reason</th>
+                                    <th class="pointer" (click)="sort('expiration_date')"> <i class="fa" [ngClass]="{'fa-sort': column != 'expiration_date', 
+                                        'fa-sort-asc': (column == 'expiration_date' && !isDesc), 
+                                        'fa-sort-desc': (column == 'expiration_date' && isDesc) }" aria-hidden="true"> </i>Expiration</th>
                                     <th>&nbsp;</th>
                                 </tr>
 
                                 <tr>
-                                    <td><input type="text" #discount_code name="discount_code" class="form-control input-xlarge" required></td>
                                     <td>
-                                        <select name="discount_type" #discount_type class="form-control input-xlarge"  required>
+                                        <input type="text" #discount_code name="discount_code" class="form-control input-xlarge" required>
+                                    </td>
+                                    <td>
+                                        <select name="discount_type" #discount_type class="form-control input-xlarge" required>
                                             <option value="DISCOUNT_AMOUNT">DISCOUNT_AMOUNT</option>
                                             <option value="DISCOUNT_PERCENTAGE">DISCOUNT_PERCENTAGE</option>
                                         </select>
                                     </td>
-                                    <td><input type="number" step="any" #amount name="amount" class="form-control input-xlarge" required></td>
-                                    <td><input type="number" #quantity name="quantity" class="form-control input-xlarge" required></td>
+                                    <td>
+                                        <input type="number" step="any" #amount name="amount" class="form-control input-xlarge" required>
+                                    </td>
+                                    <td>
+                                        <input type="number" #quantity name="quantity" class="form-control input-xlarge" required>
+                                    </td>
                                     <td>
                                         <select id="discount_reason" name="discount_reason" #discount_reason class="form-control input-xlarge" required>
                                             <option value="">Please Select</option>
 
                                             <option value="Cancel Exchange">Cancel Exchange</option>
 
-                                           <option value="Exchange">Exchange</option>
+                                            <option value="Exchange">Exchange</option>
 
-                                           <option value="Gratis">Gratis</option>
+                                            <option value="Gratis">Gratis</option>
 
-                                           <option value="Normal">Normal</option>
+                                            <option value="Normal">Normal</option>
 
-                                           <option value="Promotional">Promotional</option>
+                                            <option value="Promotional">Promotional</option>
 
-                                           <option value="Replace">Replace</option>
+                                            <option value="Replace">Replace</option>
 
-                                           <option value="Warranty">Warranty</option>
+                                            <option value="Warranty">Warranty</option>
 
                                         </select>
                                     </td>
-                                    <td><input type="date" #date name="expiration_date" class="form-control input-xlarge"></td>
-                                    <td><input id="buttonValue" onclick="showDiv('toggle')" (click)="createDiscount(discount_code, discount_type , amount, quantity, discount_reason, date)" type="submit" value="Create New"></td>
+                                    <td>
+                                        <input type="date" #date name="expiration_date" class="form-control input-xlarge">
+                                    </td>
+                                    <td>
+                                        <input id="buttonValue" onclick="showDiv('toggle')" (click)="createDiscount(discount_code, discount_type , amount, quantity, discount_reason, date)"
+                                            type="submit" value="Create New">
+                                    </td>
                                     <!-- <td><button id="buttonValue" onclick="showDiv('toggle')" (click)="createDiscount(discount_code, discount_type , amount, quantity, discount_reason, date)" type="submit"> Create New</button></td> -->
                                 </tr>
-                                </thead>
-                                <tbody>
+                            </thead>
+                            <tbody>
                                 <!-- <tr *ngIf="quantityAvailable &&  (discount.quantity > 0)">
                                 <td><a (click)="foundDiscountCode(discount.discount_code)">{{discount.discount_code}}</a></td>
                                 <td>{{discount.discount_type}}</td>
@@ -93,108 +123,124 @@
                                 <td></td>
                               </tr> -->
 
-                              <tr *ngFor="let discount of discount_list | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: CurrentPageValue}">
-                                <td><a [routerLink]="['/discount', brand, discount.discount_code]">{{discount.discount_code}}</a></td>
-                                <td>{{discount.discount_type}}</td>
-                                <td>{{discount.amount}}</td>
+                                <tr *ngFor="let discount of discount_list | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: CurrentPageValue} |  orderBy: {property: column, direction: direction}">
+                                    <td>
+                                        <a [routerLink]="['/discount', brand, discount.discount_code]">{{discount.discount_code}}</a>
+                                    </td>
+                                    <td>{{discount.discount_type}}</td>
+                                    <td>{{discount.amount}}</td>
 
-                                <!-- <ng-container *ngIf="quantityAvailable">
+                                    <!-- <ng-container *ngIf="quantityAvailable">
 
                                 <td>  <ng-container *ngIf="(discount.quantity > 0)">{{discount.quantity}}</ng-container></td>
                               </ng-container> -->
 
 
 
-                              <!-- {{quantityAvailable}} -->
-                              <!-- <ng-container *ngIf="!quantityAvailable"> -->
-                              <td>{{discount.quantity}} </td>
-                            <!-- </ng-container> -->
+                                    <!-- {{quantityAvailable}} -->
+                                    <!-- <ng-container *ngIf="!quantityAvailable"> -->
+                                    <td>{{discount.quantity}} </td>
+                                    <!-- </ng-container> -->
 
-                                <td>{{discount.discount_reason}}</td>
-                                <td>{{discount.expiration_date}}</td>
-                                <td></td>
-                            </tr>
+                                    <td>{{discount.discount_reason}}</td>
+                                    <td>{{discount.expiration_date}}</td>
+                                    <td></td>
+                                </tr>
                             </tbody>
-                          </table>
-                          <br>
-                        Showing {{((CurrentPageValue  * selectedValue) + 1) - selectedValue}} to {{CurrentPageValue * selectedValue + selectedValue -selectedValue}} of {{discount_list.length}} entries
+                        </table>
+                        <br> Showing {{((CurrentPageValue * selectedValue) + 1) - selectedValue}} to {{CurrentPageValue * selectedValue
+                        + selectedValue -selectedValue}} of {{discount_list.length}} entries
 
                         <pagination-controls (pageChange)="CurrentPageValue = $event" maxSize="10"></pagination-controls>
                     </div>
                 </form>
-                </div>
-              </div>
-          </div>
-  </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-  <div class="container" *ngIf="byDiscountCode">
+<div class="container" *ngIf="byDiscountCode">
     <h1>{{brand}}</h1>
     <form>
         <div class="form-group">
             <label class="control-label col-sm-2">Name:</label>
-          {{oneDiscountCode.discount_code}}
+            {{oneDiscountCode.discount_code}}
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2">Type:</label>
             <div class="col-sm-10">
-              <!-- name="discount_type" #discount_type class="form-control input-xlarge"  required -->
+                <!-- name="discount_type" #discount_type class="form-control input-xlarge"  required -->
                 <select name="discount_type" value={{oneDiscountCode.discount_type}} #discount_type class="form-control input-xlarge" required>>
                     <option value="DISCOUNT_PERCENTAGE" selected>DISCOUNT_PERCENTAGE</option>
                     <option value="DISCOUNT_AMOUNT">DISCOUNT_AMOUNT</option>
                 </select>
             </div>
-        </div><br><br><br>
+        </div>
+        <br>
+        <br>
+        <br>
         <div class="form-group">
             <label class="control-label col-sm-2">Discount Amount:</label>
             <div class="col-sm-10">
                 <input type="number" step="any" value={{oneDiscountCode.amount}} #amount name="amount" required class="form-control input-xlarge">
             </div>
-        </div><br><br>
+        </div>
+        <br>
+        <br>
         <div class="form-group">
             <label class="control-label col-sm-2">Quantity:</label>
             <div class="col-sm-10">
-               <input type="number" value={{oneDiscountCode.quantity}} #quantity name="quantity" required class="form-control input-xlarge">
+                <input type="number" value={{oneDiscountCode.quantity}} #quantity name="quantity" required class="form-control input-xlarge">
             </div>
-        </div><br><br>
+        </div>
+        <br>
+        <br>
         <div class="form-group">
             <label class="control-label col-sm-2">Discount Reason:</label>
             <div class="col-sm-10">
                 <select id="discount_reason" value={{oneDiscountCode.discount_reason}} name="discount_reason" #discount_reason required class="form-control input-xlarge">
                     <option value="">Please Select</option>
 
-                        <option value="Cancel Exchange" >Cancel Exchange</option>
+                    <option value="Cancel Exchange">Cancel Exchange</option>
 
-                        <option value="Exchange" >Exchange</option>
+                    <option value="Exchange">Exchange</option>
 
-                        <option value="Gratis" >Gratis</option>
+                    <option value="Gratis">Gratis</option>
 
-                        <option value="Normal"  selected>Normal</option>
+                    <option value="Normal" selected>Normal</option>
 
-                        <option value="Promotional" >Promotional</option>
+                    <option value="Promotional">Promotional</option>
 
-                        <option value="Replace" >Replace</option>
+                    <option value="Replace">Replace</option>
 
-                        <option value="Warranty" >Warranty</option>
+                    <option value="Warranty">Warranty</option>
 
                 </select>
             </div>
-        </div><br><br>
+        </div>
+        <br>
+        <br>
         <div class="form-group">
             <label class="control-label col-sm-2">Expiration:</label>
             <div class="col-sm-10">
                 <input type="date" value={{oneDiscountCode.expiration_date}} #expiration_date name="expiration_date" class="form-control input-xlarge">
             </div>
-        </div><br><br>
+        </div>
+        <br>
+        <br>
         <div class="form-group">
             <label class="control-label col-sm-2">Last Updated By:</label>
             <div class="col-sm-10 bottom-left">
                 {{oneDiscountCode.updated_by}}
             </div>
-        </div><br><br>
+        </div>
+        <br>
+        <br>
         <div class="col-sm-offset-2 col-sm-10">
-            <input type="submit" value="Save" (click)="updateDiscount(discount_type, amount, quantity, discount_reason, expiration_date)" [routerLink]="['/discount', brand]"class="btn btn-default">
+            <input type="submit" value="Save" (click)="updateDiscount(discount_type, amount, quantity, discount_reason, expiration_date)"
+                [routerLink]="['/discount', brand]" class="btn btn-default">
         </div>
 
     </form>
-  </div>
+</div>

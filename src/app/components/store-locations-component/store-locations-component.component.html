@@ -7,37 +7,45 @@
       <a [routerLink]="['/store_locations',brand,'new_store']">Create New Store</a>
       <h4>Show
         <select [(ngModel)]="selectedValue">
-                    <option [ngValue]="10">10</option>
-                    <option [ngValue]="25">25</option>
-                    <option [ngValue]="50">50</option>
-                    <option [ngValue]="100">100</option>
-                </select> Entries
+          <option [ngValue]="10">10</option>
+          <option [ngValue]="25">25</option>
+          <option [ngValue]="50">50</option>
+          <option [ngValue]="100">100</option>
+        </select> Entries
       </h4>
 
-      <h4 align="right">Search <input type="text" name="search" [(ngModel)]="filter"></h4>
+      <h4 align="right">Search
+        <input type="text" name="search" [(ngModel)]="filter">
+      </h4>
 
-      <!-- <table  matSort (matSortChange)="sortData($event)" width="100%" class="table table-bordered table-condensed display" id="stores"> -->
-      <table  matSort (matSortChange)="sortData($event)" width="100%" class="table table-bordered table-condensed display" id="stores">
+      <table width="100%" class="table table-bordered table-condensed display" id="stores">
         <thead>
-          <!-- <tr>
-            <th width="3%">&nbsp;</th>
-            <th mat-sort-header="kiosk_id" aria-label width="15%">Kiosk Id</th>
-            <th mat-sort-header="name" width="15%">Name</th>
-            <th mat-sort-header="address" width="20%">Address</th>
-            <th mat-sort-header="phone"width="15%">Phone</th>
-            <th mat-sort-header="pins"width="">Pins</th>
-          </tr> -->
           <tr>
-              <th width="3%">&nbsp;</th>
-              <th (click)="sortData(kiosk_id)"  width="15%">Kiosk Id</th>
-              <th (click)="sortData(name)" width="15%">Name</th>
-              <th (click)="sortData(address)" width="20%">Address</th>
-              <th (click)="sortData(phone)" width="15%">Phone</th>
-              <th (click)="sortData(pins)" width="">Pins</th>
-            </tr>
+            <th width="3%">&nbsp;</th>
+            <th class="pointer" (click)="sort('kiosk_id')" width="15%">
+              <i class="fa" [ngClass]="{'fa-sort': column != 'kiosk_id', 
+                'fa-sort-asc': (column == 'kiosk_id' && !isDesc), 
+                'fa-sort-desc': (column == 'kiosk_id' && isDesc) }" aria-hidden="true"></i>Kiosk Id</th>
+            <th class="pointer" (click)="sort('name')" width="15%">
+              <i class="fa" [ngClass]="{'fa-sort': column != 'name', 
+                'fa-sort-asc': (column == 'name' && !isDesc), 
+                'fa-sort-desc': (column == 'name' && isDesc) }" aria-hidden="true"></i>Name</th>
+            <th class="pointer" (click)="sort('address')" width="20%">
+              <i class="fa" [ngClass]="{'fa-sort': column != 'address', 
+                'fa-sort-asc': (column == 'address' && !isDesc), 
+                'fa-sort-desc': (column == 'address' && isDesc) }" aria-hidden="true"></i>Address</th>
+            <th class="pointer" (click)="sort('phone')" width="15%">
+              <i class="fa" [ngClass]="{'fa-sort': column != 'phone', 
+                'fa-sort-asc': (column == 'phone' && !isDesc), 
+                'fa-sort-desc': (column == 'phone' && isDesc) }" aria-hidden="true"></i>Phone</th>
+            <th class="pointer" (click)="sort('pin_codes')" width="">
+              <i class="fa" [ngClass]="{'fa-sort': column != 'pin_codes', 
+                'fa-sort-asc': (column == 'pin_codes' && !isDesc), 
+                'fa-sort-desc': (column == 'pin_codes' && isDesc) }" aria-hidden="true"></i>Pins</th>
+          </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let store_location of store_locations | orderBy: orderBy|filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: p }; let i=index">
+          <tr *ngFor="let store_location of store_locations |filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: p } | orderBy: {property: column, direction: direction}; let i=index">
             <td align="right">{{i+1}}.</td>
             <td>
               <a [routerLink]="['/store_locations', brand,store_location.kiosk_id]"> {{ store_location['kiosk_id'] }}</a>

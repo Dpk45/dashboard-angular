@@ -12,16 +12,25 @@
                 </select> Entries
             </h4>
 
-            <h4 align="right">Search <input type="text" name="search" [(ngModel)]="filter"></h4>
+            <h4 align="right">Search
+                <input type="text" name="search" [(ngModel)]="filter">
+            </h4>
 
             <table class="table table-bordered display" id="users">
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
+                    <th class="pointer" (click)="sort('first_name')">
+                        <i class="fa" [ngClass]="{'fa-sort': column != 'first_name', 
+                                            'fa-sort-asc': (column == 'first_name' && !isDesc), 
+                                            'fa-sort-desc': (column == 'first_name' && isDesc) }" aria-hidden="true"> </i>Name</th>
+                    <th class="pointer" (click)="sort('email')">
+                        <i class="fa" [ngClass]="{'fa-sort': column != 'email', 
+                                            'fa-sort-asc': (column == 'email' && !isDesc), 
+                                            'fa-sort-desc': (column == 'email' && isDesc) }" aria-hidden="true"> </i>Email</th>
                 </tr>
-                <tr *ngFor="let user of userList | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: p }; let i = index">
-                    <!-- <td><a (click)="getUserByEmail(user.email)">{{user.first_name}} {{user.last_name}}</a></td> -->
-                    <td><a [routerLink]="[user.email, 'view']">{{user.first_name}} {{user.last_name}}</a></td>
+                <tr *ngFor="let user of userList | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: p } | orderBy: {property: column, direction: direction}; let i = index">
+                    <td>
+                        <a [routerLink]="[user.email, 'view']">{{user.first_name}} {{user.last_name}}</a>
+                    </td>
                     <td>{{user.email}}</td>
                 </tr>
             </table>
@@ -30,6 +39,3 @@
         </div>
     </div>
 </div>
-
-
-
