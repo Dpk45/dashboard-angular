@@ -25,26 +25,20 @@ export class HtkComponent implements OnInit {
       this.dashUser = res;
       for(let i=0; i < res.brands.length; i++){
         let brand = res.brands[i].brand;
-        this._ordersService.getOrders(brand).subscribe((res:any)=>{
-          if(res.code==200){
-              this.brand_orders[brand] = []
-              this.brand_orders[brand]=res.data
-              console.log("res.data >>>>", res.data)
-          }
-        })
+        this.getOrders(brand)
       }
+      console.log("brand_orders >>>>>>>>>>", this.brand_orders)
     })
     
   }
 
 
-  // getOrders(){
-  //   console.log(">>>>>>>>>>> inside get orders >>>>>>>>>")
-  //   this._ordersService.getOrders(this.brand).subscribe((res:any)=>{
-  //     if(res.code==200){
-  //       this.orders = res.data
-  //       console.log("this.orders getOrders", this.orders)
-  //     }
-  //   })
-  // }
+  getOrders(brand){
+    this._ordersService.getOrders(brand).subscribe((res:any)=>{
+      if(res.code==200){
+          this.brand_orders[brand] = []
+          this.brand_orders[brand]=res.data
+      }
+    })
+  }
 }
