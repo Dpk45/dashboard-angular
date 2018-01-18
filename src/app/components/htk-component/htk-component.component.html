@@ -1,8 +1,7 @@
 <header></header>
 
 <ng-container *ngIf="dashUser">
-
-    <ng-container *ngFor="let brand of dashUser.brands">
+  <ng-container *ngFor="let brand of dashUser.brands">
         <ng-container *ngIf="brand.brand">
 
             <form method="POST">
@@ -24,7 +23,7 @@
                                     <a [routerLink]="['/orders/', brand.brand, order.order_id, 'view']">{{order['order_id']}}</a>
                                 </td>
                                 <td>
-                                    <a>{{order['customer']['name']}}</a>
+                                    <a [routerLink]="['/users/',brand.brand,order['customer']['email'] ,'view']">{{order['customer']['name']}}</a>
                                 </td>
                                 <td>{{order['ordered_at']}}</td>
                                 <td>
@@ -36,7 +35,7 @@
                                 <td>
                                     <input type="button" class="ship btn btn-default" value="Ship">
                                 </td>
-                            </tr>   
+                            </tr>
                         </ng-container>
                     </ng-container>
 

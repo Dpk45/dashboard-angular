@@ -13,6 +13,9 @@ export class FrameComponent {
   frameData: any;
   frameDataValues: any;
   editFrameData: any;
+  isDesc: boolean = false;
+  column: string;
+  direction: number;
   constructor(private route: ActivatedRoute, private router: Router, private _lookupService: LookupService) {
   }
 
@@ -38,10 +41,10 @@ getFrameColor() {
 }
 
 // create frame_color
-createFrameColor(form) {
+createFrameColor(frame_name, frame_active) {
 this.frameDataValues = {
-'name': form.frame_name,
-'active_flag': form.frame_active,
+'name': frame_name,
+'active_flag': frame_active,
 }
 console.log("this.frameDataValues+++++++++++++++++++",this.frameDataValues)
 this._lookupService.createFrameColor(this.brand, this.frameDataValues).subscribe((res: any) => {
@@ -49,8 +52,6 @@ this._lookupService.createFrameColor(this.brand, this.frameDataValues).subscribe
   if(res.code == 200) {
   //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
    location.reload();
- //this.frameDataValues['name'] = '';
- //this.frameDataValues['active_flag'] = '';
   }
 },
 (err) => {
@@ -59,14 +60,12 @@ this._lookupService.createFrameColor(this.brand, this.frameDataValues).subscribe
 }
 
 // update frame_color
-updateFrameColor(form) {
-  console.log("data>>>>form>>>>>>>>>..",form)
+updateFrameColor(update_frame_id, update_frame_name, update_frame_active) {
   this.editFrameData = {
-    'name': form.update_frame_name,
-    'active_flag': form.update_frame_active
+    'name': update_frame_name,
+    'active_flag': update_frame_active
   }
-  console.log("  this.editFrameData>>>>>>>>>>>>>>>>", form.update_frame_id)
-  this._lookupService.updateFrameColor(this.brand, this.editFrameData, form.update_frame_id).subscribe((res: any) => {
+  this._lookupService.updateFrameColor(this.brand, this.editFrameData, update_frame_id).subscribe((res: any) => {
     console.log("resposne >>>>>>>>>>>>>>",res)
     if(res.code == 200) {
       //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
@@ -76,5 +75,12 @@ updateFrameColor(form) {
   (err) => {
     console.log('error>>>>>>>>>>>>', err);
   })
+}
+
+// apply sorting
+sort(property) {
+  this.isDesc = !this.isDesc;   // change the direction
+  this.column = property;
+  this.direction = this.isDesc ? 1 : -1;
 }
 }

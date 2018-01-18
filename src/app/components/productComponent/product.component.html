@@ -1,86 +1,10 @@
-<!-- <nav class="navbar navbar-inverse" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-        aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" [routerLink]="['/home']"> eponym </a>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">Products
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu"> -->
-            <!-- <div *ngIf="brand"> -->
-            <!-- <li>
-              <a [routerLink]="['/product', brand]">List Products</a>
-            </li>
-            <li>
-              <a [routerLink]="['/product', brand, 'new_product']">Add New Product</a>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <a [routerLink]="['/product_collection', brand]">List Product Collections</a>
-            </li>
-            <li>
-              <a [routerLink]="['/product_collection', brand, 'new_product_collection']">Add New Product Collection</a>
-            </li>
-            <! </div> -->
-          <!-- </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">Lookup Values
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu"> -->
-            <!-- <div *ngIf="brand"> -->
-            <!-- <li>
-              <a [routerLink]="['/lookup','styles', brand]">Styles</a>
-            </li>
-            <li>
-              <a [routerLink]="['/lookup', 'frame_colors', brand]">Frame Colors</a>
-            </li>
-            <li>
-              <a [routerLink]="['/lookup', 'lens_colors', brand]">Lens Colors</a>
-            </li>
-            <li>
-              <a [routerLink]="['/lookup', 'template_map', brand]">Template Map</a>
-            </li> -->
-            <!-- </div> -->
-          <!-- </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">Signed in as {{dashUserEmail}}
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-            <a [routerLink]="['']">Sign Out</a>
-          </li>
-          </ul>
-        </li>
-      </ul>
-    </div> -->
-    <!--/.nav-collapse -->
-  <!-- </div>
-</nav> -->
 <product-nav></product-nav>
 
 <div class="container" *ngIf="!byProduct">
   <h3>Search
     <input type="text" name="search" [(ngModel)]="filter">
   </h3>
-  <table class="table" id="product" style="width:100%">
+  <table class="table table-hover display" id="product" style="width:100%">
     <thead>
       <tr>
         <th>Name</th>
@@ -256,99 +180,99 @@
         </div>
       </div>
 
-<!-- </div> -->
-<div class="form-group">
-  <label class="control-label col-sm-2">High Index Lens</label>
-  <div class="col-sm-2">
-    <input type="number" class="form-control" name="HIGH_INDEX_LENS_PRICE" [(ngModel)]="product.prices.HIGH_INDEX_LENS_PRICE"
-      required class="form-control input-xlarge">
-  </div>
-</div>
-<div class="form-group">
-  <label class="control-label col-sm-2">RX_SUN_LENS_PRICE</label>
-  <div class="col-sm-2">
-    <input type="number" class="form-control" name="RX_SUN_LENS_PRICE" [(ngModel)]="product.prices.RX_SUN_LENS_PRICE" required
-      class="form-control input-xlarge">
-  </div>
-</div>
+      <!-- </div> -->
+      <div class="form-group">
+        <label class="control-label col-sm-2">High Index Lens</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" name="HIGH_INDEX_LENS_PRICE" [(ngModel)]="product.prices.HIGH_INDEX_LENS_PRICE"
+            required class="form-control input-xlarge">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2">RX_SUN_LENS_PRICE</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" name="RX_SUN_LENS_PRICE" [(ngModel)]="product.prices.RX_SUN_LENS_PRICE" required
+            class="form-control input-xlarge">
+        </div>
+      </div>
 
-<!-- </div> -->
-<div class="form-group">
-  <label class="control-label col-sm-2">PRG_RX_SUN_LENS_PRICE</label>
-  <div class="col-sm-2">
-    <input type="number" class="form-control" name="PRG_RX_SUN_LENS_PRICE" [(ngModel)]="product.prices.PRG_RX_SUN_LENS_PRICE"
-      required class="form-control input-xlarge">
-  </div>
-</div>
-<div class="form-group">
-  <label class="control-label col-sm-2">ORIGINAL_SUN_PRICE</label>
-  <div class="col-sm-2">
-    <input type="number" class="form-control" name="ORIGINAL_SUN_PRICE" [(ngModel)]="product.prices.ORIGINAL_SUN_PRICE" required
-      class="form-control input-xlarge">
-  </div>
-</div>
-<div class="form-group">
-  <label class="control-label col-sm-2">Prg Standard Lens</label>
-  <div class="col-sm-2">
-    <input type="number" class="form-control" name="PRG_STANDARD_LENS_PRICE" [(ngModel)]="product.prices.PRG_STANDARD_LENS_PRICE"
-      required class="form-control input-xlarge">
-  </div>
-</div>
-<div class="form-group">
-  <label class="control-label col-sm-2">Prg High Index Lens</label>
-  <div class="col-sm-2">
-    <input type="number" class="form-control" name="PRG_HIGH_INDEX_LENS_PRICE" [(ngModel)]="product.prices.PRG_HIGH_INDEX_LENS_PRICE"
-      required class="form-control input-xlarge">
-  </div>
-</div>
-<div class="form-group">
-  <label class="control-label col-sm-2">Plano Lens</label>
-  <div class="col-sm-2">
-    <input type="number" class="form-control" name="PLANO_LENS_PRICE" [(ngModel)]="product.prices.PLANO_LENS_PRICE" required
-      class="form-control input-xlarge">
-  </div>
-</div>
-<div class="form-group">
-  <label class="control-label col-sm-2">Reading Lens</label>
-  <div class="col-sm-2">
-    <input type="number" class="form-control" name="READING_LENS_PRICE" [(ngModel)]="product.prices.READING_LENS_PRICE" required
-      class="form-control input-xlarge">
-  </div>
-</div>
-<div class="form-group">
-  <label class="control-label col-sm-2">Rx Sun Lens</label>
-  <div class="col-sm-2">
-    <input type="number" class="form-control" name="ORIGINAL_RX_PRICE" [(ngModel)]="product.prices.ORIGINAL_RX_PRICE" required
-      class="form-control input-xlarge">
-  </div>
-</div>
-</fieldset>
+      <!-- </div> -->
+      <div class="form-group">
+        <label class="control-label col-sm-2">PRG_RX_SUN_LENS_PRICE</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" name="PRG_RX_SUN_LENS_PRICE" [(ngModel)]="product.prices.PRG_RX_SUN_LENS_PRICE"
+            required class="form-control input-xlarge">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2">ORIGINAL_SUN_PRICE</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" name="ORIGINAL_SUN_PRICE" [(ngModel)]="product.prices.ORIGINAL_SUN_PRICE" required
+            class="form-control input-xlarge">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2">Prg Standard Lens</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" name="PRG_STANDARD_LENS_PRICE" [(ngModel)]="product.prices.PRG_STANDARD_LENS_PRICE"
+            required class="form-control input-xlarge">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2">Prg High Index Lens</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" name="PRG_HIGH_INDEX_LENS_PRICE" [(ngModel)]="product.prices.PRG_HIGH_INDEX_LENS_PRICE"
+            required class="form-control input-xlarge">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2">Plano Lens</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" name="PLANO_LENS_PRICE" [(ngModel)]="product.prices.PLANO_LENS_PRICE" required
+            class="form-control input-xlarge">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2">Reading Lens</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" name="READING_LENS_PRICE" [(ngModel)]="product.prices.READING_LENS_PRICE" required
+            class="form-control input-xlarge">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2">Rx Sun Lens</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" name="ORIGINAL_RX_PRICE" [(ngModel)]="product.prices.ORIGINAL_RX_PRICE" required
+            class="form-control input-xlarge">
+        </div>
+      </div>
+    </fieldset>
 
-<fieldset>
-  <legend>
-      Original Prices For Sale
-  </legend>
-  <div class="form-group">
-    <label class="control-label col-sm-2">Standard Index Lens</label>
-    <div class="col-sm-2">
-      <input type="number" class="form-control" name="STANDARD_INDEX_LENS_PRICE" [(ngModel)]="product.prices.STANDARD_INDEX_LENS_PRICE"
-        required class="form-control input-xlarge">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2">NON_RX_SUN_LENS_PRICE</label>
-    <div class="col-sm-2">
-      <input type="number" class="form-control" name="NON_RX_SUN_LENS_PRICE" [(ngModel)]="product.prices.NON_RX_SUN_LENS_PRICE"
-        required class="form-control input-xlarge">
-    </div>
-  </div>
-</fieldset>
+    <fieldset>
+      <legend>
+        Original Prices For Sale
+      </legend>
+      <div class="form-group">
+        <label class="control-label col-sm-2">Standard Index Lens</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" name="STANDARD_INDEX_LENS_PRICE" [(ngModel)]="product.prices.STANDARD_INDEX_LENS_PRICE"
+            required class="form-control input-xlarge">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2">NON_RX_SUN_LENS_PRICE</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" name="NON_RX_SUN_LENS_PRICE" [(ngModel)]="product.prices.NON_RX_SUN_LENS_PRICE"
+            required class="form-control input-xlarge">
+        </div>
+      </div>
+    </fieldset>
 
-<fieldset>
-  <legend>
-    Measurements
-  </legend>
-    <div class="form-group">
+    <fieldset>
+      <legend>
+        Measurements
+      </legend>
+      <div class="form-group">
         <label class="control-label col-sm-2">Bridge</label>
         <div class="col-sm-2">
           <input type="number" class="form-control" name="bridge" [(ngModel)]="product.measurements.bridge" required class="form-control input-xlarge">
@@ -372,11 +296,11 @@
           <input type="number" class="form-control" name="lens_height" [(ngModel)]="product.measurements.lens_height" required class="form-control input-xlarge">
         </div>
       </div>
-</fieldset>
+    </fieldset>
 
-<div class="form-group">
-  <button type="submit" class="btn btn-default">Save</button>
-  <button type="submit" class="btn btn-default">Save All</button>
-</div>
-</form>
+    <div class="form-group">
+      <button type="submit" class="btn btn-default">Save</button>
+      <!-- <button type="submit" class="btn btn-default">Save All</button> -->
+    </div>
+  </form>
 </div>

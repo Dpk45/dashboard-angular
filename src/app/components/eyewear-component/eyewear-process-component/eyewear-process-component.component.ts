@@ -15,13 +15,12 @@ export class EyewearProcessComponent implements OnInit {
   dashUser: any
   orders: any
 
-  constructor(private _ordersService:OrdersService, private _dashUserService: DashUserService, private route: ActivatedRoute, private router: Router) { 
+  constructor(private _ordersService:OrdersService, private _dashUserService: DashUserService, private route: ActivatedRoute, private router: Router) {
     this.current_user = JSON.parse(localStorage.getItem("current_user"));
   }
 
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
-      console.log("params >>>", params)
       if(params.brand){
         this.brand = params.brand
       }
@@ -30,13 +29,11 @@ export class EyewearProcessComponent implements OnInit {
       this._dashUserService.getDashUserByEmail(this.current_user.email).subscribe((res) => {
         this.dashUser = res;
       })
-      
+
   }
 
-
-
+  // get list of order
   getOrders(){
-    console.log(">>>>>>>>>>> inside get orders >>>>>>>>>")
     this._ordersService.getOrders(this.brand).subscribe((res:any)=>{
       if(res.code==200){
         this.orders = res.data
