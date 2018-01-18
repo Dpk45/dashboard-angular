@@ -60,14 +60,14 @@ import {StyleComponent} from './components/lookupComponent/lookupStyle/lookupSty
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
-import { MatTableModule,  MatSortModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { UserDetailComponent } from './components/user-component/user-detail/user-detail.component';
-import { OrderModule } from 'ngx-order-pipe';
+import { OrderByPipe } from './directives/orderBy.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    OrderByPipe,
     LoginComponent,
     HomeComponent,
     HeaderComponent,
@@ -91,7 +91,6 @@ import { OrderModule } from 'ngx-order-pipe';
   ],
   imports: [
     BrowserModule,
-    OrderModule,
     FormsModule,
     HttpModule,
     HttpClientModule,
@@ -102,7 +101,6 @@ import { OrderModule } from 'ngx-order-pipe';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatTableModule,  MatSortModule,
     BrowserAnimationsModule, AngularMultiSelectModule
   ],
   providers: [
