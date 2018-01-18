@@ -125,8 +125,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2">Tags</label>
       <div class="col-sm-10">
-        <angular2-multiselect name="tags" [data]="tagToPass" [(ngModel)]="tags" [settings]="settings" (onSelect)="onItemSelect($event)"
-          (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
+        <angular2-multiselect name="tags" [data]="tagToPass" [(ngModel)]="tags" [settings]="settings">
         </angular2-multiselect>
       </div>
     </div>
@@ -142,8 +141,7 @@
              <textarea  name="assets" [(ngModel)]="product.assets" required  class="form-control input-xlarge"></textarea>
           </div> -->
       <div class="col-sm-10">
-        <angular2-multiselect name="assets" [data]="assestToPass" [(ngModel)]="assest" [settings]="settings" (onSelect)="onItemSelect($event)"
-          (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
+        <angular2-multiselect name="assets" [data]="assestToPass" [(ngModel)]="assest" [settings]="settings">
         </angular2-multiselect>
       </div>
     </div>

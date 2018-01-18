@@ -53,8 +53,7 @@ export class ProductComponent  {
   settings: any = {
             text: "Select Data",
            selectAllText: 'Select All',
-           unSelectAllText: 'UnSelect All',
-           classes: "myclass custom-class"
+           unSelectAllText: 'UnSelect All'
   };
   constructor(private route: ActivatedRoute, private _productService: ProductService, private _dashUserService: DashUserService, private router: Router) {
   }
@@ -196,17 +195,4 @@ export class ProductComponent  {
       console.log('error>>>>>>>>>>>>', err);
     })
   }
-  onItemSelect(item: any) {
-        console.log(item);
-    }
-    OnItemDeSelect(item: any) {
-        console.log(item);
-    }
-    onSelectAll(items: any) {
-        console.log(items);
-    }
-    onDeSelectAll(items: any) {
-        console.log(items);
-    }
-
 }

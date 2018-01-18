@@ -31,8 +31,7 @@ export class ProductCollectionComponent  {
   settings: any = {
             text: "Select Data",
            selectAllText: 'Select All',
-           unSelectAllText: 'UnSelect All',
-           classes: "myclass custom-class"
+           unSelectAllText: 'UnSelect All'
   };
   constructor(private route: ActivatedRoute, private _productService: ProductService, private router: Router) {
   }
@@ -43,7 +42,6 @@ export class ProductCollectionComponent  {
       this.brand = params.brand;
       this.getProductCollectionList();
       this.getProductsList();
-      console.log("params>>>>>>>>>>>>>>>>>..", params)
       if(params.slug == 'new_product_collection') {
         this.isSuccess = true;
       }
@@ -92,7 +90,6 @@ export class ProductCollectionComponent  {
       "h2": form.h2,
       "richTextParagraph": form.paragraph
     }
-    console.log("product data>>>>>>>>>..................", JSON.stringify(this.data))
     this._productService.createProductCollection(this.brand, this.data).subscribe((res: any) => {
       if(res.code == 200) {
       this.router.navigate(['/product_collection', this.brand]);
@@ -191,19 +188,4 @@ export class ProductCollectionComponent  {
       console.log('error>>>>>>>>>>>>', err);
     })
   }
-
-
-  onItemSelect(item: any) {
-        console.log(item);
-    }
-    OnItemDeSelect(item: any) {
-        console.log(item);
-    }
-    onSelectAll(items: any) {
-        console.log(items);
-    }
-    onDeSelectAll(items: any) {
-        console.log(items);
-    }
-
 }
