@@ -29,7 +29,7 @@ import { UserDetailComponent } from './components/user-component/user-detail/use
 //import { NewCollectionComponent } from './components/productComponent/ProductCollection/newProductCollection.component';
 import { StyleComponent } from './components/lookup-component/lookupStyle/lookupStyle.component';
 import { FrameComponent } from './components/lookup-component/lookupFrame/lookupFrame.component';
-
+import { LensComponent } from './components/lookup-component/lookupLens/lookupLens.component';
 const appRoutes: Routes =
   [
     {
@@ -151,12 +151,11 @@ const appRoutes: Routes =
         {
           path: "lookup/styles/:brand",
           component: StyleComponent
+        },
+        {
+          path: "lookup/lens_colors/:brand",
+          component: LensComponent
         }
-        // ,
-        // {
-        //   path: "letterpress/:brand/:name/preview",
-        //   component: LetterPressPreviewComponent
-        // }
       ]
     },
     {

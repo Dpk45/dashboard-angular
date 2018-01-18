@@ -9,13 +9,11 @@ import { LookupService } from '../../../services/lookup.service';
 })
 
 export class FrameComponent {
-  dashUserEmail: any;
   brand: any;
   frameData: any;
   frameDataValues: any;
   editFrameData: any;
   constructor(private route: ActivatedRoute, private router: Router, private _lookupService: LookupService) {
-      this.dashUserEmail = JSON.parse(localStorage.getItem("current_user"));
   }
 
   ngOnInit(){
