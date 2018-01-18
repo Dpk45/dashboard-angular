@@ -41,7 +41,6 @@ export class InventoryComponent {
   getInventoryByProduct(productId) {
     this.productId = productId;
     this._inventoryService.getInventoryByProduct(this.productId, this.brand).subscribe(res => {
-      console.log(">>>>>>>>>>>>>>>>>>...getInventoryByProduct..............>>>>>>>>.....", res.data)
       if(res.code == 200) {
         // get product by product_id
         this._inventoryService.getProductByProduct(this.productId, this.brand).subscribe(res => {
@@ -79,13 +78,7 @@ export class InventoryComponent {
 
   // upload Inventory
   uploadInventory() {
-    // this.formdata = new FormData()
-    // if (document.getElementById('inventory_file') && ( < HTMLInputElement > document.getElementById('inventory_file')).files.length) {
-    //     this.file = (<HTMLInputElement> document.getElementById('inventory_file')).files[0];
-    // }
-    // this.formdata.append('file', this.file);
     this._inventoryService.uploadInventory(this.formdata, this.brand).subscribe(res => {
-    //  console.log("resposneLLLLLLLLLLLLLLLLLLl..........",res)
       if(res.code == 200) {
         this.isSuccess = true;
         //this.router.navigate(['/inventory', this.brand]);

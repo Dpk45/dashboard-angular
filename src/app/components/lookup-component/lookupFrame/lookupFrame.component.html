@@ -1,47 +1,73 @@
 <product-nav></product-nav>
 
 <div class="container">
-  <h5><input type="text" name="search" placeholder="filter" class="form-control" [(ngModel)]="filter"></h5>
-  <br>
-  <form role="form" #form="ngForm" (ngSubmit)="createFrameColor(form.value)">
-      <div class="table-responsive">
-          <table class="table table-bordered table-condensed table-hover display" style="width:100%">
-              <thead>
-                  <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Active</th>
-                      <th>Action</th>
-                  </tr>
+    <form>
+        <div class = "form-group">
+          <div class = "input-group">
+            <div class = "input-group-addon">
+              <i class="fa fa-search">
 
-                  <tr>
-                    <td class="col-md-3"><input type="text"  placeholder="New" name="frame_id" class="form-control" [(ngModel)]="frame_id" disabled= disabled required></td>
-                    <td class="col-md-5"><input type="text"  name="frame_name" class="form-control" [(ngModel)]="frame_name" required></td>
-                    <td class="col-md-3"><select name="frame_active" class="form-control" [(ngModel)]="frame_active">
-                      <option  [ngValue]="1">Active</option>
-                      <option [ngValue]="0">InActive</option>
-                    </select>
-                  </td>
-                  <td><input type="submit" class="form-control" value="Add"></td>
-                  </tr>
-                  </thead>
-            </table>
-      </div>
-  </form>
-<div class="table-responsive">
-          <table class="table table-bordered table-condensed table-hover display" style="width:100%">
-            <tr *ngFor="let f of frameData | filter:filter">
-              <form role="form" #fm="ngForm" (ngSubmit)="updateFrameColor(fm.value)">
-                    <td class="col-md-3"><input type="text"  name="update_frame_id" class="form-control" [(ngModel)]="f['id']" readonly="readonly" required></td>
-                      <td class="col-md-6"><input type="text"  name="update_frame_name" class="form-control" [(ngModel)]="f['name']" required></td>
-                        <td class="col-md-4"><select name="update_frame_active" class="form-control" [(ngModel)]="f['active_flag']" required>
-                          <option  [ngValue]="1">Active</option>
-                          <option [ngValue]="0">InActive</option>
-                        </select>
-                      </td>
-                        <td class="myTab1"><input type="submit" class="form-control" value="Update"></td>
-                  </form>
-                  </tr>
-            </table>
-      </div>
+              </i>
+            </div>
+            <input type="text" name="search" placeholder="filter" class="form-control" [(ngModel)]="filter">
+          </div>
+        </div>
+    </form>
+
+  <div class="table-responsive">
+    <table class="table table-hover" style="width:100%">
+      <thead>
+        <tr>
+          <th class="pointer" (click)="sort('id')">
+              <i class="fa" [ngClass]="{'fa-sort': column != 'id',
+              'fa-sort-asc': (column == 'id' && !isDesc),
+              'fa-sort-desc': (column == 'id' && isDesc) }" aria-hidden="true"> </i>ID</th>
+          <th class="pointer" (click)="sort('name')">
+              <i class="fa" [ngClass]="{'fa-sort': column != 'name',
+              'fa-sort-asc': (column == 'name' && !isDesc),
+              'fa-sort-desc': (column == 'name' && isDesc) }" aria-hidden="true"> </i>Name</th>
+          <th>Active</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="col-md-3">
+              <input type="text" placeholder="New" name="frame_id" class="form-control" [(ngModel)]="frame_id" disabled=d isabled required>
+            </td>
+            <td class="col-md-5">
+              <input type="text" name="frame_name" class="form-control" [(ngModel)]="frame_name" required>
+            </td>
+            <td class="col-md-3">
+              <select name="frame_active" class="form-control" [(ngModel)]="frame_active">
+                <option [ngValue]="1">Active</option>
+                <option [ngValue]="0">InActive</option>
+              </select>
+            </td>
+            <td>
+              <input type="submit" class="form-control" (click)="createLensColor(frame_name, frame_active)" value="Add">
+            </td>
+          </tr>
+
+        <tr *ngFor="let f of frameData | filter:filter | orderBy: {property: column, direction: direction}">
+
+          <td class="col-md-3">
+            <input type="text" name="update_frame_id" class="form-control" [(ngModel)]="f['id']" readonly="readonly" required>
+          </td>
+          <td class="col-md-6">
+            <input type="text" name="update_frame_name" class="form-control" [(ngModel)]="f['name']" required>
+          </td>
+          <td class="col-md-4">
+            <select name="update_frame_active" class="form-control" [(ngModel)]="f['active_flag']" required>
+              <option [ngValue]="1">Active</option>
+              <option [ngValue]="0">InActive</option>
+            </select>
+          </td>
+          <td class="myTab1">
+            <input type="submit" class="form-control" (click)="updateFrameColor(f['id'], f['name'], f['active_flag'])" value="Update">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
