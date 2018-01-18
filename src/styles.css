@@ -17,7 +17,7 @@ a.applyStyle:link, a.applyStyle:visited{
 	text-decoration: none;
 	color:#333;
 	display:block;
-	padding:8px;
+	padding:3px;
 	/* font-weight: 400; */
 	/* padding: 3px, 20px; */
 }
