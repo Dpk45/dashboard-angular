@@ -1,8 +1,7 @@
 <header></header>
 
 <ng-container *ngIf="dashUser">
-
-    <ng-container *ngFor="let brand of dashUser.brands">
+  <ng-container *ngFor="let brand of dashUser.brands">
         <ng-container *ngIf="brand.brand">
 
             <form method="POST">
@@ -36,7 +35,7 @@
                                 <td>
                                     <input type="button" class="ship btn btn-default" value="Ship">
                                 </td>
-                            </tr>   
+                            </tr>
                         </ng-container>
                     </ng-container>
 

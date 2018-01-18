@@ -48,6 +48,7 @@ export class LookupService {
     const _path: string = (this.baseUrl + '/lookup/styles?key=' + brand)
     return this._httpClient.get(_path)
     .map((res: any) => {
+      //console.log("style in service >>>>>>>>>>>>>........................ ", JSON.stringify(res))
       return res;
     });
   }

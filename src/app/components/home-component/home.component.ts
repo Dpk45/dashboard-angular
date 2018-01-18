@@ -31,10 +31,8 @@ export class HomeComponent  {
 
 // create upc_code
   createUpcCode(form) {
-    console.log(">>>>>>>>. form  >>>>>>>>", form)
     this.batchname = form.batchname;
     this._homeService.createUpcCode(this.batchname, this.upcObject).subscribe((res:any) => {
-      console.log("res>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", res)
       if(res.code == 200) {
         this.SuccessfullyCreatedUpc = true;
         }
@@ -47,7 +45,6 @@ export class HomeComponent  {
   upcCodeReport(form) {
     this.reportbatchname = form.reportbatchname;
     this._homeService.upcCodeReport(this.reportbatchname).subscribe((res: any) => {
-      console.log("res>>>>>>>>>>>>>>>>>>>>>>>>.  upc code report>...............", res)
       if(res.code == 200) {
         this.isSuccess = true;
         }
@@ -75,7 +72,6 @@ export class HomeComponent  {
   // get list of batchname
   getBatchName() {
     this._homeService.getBatchName().subscribe((res: any) => {
-      console.log("res>>>>>>>>>>>>>>>>>>>>>>>>.  upc code report>...............", res)
       if(res.code == 200) {
         this.batchName = res.data;
         }

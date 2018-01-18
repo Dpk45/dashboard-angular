@@ -19,31 +19,23 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(){
     this._dashUserService.getDashUserByEmail(this.current_user.email).subscribe((res) => {
-        // res = JSON.stringify(res);
-        // console.log("dddddddddddddd  res >>>>>>>>", res)
         this.dashUser = res;
-        // console.log("this.user >>>>>>>>", this.user)
       })
   }
 
-  private logout(){
+// dashboardUser logout
+  private logout() {
      this._dashAuthService.logoutDashUser(this.current_user.email).subscribe(res => {
-         console.log("res in logout component.ts >>>>", res)
       this.router.navigate(['']);
-     },
-     err => {
-          console.log("ERR>>>>>", err)
+     }, (err) => {
           this.router.navigate(['/error']);
      })
   }
 
-  getUsers(brand){
-    console.log("brand >>", brand)
+// get list of users
+  getUsers(brand) {
     this._userService.getUsers(brand).subscribe(res => {
-      console.log("resx Dddddddddddddddddddd", res)
       // this.router.navigate(['/user'], { queryParams: { user: res } });
-      console.log("res.data >>>>", res)
     })
   }
-
- }
+}
