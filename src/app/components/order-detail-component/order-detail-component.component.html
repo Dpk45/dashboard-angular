@@ -8,7 +8,7 @@
         {{brand}}
       </h1>
       <ng-container *ngIf="order">
-        <h2><a>{{ order['customer']['name'] }}</a>: Order #{{ order['order_id'] }}</h2>
+        <h2><a [routerLink]="['/users/',brand,order['customer']['email'] ,'view']">{{ order['customer']['name'] }}</a>: Order #{{ order['order_id'] }}</h2>
         <h4>Ordered at: {{ order['ordered_at'] }}</h4>
 
         <table class="table">
@@ -609,7 +609,7 @@
 
 
 
-<ng-container *ngIf="order['items'].home_trial_kit">
+<ng-container *ngIf="order['items'].home_trial_kit.length">
     <h3>Trial Kit</h3>
 
     <blockquote>

@@ -39,9 +39,9 @@ import { ProductService } from './services/product.service'
 import { LookupService } from './services/lookup.service'
 
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component';
-import { DiscountComponent } from './components/discountCode/discount.component';
-import { LetterPressComponent } from './components/Letterpress/letterPress.component';
-import { LetterPressPreviewComponent } from './components/Letterpress/letterPressPreview.component';
+import { DiscountComponent } from './components/discountCode-component/discount.component';
+import { LetterPressComponent } from './components/letterpress-component/letterPress.component';
+import { LetterPressPreviewComponent } from './components/letterpress-component/letterPressPreview.component';
 import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component';
 import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
 import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
@@ -51,18 +51,20 @@ import { EyewearComponent } from './components/eyewear-component/eyewear-compone
 import { HtkComponent } from './components/htk-component/htk-component.component';
 import { EyewearProcessComponent } from './components/eyewear-component/eyewear-process-component/eyewear-process-component.component';
 import { OrderDetailComponent } from './components/order-detail-component/order-detail-component.component'
-import { InventoryComponent } from './components/inventoryComponent/inventory.component';
+import { InventoryComponent } from './components/inventory-component/inventory.component';
 import { ProductComponent } from './components/productComponent/product.component';
 import { NewProductComponent } from './components/productComponent/newProductComponent/newProduct.component';
 import { ProductCollectionComponent } from './components/productComponent/ProductCollection/productCollection.component';
-import { FrameComponent } from './components/lookupComponent/lookupFrame/lookupFrame.component';
-import {StyleComponent} from './components/lookupComponent/lookupStyle/lookupStyle.component';
+import { FrameComponent } from './components/lookup-component/lookupFrame/lookupFrame.component';
+import { StyleComponent } from './components/lookup-component/lookupStyle/lookupStyle.component';
+import { LensComponent } from './components/lookup-component/lookupLens/lookupLens.component';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserDetailComponent } from './components/user-component/user-detail/user-detail.component';
 import { OrderByPipe } from './directives/orderBy.pipe';
+import { ProductNavBar } from './components/productNavbar-component/productNavbar.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +88,7 @@ import { OrderByPipe } from './directives/orderBy.pipe';
     HtkComponent,
     EyewearProcessComponent,
     UserDetailComponent,
-    OrderDetailComponent, StyleComponent,
+    OrderDetailComponent, StyleComponent, LensComponent, ProductNavBar,
     ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent, FrameComponent
   ],
   imports: [
