@@ -35,7 +35,6 @@ export class NewProductComponent  {
   assestValue: any = [];
   assestData: any = [];
   assestToPass: any = [];
-  dashUserEmail: any;
   assestVal: any = {};
   settings: any = {
             text: "Select Data",
@@ -45,8 +44,6 @@ export class NewProductComponent  {
   };
 //  toopinglist:any =[];
   constructor(private route: ActivatedRoute, private _productService: ProductService, private router: Router) {
-      this.dashUserEmail = JSON.parse(localStorage.getItem("current_user"));
-      //this.toopinglist=["1","2"];
   }
 
   ngOnInit() {

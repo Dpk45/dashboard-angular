@@ -74,4 +74,14 @@ updateStyle(brand, editedStyleData, styleId) {
     return res;
   });
 }
+
+//get data from table lens_colors
+getLensColor(brand) {
+  brand = brand + "_dev";
+  const _path: string = (this.baseUrl + '/lookup/lens_colors?key=' + brand)
+  return this._httpClient.get(_path)
+  .map((res: any) => {
+    return res;
+  });
+}
 }

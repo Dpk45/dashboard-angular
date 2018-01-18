@@ -57,12 +57,14 @@ import { NewProductComponent } from './components/productComponent/newProductCom
 import { ProductCollectionComponent } from './components/productComponent/ProductCollection/productCollection.component';
 import { FrameComponent } from './components/lookup-component/lookupFrame/lookupFrame.component';
 import { StyleComponent } from './components/lookup-component/lookupStyle/lookupStyle.component';
+import { LensComponent } from './components/lookup-component/lookupLens/lookupLens.component';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserDetailComponent } from './components/user-component/user-detail/user-detail.component';
 import { OrderByPipe } from './directives/orderBy.pipe';
+import { ProductNavBar } from './components/productNavbar-component/productNavbar.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +88,7 @@ import { OrderByPipe } from './directives/orderBy.pipe';
     HtkComponent,
     EyewearProcessComponent,
     UserDetailComponent,
-    OrderDetailComponent, StyleComponent,
+    OrderDetailComponent, StyleComponent, LensComponent, ProductNavBar,
     ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent, FrameComponent
   ],
   imports: [

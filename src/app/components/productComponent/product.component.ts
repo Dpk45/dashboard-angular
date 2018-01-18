@@ -41,8 +41,6 @@ export class ProductComponent  {
   lens_height: any;
   name: any;
   updateProductdata: any;
-  dashUserEmail: any;
-  current_user: any;
   tags: any = [];
   tagsValue: any = [];
   tagData: any = [];
@@ -59,28 +57,16 @@ export class ProductComponent  {
            classes: "myclass custom-class"
   };
   constructor(private route: ActivatedRoute, private _productService: ProductService, private _dashUserService: DashUserService, private router: Router) {
-  this.current_user = JSON.parse(localStorage.getItem("current_user"));
   }
   ngOnInit(){
     this.route.params.subscribe((params: any) => {
-    //  console.log("params>>>>>>>>>>>>>>>>>",params)
       this.brand = params.brand;
       this.getProducts();
       if(params.product_id) {
         this.product_id = params.product_id;
         this.foundProduct(this.product_id);
       }
-      // if(params.new_product){
-      //   console.log("inside>>>>>>>>>>>>.. param of new_product")
-      //   this.createProductData();
-      // }
     });
-
-    this._dashUserService.getDashUserByEmail(this.current_user.email).subscribe((res) => {
-    //  console.log("resposne>>>>>>..pPPPPPPPPPPPPP",res)
-        this.dashUserEmail = res.email;
-        // console.log("dashUserEmail>>>>>>>>>>>>>>>",this.dashUserEmail)
-      })
       this.getTagList();
       this.getAssestGroup();
   }
@@ -222,10 +208,5 @@ export class ProductComponent  {
     onDeSelectAll(items: any) {
         console.log(items);
     }
-// // update product
-//   createProductData() {
-//     console.log("create product>>>>>>>>>>>>>>>>..")
-//     this.createProduct = true;
-//   }
 
 }
