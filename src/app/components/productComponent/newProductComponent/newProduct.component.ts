@@ -42,7 +42,6 @@ export class NewProductComponent  {
            unSelectAllText: 'UnSelect All',
            classes: "myclass custom-class"
   };
-//  toopinglist:any =[];
   constructor(private route: ActivatedRoute, private _productService: ProductService, private router: Router) {
   }
 
@@ -61,7 +60,6 @@ export class NewProductComponent  {
   // get style_table
   getLookupStyleData() {
     this._productService.getLookupStyleData(this.brand).subscribe((res: any) => {
-      //console.log("res styleZ>>>>>>>>>>>>>>>>>>>",res)
       if(res.code == 200) {
         this.style = res.data;
         for (let i = 0; i < this.style.length; i++) {
@@ -76,7 +74,6 @@ export class NewProductComponent  {
   // get frame_color table
   getFrameColor() {
     this._productService.getFrameColor(this.brand).subscribe((res: any) => {
-      // console.log("res styleZ>>>>>>>>>>>>>>>>>>>",res)
       if(res.code == 200) {
         this.frame = res.data;
         for (let i = 0; i < this.frame.length; i++) {
@@ -109,7 +106,6 @@ export class NewProductComponent  {
         this.productType = res.data;
         //   for (let i = 0; i < this.productType.length; i++) {
         //   this.productTypeData.push(this.productType[i].name)
-        //   //console.log("productTypeData>>>>>>>>>>>>>>>>>>>>>",this.productTypeData)
         // }
       }
     }, (err) => {

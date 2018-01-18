@@ -13,6 +13,11 @@ export class LensComponent {
   lensData: any;
   lensDataValues: any;
   editLensData: any;
+
+  isDesc: boolean = false;
+  column: string;
+  direction: number;
+
   constructor(private route: ActivatedRoute, private router: Router, private _lookupService: LookupService) {
   }
 
@@ -26,10 +31,9 @@ export class LensComponent {
 // get data from table lens_colors
 getLensColor() {
     this._lookupService.getLensColor(this.brand).subscribe((res: any) => {
-      console.log("resposne >>>>>>>>>>>>>>",res)
+      console.log("resposne >>>>>>>>>>>>>>lens colors>>>>>>>>>>>>....",res)
       if(res.code == 200) {
       this.lensData = res.data;
-    //  console.log("frameData>>>>>>>..........",this.frameData)
       }
     },
     (err) => {
@@ -38,13 +42,12 @@ getLensColor() {
 }
 
 // create lens_colors
-createLensColor(form) {
+createLensColor(lens_name, lens_active) {
 this.lensDataValues = {
-'name': form.lens_name,
-'active_flag': form.lens_active,
+'name': lens_name,
+'active_flag': lens_active,
 }
 this._lookupService.createLensColor(this.brand, this.lensDataValues).subscribe((res: any) => {
-  console.log("resposne >>>>>>>>>>>>>>",res)
   if(res.code == 200) {
    location.reload();
   }
@@ -55,14 +58,13 @@ this._lookupService.createLensColor(this.brand, this.lensDataValues).subscribe((
 }
 
 // update frame_color
-updateLensColor(form) {
-  //console.log("data>>>>form>>>>>>>>>..",form)
+updateLensColor(update_lens_id, update_lens_name, update_lens_active) {
+  console.log("update_lens_name, update_lens_active", update_lens_name, update_lens_active)
   this.editLensData = {
-    'name': form.update_lens_name,
-    'active_flag': form.update_lens_active
+    'name': update_lens_name,
+    'active_flag': update_lens_active
   }
-//  console.log("  this.editFrameData>>>>>>>>>>>>>>>>", form.update_frame_id)
-  this._lookupService.updateLensColor(this.brand, this.editLensData, form.update_lens_id).subscribe((res: any) => {
+  this._lookupService.updateLensColor(this.brand, this.editLensData, update_lens_id).subscribe((res: any) => {
     console.log("resposne >>>>>>>>>>>>>>",res)
     if(res.code == 200) {
       //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
@@ -72,5 +74,12 @@ updateLensColor(form) {
   (err) => {
     console.log('error>>>>>>>>>>>>', err);
   })
+}
+
+// apply sorting
+sort(property) {
+  this.isDesc = !this.isDesc;   // change the direction
+  this.column = property;
+  this.direction = this.isDesc ? 1 : -1;
 }
 }

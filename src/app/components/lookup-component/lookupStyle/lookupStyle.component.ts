@@ -13,7 +13,9 @@ export class StyleComponent {
   styleData: any;
   styleDataValues: any;
   editStyleData: any;
-  //styleDataValues: any;
+  isDesc: boolean = false;
+  column: string;
+  direction: number;
   constructor(private route: ActivatedRoute, private router: Router, private _lookupService: LookupService) {
   }
 
@@ -27,10 +29,9 @@ export class StyleComponent {
 // get data from table styles
 getStyle() {
     this._lookupService.getStyle(this.brand).subscribe((res: any) => {
-      console.log("resposne >>>>>>>>>>>>>>",res)
+      //console.log("resposne >>>>>>>>>>>>>> styleeeeeeeeeeeeeee", res)
       if(res.code == 200) {
       this.styleData = res.data;
-    //  console.log("frameData>>>>>>>..........",this.styleData)
       }
     },
     (err) => {
@@ -39,18 +40,15 @@ getStyle() {
 }
 
 // create style
-createStyle(form) {
+createStyle(style_name, style_active) {
 this.styleDataValues = {
-'name': form.style_name,
-'active_flag': form.style_active,
+'name': style_name,
+'active_flag': style_active,
 }
-//console.log("this.frameDataValues+++++++++++++++++++",this.frameDataValues)
 this._lookupService.createStyle(this.brand, this.styleDataValues).subscribe((res: any) => {
-  //console.log("resposne >>>>>>>>>>>>>>",res)
   if(res.code == 200) {
   //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
     location.reload();
-  //this.styleDataValues = '';
   }
 },
 (err) => {
@@ -59,14 +57,12 @@ this._lookupService.createStyle(this.brand, this.styleDataValues).subscribe((res
 }
 
 // update style
-updatStyle(form) {
-  console.log("data>>>>form>>>>>>>>>..",form)
+updatStyle(update_style_id, update_style_name, update_style_active) {
   this.editStyleData = {
-    'name': form.update_style_name,
-    'active_flag': form.update_style_active
+    'name': update_style_name,
+    'active_flag': update_style_active
   }
-//  console.log("  this.editFrameData>>>>>>>>>>>>>>>>", form.update_frame_id)
-  this._lookupService.updateStyle(this.brand, this.editStyleData, form.update_style_id).subscribe((res: any) => {
+  this._lookupService.updateStyle(this.brand, this.editStyleData, update_style_id).subscribe((res: any) => {
     console.log("resposne >>>>>>>>>>>>>>++++++++++++++++",res)
     if(res.code == 200) {
       //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
@@ -76,5 +72,12 @@ updatStyle(form) {
   (err) => {
     console.log('error>>>>>>>>>>>>', err);
   })
+}
+
+// apply sorting
+sort(property) {
+  this.isDesc = !this.isDesc;   // change the direction
+  this.column = property;
+  this.direction = this.isDesc ? 1 : -1;
 }
 }

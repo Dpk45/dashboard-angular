@@ -42,9 +42,6 @@ export class LetterPressComponent {
         this.foundtemplateName(this.name);
         this.foundCommonTemplate(this.name);
       }
-      console.log("params value>>>>>>>>>..................", params)
-      // if(params.name == "htk_followup" )
-      //(click)="getOneTemplate(getOnetemplate.name)"
     });
   }
 
@@ -60,7 +57,6 @@ export class LetterPressComponent {
     this._letterService.findOneTemplate(name, this.brand)
     .subscribe(res => {
       this.getOnetemplate = res.data;
-    //  console.log("  this.getOnetemplate >>>>>>>>>>>>>>>>>>",  this.getOnetemplate )
       this.template = true;
     })
   }
@@ -72,10 +68,8 @@ export class LetterPressComponent {
     this.fromEmail = from_email.value;
     this.text = text.value;
     this.html = html.value;
-    console.log("inside of email_template>>>>>>>>>>>>>>>>>>>>>>>....")
     this._letterService.updateOneTemplate(this.subject, this.fromName, this.fromEmail, this.text, this.html, this.getOnetemplate.name, this.brand)
     .subscribe(res => {
-console.log("save>>>>>>>>>>>>>>>>>>>...",res.data)
       this.save = "Saved !"
       // this.router.navigate(['/letterpress', this.brand]);
     })
@@ -84,17 +78,14 @@ console.log("save>>>>>>>>>>>>>>>>>>>...",res.data)
   // get common_templates
   getCommonEmailTemplates() {
     this._letterService.getCommonTemplate(this.brand).subscribe(res => {
-
-      console.log("data>>>>>>>>>>>>>>>",res.data)
       this.commontemplate = res.data;
     });
   }
 
 // get one common template
-  foundCommonTemplate(name:any) {
+  foundCommonTemplate(name: any) {
     this._letterService.findOneCommonTemplate(name, this.brand)
     .subscribe(res => {
-      console.log("foundone >>>>>>>>>>>>>",res.data)
       this.getCommontemplate = res.data;
       this.commontemplateVariable = true;
     })
@@ -103,29 +94,10 @@ console.log("save>>>>>>>>>>>>>>>>>>>...",res.data)
   // update common template
   updateCommonTemplate(content: any) {
     this.content = content.value;
-    console.log("inside of email_template>>>>>>>>>>>>>>>>>>>>>>>....")
     this._letterService.updateCommonTemplate(this.content, this.getCommontemplate.name, this.brand)
     .subscribe(res => {
-      console.log("response >>>>>>>>>>>>>>>>>>",res.data)
-      this.save = "Saved !";
+      this.save = 'Saved !';
       // this.router.navigate(['/letterpress', this.brand]);
     })
   }
-
-  // getOrderTemplate(form) {
-  //   this.name = form.templateName;
-  //   this._letterService.findOneTemplate(this.name, this.brand)
-  //   .subscribe(res => {
-  //     this.getOnetemplate = res.data;
-  //     console.log("  this.getOnetemplate >>>>>>>>>>>>>>>>>>",  this.getOnetemplate )
-  //   //this.isPreview = true;
-  //   this.isTemplateAvailable = true;
-  //   })
-  // }
-
-  // getOneTemplate(name) {
-  //   this.templateName = name
-  //   console.log("name>>>>>>>>>>>>>>>>>>>.....",this.templateName)
-  //   this.isPreview = true;
-  // }
 }

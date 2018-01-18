@@ -19,22 +19,14 @@
       <div class="form-group">
           <label class="control-label col-sm-2">Name</label>
           <div class="col-sm-2">
-             <!-- <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" required  placeholder="Pick a Style" class="form-control input-xlarge"> -->
-                                          <!-- <select name="style" class="custom-select">
-                                            <div *ngFor ="let style of getStyle">
-                                              <option value="{{style.name}}">{{style.name}}</option>
-                                            </div>
-                                          </select> -->
                                           <select id="name" name="name" placeholder="Pick a Style" class="form-control input-xlarge" [(ngModel)]="selectedStyle">
                                             <option *ngFor="let styleName of styleNames" [ngValue]="styleName">{{styleName}}</option>
                       </select>
-
-          </div>
+                    </div>
       </div><br><br>
       <div class="form-group">
           <label class="control-label col-sm-2">Frame Color</label>
           <div class="col-sm-2">
-             <!-- <input type="text" class="form-control" name="frame_color" [(ngModel)]="frame_color" required  placeholder="Frame Color" class="form-control input-xlarge"> -->
              <select id="frame_color" name="frame_color" class="form-control input-xlarge" placeholder="Frame Color" [(ngModel)]="selectedFrame">
                <option *ngFor="let frame of frameColor" [ngValue]="frame">{{frame}}</option>
              </select>
@@ -43,7 +35,6 @@
       <div class="form-group">
           <label class="control-label col-sm-2">Lens Color</label>
           <div class="col-sm-2">
-             <!-- <input type="text" class="form-control" name="lens_color" [(ngModel)]="lens_color" required placeholder="Lens Color" class="form-control input-xlarge"> -->
              <select name="lens_color" class="form-control input-xlarge" placeholder="Lens Color" [(ngModel)]="selectedLensColor">
                <option *ngFor="let l of len" [ngValue]="l.id">{{l.name}}</option>
              </select>
@@ -52,22 +43,14 @@
       <div class="form-group">
           <label class="control-label col-sm-2">Product Type</label>
           <div class="col-sm-2">
-             <!-- <input type="text" class="form-control" name="lens_color" [(ngModel)]="lens_color" required placeholder="Lens Color" class="form-control input-xlarge"> -->
              <select name="product_type" class="form-control input-xlarge" placeholder="Optical or Sun" [(ngModel)]="selectedProductType">
                <option *ngFor="let product of productType" [ngValue]="product.id">{{product.name}}</option>
              </select>
           </div>
       </div><br><br>
-      <!-- <div class="form-group">
-          <label class="control-label col-sm-2">Sunwear?</label>
-            <div class="col-sm-1">
-          <input type="text" class="form-control" name="sunwear" [(ngModel)]="sunwear" required placeholder="Optical or Sun" class="form-control input-xlarge">
-        </div>
-      </div><br><br> -->
       <div class="form-group">
           <label class="control-label col-sm-2">Gender</label>
           <div class="col-sm-2">
-             <!-- <input type="text" class="form-control" name="gender" [(ngModel)]="product_gender" required placeholder="Mens's/Women's" class="form-control input-xlarge"> -->
              <select  name="gender" class="form-control input-xlarge" [(ngModel)]="selectedGender">
                <option  [ngValue]="1">Mens's</option>
                   <option  [ngValue]="2">Women's</option>
@@ -96,9 +79,6 @@
       </div><br><br><br><br><br><br>
       <div class="form-group">
           <label class="control-label col-sm-2">Asset Groups</label>
-          <!-- <div class="col-sm-10">
-             <textarea  name="assets" [(ngModel)]="assets" required  class="form-control input-xlarge"></textarea>
-          </div> -->
           <div class="col-sm-10">
           <angular2-multiselect  name="assets" [data]="assestToPass"
                               [(ngModel)]="assest"
@@ -121,12 +101,6 @@
              <input type="text" class="form-control" name="social_id" Placeholder="ID for instagram link" [(ngModel)]="social_id" required  class="form-control input-xlarge">
           </div>
       </div><br><br><br><br>
-      <!-- <div class="form-group">
-          <label class="control-label col-sm-2">UPC Code</label>{{product.upc_codes}}
-          <div class="col-sm-10">
-             <input type="text" class="form-control" name="upc_code" [(ngModel)]="upc_codes" required  class="form-control input-xlarge">
-          </div>
-      </div><br><br> -->
       <div class="form-group">
           <label class="control-label col-sm-2">Prices</label>
         </div><br><br>

@@ -8,8 +8,6 @@ import { DashUserService } from "../../services/dashUser.service"
   styleUrls: ['./eyewear-component.component.css']
 })
 export class EyewearComponent implements OnInit {
-
-
   brand: any
   dashUser: any
   current_user: any
@@ -20,15 +18,13 @@ export class EyewearComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
-      console.log("params >>>", params)
       if(params.brand){
         this.brand = params.brand
       }
-      
+
       this._dashUserService.getDashUserByEmail(this.current_user.email).subscribe((res) => {
         this.dashUser = res;
       })
-      console.log(" this.brand vvvvvvvvvv", this.brand)
     });
   }
 
