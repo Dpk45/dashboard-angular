@@ -1,1 +1,47 @@
 <product-nav></product-nav>
+
+<div class="container">
+  <h5><input type="text" name="search" placeholder="filter" class="form-control" [(ngModel)]="filter"></h5>
+  <br>
+  <form role="form" #form="ngForm" (ngSubmit)="createLensColor(form.value)">
+      <div class="table-responsive">
+          <table class="table table-bordered table-condensed table-hover display" style="width:100%">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Active</th>
+                      <th>Action</th>
+                  </tr>
+
+                  <tr>
+                    <td class="col-md-3"><input type="text"  placeholder="New" name="lens_id" class="form-control" [(ngModel)]="lens_id" disabled= disabled required></td>
+                    <td class="col-md-5"><input type="text"  name="lens_name" class="form-control" [(ngModel)]="lens_name" required></td>
+                    <td class="col-md-3"><select name="lens_active" class="form-control" [(ngModel)]="lens_active">
+                      <option  [ngValue]="1">Active</option>
+                      <option [ngValue]="0">InActive</option>
+                    </select>
+                  </td>
+                  <td><input type="submit" class="form-control" value="Add"></td>
+                  </tr>
+                  </thead>
+            </table>
+      </div>
+  </form>
+<div class="table-responsive">
+          <table class="table table-bordered table-condensed table-hover display" style="width:100%">
+            <tr *ngFor="let f of lensData | filter:filter">
+              <form role="form" #fm="ngForm" (ngSubmit)="updateLensColor(fm.value)">
+                    <td class="col-md-3"><input type="text"  name="update_lens_id" class="form-control" [(ngModel)]="f['id']" readonly="readonly" required></td>
+                      <td class="col-md-6"><input type="text"  name="update_lens_name" class="form-control" [(ngModel)]="f['name']" required></td>
+                        <td class="col-md-4"><select name="update_lens_active" class="form-control" [(ngModel)]="f['active_flag']" required>
+                          <option  [ngValue]="1">Active</option>
+                          <option [ngValue]="0">InActive</option>
+                        </select>
+                      </td>
+                        <td class="myTab1"><input type="submit" class="form-control" value="Update"></td>
+                  </form>
+                  </tr>
+            </table>
+      </div>
+</div>

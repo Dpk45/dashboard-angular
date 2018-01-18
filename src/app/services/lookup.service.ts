@@ -84,4 +84,28 @@ getLensColor(brand) {
     return res;
   });
 }
+
+// create lens_colors
+createLensColor(brand, lensData) {
+  brand = brand + "_dev";
+  let body: any = JSON.stringify(lensData)
+  const _path: string = (this.baseUrl + '/lookup/lens_colors?key=' + brand)
+  return this._httpClient.post(_path, body)
+  .map((res: any) => {
+    return res;
+  });
+}
+
+// update len_colors data
+updateLensColor(brand, editedLensData, LensId) {
+  brand = brand + "_dev";
+  let body: any = JSON.stringify(editedLensData)
+  console.log("body in updated>>>>>>>>............",body)
+  const _path: string = (this.baseUrl + '/lookup/lens_colors/' + LensId + '?key=' + brand)
+  return this._httpClient.put(_path, body)
+  .map((res: any) => {
+    return res;
+  });
+}
+
 }
