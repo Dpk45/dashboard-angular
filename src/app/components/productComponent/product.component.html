@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse" role="navigation">
+<!-- <nav class="navbar navbar-inverse" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
@@ -16,9 +16,9 @@
           <a class="dropdown-toggle" data-toggle="dropdown">Products
             <b class="caret"></b>
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu"> -->
             <!-- <div *ngIf="brand"> -->
-            <li>
+            <!-- <li>
               <a [routerLink]="['/product', brand]">List Products</a>
             </li>
             <li>
@@ -31,8 +31,8 @@
             <li>
               <a [routerLink]="['/product_collection', brand, 'new_product_collection']">Add New Product Collection</a>
             </li>
-            <!-- </div> -->
-          </ul>
+            <! </div> -->
+          <!-- </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav">
@@ -40,9 +40,9 @@
           <a class="dropdown-toggle" data-toggle="dropdown">Lookup Values
             <b class="caret"></b>
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu"> -->
             <!-- <div *ngIf="brand"> -->
-            <li>
+            <!-- <li>
               <a [routerLink]="['/lookup','styles', brand]">Styles</a>
             </li>
             <li>
@@ -53,9 +53,9 @@
             </li>
             <li>
               <a [routerLink]="['/lookup', 'template_map', brand]">Template Map</a>
-            </li>
+            </li> -->
             <!-- </div> -->
-          </ul>
+          <!-- </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -70,11 +70,11 @@
           </ul>
         </li>
       </ul>
-    </div>
+    </div> -->
     <!--/.nav-collapse -->
-  </div>
-</nav>
-
+  <!-- </div>
+</nav> -->
+<product-nav></product-nav>
 
 <div class="container" *ngIf="!byProduct">
   <h3>Search

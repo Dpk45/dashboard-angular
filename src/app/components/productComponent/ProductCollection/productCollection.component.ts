@@ -15,10 +15,9 @@ export class ProductCollectionComponent  {
   isFoundSlug: boolean;
   data: any;
   productIds: any;
-  selectedProductId: any;
+  selectedProductId: any = [];
   slug: any;
   productCollectionData: any;
-  dashUserEmail: any;
   slugValue: any;
   assest: any = [];
   productId: any = [];
@@ -36,7 +35,6 @@ export class ProductCollectionComponent  {
            classes: "myclass custom-class"
   };
   constructor(private route: ActivatedRoute, private _productService: ProductService, private router: Router) {
-  this.dashUserEmail = JSON.parse(localStorage.getItem("current_user"));
   }
 
 
@@ -108,7 +106,6 @@ export class ProductCollectionComponent  {
   // get list of Product
   getProductsList() {
     this._productService.getProductsList(this.brand).subscribe((res: any) => {
-      //  console.log("response>>>>>>>>>>>>>>>>", JSON.stringify((res.data[0])))
       if(res.code == 200) {
         this.productIds = res.data;
         for (let i = 0; i < this.productIds.length; i++) {

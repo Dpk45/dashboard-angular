@@ -9,14 +9,12 @@ import { LookupService } from '../../../services/lookup.service';
 })
 
 export class StyleComponent {
-  dashUserEmail: any;
   brand: any;
   styleData: any;
   styleDataValues: any;
   editStyleData: any;
   //styleDataValues: any;
   constructor(private route: ActivatedRoute, private router: Router, private _lookupService: LookupService) {
-      this.dashUserEmail = JSON.parse(localStorage.getItem("current_user"));
   }
 
   ngOnInit(){
