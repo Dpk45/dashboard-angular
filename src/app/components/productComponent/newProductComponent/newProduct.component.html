@@ -1,117 +1,144 @@
 <product-nav></product-nav>
 
 <div class="container">
-<h1>New Product</h1>
+  <h1>New Product</h1>
   <form role="form" #form="ngForm" (ngSubmit)="createProduct(form.value)">
-      <div class="form-group">
-          <label class="control-label col-sm-2">Product ID</label>
-          <div class="col-sm-10">
-             <input type="text" class="form-control" name="product_id" required disabled= disabled
-              placeholder="Auto Assigned" class="form-control input-xlarge">
-          </div>
-      </div><br><br>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Legacy Product ID</label>
-          <div class="col-sm-10">
-             <input type="text" class="form-control"  name="legacy_product_id" [(ngModel)]="legacy_product_id" placeholder="Old formate product Id" required class="form-control input-xlarge">
-          </div>
-      </div><br><br>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Name</label>
-          <div class="col-sm-2">
-                                          <select id="name" name="name" placeholder="Pick a Style" class="form-control input-xlarge" [(ngModel)]="selectedStyle">
-                                            <option *ngFor="let styleName of styleNames" [ngValue]="styleName">{{styleName}}</option>
-                      </select>
-                    </div>
-      </div><br><br>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Frame Color</label>
-          <div class="col-sm-2">
-             <select id="frame_color" name="frame_color" class="form-control input-xlarge" placeholder="Frame Color" [(ngModel)]="selectedFrame">
-               <option *ngFor="let frame of frameColor" [ngValue]="frame">{{frame}}</option>
-             </select>
-          </div>
-      </div><br><br>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Lens Color</label>
-          <div class="col-sm-2">
-             <select name="lens_color" class="form-control input-xlarge" placeholder="Lens Color" [(ngModel)]="selectedLensColor">
-               <option *ngFor="let l of len" [ngValue]="l.id">{{l.name}}</option>
-             </select>
-          </div>
-      </div><br><br>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Product Type</label>
-          <div class="col-sm-2">
-             <select name="product_type" class="form-control input-xlarge" placeholder="Optical or Sun" [(ngModel)]="selectedProductType">
-               <option *ngFor="let product of productType" [ngValue]="product.id">{{product.name}}</option>
-             </select>
-          </div>
-      </div><br><br>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Gender</label>
-          <div class="col-sm-2">
-             <select  name="gender" class="form-control input-xlarge" [(ngModel)]="selectedGender">
-               <option  [ngValue]="1">Mens's</option>
-                  <option  [ngValue]="2">Women's</option>
-                     <option  [ngValue]="3">Unisex</option>
-             </select>
-          </div>
-      </div><br><br>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Tags</label>
-  <div class="col-sm-10">
-  <angular2-multiselect  name="tags" [data]="tagToPass"
-                      [(ngModel)]="tags"
-                      [settings]="settings" (onSelect)="onItemSelect($event)"
-                      (onDeSelect)="OnItemDeSelect($event)"
-                      (onSelectAll)="onSelectAll($event)"
-                      (onDeSelectAll)="onDeSelectAll($event)">
-</angular2-multiselect>
-</div>
-</div>
-      <br><br>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Description</label>
-          <div class="col-sm-10">
-             <textarea  rows="5" class="form-control" name="description" [(ngModel)]="description" Placeholder="This frame..."  required  class="form-control input-xlarge"></textarea>
-          </div>
-      </div><br><br><br><br><br><br>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Asset Groups</label>
-          <div class="col-sm-10">
-          <angular2-multiselect  name="assets" [data]="assestToPass"
-                              [(ngModel)]="assest"
-                              [settings]="settings" (onSelect)="onItemSelect($event)"
-                              (onDeSelect)="OnItemDeSelect($event)"
-                              (onSelectAll)="onSelectAll($event)"
-                              (onDeSelectAll)="onDeSelectAll($event)">
+    <div class="form-group">
+      <label class="control-label col-sm-2">Product ID</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="product_id" required disabled=d isabled placeholder="Auto Assigned" class="form-control input-xlarge">
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Legacy Product ID</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="legacy_product_id" [(ngModel)]="legacy_product_id" placeholder="Old formate product Id"
+          required class="form-control input-xlarge">
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Name</label>
+      <div class="col-sm-2">
+        <select id="name" name="name" placeholder="Pick a Style" class="form-control input-xlarge" [(ngModel)]="selectedStyle">
+          <option *ngFor="let styleName of styleNames" [ngValue]="styleName">{{styleName}}</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Frame Color</label>
+      <div class="col-sm-2">
+        <select id="frame_color" name="frame_color" class="form-control input-xlarge" placeholder="Frame Color" [(ngModel)]="selectedFrame">
+          <option *ngFor="let frame of frameColor" [ngValue]="frame">{{frame}}</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Lens Color</label>
+      <div class="col-sm-2">
+        <select name="lens_color" class="form-control input-xlarge" placeholder="Lens Color" [(ngModel)]="selectedLensColor">
+          <option *ngFor="let l of len" [ngValue]="l.id">{{l.name}}</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Product Type</label>
+      <div class="col-sm-2">
+        <select name="product_type" class="form-control input-xlarge" placeholder="Optical or Sun" [(ngModel)]="selectedProductType">
+          <option *ngFor="let product of productType" [ngValue]="product.id">{{product.name}}</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Gender</label>
+      <div class="col-sm-2">
+        <select name="gender" class="form-control input-xlarge" [(ngModel)]="selectedGender">
+          <option [ngValue]="1">Mens's</option>
+          <option [ngValue]="2">Women's</option>
+          <option [ngValue]="3">Unisex</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Tags</label>
+      <div class="col-sm-10">
+        <angular2-multiselect name="tags" [data]="tagToPass" [(ngModel)]="tags" [settings]="settings" (onSelect)="onItemSelect($event)"
+          (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
         </angular2-multiselect>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Description</label>
+      <div class="col-sm-10">
+        <textarea rows="5" class="form-control" name="description" [(ngModel)]="description" Placeholder="This frame..." required
+          class="form-control input-xlarge"></textarea>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Asset Groups</label>
+      <div class="col-sm-10">
+        <angular2-multiselect name="assets" [data]="assestToPass" [(ngModel)]="assest" [settings]="settings" (onSelect)="onItemSelect($event)"
+          (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
+        </angular2-multiselect>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Product Details(Comma separated)</label>
+      <div class="col-sm-10">
+        <textarea name="details" [(ngModel)]="details" required placeholder="Details are comma separated, this is second detail"
+          class="form-control input-xlarge"></textarea>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Social Id</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="social_id" Placeholder="ID for instagram link" [(ngModel)]="social_id" required
+          class="form-control input-xlarge">
+      </div>
+    </div>
+    <fieldset>
+      <legend>
+        Prices
+      </legend>
+      <div class="form-group">
+        <label class="control-label col-sm-2">No Lens</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" name="NO_LENS_PRICE" [(ngModel)]="NO_LENS_PRICE" required class="form-control input-xlarge">
         </div>
-      </div><br><br><br><br>
+      </div>
+      <br>
+      <br>
       <div class="form-group">
-          <label class="control-label col-sm-2">Product Details(Comma separated)</label>
-          <div class="col-sm-10">
-             <textarea name="details" [(ngModel)]="details" required placeholder="Details are comma separated, this is second detail" class="form-control input-xlarge"></textarea>
-          </div>
-      </div><br><br><br><br>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Social Id</label>
-          <div class="col-sm-10">
-             <input type="text" class="form-control" name="social_id" Placeholder="ID for instagram link" [(ngModel)]="social_id" required  class="form-control input-xlarge">
-          </div>
-      </div><br><br><br><br>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Prices</label>
-        </div><br><br>
-          <div class="form-group">
-            <label class="control-label col-sm-2">No Lens</label>
-          <div class="col-sm-2">
-            <input type="number" class="form-control" name="NO_LENS_PRICE" [(ngModel)]="NO_LENS_PRICE" required  class="form-control input-xlarge">
-          </div>
-        </div><br><br>
-        <div class="form-group">
-          <label class="control-label col-sm-2">Standard Index Lens</label>
+        <label class="control-label col-sm-2">Standard Index Lens</label>
         <div class="col-sm-2">
           <input type="number" class="form-control" name="NO_LENS_PRICE" [(ngModel)]="NO_LENS_PRICE" required class="form-control input-xlarge">
         </div>

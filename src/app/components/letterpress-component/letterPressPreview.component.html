@@ -18,10 +18,11 @@
 <div class="container" *ngIf="isSuccess">
   <div class="form-group">
       <label>Html</label>
-      <textarea rows="20" class="form-control" readonly="readonly" name="html">{{templateData.html}}</textarea>
+      <div [innerHTML]="templateData.html"></div>
+      <!-- <textarea rows="20" class="form-control" readonly="readonly" name="html" [innerHTML]="templateData.html"></textarea> -->
   </div>
   <div class="form-group">
       <label>Text</label>
-      <textarea rows="20" class="form-control" readonly="readonly" name="text">{{templateData.text}}</textarea>
+      <textarea rows="20" class="form-control" readonly="readonly" name="text"  >{{templateData.text}}</textarea>
   </div>
 </div>
