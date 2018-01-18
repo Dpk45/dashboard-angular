@@ -24,7 +24,7 @@
                                     <a [routerLink]="['/orders/', brand.brand, order.order_id, 'view']">{{order['order_id']}}</a>
                                 </td>
                                 <td>
-                                    <a>{{order['customer']['name']}}</a>
+                                    <a [routerLink]="['/users/',brand.brand,order['customer']['email'] ,'view']">{{order['customer']['name']}}</a>
                                 </td>
                                 <td>{{order['ordered_at']}}</td>
                                 <td>
