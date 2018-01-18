@@ -15,31 +15,7 @@ export class ProductComponent  {
   product: any;
   byProduct: boolean;
   createProduct: boolean;
-  legacy_product_id: any;
   product_name: any;
-  frame_color: any;
-  lens_color: any;
-  assets: any;
-  sunwear: any;
-  gender: any;
-  //tags: any;
-  description: any;
-  details: any;
-  social_id: any;
-  upc_codes: any;
-  NO_LENS_PRICE: any;
-  STANDARD_INDEX_LENS_PRICE: any;
-  HIGH_INDEX_LENS_PRICE: any;
-  PRG_STANDARD_LENS_PRICE: any;
-  PRG_HIGH_INDEX_LENS_PRICE: any;
-  PLANO_LENS_PRICE: any;
-  READING_LENS_PRICE: any;
-  ORIGINAL_RX_PRICE: any;
-  bridge: any;
-  temple: any;
-  lens_width: any;
-  lens_height: any;
-  name: any;
   updateProductdata: any;
   tags: any = [];
   tagsValue: any = [];
@@ -184,9 +160,7 @@ export class ProductComponent  {
         "lens_height": form.lens_height
       }
     }
-    console.log("updateProductdata>>>>>>>>>>>>>>>>>>",this.updateProductdata)
     this._productService.updateProductById(this.brand, this.product_id,  this.updateProductdata).subscribe((res: any) => {
-    //  console.log("re4pose updated>>>>>.......................",res)
       if(res.code == 200) {
           this.router.navigate(['/product', this.brand]);
       }
