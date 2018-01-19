@@ -30,8 +30,8 @@
                           </ng-container>
                         </li>
                         <li>
-                            <a id="pop1">Add available UPC codes</a><br>
-                            <div hidden id="form1" class="pop">
+                            <a (click) = showUpcCode()>Add available UPC codes</a><br>
+                            <div *ngIf="!isUpcCode" class="pop">
                                 <form  role="form" #form="ngForm" (ngSubmit)="createUpcCode(form)">
                                     <div class="form-group">
                                         <label for="batchname">Batch Name
@@ -51,8 +51,8 @@
                             </div>
                         </li>
                         <li>
-                            <a id="pop2">Email UPC Code Report</a><br>
-                            <div hidden id="form2" class="pop">
+                            <a (click) = reportUpcCode()>Email UPC Code Report</a><br>
+                            <div *ngIf="!isBatch" class="pop">
                                 <form role="form" #f="ngForm" (ngSubmit)="upcCodeReport(f)">
                                     <div class="form-group">
                                         <label for="reportbatchname" class="form-label">Batch Name
