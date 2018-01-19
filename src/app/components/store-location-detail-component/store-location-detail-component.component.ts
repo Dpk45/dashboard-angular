@@ -138,10 +138,7 @@ export class StoreLocationDetailComponent implements OnInit {
     this.newStore.address.zip = form.value.zip;
     this.newStore.address.country = form.value.country
     this.newStore.is_cc_authorized = form.value.is_cc_authorized
-    console.log(" this.newStore >>>>..",  this.newStore)
-
     this._storeLocationService.createStoreLocation( this.newStore, this.brand).subscribe(res=>{
-      console.log("created store location successfully.............")
       form.reset()
     })
   }
@@ -165,16 +162,11 @@ export class StoreLocationDetailComponent implements OnInit {
   }
 
   addNewPin(formData){
-    console.log("formData >>>> in addNewPin pin", formData.new_pin)
     if(this.store.pin_codes[0] == ''){
-      console.log("this.store.pin_codes.length == 0", this.store)
       this.store.pin_codes[0] = this.store.pin_codes[0].concat(formData.new_pin)
     }else{
       this.store.pin_codes[0] = this.store.pin_codes[0].concat("," + formData.new_pin) // need to check it once not the correc t way of pin handling in db
     }
-
-    
-       
      console.log(" this.store addNewPin >>>>..",  this.store)
     this._storeLocationService.updateStoreLocation( this.store, this.kioskId, this.brand).subscribe(res=>{
       console.log("updated pin of store location successfully.............")

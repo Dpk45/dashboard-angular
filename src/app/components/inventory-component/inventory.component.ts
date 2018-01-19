@@ -10,7 +10,7 @@ import { Router, ActivatedRoute} from '@angular/router';
 
 export class InventoryComponent {
   productId: any;
-  selectedValue: any = 'Adjust Values';
+  selectedValue: any = 'update';
   foundedProductId: boolean;
   byProductId: any = [];
   brand: any;

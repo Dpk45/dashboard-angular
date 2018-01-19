@@ -83,10 +83,9 @@
     <div class="form-group">
       <label class="control-label col-sm-5">Adjust or Overwrite</label>
       <div class="col-sm-10">
-        <!-- <select  class="form-control" [(ngModel)]="selectedValue" required> -->
         <select  class="form-control" name="overwrite" [(ngModel)]="selectedValue" required>
-          <option value = "update">Adjust Values</option>
-          <option value = "overwrite">Full Cycle Count (Overwrite)</option>
+          <option ngValue = "update">Adjust Values</option>
+          <option ngValue = "overwrite">Full Cycle Count (Overwrite)</option>
         </select>
       </div>
     </div>
