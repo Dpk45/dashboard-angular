@@ -10,7 +10,7 @@ import { Router, ActivatedRoute} from '@angular/router';
 
 export class InventoryComponent {
   productId: any;
-  selectedValue: any = 'Adjust Values';
+  selectedValue: any = 'update';
   foundedProductId: boolean;
   byProductId: any = [];
   brand: any;
@@ -23,6 +23,7 @@ export class InventoryComponent {
   isSuccess: boolean;
   formdata: any;
   file: any;
+  adjustValue: any;
   constructor(private route: ActivatedRoute, private _inventoryService: InventoryService, private router: Router) {
 
   }
@@ -77,11 +78,17 @@ export class InventoryComponent {
   }
 
   // upload Inventory
-  uploadInventory() {
-    this._inventoryService.uploadInventory(this.formdata, this.brand).subscribe(res => {
+  uploadInventory(form) {
+    this.adjustValue = form.value.overwrite;
+    if (this.adjustValue == 'overwrite') {
+      this.adjustValue = true;
+    } else {
+      this.adjustValue = false;
+    }
+    this._inventoryService.uploadInventory(this.adjustValue, this.formdata, this.brand).subscribe(res => {
       if(res.code == 200) {
         this.isSuccess = true;
-        //this.router.navigate(['/inventory', this.brand]);
+        form.reset();
         }
       }, (err) => {
       console.log('error>>>>>>>>>>>>', err);

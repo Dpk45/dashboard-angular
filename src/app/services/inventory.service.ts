@@ -16,7 +16,7 @@ export class InventoryService {
     const _path: string = (this.baseUrl + '/products/' + productId + '/get_inventory?key=' + brand)
     console.log("-path>>>>>>>>>>>>>", _path)
     return this._httpClient.get(_path)
-    .map((res:any) => {
+    .map((res: any) => {
       return res;
     });
   }
@@ -26,7 +26,7 @@ export class InventoryService {
     brand = brand + "_dev";
     const _path: string = (this.baseUrl + '/products/?key=' + brand + '&product_id=' + productId)
     return this._httpClient.get(_path)
-    .map((res:any) => {
+    .map((res: any) => {
       return res;
     });
   }
@@ -37,18 +37,17 @@ export class InventoryService {
     const _path: string = (this.baseUrl + '/products/'+ productId + '/adjust_inventory?key=' + brand)
     let body = JSON.stringify({'warehouse': warehouse, 'htk_quantity': htk_quantity, 'kmarsoptical': kmarsoptical, 'tro': tro})
     return this._httpClient.put(_path, body)
-    .map((res:any) => {
+    .map((res: any) => {
       return res;
     });
   }
 
-  uploadInventory(file, brand) {
-    file = btoa(file);
+  uploadInventory(adjustValue, file, brand) {
     brand = brand + "_dev";
     const _path: string = (this.baseUrl + '/products/update_inventory?key=' + brand)
-    let body = JSON.stringify({'file': file})
+    let body = {'overwrite': adjustValue, 'file': file.data}
     return this._httpClient.put(_path, body)
-    .map((res:any) => {
+    .map((res: any) => {
       return res;
     });
   }
