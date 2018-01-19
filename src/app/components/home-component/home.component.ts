@@ -37,8 +37,9 @@ export class HomeComponent  {
     this._homeService.createUpcCode(this.batchname, this.upcObject).subscribe((res:any) => {
       if(res.code == 200) {
         this.SuccessfullyCreatedUpc = true;
+        this.isSuccess = false;
         form.reset();
-        document.getElementById("available_upc_codes").value = "";
+      //  document.getElementById("available_upc_codes").value = "";
         }
       }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
@@ -51,6 +52,7 @@ export class HomeComponent  {
     this._homeService.upcCodeReport(this.reportbatchname).subscribe((res: any) => {
       if(res.code == 200) {
         this.isSuccess = true;
+        this.SuccessfullyCreatedUpc = false;
         }
       }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
