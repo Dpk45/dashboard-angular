@@ -79,7 +79,7 @@ export class InventoryComponent {
 
   // upload Inventory
   uploadInventory(form) {
-    this.adjustValue = form.overwrite;
+    this.adjustValue = form.value.overwrite;
     if (this.adjustValue == 'overwrite') {
       this.adjustValue = true;
     } else {
@@ -88,7 +88,7 @@ export class InventoryComponent {
     this._inventoryService.uploadInventory(this.adjustValue, this.formdata, this.brand).subscribe(res => {
       if(res.code == 200) {
         this.isSuccess = true;
-        location.reload();
+        form.reset();
         }
       }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
