@@ -52,7 +52,6 @@ export class DiscountComponent {
   getDiscounts() {
     this._discountService.getDiscount(this.brand).subscribe(res => {
       this.discount_list = res.data;
-      console.log("res.data >>>", res.data)
     },
       (err) => {
         console.log('error>>>>>>>>>>>>', err);
@@ -92,27 +91,6 @@ export class DiscountComponent {
     } else {
       this.getDiscounts();
     }
-    // if (!expirationDate && this.quantityAvailable) {
-    //     const NotExpired: any = [];
-    //     for (let i = 0; i < this.discount_list.length; i++) {
-    //     if (this.discount_list[i].expiration_date >= this.TodayDate && this.discount_list[i].quantity > 0) {
-    //       NotExpired.push(this.discount_list[i]);
-    //     }
-    //   }
-    //   this.discount_list = NotExpired;
-    // }
-    //
-    // if (!expirationDate && !this.quantityAvailable) {
-    //     const NotExpired: any = [];
-    //     for (let i = 0; i < this.discount_list.length; i++) {
-    //     if (this.discount_list[i].quantity > 0) {
-    //       NotExpired.push(this.discount_list[i]);
-    //     }
-    //   }
-    //   console.log("NotExpired>>>>>>>>>>>>>>>>>>>>",NotExpired)
-    //   this.discount_list = NotExpired;
-    // }
-
   }
 
   // create discount code
@@ -134,21 +112,12 @@ export class DiscountComponent {
         console.log('error>>>>>>>>>>>>', err);
       }
       );
-    // discount_code.value = '';
-    // amount.value = '';
-    // quantity.value = '';
-    // discount_type.value = '';
-    // discount_reason.value = '';
-    // date.value = '';
-    // location.reload();
-    // this.isSuccess = true;
   }
 
   // findOne discount_code
   foundDiscountCode(discount_code: any) {
     this._discountService.findOneDiscount(discount_code, this.brand)
       .subscribe(res => {
-        console.log("res.data discount code >>>>", res.data)
         this.oneDiscountCode = res.data;
         this.byDiscountCode = true;
       },
@@ -178,7 +147,7 @@ export class DiscountComponent {
     location.reload();
   }
 
-
+// apply sorting
   sort(property) {
     this.isDesc = !this.isDesc;   // change the direction
     this.column = property;

@@ -15,7 +15,7 @@ export class HtkComponent implements OnInit {
   orders :any
   brand_orders : any = { }
 
-  constructor(private _ordersService:OrdersService, private _dashUserService: DashUserService, private route: ActivatedRoute, private router: Router) { 
+  constructor(private _ordersService:OrdersService, private _dashUserService: DashUserService, private route: ActivatedRoute, private router: Router) {
     this.current_user = JSON.parse(localStorage.getItem("current_user"));
   }
 
@@ -27,17 +27,16 @@ export class HtkComponent implements OnInit {
         let brand = res.brands[i].brand;
         this.getOrders(brand)
       }
-      console.log("brand_orders >>>>>>>>>>", this.brand_orders)
     })
-    
+
   }
 
-
-  getOrders(brand){
-    this._ordersService.getOrders(brand).subscribe((res:any)=>{
-      if(res.code==200){
+// get list of orders
+  getOrders(brand) {
+    this._ordersService.getOrders(brand).subscribe((res: any) => {
+      if (res.code == 200) {
           this.brand_orders[brand] = []
-          this.brand_orders[brand]=res.data
+          this.brand_orders[brand] = res.data;
       }
     })
   }

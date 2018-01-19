@@ -27,7 +27,6 @@ export class NewProductComponent  {
   selectedProductType: any = "Non-Rx Sun Only";
   selectedGender: any = "Men's";
   productData: any;
-  tags: any = [];
   tagsValue: any = [];
   tagData: any = [];
   tagToPass: any = [];
@@ -39,10 +38,8 @@ export class NewProductComponent  {
   settings: any = {
             text: "Select Data",
            selectAllText: 'Select All',
-           unSelectAllText: 'UnSelect All',
-           classes: "myclass custom-class"
+           unSelectAllText: 'UnSelect All'
   };
-//  toopinglist:any =[];
   constructor(private route: ActivatedRoute, private _productService: ProductService, private router: Router) {
   }
 
@@ -61,7 +58,6 @@ export class NewProductComponent  {
   // get style_table
   getLookupStyleData() {
     this._productService.getLookupStyleData(this.brand).subscribe((res: any) => {
-      //console.log("res styleZ>>>>>>>>>>>>>>>>>>>",res)
       if(res.code == 200) {
         this.style = res.data;
         for (let i = 0; i < this.style.length; i++) {
@@ -76,7 +72,6 @@ export class NewProductComponent  {
   // get frame_color table
   getFrameColor() {
     this._productService.getFrameColor(this.brand).subscribe((res: any) => {
-      // console.log("res styleZ>>>>>>>>>>>>>>>>>>>",res)
       if(res.code == 200) {
         this.frame = res.data;
         for (let i = 0; i < this.frame.length; i++) {
@@ -93,9 +88,6 @@ export class NewProductComponent  {
     this._productService.getLenColor(this.brand).subscribe((res: any) => {
       if(res.code == 200) {
         this.len = res.data;
-        //   for (let i = 0; i < this.len.length; i++) {
-        //   this.lenColors.push(this.len[i].name)
-        // }
       }
     }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
@@ -107,10 +99,6 @@ export class NewProductComponent  {
     this._productService.getTemplateMap(this.brand).subscribe((res: any) => {
       if(res.code == 200) {
         this.productType = res.data;
-        //   for (let i = 0; i < this.productType.length; i++) {
-        //   this.productTypeData.push(this.productType[i].name)
-        //   //console.log("productTypeData>>>>>>>>>>>>>>>>>>>>>",this.productTypeData)
-        // }
       }
     }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
@@ -145,21 +133,6 @@ export class NewProductComponent  {
       console.log('error>>>>>>>>>>>>', err);
     })
   }
-
-
-  onItemSelect(item: any) {
-        console.log(item);
-    }
-    OnItemDeSelect(item: any) {
-        console.log(item);
-    }
-    onSelectAll(items: any) {
-        console.log(items);
-    }
-    onDeSelectAll(items: any) {
-        console.log(items);
-    }
-
 
   // create product
   createProduct(form) {

@@ -1,4 +1,6 @@
 <header></header>
+
+<!-- ################## CREATE DISCOUNT CODE ################ -->
 <div class="container" *ngIf="!byDiscountCode">
     <div class="row">
 
@@ -6,7 +8,6 @@
 
             <div *ngIf="isSuccess" class="alert alert-info" id="toggle">Created successfully</div>
             <h1>{{brand}}</h1>
-            <!-- //<h2> {{this.TodayDate}}</h2> -->
             <div class="container">
                 <div class="checkbox">
                     <label>
@@ -30,29 +31,29 @@
                 </h5>
                 <form>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-condensed table-hover display" id="discount_codes" style="width:100%">
+                        <table class="table table-bordered table-hover" id="discount_codes" style="width:100%">
                             <thead>
                                 <tr>
                                     <th class="pointer" (click)="sort('discount_code')">
-                                        <i class="fa" [ngClass]="{'fa-sort': column != 'discount_code', 
-                                        'fa-sort-asc': (column == 'discount_code' && !isDesc), 
+                                        <i class="fa" [ngClass]="{'fa-sort': column != 'discount_code',
+                                        'fa-sort-asc': (column == 'discount_code' && !isDesc),
                                         'fa-sort-desc': (column == 'discount_code' && isDesc) }" aria-hidden="true"> </i>Name</th>
                                     <th class="pointer" (click)="sort('discount_type')">
-                                        <i class="fa" [ngClass]="{'fa-sort': column != 'discount_type', 
-                                        'fa-sort-asc': (column == 'discount_type' && !isDesc), 
+                                        <i class="fa" [ngClass]="{'fa-sort': column != 'discount_type',
+                                        'fa-sort-asc': (column == 'discount_type' && !isDesc),
                                         'fa-sort-desc': (column == 'discount_type' && isDesc) }" aria-hidden="true"> </i>Type</th>
                                     <th class="pointer" (click)="sort('amount')">
-                                        <i class="fa" [ngClass]="{'fa-sort': column != 'amount', 
-                                        'fa-sort-asc': (column == 'amount' && !isDesc), 
+                                        <i class="fa" [ngClass]="{'fa-sort': column != 'amount',
+                                        'fa-sort-asc': (column == 'amount' && !isDesc),
                                         'fa-sort-desc': (column == 'amount' && isDesc) }" aria-hidden="true"> </i>Discount Amount</th>
-                                    <th class="pointer" (click)="sort('quantity')"> <i class="fa" [ngClass]="{'fa-sort': column != 'quantity', 
-                                        'fa-sort-asc': (column == 'quantity' && !isDesc), 
+                                    <th class="pointer" (click)="sort('quantity')"> <i class="fa" [ngClass]="{'fa-sort': column != 'quantity',
+                                        'fa-sort-asc': (column == 'quantity' && !isDesc),
                                         'fa-sort-desc': (column == 'quantity' && isDesc) }" aria-hidden="true"> </i>Quantity</th>
-                                    <th class="pointer" (click)="sort('discount_reason')"> <i class="fa" [ngClass]="{'fa-sort': column != 'discount_reason', 
-                                        'fa-sort-asc': (column == 'discount_reason' && !isDesc), 
+                                    <th class="pointer" (click)="sort('discount_reason')"> <i class="fa" [ngClass]="{'fa-sort': column != 'discount_reason',
+                                        'fa-sort-asc': (column == 'discount_reason' && !isDesc),
                                         'fa-sort-desc': (column == 'discount_reason' && isDesc) }" aria-hidden="true"> </i>Discount Reason</th>
-                                    <th class="pointer" (click)="sort('expiration_date')"> <i class="fa" [ngClass]="{'fa-sort': column != 'expiration_date', 
-                                        'fa-sort-asc': (column == 'expiration_date' && !isDesc), 
+                                    <th class="pointer" (click)="sort('expiration_date')"> <i class="fa" [ngClass]="{'fa-sort': column != 'expiration_date',
+                                        'fa-sort-asc': (column == 'expiration_date' && !isDesc),
                                         'fa-sort-desc': (column == 'expiration_date' && isDesc) }" aria-hidden="true"> </i>Expiration</th>
                                     <th>&nbsp;</th>
                                 </tr>
@@ -100,49 +101,17 @@
                                         <input id="buttonValue" onclick="showDiv('toggle')" (click)="createDiscount(discount_code, discount_type , amount, quantity, discount_reason, date)"
                                             type="submit" value="Create New">
                                     </td>
-                                    <!-- <td><button id="buttonValue" onclick="showDiv('toggle')" (click)="createDiscount(discount_code, discount_type , amount, quantity, discount_reason, date)" type="submit"> Create New</button></td> -->
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- <tr *ngIf="quantityAvailable &&  (discount.quantity > 0)">
-                                <td><a (click)="foundDiscountCode(discount.discount_code)">{{discount.discount_code}}</a></td>
-                                <td>{{discount.discount_type}}</td>
-                                <td>{{discount.amount}}</td>
-                                <td>{{discount.quantity}}</td>
-                                <td>{{discount.discount_reason}}</td>
-                                <td>{{discount.expiration_date}}</td>
-                                <td></td>
-                              </tr>
-                                <tr *ngIf="!quantityAvailable && (discount.quantity == 0)">
-                                <td><a (click)="foundDiscountCode(discount.discount_code)">{{discount.discount_code}}</a></td>
-                                <td>{{discount.discount_type}}</td>
-                                <td>{{discount.amount}}</td>
-                                <td>{{discount.quantity}}</td>
-                                <td>{{discount.discount_reason}}</td>
-                                <td>{{discount.expiration_date}}</td>
-                                <td></td>
-                              </tr> -->
-
                                 <tr *ngFor="let discount of discount_list | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: CurrentPageValue} |  orderBy: {property: column, direction: direction}">
                                     <td>
                                         <a [routerLink]="['/discount', brand, discount.discount_code]">{{discount.discount_code}}</a>
                                     </td>
                                     <td>{{discount.discount_type}}</td>
                                     <td>{{discount.amount}}</td>
-
-                                    <!-- <ng-container *ngIf="quantityAvailable">
-
-                                <td>  <ng-container *ngIf="(discount.quantity > 0)">{{discount.quantity}}</ng-container></td>
-                              </ng-container> -->
-
-
-
-                                    <!-- {{quantityAvailable}} -->
-                                    <!-- <ng-container *ngIf="!quantityAvailable"> -->
-                                    <td>{{discount.quantity}} </td>
-                                    <!-- </ng-container> -->
-
-                                    <td>{{discount.discount_reason}}</td>
+                                    <td>{{discount.quantity}}</td>
+                      <td>{{discount.discount_reason}}</td>
                                     <td>{{discount.expiration_date}}</td>
                                     <td></td>
                                 </tr>
@@ -159,7 +128,7 @@
     </div>
 </div>
 
-
+ <!-- ####################UPDATE DISCOUNT CODE ################### -->
 <div class="container" *ngIf="byDiscountCode">
     <h1>{{brand}}</h1>
     <form>
@@ -215,8 +184,7 @@
                     <option value="Replace">Replace</option>
 
                     <option value="Warranty">Warranty</option>
-
-                </select>
+                  </select>
             </div>
         </div>
         <br>
@@ -241,6 +209,5 @@
             <input type="submit" value="Save" (click)="updateDiscount(discount_type, amount, quantity, discount_reason, expiration_date)"
                 [routerLink]="['/discount', brand]" class="btn btn-default">
         </div>
-
-    </form>
+      </form>
 </div>

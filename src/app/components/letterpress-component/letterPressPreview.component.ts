@@ -23,6 +23,7 @@ isSuccess: boolean;
     });
   }
 
+// get one template
   getTemplate(form) {
     this.templateName = form.templateName;
     this._letterService.findOneTemplate(this.templateName, this.brand)
@@ -30,7 +31,6 @@ isSuccess: boolean;
       if(res.code == 200) {
         this.isSuccess = true;
       this.templateData = res.data;
-      console.log("  this.templateData >>>>>>>>>>>>>>>>>>",  this.templateData )
     }
     })
   }

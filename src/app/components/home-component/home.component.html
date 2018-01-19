@@ -13,31 +13,6 @@
                 <li>
                     Product management
                     <ul>
-                        <!-- <li>
-                            Product dashboard [
-
-                            <a href="#" onclick="window.open('//' + window.location.hostname + ':8888/#/ano/products')">ano</a>]
-                            [
-
-                            <a href="#" onclick="window.open('//' + window.location.hostname + ':8888/#/billyreid/products')">billyreid</a>]
-                            [
-
-                            <a href="#" onclick="window.open('//' + window.location.hostname + ':8888/#/classicspecs/products')">classicspecs</a>]
-                            [
-
-                            <a href="#" onclick="window.open('//' + window.location.hostname + ':8888/#/jasonwu/products')">jasonwu</a>]
-                            [
-
-                            <a href="#" onclick="window.open('//' + window.location.hostname + ':8888/#/johnnywas/products')">johnnywas</a>]
-                            [
-
-                            <a href="#" onclick="window.open('//' + window.location.hostname + ':8888/#/ottavo/products')">ottavo</a>]
-                            [
-
-                            <a href="#" onclick="window.open('//' + window.location.hostname + ':8888/#/stevenalanoptical/products')">stevenalanoptical</a>]
-
-                        </li> -->
-
                         <li *ngIf="dashUser">
                           Product dashboard
                           <ng-container *ngFor="let brand of dashUser.brands">
@@ -46,28 +21,6 @@
                             </li>
                           </ng-container>
                         </li>
-                        <!-- <li>
-                            Bust cache [
-
-                            <a href="#" data-brand="ano" data-branch="develop" class="cache-bust-link">ano</a>] [
-
-                            <a href="#" data-brand="billyreid" data-branch="develop" class="cache-bust-link">billyreid</a>]
-                            [
-
-                            <a href="#" data-brand="classicspecs" data-branch="develop" class="cache-bust-link">classicspecs</a>]
-                            [
-
-                            <a href="#" data-brand="jasonwu" data-branch="develop" class="cache-bust-link">jasonwu</a>] [
-
-                            <a href="#" data-brand="johnnywas" data-branch="develop" class="cache-bust-link">johnnywas</a>]
-                            [
-
-                            <a href="#" data-brand="ottavo" data-branch="develop" class="cache-bust-link">ottavo</a>] [
-
-                            <a href="#" data-brand="stevenalanoptical" data-branch="develop" class="cache-bust-link">stevenalanoptical</a>]
-
-                            <div id="bust-cache-msg"></div>
-                        </li> -->
                         <li *ngIf="dashUser">
                           Bust cache
                           <ng-container *ngFor="let brand of dashUser.brands">
@@ -78,7 +31,6 @@
                         </li>
                         <li>
                             <a id="pop1">Add available UPC codes</a><br>
-                            <!-- <div class="panel panel-default" style="padding: 20px;width: 400px"> -->
                             <div hidden id="form1" class="pop">
                                 <form  role="form" #form="ngForm" (ngSubmit)="createUpcCode(form.value)">
                                     <div class="form-group">
@@ -92,7 +44,6 @@
                                     <div class="form-group">
                                         <label for="available_upc_codes" class="form-label">Select file
                                         </label>
-                                        <!--<input type="file" class="file" name="available_upc_codes" id="available_upc_codes" onclick="document.getElementById('available_upc_codes')" required>-->
                                         <input type="file" class="file" name="available_upc_codes" id="available_upc_codes" (change)="fileUpload($event)" required>
                                         <button type="submit" value="Save" class="btn btn-primary btn-sm" style="float: right;margin-right: 10px">Upload</button>
                                     </div>
@@ -101,26 +52,15 @@
                         </li>
                         <li>
                             <a id="pop2">Email UPC Code Report</a><br>
-                            <!-- <div class="panel panel-default" style="padding: 20px;width: 400px"> -->
                             <div hidden id="form2" class="pop">
                                 <form role="form" #f="ngForm" (ngSubmit)="upcCodeReport(f.value)">
                                     <div class="form-group">
                                         <label for="reportbatchname" class="form-label">Batch Name
                                         </label>
-                                        <!-- <div>
-                                            <select name="reportbatchname" [(ngModel)]="reportbatchname">
-
-                                                <option value="Batch 2">Batch 2</option>
-                                                  <option value="UEsDBBQA_1">UEsDBBQA_1</option>
-                                                </select>
-                                        </div> -->
                                         <div>
-                                        <!-- <div *ngFor ="let batch of batchName"> -->
                                         <select name="reportbatchname" [(ngModel)]="reportbatchname">
                                           <option *ngFor="let batch of batchName" [ngValue]="batch">{{batch}}</option>
-                                            <!-- <option value="batch">{{batch}}</option> -->
                                         </select>
-                                      <!-- </div> -->
                                       </div>
                                         <button type="submit" value="Save" class="btn btn-primary btn-sm" style="float: right;margin-right: 10px">Get Report</button>
                                     </div>
