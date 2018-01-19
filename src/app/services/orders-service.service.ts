@@ -28,6 +28,14 @@ export class OrdersService {
     })
   }
 
+  //update order
+  updateOrder(brand, order_id, data){
+    brand = brand + "_dev"
+    return this._httpClient.put(this.baseUrl + "/orders/" + order_id + "/?key=" + brand, data).map((res: any) => {
+      return res;
+    })
+  }
+
 // send to Lab after order creation
   sendToLab(brand, order_id, lab, itemId, data) {
     brand = brand + "_dev"

@@ -45,7 +45,7 @@
                     <ng-container *ngIf="order.items.eyewear.items.length">
                       <tr class="info">
 
-                        <td><a [routerLink]="['/orders/', brand, order.order_id, 'view']">{{order.order_id}}</a></td>
+                        <td><a [routerLink]="['/orders/', brand, order.order_id]">{{order.order_id}}</a></td>
                         <td>{{order.ordered_at}}</td>
                         <td><a [routerLink]="['/users/',brand,order['customer']['email'] ,'view']">{{order.customer.name}}</a></td>
                         <td>&nbsp;</td>
