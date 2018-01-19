@@ -2,7 +2,7 @@
 
 <div class="container" *ngIf="!isFoundSlug && !isSuccess">
   <h1>Name</h1>
-    <table class="table table-bordered table-condensed table-hover display" id="productCollection" style="width:100%">
+    <table class="table table-hover" id="productCollection" style="width:100%">
     <tr *ngFor="let productCollection of product_collection_list">
     <td><a [routerLink]="['/product_collection', brand, productCollection.slug]">{{productCollection.name}}</a></td>
   </tr>
@@ -38,10 +38,7 @@
           <div class="col-sm-10">
           <angular2-multiselect  name="assets" [data]="assestToPass"
                               [(ngModel)]="assest"
-                              [settings]="settings" (onSelect)="onItemSelect($event)"
-                              (onDeSelect)="OnItemDeSelect($event)"
-                              (onSelectAll)="onSelectAll($event)"
-                              (onDeSelectAll)="onDeSelectAll($event)">
+                              [settings]="settings">
         </angular2-multiselect>
         </div>
       </div>
@@ -103,10 +100,7 @@
           <div class="col-sm-10">
           <angular2-multiselect  name="product_id" [data]="productToPass"
                               [(ngModel)]="selectedProductId"
-                              [settings]="settings" (onSelect)="onItemSelect($event)"
-                              (onDeSelect)="OnItemDeSelect($event)"
-                              (onSelectAll)="onSelectAll($event)"
-                              (onDeSelectAll)="onDeSelectAll($event)">
+                              [settings]="settings">
         </angular2-multiselect>
         </div>
       </div><br><br>
@@ -147,10 +141,7 @@
         <div class="col-sm-10">
         <angular2-multiselect  name="assets" [data]="assestToPass"
                             [(ngModel)]="assest"
-                            [settings]="settings" (onSelect)="onItemSelect($event)"
-                            (onDeSelect)="OnItemDeSelect($event)"
-                            (onSelectAll)="onSelectAll($event)"
-                            (onDeSelectAll)="onDeSelectAll($event)">
+                            [settings]="settings">
       </angular2-multiselect>
       </div>
     </div>
@@ -212,10 +203,7 @@
         <div class="col-sm-10">
         <angular2-multiselect  name="product_id" [data]="productToPass"
                             [(ngModel)]="productId"
-                            [settings]="settings" (onSelect)="onItemSelect($event)"
-                            (onDeSelect)="OnItemDeSelect($event)"
-                            (onSelectAll)="onSelectAll($event)"
-                            (onDeSelectAll)="onDeSelectAll($event)">
+                            [settings]="settings">
       </angular2-multiselect>
       </div>
     </div><br><br>

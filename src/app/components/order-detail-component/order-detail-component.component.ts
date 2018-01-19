@@ -17,6 +17,7 @@ export class OrderDetailComponent implements OnInit {
   order: any
   objectKeys = Object.keys;
   selectedReasonCode: any
+  selectedLab: any = null
   labs: any
 
   BASE_REASONS: any[] = [
