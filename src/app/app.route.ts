@@ -27,7 +27,7 @@ import { NewProductComponent } from './components/productComponent/newProductCom
 import { ProductCollectionComponent } from './components/productComponent/ProductCollection/productCollection.component';
 import { LetterPressPreviewComponent } from './components/letterpress-component/letterPressPreview.component';
 import { UserDetailComponent } from './components/user-component/user-detail/user-detail.component';
-//import { NewCollectionComponent } from './components/productComponent/ProductCollection/newProductCollection.component';
+import { TemplateComponent } from './components/lookup-component/lookupTemplate/lookupTemplate.component';
 import { StyleComponent } from './components/lookup-component/lookupStyle/lookupStyle.component';
 import { FrameComponent } from './components/lookup-component/lookupFrame/lookupFrame.component';
 import { LensComponent } from './components/lookup-component/lookupLens/lookupLens.component';
@@ -165,6 +165,10 @@ const appRoutes: Routes =
         {
           path: "lookup/lens_colors/:brand",
           component: LensComponent
+        },
+        {
+          path: "lookup/template_map/:brand",
+          component: TemplateComponent
         }
       ]
     },

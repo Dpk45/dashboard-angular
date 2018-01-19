@@ -58,6 +58,7 @@ import { NewProductComponent } from './components/productComponent/newProductCom
 import { ProductCollectionComponent } from './components/productComponent/ProductCollection/productCollection.component';
 import { FrameComponent } from './components/lookup-component/lookupFrame/lookupFrame.component';
 import { StyleComponent } from './components/lookup-component/lookupStyle/lookupStyle.component';
+import { TemplateComponent } from './components/lookup-component/lookupTemplate/lookupTemplate.component';
 import { LensComponent } from './components/lookup-component/lookupLens/lookupLens.component';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
@@ -91,7 +92,7 @@ import { ProductNavBar } from './components/productNavbar-component/productNavba
     UserDetailComponent,
     OrderDetailComponent,
     UpdateOrderComponent,
-    StyleComponent, LensComponent, ProductNavBar,
+    StyleComponent, LensComponent, ProductNavBar, TemplateComponent,
     ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent, FrameComponent
   ],
   imports: [

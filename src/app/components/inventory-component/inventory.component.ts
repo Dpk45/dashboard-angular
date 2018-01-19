@@ -88,7 +88,8 @@ export class InventoryComponent {
     this._inventoryService.uploadInventory(this.adjustValue, this.formdata, this.brand).subscribe(res => {
       if(res.code == 200) {
         this.isSuccess = true;
-        form.reset();
+        //form.reset();
+        //document.getElementById("inventory_file").value = "";
         }
       }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
