@@ -8,16 +8,19 @@ export class StorageService{
 
     }
 
-     setItem(key , value){
+    // set local storage
+     setItem(key, value) {
         localStorage.setItem(key, value);
     }
 
-     getItem(key){
+    // get local storage
+     getItem(key) {
         let data = localStorage.getItem(key);
         return data;
     }
 
-     removeItem(key){
+    // remove item from local storage
+     removeItem(key) {
         localStorage.removeItem(key);
     }
 

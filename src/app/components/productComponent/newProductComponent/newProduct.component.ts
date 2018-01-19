@@ -21,11 +21,11 @@ export class NewProductComponent  {
   lenColors: any = [];
   productType: any;
   productTypeData: any = [];
-  selectedStyle: any = "Amherst";
-  selectedFrame: any = "Aqua Crystal";
-  selectedLensColor: any = "Plain";
-  selectedProductType: any = "Non-Rx Sun Only";
-  selectedGender: any = "Men's";
+  selectedStyle: any = null;
+  selectedFrame: any = null;
+  selectedLensColor: any = null;
+  selectedProductType: any = null;
+  selectedGender: any = null;
   productData: any;
   tagsValue: any = [];
   tagData: any = [];

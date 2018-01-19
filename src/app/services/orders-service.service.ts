@@ -12,6 +12,7 @@ export class OrdersService {
 
   }
 
+// get list of orders
   getOrders(brand) {
     brand = brand + "_dev"
     return this._http.get(this.baseUrl + "/orders/?key=" + brand).map((res: any) => {
@@ -19,6 +20,7 @@ export class OrdersService {
     })
   }
 
+// get order by order_id
   getOrderByOrderId(brand, order_id) {
     brand = brand + "_dev"
     return this._httpClient.get(this.baseUrl + "/orders/" + order_id + "/?key=" + brand).map((res: any) => {
@@ -26,6 +28,7 @@ export class OrdersService {
     })
   }
 
+// send to Lab after order creation
   sendToLab(brand, order_id, lab, itemId, data) {
     brand = brand + "_dev"
     return this._httpClient.post(this.baseUrl + "/orders/" + order_id + "/eyewear/send_to_lab/?key=" + brand + "&lab=" + lab + "&items=" + itemId, data).map((res: any) => {
@@ -33,7 +36,7 @@ export class OrdersService {
     })
   }
 
-
+  // received by lab
   receivedByLab(brand, order_id, itemId, data) {
     brand = brand + "_dev"
     return this._httpClient.post(this.baseUrl + "/orders/" + order_id + "/eyewear/received_by_lab/?key=" + brand + "&lab_order_number=" + order_id + "&items=" + itemId, data).map((res: any) => {
@@ -41,6 +44,7 @@ export class OrdersService {
     })
   }
 
+ 
   labFinishedProcessing(brand, order_id, itemId, data) {
     brand = brand + "_dev"
     return this._httpClient.post(this.baseUrl + "/orders/" + order_id + "/eyewear/lab_finished_processing/?key=" + brand + "&items=" + itemId, data).map((res: any) => {
@@ -75,7 +79,7 @@ export class OrdersService {
       return res;
     })
   }
- 
+
 
   issueStoreCredit(brand, order_id, itemId, reason, description, amount, data) {
     brand = brand + "_dev"

@@ -24,6 +24,8 @@ export class ErpComponent {
       //  this.getDiscounts();
     });
   }
+
+  // postErpMessage 
   erpReport(form) {
     this.selectedValue = form.action;
     this.performedAt = form.performed_at;

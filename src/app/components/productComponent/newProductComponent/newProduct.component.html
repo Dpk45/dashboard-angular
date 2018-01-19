@@ -1,5 +1,7 @@
 <product-nav></product-nav>
 
+ <!-- ################### ADD NEW PRODUCT #################### -->
+
 <div class="container">
   <h1>New Product</h1>
   <form role="form" #form="ngForm" class="form-horizontal" (ngSubmit)="createProduct(form.value)">
@@ -22,6 +24,7 @@
       <label class="control-label col-sm-2">Name</label>
       <div class="col-sm-2">
         <select id="name" name="name" placeholder="Pick a Style" class="form-control input-xlarge" [(ngModel)]="selectedStyle">
+          <option [ngValue]="null">Pick a Style</option>
           <option *ngFor="let styleName of styleNames" [ngValue]="styleName">{{styleName}}</option>
         </select>
       </div>
@@ -30,7 +33,8 @@
     <div class="form-group">
       <label class="control-label col-sm-2">Frame Color</label>
       <div class="col-sm-2">
-        <select id="frame_color" name="frame_color" class="form-control input-xlarge" placeholder="Frame Color" [(ngModel)]="selectedFrame">
+        <select id="frame_color" name="frame_color" class="form-control input-xlarge" [(ngModel)]="selectedFrame">
+          <option [ngValue]="null">Frame Color</option>
           <option *ngFor="let frame of frameColor" [ngValue]="frame">{{frame}}</option>
         </select>
       </div>
@@ -39,7 +43,8 @@
     <div class="form-group">
       <label class="control-label col-sm-2">Lens Color</label>
       <div class="col-sm-2">
-        <select name="lens_color" class="form-control input-xlarge" placeholder="Lens Color" [(ngModel)]="selectedLensColor">
+        <select name="lens_color" class="form-control input-xlarge" [(ngModel)]="selectedLensColor">
+          <option [ngValue]="null">Lens Color</option>
           <option *ngFor="let l of len" [ngValue]="l.id">{{l.name}}</option>
         </select>
       </div>
@@ -48,7 +53,8 @@
     <div class="form-group">
       <label class="control-label col-sm-2">Product Type</label>
       <div class="col-sm-2">
-        <select name="product_type" class="form-control input-xlarge" placeholder="Optical or Sun" [(ngModel)]="selectedProductType">
+        <select name="product_type" class="form-control input-xlarge" [(ngModel)]="selectedProductType">
+          <option [ngValue]="null">Optical or Sun</option>
           <option *ngFor="let product of productType" [ngValue]="product.id">{{product.name}}</option>
         </select>
       </div>
@@ -58,6 +64,7 @@
       <label class="control-label col-sm-2">Gender</label>
       <div class="col-sm-2">
         <select name="gender" class="form-control input-xlarge" [(ngModel)]="selectedGender">
+          <option [ngValue]="null">Gender</option>
           <option [ngValue]="1">Mens's</option>
           <option [ngValue]="2">Women's</option>
           <option [ngValue]="3">Unisex</option>
