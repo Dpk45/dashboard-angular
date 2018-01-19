@@ -367,15 +367,11 @@
 
                             <ng-container *ngIf="labs.length > 0">
                                 <select name="lab" class="form-control" size="1" [(ngModel)]="selectedLab">
-                                    <option value="">--select lab to send to --</option>
+                                    <option [ngValue]=null>--select lab to send to --</option>
                                         <option *ngFor="let lab of labs" [ngValue]="lab">
                                             {{lab}}
                                         </option>
                                 </select>
-                            <!-- <ng-container *ngIf="item['status']['send_to_lab_at'] == null">
-                              `{{item['status']}}
-                            </ng-container> -->
-                            
                             </ng-container>
                             <div style="text-align: center">
                             <input type="button" value="Send to lab"  class="btn btn-lg btn-success" (click)="sendToLab(order['order_id'], item.id, brand, selectedLab)"/>
