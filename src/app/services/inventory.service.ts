@@ -42,6 +42,7 @@ export class InventoryService {
     });
   }
 
+  // upload Inventory data
   uploadInventory(adjustValue, file, brand) {
     brand = brand + "_dev";
     const _path: string = (this.baseUrl + '/products/update_inventory?key=' + brand)

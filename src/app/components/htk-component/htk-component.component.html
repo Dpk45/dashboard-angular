@@ -20,7 +20,7 @@
                         <ng-container *ngIf="order.items.home_trial_kit.items.length">
                             <tr id="{{order['order_id']}}">
                                 <td>
-                                    <a [routerLink]="['/orders/', brand.brand, order.order_id, 'view']">{{order['order_id']}}</a>
+                                    <a [routerLink]="['/orders/', brand.brand, order.order_id]">{{order['order_id']}}</a>
                                 </td>
                                 <td>
                                     <a [routerLink]="['/users/',brand.brand,order['customer']['email'] ,'view']">{{order['customer']['name']}}</a>

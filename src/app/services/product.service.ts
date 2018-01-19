@@ -159,7 +159,7 @@ getTagList(brand) {
   });
 }
 
-//get assets group
+//get list of assets group
 getAssetGroup(brand) {
   brand = brand + "_dev";
   const _path: string = (this.baseUrl + '/products/asset_groups?key=' + brand)

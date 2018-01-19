@@ -24,9 +24,8 @@
     </tr>
     </thead>
     <tbody>
-      <!-- this.router.navigate(['/orders', this.brand, this.order_id, 'view']);  users/:brand/:email/view -->
       <tr *ngFor="let order of order_list | filter:filter | paginate: { itemsPerPage: selectedValue, currentPage: CurrentPageValue}">
-      <td><a [routerLink]="['/orders', brand, order.order_id, 'view']">{{order.order_id}}</a></td>
+      <td><a [routerLink]="['/orders', brand, order.order_id]">{{order.order_id}}</a></td>
       <td>{{order.ordered_at}}</td>
       <td><a [routerLink]="['/users', brand, order.created_by, 'view']">{{order.customer.name}}</a></td>
       <ng-container *ngIf="order.items.eyewear.items[0]">

@@ -1,0 +1,130 @@
+<header></header>
+<div class="container" *ngIf="brand">
+    <div class="row">
+        <div class="col-xs-18 col-sm-12">
+            <h1>
+                {{brand}}
+            </h1>
+            <ng-container *ngIf="order">
+                <h2>
+                    <a [routerLink]="['/users/',brand,order['customer']['email'] ,'view']">{{ order['customer']['name'] }}</a>: Order #{{ order['order_id'] }}</h2>
+            </ng-container>
+        </div>
+    </div>
+    <form role="form" class="form-horizontol" #f="ngForm" (ngSubmit)="updateOrder(f)">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>
+                    Shipping
+                </h4>
+                <ng-container *ngIf="order">
+                    <div class="form-group">
+                        <label for="name" class="control-label col-sm-3">Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="name" class="form-control" name="name" [(ngModel)]="order['shipping_address']['name']"
+                            />
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-sm-3">Address 1:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="address1" class="form-control" [(ngModel)]="order['shipping_address']['address1']"
+                            />
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-sm-3">Address 2:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="address2" class="form-control" [(ngModel)]="order['shipping_address']['address2']"
+                            />
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-sm-3">City:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="city" class="form-control" [(ngModel)]="order['shipping_address']['city']" />
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-sm-3">State:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="state" class="form-control" [(ngModel)]="order['shipping_address']['state']" />
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-sm-3">Zip Code:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="zip" class="form-control" [(ngModel)]="order['shipping_address']['zip']" />
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-sm-3">Country:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="country" class="form-control" [(ngModel)]="order['shipping_address']['country']"
+                            />
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-sm-3">Phone:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="phone" class="form-control" [(ngModel)]="order['shipping_address']['phone']" />
+                            <br>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+            <div class="col-sm-6">
+                <h4>
+                    Billing
+                </h4>
+                <ng-container *ngIf="order && order['payment']">
+                    <div class="col-sm-12">
+                        {{order['payment']['billing_address']['first_name']}}
+                        <br>
+                    </div>
+                    <div class="col-sm-12">
+                        {{order['payment']['billing_address']['last_name']}}
+                        <br>
+                    </div>
+                    <div class="col-sm-12">
+                        {{order['payment']['billing_address']['address1']}}
+                        <br>
+                    </div>
+                    <div class="col-sm-12">
+                        {{order['payment']['billing_address']['address2']}}
+                        <br>
+                    </div>
+                    <div class="col-sm-12">
+                        {{order['payment']['billing_address']['city']}}
+                        <br>
+                    </div>
+                    <div class="col-sm-12">
+                        {{order['payment']['billing_address']['state']}}
+                        <br>
+                    </div>
+                    <div class="col-sm-12">
+                        {{order['payment']['billing_address']['zip']}}
+                        <br>
+                    </div>
+                    <div class="col-sm-12">
+                        {{order['payment']['billing_address']['country']}}
+                        <br>
+                    </div>
+                    <div class="col-sm-12">
+                        {{order['payment']['billing_address']['phone']}}
+                        <br>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-danger btn-xs btn-default" value="Save"/>
+    </form>
+</div>

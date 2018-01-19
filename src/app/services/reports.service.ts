@@ -35,7 +35,7 @@ getEyewearSalesFinanaceReport(startDate, endDate, brand) {
   brand = brand + "_dev";
   const _path: string = (this.baseUrl + '/reports/eyewear/finance?key=' + brand + '&start_date=' + startDate + '&end_date=' + endDate)
   return this._httpClient.get(_path)
-  .map((res:any) => {
+  .map((res: any) => {
     return res;
   });
 }

@@ -35,12 +35,13 @@ ngOnInit() {
 
 // get eyewearSales Report
 eyewearSalesReport(form) {
-	this.startDate = form.startDate;
-	this.endDate = form.endDate;
+	this.startDate = form.value.startDate;
+	this.endDate = form.value.endDate;
     console.log("get eyewaer sales>>>>>>>>>>>>>>>++++++++++++++++++++++",this.startDate,"\n\n",this.endDate)
     this._reportService.getEyewearSalesReport(this.startDate, this.endDate, this.brand).subscribe(res => {
     if(res.code == 200){
-      this.isSuccess = true
+      this.isSuccess = true;
+      form.reset();
     }
 
     },
@@ -51,13 +52,13 @@ eyewearSalesReport(form) {
 
 // get eyewearSales Report
 eyewearSalesFinanaceReport(formSales) {
-   this.startDate = formSales.startDate;
-   this.endDate = formSales.endDate;
+   this.startDate = formSales.value.startDate;
+   this.endDate = formSales.value.endDate;
     this._reportService.getEyewearSalesFinanaceReport(this.startDate, this.endDate, this.brand).subscribe(res => {
-      if(res.code == 200){
-        this.isSuccess = true
+      if(res.code == 200) {
+        this.isSuccess = true;
+        formSales.reset();
       }
-
     },
     (err) => {
       console.log('error>>>>>>>>>>>>', err);
@@ -66,44 +67,41 @@ eyewearSalesFinanaceReport(formSales) {
 
 // get eyewearSales Report
 htkSalesReport(formHtk) {
-  this.startDate = formHtk.startDate;
-  this.endDate = formHtk.endDate;
+  this.startDate = formHtk.value.startDate;
+  this.endDate = formHtk.value.endDate;
     console.log("get eyewaer sales>>>>>>>>>>>>>>>++++++++++++++++++++++")
     this._reportService.getHtkSalesReport(this.startDate, this.endDate, this.brand).subscribe(res => {
       if(res.code == 200){
-        this.isSuccess = true
+        this.isSuccess = true;
+          formHtk.reset();
       }
-
-
     },
     (err) => {
       console.log('error>>>>>>>>>>>>', err);
     })
 }
 
+// send inventory report
 inventoryReport() {
   this._reportService.getinventoryReport(this.brand).subscribe(res => {
     if(res.code == 200){
       this.isSuccess = true
     }
-
-
   },
   (err) => {
     console.log('error>>>>>>>>>>>>', err);
   })
 }
 
+// send htk past due report
 htkPastDueReport(formHtkPast) {
-  this.startDate = formHtkPast.startDate;
-  this.endDate = formHtkPast.endDate;
-    console.log("get eyewaer sales>>>>>>>>>>>>>>>++++++++++++++++++++++")
+  this.startDate = formHtkPast.value.startDate;
+  this.endDate = formHtkPast.value.endDate;
     this._reportService.gethtkPastDueReport(this.startDate, this.endDate, this.brand).subscribe(res => {
       if(res.code == 200){
         this.isSuccess = true
+        formHtkPast.reset();
       }
-
-
     },
     (err) => {
       console.log('error>>>>>>>>>>>>', err);
