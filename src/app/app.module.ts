@@ -51,6 +51,7 @@ import { EyewearComponent } from './components/eyewear-component/eyewear-compone
 import { HtkComponent } from './components/htk-component/htk-component.component';
 import { EyewearProcessComponent } from './components/eyewear-component/eyewear-process-component/eyewear-process-component.component';
 import { OrderDetailComponent } from './components/order-detail-component/order-detail-component.component'
+import { UpdateOrderComponent } from './components/order-detail-component/update-order-component/update-order.component';
 import { InventoryComponent } from './components/inventory-component/inventory.component';
 import { ProductComponent } from './components/productComponent/product.component';
 import { NewProductComponent } from './components/productComponent/newProductComponent/newProduct.component';
@@ -89,7 +90,9 @@ import { ProductNavBar } from './components/productNavbar-component/productNavba
     HtkComponent,
     EyewearProcessComponent,
     UserDetailComponent,
-    OrderDetailComponent, StyleComponent, LensComponent, ProductNavBar, TemplateComponent,
+    OrderDetailComponent,
+    UpdateOrderComponent,
+    StyleComponent, LensComponent, ProductNavBar, TemplateComponent,
     ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent, FrameComponent
   ],
   imports: [
