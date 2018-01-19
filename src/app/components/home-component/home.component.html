@@ -14,33 +14,38 @@
                     Product management
                     <ul>
                         <li *ngIf="dashUser">
-                          Product dashboard
-                          <ng-container *ngFor="let brand of dashUser.brands">
-                            <li class="list"  *ngIf="brand.brand">
-                              [<a target="_blank" [routerLink]="['/product', brand.brand]"> {{brand.brand}} </a>]
-                            </li>
-                          </ng-container>
+                            Product dashboard
+                            <ng-container *ngFor="let brand of dashUser.brands">
+                                <li class="list" *ngIf="brand.brand">
+                                    [
+                                    <a target="_blank" [routerLink]="['/product', brand.brand]"> {{brand.brand}} </a>]
+                                </li>
+                            </ng-container>
                         </li>
                         <li *ngIf="dashUser">
-                          Bust cache
-                          <ng-container *ngFor="let brand of dashUser.brands">
-                            <li class="list"  *ngIf="brand.brand">
-                              [<a [routerLink]="['/bustCache', brand.brand]"> {{brand.brand}} </a>]
-                            </li>
-                          </ng-container>
+                            Bust cache
+                            <ng-container *ngFor="let brand of dashUser.brands">
+                                <li class="list" *ngIf="brand.brand">
+                                    [
+                                    <a [routerLink]="['/bustCache', brand.brand]"> {{brand.brand}} </a>]
+                                </li>
+                            </ng-container>
                         </li>
                         <li>
-                            <a id="pop1">Add available UPC codes</a><br>
+                            <a id="pop1">Add available UPC codes</a>
+                            <br>
                             <div hidden id="form1" class="pop">
-                                <form  role="form" #form="ngForm" (ngSubmit)="createUpcCode(form)">
+                                <form role="form" #form="ngForm" (ngSubmit)="createUpcCode(form)">
                                     <div class="form-group">
                                         <label for="batchname">Batch Name
-                                        </label><br>
+                                        </label>
+                                        <br>
                                         <div class="col-sm-7">
-                                            <input type="text" name="batchname"  [(ngModel)]="batchname" class="form-control" required>
+                                            <input type="text" name="batchname" [(ngModel)]="batchname" class="form-control" required>
                                         </div>
                                     </div>
-                                    <br><br>
+                                    <br>
+                                    <br>
                                     <div class="form-group">
                                         <label for="available_upc_codes" class="form-label">Select file
                                         </label>
@@ -51,17 +56,18 @@
                             </div>
                         </li>
                         <li>
-                            <a id="pop2">Email UPC Code Report</a><br>
+                            <a id="pop2">Email UPC Code Report</a>
+                            <br>
                             <div hidden id="form2" class="pop">
                                 <form role="form" #f="ngForm" (ngSubmit)="upcCodeReport(f)">
                                     <div class="form-group">
                                         <label for="reportbatchname" class="form-label">Batch Name
                                         </label>
                                         <div>
-                                        <select name="reportbatchname" [(ngModel)]="reportbatchname">
-                                          <option *ngFor="let batch of batchName" [ngValue]="batch">{{batch}}</option>
-                                        </select>
-                                      </div>
+                                            <select name="reportbatchname" [(ngModel)]="reportbatchname">
+                                                <option *ngFor="let batch of batchName" [ngValue]="batch">{{batch}}</option>
+                                            </select>
+                                        </div>
                                         <button type="submit" value="Save" class="btn btn-primary btn-sm" style="float: right;margin-right: 10px">Get Report</button>
                                     </div>
                                 </form>

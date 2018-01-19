@@ -36,6 +36,7 @@ export class HomeComponent  {
       if(res.code == 200) {
         this.SuccessfullyCreatedUpc = true;
         form.reset();
+        document.getElementById("available_upc_codes").value = "";
         }
       }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
