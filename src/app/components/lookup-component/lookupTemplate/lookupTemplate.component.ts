@@ -47,7 +47,7 @@ this.templateDataValues = {
 'generate_optical': optical,
 'optical_template': optical_template,
 'generate_sun': generate_sun,
-'sun_template': sun_template
+'sun_template': sun_template, 
 'active_flag': template_active
 }
 console.log("this.templateDataValues>>>>>>>>>>>>>>>>..",this.templateDataValues)
