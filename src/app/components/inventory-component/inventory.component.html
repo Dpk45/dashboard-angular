@@ -79,14 +79,14 @@
   </form>
   <!-- upload Inventory>>>>>>>>>>>>>>>>>>>> -->
   <h2>Upload inventory</h2>
-  <form role="form" #form="ngForm" (ngSubmit)="uploadInventory()">
+  <form role="form" #f="ngForm" (ngSubmit)="uploadInventory(f.value)">
     <div class="form-group">
       <label class="control-label col-sm-5">Adjust or Overwrite</label>
       <div class="col-sm-10">
         <!-- <select  class="form-control" [(ngModel)]="selectedValue" required> -->
-        <select  class="form-control" required>
-          <option value="adjust_values">Adjust Values</option>
-          <option value="full_cycle_count">Full Cycle Count (Overwrite)</option>
+        <select  class="form-control" name="overwrite" [(ngModel)]="selectedValue" required>
+          <option value = "update">Adjust Values</option>
+          <option value = "overwrite">Full Cycle Count (Overwrite)</option>
         </select>
       </div>
     </div>
