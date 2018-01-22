@@ -67,6 +67,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserDetailComponent } from './components/user-component/user-detail/user-detail.component';
 import { OrderByPipe } from './directives/orderBy.pipe';
 import { ProductNavBar } from './components/productNavbar-component/productNavbar.component';
+import { UploadAssetComponent } from './components/productComponent/upload-asset/upload-asset.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,7 @@ import { ProductNavBar } from './components/productNavbar-component/productNavba
     OrderDetailComponent,
     UpdateOrderComponent,
     StyleComponent, LensComponent, ProductNavBar, TemplateComponent,
-    ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent, FrameComponent
+    ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent, FrameComponent, UploadAssetComponent
   ],
   imports: [
     BrowserModule,
