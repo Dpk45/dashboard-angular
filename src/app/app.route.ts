@@ -31,6 +31,7 @@ import { TemplateComponent } from './components/lookup-component/lookupTemplate/
 import { StyleComponent } from './components/lookup-component/lookupStyle/lookupStyle.component';
 import { FrameComponent } from './components/lookup-component/lookupFrame/lookupFrame.component';
 import { LensComponent } from './components/lookup-component/lookupLens/lookupLens.component';
+import { UploadAssetComponent } from './components/productComponent/upload-asset/upload-asset.component';
 const appRoutes: Routes =
   [
     {
@@ -227,6 +228,10 @@ const appRoutes: Routes =
         {
           path: 'product/:brand/:product_id',
           component: ProductComponent
+        },
+        {
+          path: 'product/:brand/assets/:product_id',
+          component: UploadAssetComponent
         },
         {
           path: 'product_collection/:brand',

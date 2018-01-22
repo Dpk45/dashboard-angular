@@ -61,7 +61,7 @@
   <div class="page-header">
     <h1>{{product.name}}
       <small>
-        <a>Assets</a>
+        <a [routerLink]="['/product', brand, 'assets', product.product_id]">Assets</a>
       </small>
     </h1>
   </div>

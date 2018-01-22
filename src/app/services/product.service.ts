@@ -168,4 +168,13 @@ getAssetGroup(brand) {
     return res.json();
   });
 }
+
+uploadProductAsset(brand, productId, data){
+  brand = brand + "_dev";
+  const _path: string = (this.baseUrl + '/products/'+productId+'/assets?key=' + brand)
+  return this._httpClient.post(_path, data)
+  .map((res: any) => {
+    return res.json();
+  });
+}
 }
