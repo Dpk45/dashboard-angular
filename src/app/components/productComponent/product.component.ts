@@ -31,6 +31,9 @@ export class ProductComponent {
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All'
   };
+  isDesc: boolean = false;
+  column: string;
+  direction: number;
   constructor(private route: ActivatedRoute, private _productService: ProductService, private _dashUserService: DashUserService, private router: Router) {
   }
   ngOnInit() {
@@ -104,9 +107,11 @@ export class ProductComponent {
         for (let i = 0; i < this.product.tags.length; i++) {
           this.tags.push({ "id": i, "itemName": this.product.tags[i] });
         }
+        // console.log("this.product.assets >>>>>>.....................", this.product.assets)
         // for(const i in this.product.assets) {
         //       this.assest.push({"id": 1, "itemName": i})
         //   }
+        //   console.log("assest >>>>>>>>>>>>>>>>>.", this.assest)
       }
     },
       (err) => {
@@ -135,7 +140,7 @@ export class ProductComponent {
       "product_gender": form.gender,
       "tags": tagValue,
       "description": form.description,
-      "assets": this.assestVal,
+      //"assets": this.assestVal,
       "details": form.details,
       "social_id": form.social_id,
       "upc_code": form.upc_code,
@@ -169,4 +174,11 @@ export class ProductComponent {
         console.log('error>>>>>>>>>>>>', err);
       })
   }
+
+  // apply sorting
+    sort(property) {
+      this.isDesc = !this.isDesc;   // change the direction
+      this.column = property;
+      this.direction = this.isDesc ? 1 : -1;
+    }
 }
