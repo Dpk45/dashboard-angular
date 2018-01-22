@@ -1,0 +1,48 @@
+<div class="container" id="border">
+  <h4>{{brand}}<br>
+    http://www.{{brand}}.com<br>
+  </h4>
+  <p>
+  {{order['customer']['name']}}
+  <br>
+  Order #{{order['order_id']}} ({{order['ordered_at']}})
+  <br>
+  {{order['customer']['email']}}
+  </p>
+  <table>
+  <tbody>
+  <tr>
+  <td>
+  <b>Shipping Address</b> <br>
+  {{order['shipping_address']['first_name']}} {{order['shipping_address']['last_name']}} <br>
+  {{order['shipping_address']['address1']}} <br>
+  {{order['shipping_address']['address2']}} <br>
+  {{order['shipping_address']['city']}} <br>
+  {{order['shipping_address']['state']}} <br>
+  {{order['shipping_address']['zip']}} <br>
+  {{order['shipping_address']['country']}} <br>
+  {{order['shipping_address']['phone']}} <br>
+  </td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <td>
+  <b>Billing Address</b> <br>
+  {{order['payment']['billing_address']['first_name']}} <br>
+  {{order['payment']['billing_address']['last_name']}} <br>
+  {{order['payment']['billing_address']['address1']}} <br>
+  {{order['payment']['billing_address']['address2']}} <br>
+  {{order['payment']['billing_address']['city']}} <br>
+  {{order['payment']['billing_address']['state']}} <br>
+  {{order['payment']['billing_address']['zip']}} <br>
+  {{order['payment']['billing_address']['country']}} <br>
+  {{order['payment']['billing_address']['phone']}} <br>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <b>Items:</b><br><br>
+  <ng-container *ngFor="let item of order['items']['home_trial_kit']['items']">
+    {{item.name}} in {{item.color}} ({{item.product_id}})
+    <p><img id="{{order['order_id']}}"></p>   <!-- convert order in barCode -->
+    <p>{{brand_abbv}}-{{order['order_id']}}</p>
+</ng-container>
+</div>

@@ -41,7 +41,7 @@
             </td>
           </tr>
         </table>
-      
+
 
           <div class="container">
             <div class="panel-group">
@@ -92,7 +92,7 @@
           </div>
 
 
-          
+
 <ng-container *ngIf="order.items.eyewear.items.length">
   <h3>Eyewear Items</h3>
   <table class="table table-bordered table-condensed">
@@ -160,9 +160,9 @@
                 </td>
 
                 <td>
-                  <ng-container *ngIf="item.rx.id != null"> 
+                  <ng-container *ngIf="item.rx.id != null">
                     {{ item.rx['rx_type'] }}<br><br>
-                    <ng-container *ngIf="item.rx['rx_type'] == 'RX_CALL_DOCTOR'"> 
+                    <ng-container *ngIf="item.rx['rx_type'] == 'RX_CALL_DOCTOR'">
                             Patient Name: {{ rx['name_on_rx'] }} <br>
                             Patient DoB: {{ rx['doctor_info']['patient_dob'] }} <br>
                             Doctor: {{ rx['doctor_info']['doctor_name'] }} <br>
@@ -288,7 +288,7 @@
                                     <ng-container *ngIf="item.rx['is_high_index'] && (item['lens_type'] == 'STANDARD_INDEX_LENS' || item['lens_type'] == 'PRG_STANDARD_LENS' || item['lens_type'] == 'PRG_HIGH_INDEX_LENS' ||item['lens_type'] == 'HIGH_INDEX_LENS') ;else noTemplate">
                                         YES
                                     </ng-container>
-                                   
+
                                 </td>
                                 <td>
                                     <ng-container *ngIf="item['high_index_optin'] ;else noTemplate">
@@ -363,7 +363,7 @@
                                  Use $ {{ store_credit.credit_amount - store_credit.amount_used }} of credit, ID: {{ store_credit.credit_id }}<br/>
                               </ng-container>
                               </ng-container>-->
-                             
+
 
                             <ng-container *ngIf="labs.length > 0">
                                 <select name="lab" class="form-control" size="1" [(ngModel)]="selectedLab">
@@ -378,24 +378,24 @@
                             </div>
                         </ng-container>
                         </ng-template>
-                        
+
 
 
 
                         <ng-container *ngIf="item['status']['lab_finished_processing_at'] != null && item['status']['received_from_lab_at'] == null && item['status']['shipped_at'] == null">
-                          <input type="button" 
+                          <input type="button"
                                    (click)="receiveFromLab(order['order_id'], item.id, brand)" value="Receive frame from lab.">
                             <br>
                         </ng-container>
 
                           <ng-container *ngIf="item['status']['received_by_lab_at'] != null && item['status']['lab_finished_processing_at'] == null && item['status']['received_from_lab_at'] == null && item['status']['shipped_at'] == null">
-                          <input type="button" 
+                          <input type="button"
                                    (click)="labFinishedProcessing(order['order_id'], item.id, brand)" value="Lab is done processing order">
                             <br>
                         </ng-container>
 
                          <ng-container *ngIf="item['status']['sent_to_lab_at'] != null && item['status']['received_by_lab_at'] == null">
-                          <input type="button" 
+                          <input type="button"
                                    (click)="receivedByLab(order['order_id'], item.id, brand)" value="Lab has received this frame">
                             <br>
                         </ng-container>
@@ -407,8 +407,8 @@
                            <br/>
                         <br/>
                          </ng-container>
-                       
-                    
+
+
 
                     <div class="container-fluid">
                         <ng-container *ngIf="item['status'] == {} || item['status']['cancelled_at'] == null && item['status']['lab_finished_processing_at'] == null">
@@ -452,10 +452,10 @@
                                 </div>
                             </div>
                         </ng-container>
-                    
+
                         <ng-container *ngIf="item['status']['return_authorized_at'] != null && item['status']['returned_at'] == null">
-                    
-                    
+
+
                             <!--{% elif 'return_authorized_at' in item['status'] and 'returned_at' not in item['status'] %}-->
                             <select name="restock" id="restock" class="form-control restock" size="1">
                                 <option value="N">Not Restockable</option>
@@ -500,7 +500,7 @@
                                             <div class="row">
                                                 <div class="col-sm-3">&nbsp;</div>
                                                 <div class="col-sm-9">
-                                                    <input type="button" class="btn btn-danger btn-xs" value="Authorize return of item" (click)="returnItem(order['order_number'], item.id, brand, return_reason, return_description)"/>                                                                               
+                                                    <input type="button" class="btn btn-danger btn-xs" value="Authorize return of item" (click)="returnItem(order['order_number'], item.id, brand, return_reason, return_description)"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -549,7 +549,7 @@
                             </div>
                         </div>
                     </div>
-                        
+
 
                         <ng-container *ngIf = "order.totals.total > 0">
                         <div class="container-fluid">
@@ -599,7 +599,7 @@
               <ng-container *ngFor="let label of order['items']['eyewear']['tracking_numbers']">
                 <!--{{ shipment_view.shipment(label, 'order.shipping_label', order, products, brand) }}-->
               </ng-container>
-            </ng-container>        
+            </ng-container>
 </ng-container>
 
 
@@ -642,7 +642,7 @@
 
         </ng-container>
         <h4>Tracking</h4>
-        <ol> 
+        <ol>
             <ng-container *ngIf=" objectKeys(order['items']['home_trial_kit']['tracking_numbers'])">
                     <li *ngFor="let key of objectKeys(order['items']['home_trial_kit']['tracking_numbers'])">
                         {{ key }}: {{ order['items']['home_trial_kit']['tracking_numbers'][key]['service'] }} {{ order['items']['home_trial_kit']['tracking_numbers'][key]['tracking_number'] }}
@@ -659,7 +659,8 @@
     </blockquote>
 
     <div>
-        <a>Packing slips</a>
+      <!-- htk/processing/packing_slips/ -->
+        <a [routerLink]="['/orders', 'htk', 'processing', 'packing_slips', order['order_id'], brand]">Packing slips</a>
     </div>
 
     <!-- {% if order['items']['home_trial_kit']['tracking_numbers'] != {} %} -->
@@ -679,7 +680,7 @@
         {% endif %} -->
     </ng-container>
 </ng-container>
-            
+
 
 
 

@@ -50,7 +50,8 @@ import { ErpComponent } from './components/sendErpRequest/sendERP.component';
 import { EyewearComponent } from './components/eyewear-component/eyewear-component.component';
 import { HtkComponent } from './components/htk-component/htk-component.component';
 import { EyewearProcessComponent } from './components/eyewear-component/eyewear-process-component/eyewear-process-component.component';
-import { OrderDetailComponent } from './components/order-detail-component/order-detail-component.component'
+import { OrderDetailComponent } from './components/order-detail-component/order-detail-component.component';
+import { OrderPackingSlipComponent } from './components/order-detail-component/order-packing-slips/order-packing-slips.component';
 import { UpdateOrderComponent } from './components/order-detail-component/update-order-component/update-order.component';
 import { InventoryComponent } from './components/inventory-component/inventory.component';
 import { ProductComponent } from './components/productComponent/product.component';
@@ -93,7 +94,7 @@ import { UploadAssetComponent } from './components/productComponent/upload-asset
     UserDetailComponent,
     OrderDetailComponent,
     UpdateOrderComponent,
-    StyleComponent, LensComponent, ProductNavBar, TemplateComponent,
+    StyleComponent, LensComponent, ProductNavBar, TemplateComponent, OrderPackingSlipComponent,
     ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent, FrameComponent, UploadAssetComponent
   ],
   imports: [

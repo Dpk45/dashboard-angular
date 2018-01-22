@@ -1,13 +1,13 @@
 <header></header>
-
+<div class="container">
 <ng-container *ngIf="dashUser">
   <ng-container *ngFor="let brand of dashUser.brands">
         <ng-container *ngIf="brand.brand">
 
             <form method="POST">
                 <h2>{{brand.brand}} (<a>packing slips</a>)</h2>
-                <table class="table table-condensed table-striped">
-
+                <!-- <table class="table table-condensed table-striped"> -->
+                <table class="table table-hover">
                     <tr>
                         <th>Order</th>
                         <th>Name</th>
@@ -38,9 +38,9 @@
                             </tr>
                         </ng-container>
                     </ng-container>
-
                 </table>
             </form>
         </ng-container>
     </ng-container>
 </ng-container>
+</div>
