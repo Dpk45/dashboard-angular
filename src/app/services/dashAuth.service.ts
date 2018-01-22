@@ -8,11 +8,11 @@ import { StorageService } from "./storage.service"
 export class DashAuthService{
     private baseUrl = "http://localhost:3000/3.0";
     constructor(private _httpClient:HttpClient, private _http:Http, private _storageService: StorageService){
-        
-        
-    }
-    
 
+
+    }
+
+    // Authentication
     loginDashUser(data){
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
@@ -20,6 +20,7 @@ export class DashAuthService{
         .map(res => res.json())
     }
 
+    // logout dashboard user
     logoutDashUser(email){
         return this._httpClient.post(this.baseUrl + "/dashboard/users/logout/"+email+"?key=DASHBOARD" , {})
         .map((res:any) => {
@@ -29,5 +30,4 @@ export class DashAuthService{
             }
         })
     }
-
 }

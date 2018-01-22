@@ -44,10 +44,6 @@ export class UserService {
             return res.data;
         })
     }
-    
-    // createUser(){
-
-    // }
 
     getUserOrders(email, brand) {
         brand = brand + "_dev";

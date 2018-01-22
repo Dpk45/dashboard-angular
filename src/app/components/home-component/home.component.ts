@@ -19,6 +19,8 @@ export class HomeComponent  {
   isSuccess: boolean;
   SuccessfullyCreatedUpc: boolean;
   batchName: any;
+  isUpcCode: boolean = true;
+  isBatch: boolean = true;
   constructor(private router: Router, private _dashUserService: DashUserService, private _homeService: HomeService) {
   this.current_user = JSON.parse(localStorage.getItem("current_user"));
   }
@@ -31,10 +33,13 @@ export class HomeComponent  {
 
 // create upc_code
   createUpcCode(form) {
-    this.batchname = form.batchname;
+    this.batchname = form.value.batchname;
     this._homeService.createUpcCode(this.batchname, this.upcObject).subscribe((res:any) => {
       if(res.code == 200) {
         this.SuccessfullyCreatedUpc = true;
+        this.isSuccess = false;
+        form.reset();
+        //document.getElementById("available_upc_codes").value = "";
         }
       }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
@@ -43,10 +48,11 @@ export class HomeComponent  {
 
 // send upc_code report
   upcCodeReport(form) {
-    this.reportbatchname = form.reportbatchname;
+    this.reportbatchname = form.value.reportbatchname;
     this._homeService.upcCodeReport(this.reportbatchname).subscribe((res: any) => {
       if(res.code == 200) {
         this.isSuccess = true;
+        this.SuccessfullyCreatedUpc = false;
         }
       }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
@@ -78,5 +84,13 @@ export class HomeComponent  {
       }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
     })
+  }
+
+  showUpcCode() {
+    this.isUpcCode = !this.isUpcCode;
+  }
+
+  reportUpcCode() {
+    this.isBatch = !this.isBatch;
   }
 }

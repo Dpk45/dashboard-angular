@@ -59,7 +59,7 @@ getOrderByOrderId(order_id ,brand){
   this._reportService.getOrderByOrderId(this.order_id, this.brand).subscribe(res => {
 console.log("response getOrderByOrderIdstyleeeeeeeeeeeeeeee<", JSON.stringify(res))
 if(res.code == 200) {
-    this.router.navigate(['/orders', this.brand, this.order_id, 'view']);
+    this.router.navigate(['/orders', this.brand, this.order_id]);
 }
 }, (err) => {
     //this.NotFoundOrder = true

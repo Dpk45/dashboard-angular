@@ -20,13 +20,14 @@ import { EyewearComponent } from './components/eyewear-component/eyewear-compone
 import { EyewearProcessComponent } from './components/eyewear-component/eyewear-process-component/eyewear-process-component.component';
 import { HtkComponent } from './components/htk-component/htk-component.component';
 import { OrderDetailComponent } from './components/order-detail-component/order-detail-component.component';
+import { UpdateOrderComponent } from './components/order-detail-component/update-order-component/update-order.component';
 import { InventoryComponent } from './components/inventory-component/inventory.component';
 import { ProductComponent } from './components/productComponent/product.component';
 import { NewProductComponent } from './components/productComponent/newProductComponent/newProduct.component';
 import { ProductCollectionComponent } from './components/productComponent/ProductCollection/productCollection.component';
 import { LetterPressPreviewComponent } from './components/letterpress-component/letterPressPreview.component';
 import { UserDetailComponent } from './components/user-component/user-detail/user-detail.component';
-//import { NewCollectionComponent } from './components/productComponent/ProductCollection/newProductCollection.component';
+import { TemplateComponent } from './components/lookup-component/lookupTemplate/lookupTemplate.component';
 import { StyleComponent } from './components/lookup-component/lookupStyle/lookupStyle.component';
 import { FrameComponent } from './components/lookup-component/lookupFrame/lookupFrame.component';
 import { LensComponent } from './components/lookup-component/lookupLens/lookupLens.component';
@@ -74,8 +75,17 @@ const appRoutes: Routes =
           ]
         },
         {
-          path: ":brand/:order_id/view",
-          component: OrderDetailComponent
+          path: ":brand/:order_id",
+          children: [
+            {
+              path: "",
+              component: OrderDetailComponent
+            },
+            {
+              path: "edit",
+              component: UpdateOrderComponent
+            }
+          ]
         },
         {
           path: "htk/processing",
@@ -155,6 +165,10 @@ const appRoutes: Routes =
         {
           path: "lookup/lens_colors/:brand",
           component: LensComponent
+        },
+        {
+          path: "lookup/template_map/:brand",
+          component: TemplateComponent
         }
       ]
     },

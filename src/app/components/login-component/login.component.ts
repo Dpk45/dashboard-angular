@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit{
                 if (res.code == 200) {
                     this._storageService.setItem("current_user", JSON.stringify(res.data))
                     this.router.navigate(['/home']);
-                    location.reload();
                 }
             },
             (err) => {

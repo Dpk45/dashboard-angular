@@ -109,4 +109,36 @@ updateLensColor(brand, editedLensData, LensId) {
   });
 }
 
+//get TemplateMap
+getTemplateMap(brand) {
+  brand = brand + "_dev";
+  const _path: string = (this.baseUrl + '/lookup/template_map?key=' + brand)
+  return this._httpClient.get(_path)
+  .map((res: any) => {
+    return res;
+  });
+}
+
+// create template map
+createTemplateMap(brand, templateData) {
+  brand = brand + "_dev";
+  let body: any = JSON.stringify(templateData)
+  const _path: string = (this.baseUrl + '/lookup/template_map?key=' + brand)
+  return this._httpClient.post(_path, body)
+  .map((res: any) => {
+    return res;
+  });
+}
+
+// update template_map
+updatTemplateMap(brand, editedTemplateData, templateId) {
+  brand = brand + "_dev";
+  let body: any = JSON.stringify(editedTemplateData)
+  console.log("body in updated>>>>>>>>............",body)
+  const _path: string = (this.baseUrl + '/lookup/template_map/' + templateId + '?key=' + brand)
+  return this._httpClient.put(_path, body)
+  .map((res: any) => {
+    return res;
+  });
+}
 }

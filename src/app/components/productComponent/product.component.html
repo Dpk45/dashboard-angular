@@ -1,5 +1,7 @@
 <product-nav></product-nav>
 
+<!-- ################### LIST OF PRODUCTS ############################# -->
+
 <div class="container" *ngIf="!byProduct">
   <h3>Search
     <input type="text" name="search" [(ngModel)]="filter">
@@ -18,17 +20,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let product of product_list | filter:filter">
-        <!-- <td>{{product.name}}</td>
-          <td *ngIf="product_name == product.name"></td> -->
-        <!-- <ng-container>
-              <td>{{product.name}}</td>
-              </ng-container> -->
-        <!-- <ng-container *ngFor="let product_name of productName">
-            <td>{{product.name}}</td>
-              <td *ngIf="product_name == product.name"></td>
-              </ng-container> -->
         <td>{{product.name}}</td>
-        <!-- <td *ngIf="product.name == storeProductName"></td> -->
         <td>
           <a [routerLink]="['/product', brand, product.product_id]">{{product.product_id}}</a>
         </td>
@@ -63,7 +55,7 @@
 </div>
 
 
-<!-- ################################### find & update form ##################### -->
+<!-- ################################### find & update PRODUCT form ##################### -->
 
 <div class="container" *ngIf="byProduct">
   <div class="page-header">

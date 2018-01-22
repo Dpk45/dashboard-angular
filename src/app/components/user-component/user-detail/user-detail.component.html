@@ -136,7 +136,7 @@
                   <div class="col-sm-3">Discount</div>
               </div>
               <div *ngFor="let order of orders" class="row" style="border: 1px solid black">
-                  <div class="col-sm-3"><a [routerLink]="['/orders/', brand, order.order_number, 'view']">{{order['order_number']}}</a></div>
+                  <div class="col-sm-3"><a [routerLink]="['/orders/', brand, order.order_number]">{{order['order_number']}}</a></div>
                   <div class="col-sm-3">{{ order['ordered_at'] }}</div>
                   <div class="col-sm-3">{{ order.order_net }}</div>
                   <div *ngFor="let discount of order['totals']['discount_code_amounts']" class="col-sm-3">

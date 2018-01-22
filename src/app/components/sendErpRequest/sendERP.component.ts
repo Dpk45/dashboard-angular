@@ -21,15 +21,15 @@ export class ErpComponent {
   ngOnInit() {
     this.route.params.subscribe((params:any) => {
       this.brand = params.brand;
-      //  this.getDiscounts();
     });
   }
+
+  // postErpMessage
   erpReport(form) {
     this.selectedValue = form.action;
     this.performedAt = form.performed_at;
     this.payload = JSON.parse(form.payload);
     this._erpService.sendErpRequest(this.selectedValue, this.performedAt, this.payload, this.brand).subscribe(res => {
-      console.log("response>>>>>>>>>>>>>.",res)
       if(res.code == 200){
         this.isSuccess = true;
         this.performedAt = '' ;
