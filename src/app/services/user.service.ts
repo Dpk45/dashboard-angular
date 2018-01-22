@@ -24,17 +24,14 @@ export class UserService {
         brand = brand + "_dev";
         return this._httpClient.get(this.baseUrl + "/users/" + email + "?key=" + brand)
             .map((res: any) => {
-                console.log("<<<<<< res in getUserByEmail>>>>>>>>", res)
-                if (res.code == 200) {
-                    return res.data;
-                }
+                    return res;
             })
     }
 
     updateUser(email, brand, data) {
         brand = brand + "_dev";
         return this._httpClient.put(this.baseUrl + "/users/" + email + "?key=" + brand, data)
-            .map((res: any) => { return res.data; })
+            .map((res: any) => { return res; })
     }
 
 

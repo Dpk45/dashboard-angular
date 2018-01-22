@@ -92,7 +92,7 @@ import { ProductNavBar } from './components/productNavbar-component/productNavba
     UserDetailComponent,
     OrderDetailComponent,
     UpdateOrderComponent,
-    StyleComponent, LensComponent, ProductNavBar, TemplateComponent,
+    StyleComponent, LensComponent, ProductNavBar,TemplateComponent,
     ProductComponent, NewProductComponent, ProductCollectionComponent, LetterPressPreviewComponent, FrameComponent
   ],
   imports: [

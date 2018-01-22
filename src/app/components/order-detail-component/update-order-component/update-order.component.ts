@@ -41,7 +41,13 @@ export class UpdateOrderComponent implements OnInit {
     }
 
     updateOrder(form) {
-        let n = form.value.name.split(" ")
+        let n;
+        if(form.value.name != null ){
+             n = form.value.name.split(" ")
+        }else{
+            n=""
+        }
+        
         this.shippingAddress =
             {
                 "first_name": n[0],

@@ -62,15 +62,19 @@ const appRoutes: Routes =
       canActivate: [AuthGuard],
       children: [
         {
-          path: "eyewear",
+          path: "",
           children: [
             {
-              path: "",
+              path: "eyewear",
               component: EyewearComponent
             },
             {
-              path: ":brand/processing",
+              path: "eyewear/:brand/processing",
               component: EyewearProcessComponent
+            },
+            {
+              path: "htk/processing",
+              component: HtkComponent
             }
           ]
         },
@@ -86,10 +90,6 @@ const appRoutes: Routes =
               component: UpdateOrderComponent
             }
           ]
-        },
-        {
-          path: "htk/processing",
-          component: HtkComponent
         }
       ]
     },
@@ -165,7 +165,8 @@ const appRoutes: Routes =
         {
           path: "lookup/lens_colors/:brand",
           component: LensComponent
-        },
+        }
+        ,
         {
           path: "lookup/template_map/:brand",
           component: TemplateComponent

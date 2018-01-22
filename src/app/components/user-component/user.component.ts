@@ -32,6 +32,7 @@ export class UserComponent {
         });
     }
 
+    // get users data
     getUsers() {
         this._userService.getUsers(this.brand).subscribe(res => {
             this.userList = res.data;
@@ -39,6 +40,7 @@ export class UserComponent {
         })
     }
 
+    // sorting function
     sort(property) {
         this.isDesc = !this.isDesc;   // change the direction
         this.column = property;
