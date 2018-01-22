@@ -31,6 +31,7 @@ import { TemplateComponent } from './components/lookup-component/lookupTemplate/
 import { StyleComponent } from './components/lookup-component/lookupStyle/lookupStyle.component';
 import { FrameComponent } from './components/lookup-component/lookupFrame/lookupFrame.component';
 import { LensComponent } from './components/lookup-component/lookupLens/lookupLens.component';
+import { OrderPackingSlipComponent } from './components/order-detail-component/order-packing-slips/order-packing-slips.component'
 const appRoutes: Routes =
   [
     {
@@ -75,6 +76,10 @@ const appRoutes: Routes =
             {
               path: "htk/processing",
               component: HtkComponent
+            },
+            {
+              path: "htk/processing/packing_slips/:order_id/:brand",
+              component: OrderPackingSlipComponent
             }
           ]
         },
