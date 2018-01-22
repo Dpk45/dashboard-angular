@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DashUserService } from '../../services/dashUser.service'
 import { ProductService } from '../../services/product.service'
 
@@ -8,7 +8,7 @@ import { ProductService } from '../../services/product.service'
   selector: 'app-product',
   templateUrl: 'product.component.html',
 })
-export class ProductComponent  {
+export class ProductComponent {
   brand: any;
   product_list: any;
   product_id: any;
@@ -27,34 +27,34 @@ export class ProductComponent  {
   assestToPass: any = [];
   assestVal: any = {};
   settings: any = {
-            text: "Select Data",
-           selectAllText: 'Select All',
-           unSelectAllText: 'UnSelect All'
+    text: "Select Data",
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All'
   };
   constructor(private route: ActivatedRoute, private _productService: ProductService, private _dashUserService: DashUserService, private router: Router) {
   }
-  ngOnInit(){
+  ngOnInit() {
     this.route.params.subscribe((params: any) => {
       this.brand = params.brand;
       this.getProducts();
-      if(params.product_id) {
+      if (params.product_id) {
         this.product_id = params.product_id;
         this.foundProduct(this.product_id);
       }
     });
-      this.getTagList();
-      this.getAssestGroup();
+    this.getTagList();
+    this.getAssestGroup();
   }
 
   // get list of tags
   getTagList() {
     this._productService.getTagList(this.brand).subscribe((res: any) => {
-      if(res.code == 200) {
+      if (res.code == 200) {
         this.tagData = res.data;
-           for (let i = 0; i < this.tagData.length; i++) {
-           this.tagsValue.push({"id": i, "itemName": this.tagData[i]});
-         }
-       this.tagToPass = this.tagsValue;
+        for (let i = 0; i < this.tagData.length; i++) {
+          this.tagsValue.push({ "id": i, "itemName": this.tagData[i] });
+        }
+        this.tagToPass = this.tagsValue;
       }
     }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
@@ -63,12 +63,12 @@ export class ProductComponent  {
 
   getAssestGroup() {
     this._productService.getAssetGroup(this.brand).subscribe((res: any) => {
-      if(res.code == 200) {
+      if (res.code == 200) {
         this.assestData = res.data;
-           for (let i = 0; i < this.assestData.length; i++) {
-           this.assestValue.push({"id": i, "itemName": this.assestData[i]});
-         }
-       this.assestToPass = this.assestValue;
+        for (let i = 0; i < this.assestData.length; i++) {
+          this.assestValue.push({ "id": i, "itemName": this.assestData[i] });
+        }
+        this.assestToPass = this.assestValue;
       }
     }, (err) => {
       console.log('error>>>>>>>>>>>>', err);
@@ -79,7 +79,7 @@ export class ProductComponent  {
   getProducts() {
     this._productService.getProducts(this.brand).subscribe((res: any) => {
       //  console.log("response>>>>>>>>>>>>>>>>", JSON.stringify((res.data[0])))
-      if(res.code == 200) {
+      if (res.code == 200) {
         this.product_list = res.data;
       }
       // const productName: any = [];
@@ -90,40 +90,40 @@ export class ProductComponent  {
       // }
       // console.log("productName>>>>>>>>>>>>>>>...............",productName)
     },
-    (err) => {
-      console.log('error>>>>>>>>>>>>', err);
-    })
+      (err) => {
+        console.log('error>>>>>>>>>>>>', err);
+      })
   }
 
   // get product by product_id
   foundProduct(product_Id) {
     this._productService.getProductById(this.brand, product_Id).subscribe((res: any) => {
-      if(res.code == 200) {
+      if (res.code == 200) {
         this.byProduct = true;
         this.product = res.data[0];
-           for (let i = 0; i < this.product.tags.length; i++) {
-           this.tags.push({"id": i, "itemName": this.product.tags[i]});
-         }
+        for (let i = 0; i < this.product.tags.length; i++) {
+          this.tags.push({ "id": i, "itemName": this.product.tags[i] });
+        }
         // for(const i in this.product.assets) {
         //       this.assest.push({"id": 1, "itemName": i})
         //   }
-        }
+      }
     },
-    (err) => {
-      console.log('error>>>>>>>>>>>>', err);
-    })
+      (err) => {
+        console.log('error>>>>>>>>>>>>', err);
+      })
   }
 
-// update product
+  // update product
   updateProduct(form) {
     console.log("form>>>>>>>>>>>>>>>>>>>>>>>>>>..........", form)
     this.product_id = form.product_id;
     const tagValue: any = [];
-    for(let i = 0; i < form.tags.length; i++) {
+    for (let i = 0; i < form.tags.length; i++) {
       tagValue.push(form.tags[i].itemName)
     }
 
-    for(let i = 0; i < form.assets.length; i++) {
+    for (let i = 0; i < form.assets.length; i++) {
       this.assestVal[form.assets[i].itemName] = [];
     }
     this.updateProductdata = {
@@ -153,20 +153,20 @@ export class ProductComponent  {
         "PRG_RX_SUN_LENS_PRICE": form.PRG_RX_SUN_LENS_PRICE,
         "ORIGINAL_SUN_PRICE": form.ORIGINAL_SUN_PRICE
       },
-      "measurements":{
+      "measurements": {
         "bridge": form.bridge,
         "temple": form.temple,
         "lens_width": form.lens_width,
         "lens_height": form.lens_height
       }
     }
-    this._productService.updateProductById(this.brand, this.product_id,  this.updateProductdata).subscribe((res: any) => {
-      if(res.code == 200) {
-          this.router.navigate(['/product', this.brand]);
+    this._productService.updateProductById(this.brand, this.product_id, this.updateProductdata).subscribe((res: any) => {
+      if (res.code == 200) {
+        this.router.navigate(['/product', this.brand]);
       }
     },
-    (err) => {
-      console.log('error>>>>>>>>>>>>', err);
-    })
+      (err) => {
+        console.log('error>>>>>>>>>>>>', err);
+      })
   }
 }
