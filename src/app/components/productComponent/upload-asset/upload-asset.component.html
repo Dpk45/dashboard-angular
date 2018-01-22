@@ -24,8 +24,11 @@
         </p>
 
         <div>
+            <file-drop (onFileDrop)="dropped($event, key)">
+                <span>Upload Box Here</span>
+            </file-drop>
           <!-- <input type="file" class="file" (change)="uploadAsset($event, key)"/> -->
-          Upload Box Here
+          <!-- Upload Box Here -->
         </div>
         <ul class="list-unstyled">
           <li *ngFor="let asset of product['assets'][key]">

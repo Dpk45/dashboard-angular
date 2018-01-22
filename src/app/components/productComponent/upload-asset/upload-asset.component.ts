@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DashUserService } from '../../../services/dashUser.service'
 import { ProductService } from '../../../services/product.service'
+import { UploadEvent, UploadFile } from 'ngx-file-drop';
 
 @Component({
   selector: 'app-upload-asset',
@@ -15,7 +16,7 @@ export class UploadAssetComponent implements OnInit {
   byProduct: boolean;
   objectKeys = Object.keys;
   assetObject: any
-
+  files: any
 
   constructor(private route: ActivatedRoute, private _productService: ProductService, private _dashUserService: DashUserService, private router: Router) { }
 
@@ -62,23 +63,57 @@ export class UploadAssetComponent implements OnInit {
    * fileUpload Event
    * @param event
    */
-  uploadAsset(event, asset) {
-    let reader = new FileReader();
-    reader.onload = () => {
-      this.assetObject = {
-        asset_group: asset,
-        filename: event.target.files[0].name,
-        data: btoa(reader.result),
-      };
-      console.log("this.assetObject >>>>>>>", this.assetObject)
-      this._productService.uploadProductAsset(this.brand, this.product_id, this.assetObject).subscribe((res: any) => {
-        if (res.code == 200) {
-          console.log("uploaded succesfully ........")
-        }
-      })
-    }
-    if (event.target.files[0]) {
-      reader.readAsBinaryString(event.target.files[0]);
+  // uploadAsset(event, asset) {
+  //   let reader = new FileReader();
+  //   reader.onload = () => {
+  //     this.assetObject = {
+  //       asset_group: asset,
+  //       filename: event.target.files[0].name,
+  //       data: btoa(reader.result),
+  //     };
+  //     console.log("this.assetObject >>>>>>>", this.assetObject)
+  //     this._productService.uploadProductAsset(this.brand, this.product_id, this.assetObject).subscribe((res: any) => {
+  //       if (res.code == 200) {
+  //         console.log("uploaded succesfully ........")
+  //       }
+  //     })
+  //   }
+  //   if (event.target.files[0]) {
+  //     reader.readAsBinaryString(event.target.files[0]);
+  //   }
+  // }
+
+
+  public dropped(event: UploadEvent, asset) {
+    try {
+      this.files = event.files;
+      for (const file of event.files) {
+        file.fileEntry.file(info => {
+          console.log(info);
+          let reader = new FileReader();
+          reader.onload = () => {
+            this.assetObject = {
+              asset_group: asset,
+              filename: info.name,
+              data: btoa(reader.result)
+            };
+            console.log("this.assetObject >>>>>>>", this.assetObject)
+            this._productService.uploadProductAsset(this.brand, this.product_id, this.assetObject).subscribe((res: any) => {
+              if (res.code == 200) {
+                console.log("uploaded succesfully ........")
+              }
+            }, error => {
+              console.log("error", error.error.data)
+              return error.error.data.message;
+            })
+          }
+          if (info) {
+            reader.readAsBinaryString(info);
+          }
+        });
+      }
+    } catch (err) {
+      console.log("error", err)
     }
   }
 
