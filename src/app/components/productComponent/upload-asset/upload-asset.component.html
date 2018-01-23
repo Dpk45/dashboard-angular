@@ -11,30 +11,28 @@
   <h2>
     Assets
   </h2>
-  <ng-container *ngFor="let key of objectKeys(product['assets'])">
+  <ng-container *ngFor="let assetGroup of objectKeys(product['assets']); let i = index">
     <div class="panel panel-default">
       <div class="panel-heading">
-        {{key}}
+        {{assetGroup}}
       </div>
       <div class="panel-body">
         <p>
-          <button type="button" class="btn btn-danger">
+          <button type="button" class="btn btn-danger" (click)="removeAssetGroup(assetGroup)">
             Remove
           </button>
         </p>
 
         <div>
-            <file-drop (onFileDrop)="dropped($event, key)">
-                <span>Upload Box Here</span>
-            </file-drop>
-          <!-- <input type="file" class="file" (change)="uploadAsset($event, key)"/> -->
-          <!-- Upload Box Here -->
+          <file-drop (onFileDrop)="dropped($event, assetGroup)">
+            <span>Upload Box Here</span>
+          </file-drop>
         </div>
         <ul class="list-unstyled">
-          <li *ngFor="let asset of product['assets'][key]">
+          <li *ngFor="let asset of product['assets'][assetGroup]; let assetIndex = index">
             <img class="img-responsive" [src]="asset.http_url">
             <p>
-              <button type="button" class="btn btn-danger btn-xs">
+              <button type="button" class="btn btn-danger btn-xs" (click)="removeAsset(assetGroup, assetIndex)">
                 Remove
               </button>
             </p>
@@ -43,4 +41,6 @@
       </div>
     </div>
   </ng-container>
+  <hr>
+  <button class="btn btn-primary btn-lg" (click)="updateProductAsset()">Save</button>
 </div>

@@ -219,7 +219,6 @@ const appRoutes: Routes =
     },
     {
       path: "",
-      //  component: ProductComponent,
       canActivate: [AuthGuard],
       children: [
         {
