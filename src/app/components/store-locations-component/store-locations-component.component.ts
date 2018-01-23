@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
-import { StoreLocationService } from "../../services/store-location.service"
+import { Router, ActivatedRoute } from '@angular/router';
+import { StoreLocationService } from '../../services/store-location.service'
 import { Sort } from '@angular/material';
 
 @Component({
@@ -27,37 +27,32 @@ export class StoreLocationComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
-      this.brand = params.brand
+      this.brand = params.brand;
       this.getStoreLocations();
-      console.log(" this.brand vvvvvvvvvv", this.brand)
     });
   }
 
 
   getStoreLocations() {
     this._storeLocationService.getStoreLocations(this.brand).subscribe(res => {
-      console.log("res _storeLocationService>>>>>>>>", res)
       if (Object.keys(res.data).length) {
         this.store_locations = res.data;
         this.sortedData = res.data;
       }
-
-    })
+    });
   }
 
   sort(property) {
-    
-    if(property == 'address'){
-      property = "address['address1']"
+
+    if (property == 'address') {
+      property = 'address.address1';
     }
-    if(property == 'phone'){
-      property = "address.phone" 
+    if (property == 'phone') {
+      property = 'address.phone';
     }
-    console.log("property >>>>", property)
     this.isDesc = !this.isDesc;   // change the direction
     this.column = property;
     this.direction = this.isDesc ? 1 : -1;
-    console.log("this.direction >>>>", this.direction)
-}
+  }
 
 }

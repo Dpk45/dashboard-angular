@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { StoreLocationService } from "../../services/store-location.service"
+import { StoreLocationService } from '../../services/store-location.service'
 import { StoreLocationComponent } from '../store-locations-component/store-locations-component.component'
 
 @Component({
