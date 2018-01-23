@@ -34,6 +34,7 @@ export class ProductComponent {
   isDesc: boolean = false;
   column: string;
   direction: number;
+  description: any;
   constructor(private route: ActivatedRoute, private _productService: ProductService, private _dashUserService: DashUserService, private router: Router) {
   }
   ngOnInit() {
@@ -174,6 +175,23 @@ export class ProductComponent {
         console.log('error>>>>>>>>>>>>', err);
       })
   }
+
+// assign upc_code
+assignUpcCode(assignUpcCode) {
+  console.log("assignUpcCode ++++++++++++======= ", assignUpcCode)
+this.description = {
+  'description' : assignUpcCode
+}
+this._productService.assignUpcCode(this.brand, this.product_id, this.description).subscribe((res: any) => {
+  console.log("response >>>>>>>>>>>>..................", JSON.stringify(res.data))
+  if (res.code == 200) {
+  this.UpcCode = res.data[1];
+  }
+},
+  (err) => {
+    console.log('error>>>>>>>>>>>>', err);
+  })
+}
 
   // apply sorting
     sort(property) {

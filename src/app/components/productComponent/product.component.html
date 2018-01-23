@@ -161,12 +161,37 @@
     </div>
     <div class="form-group">
       <label for="upc_codes" class="control-label col-sm-2">UPC Code</label>
-      <div class="col-sm-8">
+      <!-- <div class="col-sm-8">
         <input type="text" class="form-control" name="upc_code" [(ngModel)]="product.upc_codes" required class="form-control input-xlarge">
-      </div>
+      </div> -->
+    <div class="col-sm-8">
+      <ng-container *ngIf = "!UpcCode">None</ng-container>
+      {{UpcCode}}
+    </div>
       <div class="col-sm-2">
-        <button type="button" class="btn btn-default row" style="margin-top: 5px;">Assign New UPC Code</button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Assign New UPC Code</button>
       </div>
+      <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Assign New UPC Code</h4>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" name="upc_code" placeholder = "Additional Description" [(ngModel)]="upc_code" required class="form-control input-xlarge">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="assignUpcCode(upc_code)" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+
+  </div>
+</div>
     </div>
     <fieldset>
       <legend>
