@@ -15,6 +15,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FileDropModule } from 'ngx-file-drop';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home-component/home.component';
@@ -104,6 +105,7 @@ import { UploadAssetComponent } from './components/productComponent/upload-asset
     HttpClientModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
+    FileDropModule,
     routing,
     ReactiveFormsModule,
     MatFormFieldModule,
