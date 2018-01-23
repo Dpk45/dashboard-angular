@@ -27,6 +27,7 @@ export class ProductCollectionComponent  {
   productValue: any = [];
   productData: any = [];
   productToPass: any = [];
+  selectedProductId: any = [];
   settings: any = {
             text: "Select Data",
            selectAllText: 'Select All',
@@ -105,7 +106,7 @@ ngOnInit() {
         for (let i = 0; i < this.productIds.length; i++) {
         this.productValue.push({"id": i, "itemName": this.productIds[i].product_id});
       }
-    this.productToPass = this.productValue;
+      this.productToPass = this.productValue;
       }
     },
     (err) => {
@@ -136,8 +137,8 @@ ngOnInit() {
   //update product collection
   updateProductCollection(form) {
   const productValue: any = [];
-  for(let i = 0; i < form.product_id.length; i++) {
-    productValue.push(form.product_id[i].itemName)
+  for(let i = 0; i < form.productId.length; i++) {
+    productValue.push(form.productId[i].itemName)
   }
   for(let i = 0; i < form.assets.length; i++) {
     this.assestVal[form.assets[i].itemName] = [];

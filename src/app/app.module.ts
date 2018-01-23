@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-//import { FormsModule } from '@angular/forms';
+// import { FormsModule } from '@angular/forms';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { routing, appRoutingProviders } from "./app.route";
-//import { MaterialModule } from '@angular/material';
-//import { MatSelectModule } from '@angular/material';
-//import { MultiselectDropdown } from './multiselect-dropdown';
+import { routing, appRoutingProviders } from './app.route';
+// import { MaterialModule } from '@angular/material';
+// import { MatSelectModule } from '@angular/material';
+// import { MultiselectDropdown } from './multiselect-dropdown';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 import { AuthGuard } from './_guards/auth.guard';
@@ -19,25 +19,25 @@ import { FileDropModule } from 'ngx-file-drop';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home-component/home.component';
-import { LoginComponent } from "./components/login-component/login.component";
-import { HeaderComponent } from "./components/header-component/header.component"
-import { ErrorComponent } from "./components/error-component/error.component"
-import { UserComponent } from "./components/user-component/user.component"
+import { LoginComponent } from './components/login-component/login.component';
+import { HeaderComponent } from './components/header-component/header.component';
+import { ErrorComponent } from './components/error-component/error.component';
+import { UserComponent } from './components/user-component/user.component';
 
-import { DashAuthService } from "./services/dashAuth.service"
-import { StorageService } from "./services/storage.service"
-import { DashUserService } from "./services/dashUser.service"
-import { UserService } from "./services/user.service";
-import { OrdersService } from "./services/orders-service.service";
-import { StoreLocationService } from "./services/store-location.service"
+import { DashAuthService } from './services/dashAuth.service';
+import { StorageService } from './services/storage.service';
+import { DashUserService } from './services/dashUser.service';
+import { UserService } from './services/user.service';
+import { OrdersService } from './services/orders-service.service';
+import { StoreLocationService } from './services/store-location.service';
 import { DiscountService } from './services/discount.service';
 import { LetterPressService } from './services/letterPress.service';
-import { ReportService } from './services/reports.service'
-import { ErpService } from './services/sendErp.service'
-import { InventoryService } from './services/inventory.service'
-import { HomeService } from './services/home.service'
-import { ProductService } from './services/product.service'
-import { LookupService } from './services/lookup.service'
+import { ReportService } from './services/reports.service';
+import { ErpService } from './services/sendErp.service';
+import { InventoryService } from './services/inventory.service';
+import { HomeService } from './services/home.service';
+import { ProductService } from './services/product.service';
+import { LookupService } from './services/lookup.service';
 
 import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component';
 import { DiscountComponent } from './components/discountCode-component/discount.component';
@@ -46,7 +46,7 @@ import { LetterPressPreviewComponent } from './components/letterpress-component/
 import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component';
 import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
 import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
-import { ReportComponent } from './components/report/report.component'
+import { ReportComponent } from './components/report/report.component';
 import { ErpComponent } from './components/sendErpRequest/sendERP.component';
 import { EyewearComponent } from './components/eyewear-component/eyewear-component.component';
 import { HtkComponent } from './components/htk-component/htk-component.component';
