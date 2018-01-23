@@ -9,9 +9,18 @@
   <table class="table table-hover display" id="product" style="width:100%">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Product ID</th>
-        <th>Color</th>
+        <th class="pointer" (click)="sort('name')">
+        <i class="fa" [ngClass]="{'fa-sort': column != 'name',
+        'fa-sort-asc': (column == 'name' && !isDesc),
+        'fa-sort-desc': (column == 'name' && isDesc) }" aria-hidden="true"> </i>Name</th>
+        <th class="pointer" (click)="sort('product_id')">
+          <i class="fa" [ngClass]="{'fa-sort': column != 'product_id',
+          'fa-sort-asc': (column == 'product_id' && !isDesc),
+          'fa-sort-desc': (column == 'product_id' && isDesc) }" aria-hidden="true"> </i>Product ID</th>
+        <th class="pointer" (click)="sort('color')">
+          <i class="fa" [ngClass]="{'fa-sort': column != 'color',
+          'fa-sort-asc': (column == 'color' && !isDesc),
+          'fa-sort-desc': (column == 'color' && isDesc) }" aria-hidden="true"> </i>Color</th>
         <th>Product Gender</th>
         <th>Sun/Optical</th>
         <th>Incomplete</th>
@@ -19,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of product_list | filter:filter">
+      <tr *ngFor="let product of product_list | filter:filter |  orderBy: {property: column, direction: direction}">
         <td>{{product.name}}</td>
         <td>
           <a [routerLink]="['/product', brand, product.product_id]">{{product.product_id}}</a>
