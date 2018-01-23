@@ -93,6 +93,7 @@ export class UploadAssetComponent implements OnInit {
   updateProductAsset() {
     this._productService.updateProductById(this.brand, this.product.product_id, this.product).subscribe((res: any) => {
       if (res.code === 200) {
+        location.reload();
       }
     }, error => {
       console.log('error', error.error.data);
