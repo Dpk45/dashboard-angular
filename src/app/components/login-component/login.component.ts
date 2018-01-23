@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 // import {userdata} from  '../../services/userdata.service';
 import { Router } from '@angular/router';
-import { DashAuthService } from "../../services/dashAuth.service"
-import { StorageService } from "../../services/storage.service"
+import { DashAuthService } from '../../services/dashAuth.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
     moduleId: module.id,
@@ -11,7 +11,7 @@ import { StorageService } from "../../services/storage.service"
     styleUrls: ['login.component.css']
 
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
     private email: string;
     private password: string;
@@ -25,24 +25,24 @@ export class LoginComponent implements OnInit{
     ngOnInit() {
     }
 
- // Authenticate dashboardUser
+    // Authenticate dashboardUser
     private dashLogin(email, password) {
         this.email = email.value;
-        this.password = password.value
-        let data = {
+        this.password = password.value;
+        const data = {
             email: this.email,
             password: this.password
-        }
+        };
         this._dashAuthService.loginDashUser(data).subscribe(
             res => {
-                if (res.code == 200) {
-                    this._storageService.setItem("current_user", JSON.stringify(res.data))
+                if (res.code === 200) {
+                    this._storageService.setItem('current_user', JSON.stringify(res.data))
                     this.router.navigate(['/home']);
                 }
             },
             (err) => {
                 this.router.navigate(['/error']);
             }
-        )
+        );
     }
 }
