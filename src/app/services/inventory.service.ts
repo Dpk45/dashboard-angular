@@ -1,55 +1,58 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Http, Response, Headers, RequestOptions, ResponseContentType} from '@angular/http';
+import { Http, Response, Headers, RequestOptions, ResponseContentType } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class InventoryService {
-  private baseUrl = "http://localhost:3000/3.0";
+  private baseUrl = 'http://localhost:3000/3.0';
   constructor(private _http: Http, private _httpClient: HttpClient) {
 
   }
 
-// get Inventory by productId
+  // get Inventory by productId
   getInventoryByProduct(productId, brand) {
-    brand = brand + "_dev";
-    const _path: string = (this.baseUrl + '/products/' + productId + '/get_inventory?key=' + brand)
-    console.log("-path>>>>>>>>>>>>>", _path)
+    brand = brand + '_dev';
+    const _path: string = (this.baseUrl + '/products/' + productId + '/get_inventory?key=' + brand);
     return this._httpClient.get(_path)
-    .map((res: any) => {
-      return res;
-    });
+      .map((res: any) => {
+        return res;
+      });
   }
 
-// get one product
+  // get one product
   getProductByProduct(productId, brand) {
-    brand = brand + "_dev";
-    const _path: string = (this.baseUrl + '/products/?key=' + brand + '&product_id=' + productId)
+    brand = brand + '_dev';
+    const _path: string = (this.baseUrl + '/products/?key=' + brand + '&product_id=' + productId);
     return this._httpClient.get(_path)
-    .map((res: any) => {
-      return res;
-    });
+      .map((res: any) => {
+        return res;
+      });
   }
 
-// update inventory by product_id
+  // update inventory by product_id
   updateInventoryByProduct(warehouse, htk_quantity, tro, kmarsoptical, productId, brand) {
-    brand = brand + "_dev";
-    const _path: string = (this.baseUrl + '/products/'+ productId + '/adjust_inventory?key=' + brand)
-    let body = JSON.stringify({'warehouse': warehouse, 'htk_quantity': htk_quantity, 'kmarsoptical': kmarsoptical, 'tro': tro})
-    return this._httpClient.put(_path, body)
-    .map((res: any) => {
-      return res;
+    brand = brand + '_dev';
+    const _path: string = (this.baseUrl + '/products/' + productId + '/adjust_inventory?key=' + brand);
+    const body = JSON.stringify({
+      'warehouse': warehouse, 'htk_quantity': htk_quantity, 'kmarsoptical': kmarsoptical, 'tro': tro
     });
+    return this._httpClient.put(_path, body)
+      .map((res: any) => {
+        return res;
+      });
   }
 
   // upload Inventory data
   uploadInventory(adjustValue, file, brand) {
-    brand = brand + "_dev";
-    const _path: string = (this.baseUrl + '/products/update_inventory?key=' + brand)
-    let body = {'overwrite': adjustValue, 'file': file.data}
+    brand = brand + '_dev';
+    const _path: string = (this.baseUrl + '/products/update_inventory?key=' + brand);
+    const body = {
+      'overwrite': adjustValue, 'file': file.data
+    };
     return this._httpClient.put(_path, body)
-    .map((res: any) => {
-      return res;
-    });
+      .map((res: any) => {
+        return res;
+      });
   }
 }

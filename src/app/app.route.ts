@@ -1,15 +1,15 @@
-import { ModuleWithProviders } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './_guards/auth.guard';
 
-import { LoginComponent } from "./components/login-component/login.component"
-import { HomeComponent } from "./components/home-component/home.component"
-import { HeaderComponent } from "./components/header-component/header.component"
-import { UserComponent } from "./components/user-component/user.component"
-import { ErrorComponent } from "./components/error-component/error.component"
-import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component'
-import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component'
+import { LoginComponent } from './components/login-component/login.component';
+import { HomeComponent } from './components/home-component/home.component';
+import { HeaderComponent } from './components/header-component/header.component';
+import { UserComponent } from './components/user-component/user.component';
+import { ErrorComponent } from './components/error-component/error.component';
+import { StoreLocationDetailComponent } from './components/store-location-detail-component/store-location-detail-component.component';
+import { StoreLocationComponent } from './components/store-locations-component/store-locations-component.component';
 import { ReportComponent } from './components/report/report.component';
 import { ReportOrderComponent } from './components/report/reportOrder/reportOrder.component';
 import { ReportEmailComponent } from './components/report/reportEmail/reportEmail.component';
@@ -32,67 +32,66 @@ import { StyleComponent } from './components/lookup-component/lookupStyle/lookup
 import { FrameComponent } from './components/lookup-component/lookupFrame/lookupFrame.component';
 import { LensComponent } from './components/lookup-component/lookupLens/lookupLens.component';
 import { UploadAssetComponent } from './components/productComponent/upload-asset/upload-asset.component';
-import { OrderPackingSlipComponent } from './components/order-detail-component/order-packing-slips/order-packing-slips.component'
+import { OrderPackingSlipComponent } from './components/order-detail-component/order-packing-slips/order-packing-slips.component';
 const appRoutes: Routes =
   [
     {
-      path: "",
+      path: '',
       component: LoginComponent
     },
-
     {
-      path: "home",
+      path: 'home',
       component: HomeComponent,
       canActivate: [AuthGuard]
     },
     {
-      path: "users/:brand",
+      path: 'users/:brand',
       canActivate: [AuthGuard],
       children: [
         {
-          path: "",
+          path: '',
           component: UserComponent
         },
         {
-          path: ":email/view",
+          path: ':email/view',
           component: UserDetailComponent
         }
       ]
     },
     {
-      path: "orders",
+      path: 'orders',
       canActivate: [AuthGuard],
       children: [
         {
-          path: "",
+          path: '',
           children: [
             {
-              path: "eyewear",
+              path: 'eyewear',
               component: EyewearComponent
             },
             {
-              path: "eyewear/:brand/processing",
+              path: 'eyewear/:brand/processing',
               component: EyewearProcessComponent
             },
             {
-              path: "htk/processing",
+              path: 'htk/processing',
               component: HtkComponent
             },
             {
-              path: "htk/processing/packing_slips/:order_id/:brand",
+              path: 'htk/processing/packing_slips/:order_id/:brand',
               component: OrderPackingSlipComponent
             }
           ]
         },
         {
-          path: ":brand/:order_id",
+          path: ':brand/:order_id',
           children: [
             {
-              path: "",
+              path: '',
               component: OrderDetailComponent
             },
             {
-              path: "edit",
+              path: 'edit',
               component: UpdateOrderComponent
             }
           ]
@@ -100,40 +99,39 @@ const appRoutes: Routes =
       ]
     },
     {
-      path: "store_locations/:brand",
+      path: 'store_locations/:brand',
       canActivate: [AuthGuard],
       children: [
         {
-          path: "",
+          path: '',
           component: StoreLocationComponent
         },
         {
-          path: "new_store",
+          path: 'new_store',
           component: StoreLocationDetailComponent
         }
         ,
         {
-          path: ":kioskId",
+          path: ':kioskId',
           component: StoreLocationDetailComponent
         }
       ]
     },
     {
-      path: "send_erp_request/:brand",
+      path: 'send_erp_request/:brand',
       component: ErpComponent,
       canActivate: [AuthGuard]
     },
-
     {
       path: 'discount/:brand',
       canActivate: [AuthGuard],
       children: [
         {
-          path: "",
+          path: '',
           component: DiscountComponent
         },
         {
-          path: ":discount_code",
+          path: ':discount_code',
           component: DiscountComponent
         }]
     },
@@ -142,87 +140,79 @@ const appRoutes: Routes =
       canActivate: [AuthGuard],
       children: [
         {
-          path: "letterpress/:brand",
+          path: 'letterpress/:brand',
           component: LetterPressComponent
         },
         {
-          path: "letterpress/:brand/:name",
+          path: 'letterpress/:brand/:name',
           component: LetterPressComponent
         },
         {
-          path: "letterpress/:brand/:name/preview",
+          path: 'letterpress/:brand/:name/preview',
           component: LetterPressPreviewComponent
         }
       ]
     },
-
     {
       path: '',
       canActivate: [AuthGuard],
       children: [
         {
-          path: "lookup/frame_colors/:brand",
+          path: 'lookup/frame_colors/:brand',
           component: FrameComponent
         },
         {
-          path: "lookup/styles/:brand",
+          path: 'lookup/styles/:brand',
           component: StyleComponent
         },
         {
-          path: "lookup/lens_colors/:brand",
+          path: 'lookup/lens_colors/:brand',
           component: LensComponent
         }
         ,
         {
-          path: "lookup/template_map/:brand",
+          path: 'lookup/template_map/:brand',
           component: TemplateComponent
         }
       ]
     },
     {
-      // path: "error",
-      // component: ErrorComponent
-
       path: '',
-      // component: ReportComponent,
       canActivate: [AuthGuard],
       children: [
         {
-          path: "error",
+          path: 'error',
           component: ErrorComponent
         },
         {
-          path: "error/:brand/:order_id",
+          path: 'error/:brand/:order_id',
           component: ErrorComponent
         }]
     },
-
     {
       path: '',
-      // component: ReportComponent,
       canActivate: [AuthGuard],
       children: [
         {
-          path: "reports",
+          path: 'reports',
           component: ReportComponent
         },
         {
-          path: "reports/:brand/list_all",
+          path: 'reports/:brand/list_all',
           component: ReportOrderComponent
         },
         {
-          path: "reports/:brand/email",
+          path: 'reports/:brand/email',
           component: ReportEmailComponent
         }
-
       ]
     },
     {
-      path: "",
+      path: '',
       canActivate: [AuthGuard],
       children: [
         {
-          path: "product/:brand",
+          path: 'product/:brand',
           component: ProductComponent
         },
         {
@@ -252,22 +242,20 @@ const appRoutes: Routes =
     },
 
     {
-      path: "inventory/:brand",
-      //component: InventoryComponent,
+      path: 'inventory/:brand',
       canActivate: [AuthGuard],
       children: [
         {
-          path: "",
+          path: '',
           component: InventoryComponent
         },
         {
-          path: ":productId",
+          path: ':productId',
           component: InventoryComponent
         }
       ]
 
     }
-
   ];
 
 export const appRoutingProviders: any[] = [];
