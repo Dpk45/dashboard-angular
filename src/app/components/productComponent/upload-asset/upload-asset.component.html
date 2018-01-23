@@ -1,0 +1,46 @@
+<product-nav></product-nav>
+<div class="container" *ngIf="product">
+  <div class="page-header">
+    <h1>
+      {{product.name}}
+      <small>
+        <a [routerLink]="['/product', brand, product_id]">Edit</a>
+      </small>
+    </h1>
+  </div>
+  <h2>
+    Assets
+  </h2>
+  <ng-container *ngFor="let assetGroup of objectKeys(product['assets']); let i = index">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{assetGroup}}
+      </div>
+      <div class="panel-body">
+        <p>
+          <button type="button" class="btn btn-danger" (click)="removeAssetGroup(assetGroup)">
+            Remove
+          </button>
+        </p>
+
+        <div>
+          <file-drop (onFileDrop)="dropped($event, assetGroup)">
+            <span>Upload Box Here</span>
+          </file-drop>
+        </div>
+        <ul class="list-unstyled">
+          <li *ngFor="let asset of product['assets'][assetGroup]; let assetIndex = index">
+            <img class="img-responsive" [src]="asset.http_url">
+            <p>
+              <button type="button" class="btn btn-danger btn-xs" (click)="removeAsset(assetGroup, assetIndex)">
+                Remove
+              </button>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ng-container>
+  <hr>
+  <button class="btn btn-primary btn-lg" (click)="updateProductAsset()">Save</button>
+</div>

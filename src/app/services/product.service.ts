@@ -168,4 +168,28 @@ getAssetGroup(brand) {
     return res.json();
   });
 }
+
+// upload product Asset
+uploadProductAsset(brand, productId, data){
+  brand = brand + "_dev";
+  const _path: string = (this.baseUrl + '/products/'+productId+'/assets?key=' + brand)
+  return this._httpClient.post(_path, data)
+  .map((res: any) => {
+    return res.json();
+  });
+}
+
+// assign UpcCode
+assignUpcCode(brand, productId, description) {
+  brand = brand + "_dev";
+  let body: any = JSON.stringify(description)
+  console.log("body data>>>>>>>>>>....", body)
+  const _path: string = (this.baseUrl + '/products/'+productId+'/upc_code?key=' + brand)
+  console.log(" Path>>>>>>>>>>>>>>>>......",_path)
+  return this._httpClient.put(_path, body)
+  .map((res: any) => {
+    return res;
+  });
+}
+
 }

@@ -9,9 +9,18 @@
   <table class="table table-hover display" id="product" style="width:100%">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Product ID</th>
-        <th>Color</th>
+        <th class="pointer" (click)="sort('name')">
+        <i class="fa" [ngClass]="{'fa-sort': column != 'name',
+        'fa-sort-asc': (column == 'name' && !isDesc),
+        'fa-sort-desc': (column == 'name' && isDesc) }" aria-hidden="true"> </i>Name</th>
+        <th class="pointer" (click)="sort('product_id')">
+          <i class="fa" [ngClass]="{'fa-sort': column != 'product_id',
+          'fa-sort-asc': (column == 'product_id' && !isDesc),
+          'fa-sort-desc': (column == 'product_id' && isDesc) }" aria-hidden="true"> </i>Product ID</th>
+        <th class="pointer" (click)="sort('color')">
+          <i class="fa" [ngClass]="{'fa-sort': column != 'color',
+          'fa-sort-asc': (column == 'color' && !isDesc),
+          'fa-sort-desc': (column == 'color' && isDesc) }" aria-hidden="true"> </i>Color</th>
         <th>Product Gender</th>
         <th>Sun/Optical</th>
         <th>Incomplete</th>
@@ -19,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of product_list | filter:filter">
+      <tr *ngFor="let product of product_list | filter:filter |  orderBy: {property: column, direction: direction}">
         <td>{{product.name}}</td>
         <td>
           <a [routerLink]="['/product', brand, product.product_id]">{{product.product_id}}</a>
@@ -61,7 +70,7 @@
   <div class="page-header">
     <h1>{{product.name}}
       <small>
-        <a>Assets</a>
+        <a [routerLink]="['/product', brand, 'assets', product.product_id]">Assets</a>
       </small>
     </h1>
   </div>
@@ -152,12 +161,37 @@
     </div>
     <div class="form-group">
       <label for="upc_codes" class="control-label col-sm-2">UPC Code</label>
-      <div class="col-sm-8">
+      <!-- <div class="col-sm-8">
         <input type="text" class="form-control" name="upc_code" [(ngModel)]="product.upc_codes" required class="form-control input-xlarge">
-      </div>
+      </div> -->
+    <div class="col-sm-8">
+      <ng-container *ngIf = "!UpcCode">None</ng-container>
+      {{UpcCode}}
+    </div>
       <div class="col-sm-2">
-        <button type="button" class="btn btn-default row" style="margin-top: 5px;">Assign New UPC Code</button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Assign New UPC Code</button>
       </div>
+      <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Assign New UPC Code</h4>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" name="upc_code" placeholder = "Additional Description" [(ngModel)]="upc_code" required class="form-control input-xlarge">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="assignUpcCode(upc_code)" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+
+  </div>
+</div>
     </div>
     <fieldset>
       <legend>
