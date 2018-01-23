@@ -179,12 +179,10 @@ export class ProductComponent {
 
 // assign upc_code
 assignUpcCode(assignUpcCode) {
-  console.log("assignUpcCode ++++++++++++======= ", assignUpcCode)
 this.description = {
   'description' : assignUpcCode
 }
 this._productService.assignUpcCode(this.brand, this.product_id, this.description).subscribe((res: any) => {
-  console.log("response >>>>>>>>>>>>..................", JSON.stringify(res.data))
   if (res.code == 200) {
   this.UpcCode = res.data[1];
   }

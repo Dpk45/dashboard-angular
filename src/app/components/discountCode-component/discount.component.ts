@@ -32,7 +32,6 @@ export class DiscountComponent {
   isDesc: boolean = false;
   column: string;
   direction: number;
-
   constructor(private route: ActivatedRoute, private _discountService: DiscountService, private router: Router) {
 
   }
@@ -80,7 +79,7 @@ export class DiscountComponent {
     this.TodayDate = moment(this.TodayDate).format('YYYY-MM-DD');
     if (!expirationDate) {
       const NotExpired: any = [];
-      if(this.discount_list.length){
+      if(this.discount_list.length) {
         for (let i = 0; i < this.discount_list.length; i++) {
           if (this.discount_list[i].expiration_date >= this.TodayDate) {
             NotExpired.push(this.discount_list[i]);
