@@ -1,20 +1,20 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { UserService } from "../../services/user.service";
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 
 
 @Component({
     moduleId: module.id,
-    selector: "user",
-    templateUrl: "user.component.html",
-    styleUrls: ["user.component.css"]
+    selector: 'user',
+    templateUrl: 'user.component.html',
+    styleUrls: ['user.component.css']
 })
 
 export class UserComponent {
     userList: any;
     brand: any;
-    CurrentPageValue: number = 1;
+    CurrentPageValue = 1;
     selectedValue = 10;
 
     isDesc: boolean = false;
@@ -27,7 +27,7 @@ export class UserComponent {
 
     ngOnInit() {
         this.route.params.subscribe((params: any) => {
-            this.brand = params.brand
+            this.brand = params.brand;
             this.getUsers();
         });
     }
@@ -36,8 +36,8 @@ export class UserComponent {
     getUsers() {
         this._userService.getUsers(this.brand).subscribe(res => {
             this.userList = res.data;
-            console.log(" this.userList vvvvvvvvvv", this.userList)
-        })
+            console.log(' this.userList vvvvvvvvvv', this.userList)
+        });
     }
 
     // sorting function

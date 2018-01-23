@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DashUserService } from '../../../services/dashUser.service'
-import { ProductService } from '../../../services/product.service'
+import { DashUserService } from '../../../services/dashUser.service';
+import { ProductService } from '../../../services/product.service';
 import { UploadEvent, UploadFile } from 'ngx-file-drop';
 
 @Component({
@@ -15,14 +15,16 @@ export class UploadAssetComponent implements OnInit {
   product: any;
   byProduct: boolean;
   objectKeys = Object.keys;
-  assetObject: any
-  files: any
+  assetObject: any;
+  files: any;
 
-  constructor(private route: ActivatedRoute, private _productService: ProductService, private _dashUserService: DashUserService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private _productService: ProductService,
+    private _dashUserService: DashUserService, private router: Router) {
+
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
-      console.log("params >>>>.", params)
       this.brand = params.brand;
       if (params.product_id) {
         this.product_id = params.product_id;
@@ -34,14 +36,14 @@ export class UploadAssetComponent implements OnInit {
   // get product by product_id
   foundProduct(product_Id) {
     this._productService.getProductById(this.brand, product_Id).subscribe((res: any) => {
-      if (res.code == 200) {
+      if (res.code === 200) {
         this.byProduct = true;
         this.product = res.data[0];
       }
     },
       (err) => {
         console.log('error>>>>>>>>>>>>', err);
-      })
+      });
   }
 
 
@@ -51,7 +53,7 @@ export class UploadAssetComponent implements OnInit {
       for (const file of event.files) {
         file.fileEntry.file(info => {
           console.log(info);
-          let reader = new FileReader();
+          const reader = new FileReader();
           reader.onload = () => {
             this.assetObject = {
               asset_group: asset,
@@ -59,21 +61,20 @@ export class UploadAssetComponent implements OnInit {
               data: btoa(reader.result)
             };
             this._productService.uploadProductAsset(this.brand, this.product_id, this.assetObject).subscribe((res: any) => {
-              if (res.code == 200) {
-                console.log("uploaded succesfully ........")
+              if (res.code === 200) {
+                location.reload();
               }
             }, error => {
-              console.log("error", error.error.data)
               return error.error.data.message;
-            })
-          }
+            });
+          };
           if (info) {
             reader.readAsBinaryString(info);
           }
         });
       }
     } catch (err) {
-      console.log("error", err)
+      console.log('error', err);
     }
   }
 
@@ -84,19 +85,20 @@ export class UploadAssetComponent implements OnInit {
 
 
   removeAssetGroup(assetGroup) {
-    if (confirm("This will remove the " + assetGroup + " group and all assets inside it.")) {
+    if (confirm('This will remove the ' + assetGroup + ' group and all assets inside it.')) {
       delete this.product.assets[assetGroup];
     }
   }
 
   updateProductAsset() {
     this._productService.updateProductById(this.brand, this.product.product_id, this.product).subscribe((res: any) => {
-      if (res.code == 200) {
+      if (res.code === 200) {
+        location.reload();
       }
     }, error => {
-      console.log("error", error.error.data)
+      console.log('error', error.error.data);
       return error.error.data.message;
-    })
+    });
   }
 
 }
