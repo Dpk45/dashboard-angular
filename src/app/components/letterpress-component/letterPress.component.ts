@@ -71,7 +71,6 @@ export class LetterPressComponent {
     this._letterService.updateOneTemplate(this.subject, this.fromName, this.fromEmail, this.text, this.html, this.getOnetemplate.name, this.brand)
     .subscribe(res => {
       this.save = "Saved !"
-      // this.router.navigate(['/letterpress', this.brand]);
     })
   }
 
@@ -97,7 +96,6 @@ export class LetterPressComponent {
     this._letterService.updateCommonTemplate(this.content, this.getCommontemplate.name, this.brand)
     .subscribe(res => {
       this.save = 'Saved !';
-      // this.router.navigate(['/letterpress', this.brand]);
     })
   }
 }

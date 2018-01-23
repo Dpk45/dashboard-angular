@@ -20,7 +20,6 @@ export class HtkComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this._dashUserService.getDashUserByEmail(this.current_user.email).subscribe((res) => {
       this.dashUser = res;
       for(let i=0; i < res.brands.length; i++){

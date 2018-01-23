@@ -31,7 +31,6 @@ export class LensComponent {
 // get data from table lens_colors
 getLensColor() {
     this._lookupService.getLensColor(this.brand).subscribe((res: any) => {
-      console.log("resposne >>>>>>>>>>>>>>lens colors>>>>>>>>>>>>....",res)
       if(res.code == 200) {
       this.lensData = res.data;
       }
@@ -59,13 +58,11 @@ this._lookupService.createLensColor(this.brand, this.lensDataValues).subscribe((
 
 // update frame_color
 updateLensColor(update_lens_id, update_lens_name, update_lens_active) {
-  console.log("update_lens_name, update_lens_active", update_lens_name, update_lens_active)
   this.editLensData = {
     'name': update_lens_name,
     'active_flag': update_lens_active
   }
   this._lookupService.updateLensColor(this.brand, this.editLensData, update_lens_id).subscribe((res: any) => {
-    console.log("resposne >>>>>>>>>>>>>>",res)
     if(res.code == 200) {
       //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
   //    location.reload();

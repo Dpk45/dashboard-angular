@@ -29,10 +29,8 @@ export class FrameComponent {
 // get data from table frame_colors
 getFrameColor() {
     this._lookupService.getFrameColor(this.brand).subscribe((res: any) => {
-      console.log("resposne >>>>>>>>>>>>>>",res)
       if(res.code == 200) {
       this.frameData = res.data;
-      console.log("frameData>>>>>>>..........",this.frameData)
       }
     },
     (err) => {
@@ -46,9 +44,7 @@ this.frameDataValues = {
 'name': frame_name,
 'active_flag': frame_active,
 }
-console.log("this.frameDataValues+++++++++++++++++++",this.frameDataValues)
 this._lookupService.createFrameColor(this.brand, this.frameDataValues).subscribe((res: any) => {
-  console.log("resposne >>>>>>>>>>>>>>",res)
   if(res.code == 200) {
   //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
    location.reload();
@@ -66,7 +62,6 @@ updateFrameColor(update_frame_id, update_frame_name, update_frame_active) {
     'active_flag': update_frame_active
   }
   this._lookupService.updateFrameColor(this.brand, this.editFrameData, update_frame_id).subscribe((res: any) => {
-    console.log("resposne >>>>>>>>>>>>>>",res)
     if(res.code == 200) {
       //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
   //    location.reload();

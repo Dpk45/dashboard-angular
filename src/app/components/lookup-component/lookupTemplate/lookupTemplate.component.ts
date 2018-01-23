@@ -29,10 +29,8 @@ export class TemplateComponent {
 // get data from table styles
 getTemplateMap() {
     this._lookupService.getTemplateMap(this.brand).subscribe((res: any) => {
-      //console.log("resposne >>>>>>>>>>>>>> styleeeeeeeeeeeeeee", res)
       if(res.code == 200) {
       this.templateData = res.data;
-      console.log(">>>>>>>>>>>>>>>>.................", this.templateData)
       }
     },
     (err) => {
@@ -47,10 +45,9 @@ this.templateDataValues = {
 'generate_optical': optical,
 'optical_template': optical_template,
 'generate_sun': generate_sun,
-'sun_template': sun_template, 
+'sun_template': sun_template,
 'active_flag': template_active
 }
-console.log("this.templateDataValues>>>>>>>>>>>>>>>>..",this.templateDataValues)
 this._lookupService.createTemplateMap(this.brand, this.templateDataValues).subscribe((res: any) => {
   if(res.code == 200) {
     location.reload();
@@ -72,7 +69,6 @@ updateTemplateMap(updated_id, updated_name, updated_optical, updated_optical_tem
     'active_flag': updated_template_active
   }
   this._lookupService.updatTemplateMap(this.brand, this.editTemplateData, updated_id).subscribe((res: any) => {
-    console.log("resposne >>>>>>>>>>>>>>++++++++++++++++",res)
     if(res.code == 200) {
       //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
     //  location.reload();

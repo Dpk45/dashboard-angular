@@ -63,7 +63,6 @@ updatStyle(update_style_id, update_style_name, update_style_active) {
     'active_flag': update_style_active
   }
   this._lookupService.updateStyle(this.brand, this.editStyleData, update_style_id).subscribe((res: any) => {
-    console.log("resposne >>>>>>>>>>>>>>++++++++++++++++",res)
     if(res.code == 200) {
       //this.router.navigate(['/lookup', 'frame_colors', this.brand]);
     //  location.reload();

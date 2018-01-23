@@ -107,8 +107,6 @@ export class OrderDetailComponent implements OnInit {
     this._orderService.getOrderByOrderId(this.brand, this.order_id).subscribe((res: any) => {
       this.order = res.data;
       this.labs = API_KEYS[this.brand].labs
-      console.log("this.labs  >>>>", this.labs)
-      console.log(this.order)
     })
   }
 
@@ -128,10 +126,8 @@ export class OrderDetailComponent implements OnInit {
   }
 
   sendToLab(order_id, item_id, brand, lab) {
-    console.log("order_id, item_id, brand", order_id, item_id, brand, lab)
     let data = {}
     this._orderService.sendToLab(this.brand, this.order_id, lab, item_id, data).subscribe((res: any) => {
-      console.log("res >>>", res)
       if (res.code == 200) {
         location.reload();
       }
@@ -139,10 +135,8 @@ export class OrderDetailComponent implements OnInit {
   }
 
   receivedByLab(order_id, item_id, brand) {
-    console.log("order_id, item_id", order_id, item_id, brand)
     let data = {}
     this._orderService.receivedByLab(this.brand, this.order_id, item_id, data).subscribe((res: any) => {
-      console.log("res >>>", res)
       if (res.code == 200) {
         location.reload();
       }
@@ -150,10 +144,8 @@ export class OrderDetailComponent implements OnInit {
   }
 
   labFinishedProcessing(order_id, item_id, brand) {
-    console.log("order_id, item_id", order_id, item_id, brand)
     let data = {}
     this._orderService.labFinishedProcessing(this.brand, this.order_id, item_id, data).subscribe((res: any) => {
-      console.log("res >>>", res)
       if (res.code == 200) {
         location.reload();
       }
@@ -161,10 +153,8 @@ export class OrderDetailComponent implements OnInit {
   }
 
   receiveFromLab(order_id, item_id, brand) {
-    console.log("order_id, item_id", order_id, item_id, brand)
     let data = {}
     this._orderService.receiveFromLab(this.brand, this.order_id, item_id, data).subscribe((res: any) => {
-      console.log("res >>>", res)
       if (res.code == 200) {
         location.reload();
       }
@@ -172,11 +162,8 @@ export class OrderDetailComponent implements OnInit {
   }
 
   returnItem(order_id, item_id, brand, reason, description){
-    console.log("reason", reason)
-    console.log("description", description)
     let data = {}
     this._orderService.returnItem(this.brand, this.order_id, item_id, reason, description, data).subscribe((res: any) => {
-      console.log("res >>>", res)
       if (res.code == 200) {
         location.reload();
       }
@@ -184,11 +171,8 @@ export class OrderDetailComponent implements OnInit {
   }
 
   cancelItem(order_id, item_id, brand, reason, description){
-    console.log("reason", reason)
-    console.log("description", description)
     let data = {}
     this._orderService.cancelItem(this.brand, this.order_id, item_id, reason, description, data).subscribe((res: any) => {
-      console.log("res >>>", res)
       if (res.code == 200) {
         location.reload();
       }
@@ -196,11 +180,8 @@ export class OrderDetailComponent implements OnInit {
   }
 
   refund(order_id, item_id, brand, reason, description, amount){
-    console.log("reason", reason)
-    console.log("description", description)
     let data = {}
     this._orderService.refund(this.brand, this.order_id, item_id, reason, description, amount, data).subscribe((res: any) => {
-      console.log("res >>>", res)
       if (res.code == 200) {
         location.reload();
       }
@@ -208,12 +189,8 @@ export class OrderDetailComponent implements OnInit {
   }
 
   issueStoreCredit(order_id, item_id, brand, reason, description, amount){
-    console.log("reason", reason)
-    console.log("description", description)
-    console.log("amount", amount)
     let data = {}
     this._orderService.issueStoreCredit(this.brand, this.order_id, item_id, reason, description, amount, data).subscribe((res: any) => {
-      console.log("res >>>", res)
       if (res.code == 200) {
         location.reload();
       }
@@ -221,10 +198,8 @@ export class OrderDetailComponent implements OnInit {
   }
 
   addNote(form){
-    console.log("form >>>>>>>", form);
     let data = form
     this._orderService.addInternalNote(this.brand, this.order_id, data).subscribe((res: any) => {
-      console.log("res >>>", res)
       if (res.code == 200) {
         location.reload();
       }

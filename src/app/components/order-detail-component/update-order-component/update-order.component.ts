@@ -36,7 +36,6 @@ export class UpdateOrderComponent implements OnInit {
     getOrderByOrderId() {
         this._orderService.getOrderByOrderId(this.brand, this.order_id).subscribe((res: any) => {
             this.order = res.data;
-            console.log("this.order >>>>", this.order)
         })
     }
 
@@ -47,7 +46,7 @@ export class UpdateOrderComponent implements OnInit {
         }else{
             n=""
         }
-        
+
         this.shippingAddress =
             {
                 "first_name": n[0],
