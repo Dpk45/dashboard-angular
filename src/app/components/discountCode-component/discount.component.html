@@ -118,7 +118,7 @@
                             </tbody>
                         </table>
                         <br> Showing {{((CurrentPageValue * selectedValue) + 1) - selectedValue}} to {{CurrentPageValue * selectedValue
-                        + selectedValue -selectedValue}} of {{discount_list.length}} entries
+                        + selectedValue -selectedValue}} of {{discount_list?.length}} entries
 
                         <pagination-controls (pageChange)="CurrentPageValue = $event" maxSize="10"></pagination-controls>
                     </div>
