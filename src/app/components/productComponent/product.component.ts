@@ -140,7 +140,7 @@ export class ProductComponent {
       "product_gender": form.gender,
       "tags": tagValue,
       "description": form.description,
-      //"assets": this.assestVal,
+      "assets": this.assestVal,
       "details": form.details,
       "social_id": form.social_id,
       "upc_code": form.upc_code,
