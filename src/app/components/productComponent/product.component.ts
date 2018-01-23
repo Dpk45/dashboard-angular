@@ -35,6 +35,7 @@ export class ProductComponent {
   column: string;
   direction: number;
   description: any;
+  UpcCode: any;
   constructor(private route: ActivatedRoute, private _productService: ProductService, private _dashUserService: DashUserService, private router: Router) {
   }
   ngOnInit() {
